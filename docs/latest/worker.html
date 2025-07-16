@@ -32,7 +32,7 @@ import "./_observablehq/client.c8b258ba.js";
     <summary>Guide</summary>
     <ol>
     <li class="observablehq-link"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link"><a href="./agent_setup">2. Agent Setup</a></li>
+    <li class="observablehq-link"><a href="./worker_setup">2. Worker Setup</a></li>
     <li class="observablehq-link"><a href="./run_command">3. Maand run_command</a></li>
     <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
     <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
@@ -46,9 +46,9 @@ import "./_observablehq/client.c8b258ba.js";
   <section class="observablehq-section-active">
     <summary>Insides</summary>
     <ol>
-    <li class="observablehq-link observablehq-link-active"><a href="./agent">Agent</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./worker">Worker</a></li>
     <li class="observablehq-link"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./roles">Roles</a></li>
+    <li class="observablehq-link"><a href="./labels">Labels</a></li>
     <li class="observablehq-link"><a href="./job">Job</a></li>
     <li class="observablehq-link"><a href="./allocations">Allocations</a></li>
     <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
@@ -62,26 +62,26 @@ import "./_observablehq/client.c8b258ba.js";
 <nav>
 <div>Contents</div>
 <ol>
-<li class="observablehq-secondary-link"><a href="#rules-for-agents">Rules for Agents</a></li>
+<li class="observablehq-secondary-link"><a href="#rules-for-worker">Rules for Worker</a></li>
 </ol>
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<h1 id="agent" tabindex="-1"><a class="observablehq-header-anchor" href="#agent">Agent</a></h1>
-<p>An <strong>Agent</strong> is a Linux machine identified by its <strong>IP address</strong> and assigned <strong>roles</strong> as specified in the <code>agents.json</code> file.</p>
+<h1 id="worker" tabindex="-1"><a class="observablehq-header-anchor" href="#worker">Worker</a></h1>
+<p>An <strong>Worker</strong> is a Linux machine identified by its <strong>IP address</strong> and assigned <strong>labels</strong> as specified in the <code>worker.json</code> file.</p>
 <hr>
-<h2 id="rules-for-agents" tabindex="-1"><a class="observablehq-header-anchor" href="#rules-for-agents">Rules for Agents</a></h2>
+<h2 id="rules-for-worker" tabindex="-1"><a class="observablehq-header-anchor" href="#rules-for-worker">Rules for Worker</a></h2>
 <ol>
 <li>
 <p>SSH Accessibility</p>
 <ul>
-<li>Agents must be accessible over SSH for Maand to function.</li>
+<li>Workers must be accessible over SSH for Maand to function.</li>
 </ul>
 </li>
 <li>
 <p>Required Tools</p>
 <ul>
-<li>Each agent must have the following installed:
+<li>Each worker must have the following installed:
 <ul>
 <li><strong><code>make</code></strong>: For running job Makefiles.</li>
 <li><strong><code>rsync</code></strong>: For file synchronization.</li>
@@ -92,28 +92,28 @@ import "./_observablehq/client.c8b258ba.js";
 <li>
 <p>Bucket</p>
 <ul>
-<li>An agent can belong to multiple buckets.</li>
+<li>An worker can belong to multiple buckets.</li>
 <li><strong>Buckets</strong> are logical groupings of jobs, represented by separate directories.</li>
-<li><code>/opt/agent</code> should have all bucket's folder when a agent belongs to multiple buckets.</li>
+<li><code>/opt/worker/&lt;bucket_id&gt;</code> should have all bucket's folder when a worker belongs to multiple buckets.</li>
 </ul>
 </li>
 <li>
 <p>Linux Compatibility</p>
 <ul>
-<li>Agents must run a Linux or Linux-like operating system.</li>
+<li>Workers must run a Linux or Linux-like operating system.</li>
 </ul>
 </li>
 <li>
 <p>Non-Interactive Command Execution</p>
 <ul>
-<li>The agent's user account must support running commands in a non-interactive manner.</li>
+<li>The worker's user account must support running commands in a non-interactive manner.</li>
 </ul>
 </li>
 <li>
 <p>Single User and Key Access</p>
 <ul>
-<li>Maand requires a single user and private key for SSH access to all agents.</li>
-<li>The same key is used to authenticate across all agents.</li>
+<li>Maand requires a single user and private key for SSH access to all workers.</li>
+<li>The same key is used to authenticate across all workers.</li>
 </ul>
 </li>
 </ol>
@@ -122,7 +122,7 @@ import "./_observablehq/client.c8b258ba.js";
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./setup_prometheus"><span>10. Prometheus</span></a><a rel="next" href="./bucket"><span>Bucket</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-01T13:25:36">Jan 1, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

@@ -32,7 +32,7 @@ import "./_observablehq/client.c8b258ba.js";
     <summary>Guide</summary>
     <ol>
     <li class="observablehq-link"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link"><a href="./agent_setup">2. Agent Setup</a></li>
+    <li class="observablehq-link"><a href="./worker_setup">2. Worker Setup</a></li>
     <li class="observablehq-link"><a href="./run_command">3. Maand run_command</a></li>
     <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
     <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
@@ -46,9 +46,9 @@ import "./_observablehq/client.c8b258ba.js";
   <section>
     <summary>Insides</summary>
     <ol>
-    <li class="observablehq-link"><a href="./agent">Agent</a></li>
+    <li class="observablehq-link"><a href="./worker">Worker</a></li>
     <li class="observablehq-link"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./roles">Roles</a></li>
+    <li class="observablehq-link"><a href="./labels">Labels</a></li>
     <li class="observablehq-link"><a href="./job">Job</a></li>
     <li class="observablehq-link"><a href="./allocations">Allocations</a></li>
     <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
@@ -72,7 +72,7 @@ import "./_observablehq/client.c8b258ba.js";
 <p>Maand allow jobs to define specialized command using Python scripts stored in the <code>_modules</code> folder.</p>
 <hr>
 <h2 id="setup" tabindex="-1"><a class="observablehq-header-anchor" href="#setup">Setup</a></h2>
-<p>This example demonstrates how to implement a <strong>health check</strong> for the <code>node_exporter</code> job, ensuring the service runs correctly across all agents.</p>
+<p>This example demonstrates how to implement a <strong>health check</strong> for the <code>node_exporter</code> job, ensuring the service runs correctly across all workers.</p>
 <hr>
 <h3 id="create-the-modules-folder" tabindex="-1"><a class="observablehq-header-anchor" href="#create-the-modules-folder"><strong>Create the <code>_modules</code> Folder</strong></a></h3>
 <ol>
@@ -101,7 +101,7 @@ import "./_observablehq/client.c8b258ba.js";
 <span class="hljs-keyword">import</span> os
 
 <span class="hljs-keyword">def</span> <span class="hljs-title function_">execute</span>():
-    nodes = os.getenv(<span class="hljs-string">"AGENT_NODES"</span>)
+    nodes = os.getenv(<span class="hljs-string">"WORKER_NODES"</span>)
     nodes = nodes.split(<span class="hljs-string">","</span>)
     <span class="hljs-keyword">for</span> node <span class="hljs-keyword">in</span> nodes:
         r = requests.get(<span class="hljs-string">f"http://<span class="hljs-subst">{node}</span>:9100/metrics"</span>)
@@ -109,8 +109,8 @@ import "./_observablehq/client.c8b258ba.js";
 </code></pre>
 <p><strong>What It Does</strong>:</p>
 <ul>
-<li>Retrieves the list of agent IPs from the <code>AGENT_NODES</code> environment variable.</li>
-<li>Sends HTTP requests to each agent on port 9100 to verify node_exporter is running.</li>
+<li>Retrieves the list of worker IPs from the <code>WORKER_NODES</code> environment variable.</li>
+<li>Sends HTTP requests to each worker on port 9100 to verify node_exporter is running.</li>
 <li>Raises an exception if a node's health check fails.</li>
 </ul>
 </li>
@@ -124,7 +124,7 @@ import "./_observablehq/client.c8b258ba.js";
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./job_control"><span>8. Job Control</span></a><a rel="next" href="./setup_prometheus"><span>10. Prometheus</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-01T13:25:36">Jan 1, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

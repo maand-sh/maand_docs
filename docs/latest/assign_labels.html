@@ -32,7 +32,7 @@ import "./_observablehq/client.c8b258ba.js";
     <summary>Guide</summary>
     <ol>
     <li class="observablehq-link"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link"><a href="./agent_setup">2. Agent Setup</a></li>
+    <li class="observablehq-link"><a href="./worker_setup">2. Worker Setup</a></li>
     <li class="observablehq-link"><a href="./run_command">3. Maand run_command</a></li>
     <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
     <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
@@ -46,9 +46,9 @@ import "./_observablehq/client.c8b258ba.js";
   <section>
     <summary>Insides</summary>
     <ol>
-    <li class="observablehq-link"><a href="./agent">Agent</a></li>
+    <li class="observablehq-link"><a href="./worker">Worker</a></li>
     <li class="observablehq-link"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./roles">Roles</a></li>
+    <li class="observablehq-link"><a href="./labels">Labels</a></li>
     <li class="observablehq-link"><a href="./job">Job</a></li>
     <li class="observablehq-link"><a href="./allocations">Allocations</a></li>
     <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
@@ -71,13 +71,13 @@ import "./_observablehq/client.c8b258ba.js";
 <h1 id="labels" tabindex="-1"><a class="observablehq-header-anchor" href="#labels">Labels</a></h1>
 <p><strong>Labels</strong> works as node selector and static service discovery in maand.</p>
 <hr>
-<p>Labels are defined in the <code>agents.json</code> file and matched to jobs for allocations.</p>
+<p>Labels are defined in the <code>workers.json</code> file and matched to jobs for allocations.</p>
 <h2 id="viewing-labels" tabindex="-1"><a class="observablehq-header-anchor" href="#viewing-labels"><strong>Viewing Labels</strong></a></h2>
-<p>List all agents and their labels:</p>
-<pre data-language="bash"><code class="language-bash">$ maand <span class="hljs-built_in">cat</span> agents
+<p>List all workers and their labels:</p>
+<pre data-language="bash"><code class="language-bash">$ maand <span class="hljs-built_in">cat</span> workers
 </code></pre>
 <h4 id="example-output" tabindex="-1"><a class="observablehq-header-anchor" href="#example-output">Example Output:</a></h4>
-<pre data-language="plaintext"><code class="language-plaintext">agent_id                              agent_ip       detained  labels
+<pre data-language="plaintext"><code class="language-plaintext">worker_id                             worker_ip      detained  labels
 ------------------------------------  -------------  --------  -------------------------------------
 1117262b-c412-4c28-8724-e22a3c194947  10.27.221.181  0         agent
 25d833a2-a7da-450f-81a6-11ecd1ef4632  10.27.221.144  0         agent
@@ -86,13 +86,13 @@ import "./_observablehq/client.c8b258ba.js";
 <hr>
 <h3 id="default-label" tabindex="-1"><a class="observablehq-header-anchor" href="#default-label"><strong>Default Label</strong></a></h3>
 <ul>
-<li>All agents are assigned the <code>agent</code> label by default.</li>
+<li>All workers are assigned the <code>worker</code> label by default.</li>
 <li>Additional labels can be added to customize their responsibilities.</li>
 </ul>
 <hr>
 <h2 id="assigning-labels" tabindex="-1"><a class="observablehq-header-anchor" href="#assigning-labels"><strong>Assigning Labels</strong></a></h2>
-<p><strong>Edit <code>agents.json</code></strong>
-Add labels to agents under the <code>labels</code> key:</p>
+<p><strong>Edit <code>workers.json</code></strong>
+Add labels to workers under the <code>labels</code> key:</p>
 <pre data-language="json"><code class="language-json"><span class="hljs-punctuation">[</span>
  <span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.27.221.181"</span><span class="hljs-punctuation">,</span>
@@ -112,19 +112,19 @@ Apply the changes by running:</p>
 </code></pre>
 <p><strong>Verify Labels</strong>
 Check label assignments:</p>
-<pre data-language="bash"><code class="language-bash">$ maand <span class="hljs-built_in">cat</span> agents
+<pre data-language="bash"><code class="language-bash">$ maand <span class="hljs-built_in">cat</span> workers
 </code></pre>
 <h4 id="example-output-1" tabindex="-1"><a class="observablehq-header-anchor" href="#example-output-1">Example Output:</a></h4>
-<pre data-language="plaintext"><code class="language-plaintext">agent_id                              agent_ip       detained  labels
+<pre data-language="plaintext"><code class="language-plaintext">worker_id                             worker_ip      detained  labels
 ------------------------------------  -------------  --------  -------------------------------------
-1117262b-c412-4c28-8724-e22a3c194947  10.27.221.181  0         agent,prometheus
-25d833a2-a7da-450f-81a6-11ecd1ef4632  10.27.221.144  0         agent
-94dfe46b-2326-46d5-8956-971a774af8d2  10.27.221.170  0         agent
+1117262b-c412-4c28-8724-e22a3c194947  10.27.221.181  0         worker,prometheus
+25d833a2-a7da-450f-81a6-11ecd1ef4632  10.27.221.144  0         worker
+94dfe46b-2326-46d5-8956-971a774af8d2  10.27.221.170  0         worker
 </code></pre>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./deploy"><span>5. Maand deploy</span></a><a rel="next" href="./job_setup"><span>7. Job Setup</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-01T13:25:36">Jan 1, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

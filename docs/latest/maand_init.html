@@ -32,7 +32,7 @@ import "./_observablehq/client.c8b258ba.js";
     <summary>Guide</summary>
     <ol>
     <li class="observablehq-link observablehq-link-active"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link"><a href="./agent_setup">2. Agent Setup</a></li>
+    <li class="observablehq-link"><a href="./worker_setup">2. Worker Setup</a></li>
     <li class="observablehq-link"><a href="./run_command">3. Maand run_command</a></li>
     <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
     <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
@@ -46,9 +46,9 @@ import "./_observablehq/client.c8b258ba.js";
   <section>
     <summary>Insides</summary>
     <ol>
-    <li class="observablehq-link"><a href="./agent">Agent</a></li>
+    <li class="observablehq-link"><a href="./worker">Worker</a></li>
     <li class="observablehq-link"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./roles">Roles</a></li>
+    <li class="observablehq-link"><a href="./labels">Labels</a></li>
     <li class="observablehq-link"><a href="./job">Job</a></li>
     <li class="observablehq-link"><a href="./allocations">Allocations</a></li>
     <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
@@ -88,19 +88,22 @@ $ <span class="hljs-built_in">cd</span> platform-services
 <pre data-language="plaintext"><code class="language-plaintext">$ tree
 .
 ├── data
-│&nbsp;&nbsp; ├── jobs.db
-│&nbsp;&nbsp; ├── kv.db
-│&nbsp;&nbsp; └── maand.db
+│   └── maand.db
 ├── logs
-│&nbsp;&nbsp; └── maand.log
 ├── maand.conf
 ├── secrets
-│&nbsp;&nbsp; ├── ca.crt
-│&nbsp;&nbsp; └── ca.key
+│    ├── ca.crt
+│    └── ca.key
 └── workspace
-    └── agents.json
+    ├── bucket.conf
+    ├── docker
+    │   ├── Dockerfile
+    │   └── requirements.txt
+    ├── jobs
+    └── workers.json
 
-5 directories, 8 files
+7 directories, 8 files
+
 </code></pre>
 <hr>
 <h2 id="view-bucket-info" tabindex="-1"><a class="observablehq-header-anchor" href="#view-bucket-info">View Bucket Info</a></h2>
@@ -114,8 +117,8 @@ db3c0da7-6709-4d8c-94a0-5f66b0e32249  0
 </code></pre>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./"><span>Maand</span></a><a rel="next" href="./agent_setup"><span>2. Agent Setup</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-01T13:25:36">Jan 1, 2025</a>.</div>
+<nav><a rel="prev" href="./"><span>Maand</span></a><a rel="next" href="./worker_setup"><span>2. Worker Setup</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

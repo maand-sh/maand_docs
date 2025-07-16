@@ -32,7 +32,7 @@ import "./_observablehq/client.c8b258ba.js";
     <summary>Guide</summary>
     <ol>
     <li class="observablehq-link"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link"><a href="./agent_setup">2. Agent Setup</a></li>
+    <li class="observablehq-link"><a href="./worker_setup">2. Worker Setup</a></li>
     <li class="observablehq-link"><a href="./run_command">3. Maand run_command</a></li>
     <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
     <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
@@ -46,9 +46,9 @@ import "./_observablehq/client.c8b258ba.js";
   <section class="observablehq-section-active">
     <summary>Insides</summary>
     <ol>
-    <li class="observablehq-link"><a href="./agent">Agent</a></li>
+    <li class="observablehq-link"><a href="./worker">Worker</a></li>
     <li class="observablehq-link"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./roles">Roles</a></li>
+    <li class="observablehq-link"><a href="./labels">Labels</a></li>
     <li class="observablehq-link observablehq-link-active"><a href="./job">Job</a></li>
     <li class="observablehq-link"><a href="./allocations">Allocations</a></li>
     <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
@@ -63,7 +63,7 @@ import "./_observablehq/client.c8b258ba.js";
 <div>Contents</div>
 <ol>
 <li class="observablehq-secondary-link"><a href="#job-structure">Job Structure</a></li>
-<li class="observablehq-secondary-link"><a href="#job-role-matching">Job Role Matching</a></li>
+<li class="observablehq-secondary-link"><a href="#job-allocation">Job Allocation</a></li>
 <li class="observablehq-secondary-link"><a href="#makefile-targets">Makefile Targets</a></li>
 <li class="observablehq-secondary-link"><a href="#workflow">Workflow</a></li>
 </ol>
@@ -71,14 +71,14 @@ import "./_observablehq/client.c8b258ba.js";
 </aside>
 <main id="observablehq-main" class="observablehq">
 <h1 id="job" tabindex="-1"><a class="observablehq-header-anchor" href="#job">Job</a></h1>
-<p>A <strong>Job</strong> in Maand is a deployable folder containing configuration and execution logic. Jobs are dynamically assigned to agents based on matching roles.</p>
+<p>A <strong>Job</strong> in Maand is a deployable folder containing configuration and execution logic. Jobs are assigned to workers based on matching labels.</p>
 <hr>
 <h2 id="job-structure" tabindex="-1"><a class="observablehq-header-anchor" href="#job-structure"><strong>Job Structure</strong></a></h2>
 <p>A job folder must include:</p>
 <ol>
 <li><strong><code>manifest.json</code></strong>
 <ul>
-<li>Defines the roles the job applies to.</li>
+<li>Defines the labels the job applies to.</li>
 </ul>
 </li>
 <li><strong><code>Makefile</code></strong>
@@ -88,19 +88,19 @@ import "./_observablehq/client.c8b258ba.js";
 </li>
 </ol>
 <hr>
-<h2 id="job-role-matching" tabindex="-1"><a class="observablehq-header-anchor" href="#job-role-matching"><strong>Job Role Matching</strong></a></h2>
+<h2 id="job-allocation" tabindex="-1"><a class="observablehq-header-anchor" href="#job-allocation"><strong>Job Allocation</strong></a></h2>
 <ul>
-<li><strong>Role Assignment</strong>: When the roles in <code>manifest.json</code> match the roles assigned to an agent, Maand allocates the job folder to that agent.</li>
-<li><strong>Dynamic Variable Replacement</strong>: Variables assigned to agents (based on roles) are stored in a key-value (KV) database when <code>maand build</code> is called. These variables are replaced with actual values during <code>maand update</code>.</li>
+<li><strong>Label vs Selector</strong>: When the selectors in <code>manifest.json</code> match the labels assigned to a worker, Maand allocates the job folder to that worker.</li>
+<li><strong>Dynamic Variable Replacement</strong>: Variables assigned to workers (based on selectors) are stored in a key-value (KV) database when <code>maand build</code> is called. These variables are replaced with actual values during <code>maand deploy</code>.</li>
 </ul>
 <hr>
 <h2 id="makefile-targets" tabindex="-1"><a class="observablehq-header-anchor" href="#makefile-targets"><strong>Makefile Targets</strong></a></h2>
 <p>Maand expects the following targets in the job's <code>Makefile</code>:</p>
 <ol>
 <li><strong><code>start</code></strong><br>
-Defines the logic to initialize or run the job.</li>
+Defines the logic to initialize/start or run the job.</li>
 <li><strong><code>stop</code></strong><br>
-Handles stopping or cleaning up the job.</li>
+Handles stopping/cleaning up the job.</li>
 <li><strong><code>restart</code></strong><br>
 Combines the <code>stop</code> and <code>start</code> targets for job restarts.</li>
 </ol>
@@ -121,17 +121,17 @@ Combines the <code>stop</code> and <code>start</code> targets for job restarts.<
 </li>
 <li>
 <p><strong>Deploy Job</strong>:</p>
-<pre data-language="bash"><code class="language-bash">$ maand update
+<pre data-language="bash"><code class="language-bash">$ maand deploy
 </code></pre>
 <ul>
-<li>Allocates the job folder to matching agents and replaces variables in the configuration with actual values.</li>
+<li>Allocates the jobs to matching workers and replaces variables in the configuration with actual values.</li>
 </ul>
 </li>
 </ol>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./roles"><span>Roles</span></a><a rel="next" href="./allocations"><span>Allocations</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-01T13:25:36">Jan 1, 2025</a>.</div>
+<nav><a rel="prev" href="./labels"><span>Labels</span></a><a rel="next" href="./allocations"><span>Allocations</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

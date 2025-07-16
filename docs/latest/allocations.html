@@ -32,7 +32,7 @@ import "./_observablehq/client.c8b258ba.js";
     <summary>Guide</summary>
     <ol>
     <li class="observablehq-link"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link"><a href="./agent_setup">2. Agent Setup</a></li>
+    <li class="observablehq-link"><a href="./worker_setup">2. Worker Setup</a></li>
     <li class="observablehq-link"><a href="./run_command">3. Maand run_command</a></li>
     <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
     <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
@@ -46,9 +46,9 @@ import "./_observablehq/client.c8b258ba.js";
   <section class="observablehq-section-active">
     <summary>Insides</summary>
     <ol>
-    <li class="observablehq-link"><a href="./agent">Agent</a></li>
+    <li class="observablehq-link"><a href="./worker">Worker</a></li>
     <li class="observablehq-link"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./roles">Roles</a></li>
+    <li class="observablehq-link"><a href="./labels">Labels</a></li>
     <li class="observablehq-link"><a href="./job">Job</a></li>
     <li class="observablehq-link observablehq-link-active"><a href="./allocations">Allocations</a></li>
     <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
@@ -69,16 +69,16 @@ import "./_observablehq/client.c8b258ba.js";
 </aside>
 <main id="observablehq-main" class="observablehq">
 <h2 id="job-allocations" tabindex="-1"><a class="observablehq-header-anchor" href="#job-allocations">Job Allocations</a></h2>
-<p>In Maand, when a job is assigned to an agent, it is referred to as an <strong>allocation</strong>. Allocations are determined based on the matching roles between jobs and agents.</p>
+<p>In Maand, when a job is assigned to a worker, it is referred to as an <strong>allocation</strong>. Allocations are determined based on the matching labels and selectors between jobs and worker.</p>
 <hr>
 <h2 id="viewing-job-allocations" tabindex="-1"><a class="observablehq-header-anchor" href="#viewing-job-allocations">Viewing Job Allocations</a></h2>
 <p>To see the current job allocations, use the command:</p>
 <pre data-language="bash"><code class="language-bash">$ maand <span class="hljs-built_in">cat</span> allocations
 </code></pre>
-<p>This displays which jobs are assigned to which agents, along with their statuses.</p>
+<p>This displays which jobs are assigned to which workers, along with their statuses.</p>
 <hr>
 <h3 id="example-output" tabindex="-1"><a class="observablehq-header-anchor" href="#example-output">Example Output</a></h3>
-<pre data-language="plaintext"><code class="language-plaintext">agent_ip       job            disabled  removed
+<pre data-language="plaintext"><code class="language-plaintext">worker_ip       job            disabled  removed
 -------------  -------------  --------  -------
 10.27.221.181  cassandra      0         0      
 10.27.221.144  cassandra      0         0      
@@ -94,7 +94,7 @@ import "./_observablehq/client.c8b258ba.js";
 <hr>
 <h3 id="explanation-of-columns" tabindex="-1"><a class="observablehq-header-anchor" href="#explanation-of-columns"><strong>Explanation of Columns</strong></a></h3>
 <ul>
-<li><strong><code>agent_ip</code></strong>: The IP address of the agent to which the job is allocated.</li>
+<li><strong><code>worker_ip</code></strong>: The IP address of the worker to which the job is allocated.</li>
 <li><strong><code>job</code></strong>: The name of the allocated job.</li>
 <li><strong><code>disabled</code></strong>: A value of <code>0</code> indicates that the job is enabled.</li>
 <li><strong><code>removed</code></strong>: A value of <code>0</code> indicates that the job was allocated to that agent and later removed.</li>
@@ -111,15 +111,15 @@ import "./_observablehq/client.c8b258ba.js";
 <li>
 <p><strong>Update Agents</strong>:</p>
 <ul>
-<li>Allocations are applied to agents during the <code>maand update</code> process.</li>
+<li>Allocations are applied to agents during the <code>maand deploy</code> process.</li>
 </ul>
 </li>
 </ol>
-<p>By inspecting the allocations table, you can confirm which jobs are running/ will be on which agents.</p>
+<p>By inspecting the allocations table, you can confirm which jobs are running/ will be on which workers.</p>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./job"><span>Job</span></a><a rel="next" href="./job_command"><span>Job Command</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-01T13:25:36">Jan 1, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

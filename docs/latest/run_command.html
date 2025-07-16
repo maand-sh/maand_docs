@@ -32,7 +32,7 @@ import "./_observablehq/client.c8b258ba.js";
     <summary>Guide</summary>
     <ol>
     <li class="observablehq-link"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link"><a href="./agent_setup">2. Agent Setup</a></li>
+    <li class="observablehq-link"><a href="./worker_setup">2. Worker Setup</a></li>
     <li class="observablehq-link observablehq-link-active"><a href="./run_command">3. Maand run_command</a></li>
     <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
     <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
@@ -46,9 +46,9 @@ import "./_observablehq/client.c8b258ba.js";
   <section>
     <summary>Insides</summary>
     <ol>
-    <li class="observablehq-link"><a href="./agent">Agent</a></li>
+    <li class="observablehq-link"><a href="./worker">Worker</a></li>
     <li class="observablehq-link"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./roles">Roles</a></li>
+    <li class="observablehq-link"><a href="./labels">Labels</a></li>
     <li class="observablehq-link"><a href="./job">Job</a></li>
     <li class="observablehq-link"><a href="./allocations">Allocations</a></li>
     <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
@@ -69,15 +69,13 @@ import "./_observablehq/client.c8b258ba.js";
 </aside>
 <main id="observablehq-main" class="observablehq">
 <h1 id="running-commands" tabindex="-1"><a class="observablehq-header-anchor" href="#running-commands">Running Commands</a></h1>
-<p>Maand enables executing Linux commands across all agents seamlessly.</p>
+<p>Maand enables executing Linux commands across all workers seamlessly.</p>
 <hr>
 <h2 id="commands" tabindex="-1"><a class="observablehq-header-anchor" href="#commands"><strong>Commands</strong></a></h2>
 <p>Commands are added to the <code>command.sh</code> file in the <code>workspace</code> folder.</p>
 <h4 id="example-folder-structure" tabindex="-1"><a class="observablehq-header-anchor" href="#example-folder-structure">Example Folder Structure</a></h4>
 <pre data-language="plaintext"><code class="language-plaintext">.
 ├── data
-│&nbsp;&nbsp; ├── jobs.db
-│&nbsp;&nbsp; ├── kv.db
 │&nbsp;&nbsp; └── maand.db
 ├── logs
 │&nbsp;&nbsp; └── maand.log
@@ -85,12 +83,13 @@ import "./_observablehq/client.c8b258ba.js";
 ├── secrets
 │&nbsp;&nbsp; ├── ca.crt
 │&nbsp;&nbsp; └── ca.key
+│&nbsp;&nbsp; └── worker.key
 └── workspace
-    ├── agents.json
+    ├── workers.json
     ├── command.sh  &lt;==============================
     └── maand.jobs.conf
 
-5 directories, 9 files
+4 directories, 9 files
 </code></pre>
 <hr>
 <h3 id="define-commands" tabindex="-1"><a class="observablehq-header-anchor" href="#define-commands"><strong>Define Commands</strong></a></h3>
@@ -104,8 +103,8 @@ import "./_observablehq/client.c8b258ba.js";
 </code></pre>
 <hr>
 <h3 id="execute-commands" tabindex="-1"><a class="observablehq-header-anchor" href="#execute-commands"><strong>Execute Commands</strong></a></h3>
-<p>Run the script across all agents:</p>
-<pre data-language="bash"><code class="language-bash">$ maand run_command --no-check
+<p>Run the script across all worker:</p>
+<pre data-language="bash"><code class="language-bash">$ maand run_command
 </code></pre>
 <hr>
 <h3 id="sample-output" tabindex="-1"><a class="observablehq-header-anchor" href="#sample-output"><strong>Sample Output</strong></a></h3>
@@ -119,7 +118,7 @@ import "./_observablehq/client.c8b258ba.js";
 </code></pre>
 <hr>
 <h2 id="logs" tabindex="-1"><a class="observablehq-header-anchor" href="#logs"><strong>Logs</strong></a></h2>
-<p>Command results are saved in the <code>logs</code> directory for each agent.</p>
+<p>Command results are saved in the <code>logs</code> directory for each worker.</p>
 <h4 id="example" tabindex="-1"><a class="observablehq-header-anchor" href="#example">Example:</a></h4>
 <pre data-language="plaintext"><code class="language-plaintext">$ tree logs
 logs
@@ -135,8 +134,8 @@ tmpfs                           7.8G     0  7.8G   0% /dev/shm
 </code></pre>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./agent_setup"><span>2. Agent Setup</span></a><a rel="next" href="./build"><span>4. Maand build</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-01T13:25:36">Jan 1, 2025</a>.</div>
+<nav><a rel="prev" href="./worker_setup"><span>2. Worker Setup</span></a><a rel="next" href="./build"><span>4. Maand build</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

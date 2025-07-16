@@ -32,7 +32,7 @@ import "./_observablehq/client.c8b258ba.js";
     <summary>Guide</summary>
     <ol>
     <li class="observablehq-link"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link"><a href="./agent_setup">2. Agent Setup</a></li>
+    <li class="observablehq-link"><a href="./worker_setup">2. Worker Setup</a></li>
     <li class="observablehq-link"><a href="./run_command">3. Maand run_command</a></li>
     <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
     <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
@@ -46,9 +46,9 @@ import "./_observablehq/client.c8b258ba.js";
   <section>
     <summary>Insides</summary>
     <ol>
-    <li class="observablehq-link"><a href="./agent">Agent</a></li>
+    <li class="observablehq-link"><a href="./worker">Worker</a></li>
     <li class="observablehq-link"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./roles">Roles</a></li>
+    <li class="observablehq-link"><a href="./labels">Labels</a></li>
     <li class="observablehq-link"><a href="./job">Job</a></li>
     <li class="observablehq-link"><a href="./allocations">Allocations</a></li>
     <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
@@ -70,7 +70,7 @@ import "./_observablehq/client.c8b258ba.js";
 </aside>
 <main id="observablehq-main" class="observablehq">
 <h1 id="job-control" tabindex="-1"><a class="observablehq-header-anchor" href="#job-control">Job Control</a></h1>
-<p>Maand simplifies the lifecycle management of jobs across all agents using predefined <code>Makefile</code> targets (<code>start</code>, <code>stop</code>, <code>restart</code>).</p>
+<p>Maand simplifies the lifecycle management of jobs across all workers using predefined <code>Makefile</code> targets (<code>start</code>, <code>stop</code>, <code>restart</code>).</p>
 <hr>
 <h2 id="start-all-jobs" tabindex="-1"><a class="observablehq-header-anchor" href="#start-all-jobs"><strong>Start All Jobs</strong></a></h2>
 <pre data-language="bash"><code class="language-bash">$ maand job --target start
@@ -105,16 +105,16 @@ docker-compose up -d --remove-orphans
 <hr>
 <h3 id="key-advantages" tabindex="-1"><a class="observablehq-header-anchor" href="#key-advantages"><strong>Key Advantages</strong></a></h3>
 <ul>
-<li><strong>Centralized Control</strong>: Manage all jobs from one command, without logging into individual agents.</li>
-<li><strong>Standardized Execution</strong>: Ensures consistent operations across jobs and agents.</li>
-<li><strong>Scalable</strong>: Easily handles multiple jobs and agents simultaneously.</li>
+<li><strong>Centralized Control</strong>: Manage all jobs from one command, without logging into individual workers.</li>
+<li><strong>Standardized Execution</strong>: Ensures consistent operations across jobs and workers.</li>
+<li><strong>Scalable</strong>: Easily handles multiple jobs and workers simultaneously.</li>
 </ul>
 <hr>
 <p>By using these simple commands, you can efficiently manage job operations at scale.</p>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./job_setup"><span>7. Job Setup</span></a><a rel="next" href="./add_health_check"><span>9. Health Check</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-01T13:25:36">Jan 1, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

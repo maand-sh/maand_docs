@@ -32,7 +32,7 @@ import "./_observablehq/client.c8b258ba.js";
     <summary>Guide</summary>
     <ol>
     <li class="observablehq-link"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link"><a href="./agent_setup">2. Agent Setup</a></li>
+    <li class="observablehq-link"><a href="./worker_setup">2. Worker Setup</a></li>
     <li class="observablehq-link"><a href="./run_command">3. Maand run_command</a></li>
     <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
     <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
@@ -46,9 +46,9 @@ import "./_observablehq/client.c8b258ba.js";
   <section>
     <summary>Insides</summary>
     <ol>
-    <li class="observablehq-link"><a href="./agent">Agent</a></li>
+    <li class="observablehq-link"><a href="./worker">Worker</a></li>
     <li class="observablehq-link"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./roles">Roles</a></li>
+    <li class="observablehq-link"><a href="./labels">Labels</a></li>
     <li class="observablehq-link"><a href="./job">Job</a></li>
     <li class="observablehq-link"><a href="./allocations">Allocations</a></li>
     <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
@@ -63,7 +63,7 @@ import "./_observablehq/client.c8b258ba.js";
 <div>Contents</div>
 <ol>
 <li class="observablehq-secondary-link"><a href="#view-bucket">View Bucket</a></li>
-<li class="observablehq-secondary-link"><a href="#list-agents">List Agents</a></li>
+<li class="observablehq-secondary-link"><a href="#list-workers">List workers</a></li>
 </ol>
 </nav>
 </aside>
@@ -83,26 +83,26 @@ db3c0da7-6709-4d8c-94a0-5f66b0e32249  0
 <li><strong>bucket</strong>: Unique GUID assigned to the bucket.</li>
 <li><strong>update_seq</strong>: Tracks the number of updates made to the bucket. It increments with each successful build.</li>
 </ul>
-<h2 id="list-agents" tabindex="-1"><a class="observablehq-header-anchor" href="#list-agents">List Agents</a></h2>
-<p>To view all agents, their roles, and statuses, use:</p>
+<h2 id="list-workers" tabindex="-1"><a class="observablehq-header-anchor" href="#list-workers">List workers</a></h2>
+<p>To view all workers, their roles, and statuses, use:</p>
 <pre data-language="shell"><code class="language-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">maand <span class="hljs-built_in">cat</span> agents</span>
 </code></pre>
 <h4 id="example-output-1" tabindex="-1"><a class="observablehq-header-anchor" href="#example-output-1">Example Output:</a></h4>
-<pre data-language="plaintext"><code class="language-plaintext">agent_id                              agent_ip       detained  roles                                
-------------------------------------  -------------  --------  -------------------------------------
-1117262b-c412-4c28-8724-e22a3c194947  10.27.221.181  0         agent
-25d833a2-a7da-450f-81a6-11ecd1ef4632  10.27.221.144  0         agent           
-94dfe46b-2326-46d5-8956-971a774af8d2  10.27.221.170  0         agent   
+<pre data-language="plaintext"><code class="language-plaintext">worker_id                             worker_ip      detained    roles                                
+------------------------------------  -------------  --------    -------------------------------------
+1117262b-c412-4c28-8724-e22a3c194947  10.27.221.181  0           worker
+25d833a2-a7da-450f-81a6-11ecd1ef4632  10.27.221.144  0           worker           
+94dfe46b-2326-46d5-8956-971a774af8d2  10.27.221.170  0           worker   
 </code></pre>
 <ul>
-<li><strong>agent_id</strong>: Unique identifier for each agent.</li>
-<li><strong>agent_ip</strong>: IP address of the agent.</li>
-<li><strong>detained</strong>: Indicates whether the agent status (0 for active, 1 for detained).</li>
-<li><strong>roles</strong>: Roles assigned to the agent.</li>
+<li><strong>worker_id</strong>: Unique identifier for each worker.</li>
+<li><strong>worker_ip</strong>: IP address of the worker.</li>
+<li><strong>detained</strong>: Indicates whether the worker status (0 for active, 1 for detained).</li>
+<li><strong>labels</strong>: Roles assigned to the worker.</li>
 </ul>
 </main>
 <footer id="observablehq-footer">
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-01T13:25:36">Jan 1, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

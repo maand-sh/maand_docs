@@ -32,7 +32,7 @@ import "./_observablehq/client.c8b258ba.js";
     <summary>Guide</summary>
     <ol>
     <li class="observablehq-link"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link"><a href="./agent_setup">2. Agent Setup</a></li>
+    <li class="observablehq-link"><a href="./worker_setup">2. Worker Setup</a></li>
     <li class="observablehq-link"><a href="./run_command">3. Maand run_command</a></li>
     <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
     <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
@@ -46,9 +46,9 @@ import "./_observablehq/client.c8b258ba.js";
   <section class="observablehq-section-active">
     <summary>Insides</summary>
     <ol>
-    <li class="observablehq-link"><a href="./agent">Agent</a></li>
+    <li class="observablehq-link"><a href="./worker">Worker</a></li>
     <li class="observablehq-link observablehq-link-active"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./roles">Roles</a></li>
+    <li class="observablehq-link"><a href="./labels">Labels</a></li>
     <li class="observablehq-link"><a href="./job">Job</a></li>
     <li class="observablehq-link"><a href="./allocations">Allocations</a></li>
     <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
@@ -74,48 +74,45 @@ import "./_observablehq/client.c8b258ba.js";
 <p>Initialization creates the following structure:</p>
 <pre data-language="plaintext"><code class="language-plaintext">$ tree
 .
-|-- data
-|   |-- agents.db
-|   |-- jobs.db
-|   |-- kv.db
-|   `-- maand.db
-|-- logs
-|-- maand.conf
-|-- secrets
-|   |-- ca.crt
-|   `-- ca.key
-`-- workspace
-    |-- agents.json
-    |-- command.sh
-    |-- secrets.env
-    `-- variables.env
+├── data
+│   └── maand.db
+├── logs
+├── maand.conf
+├── secrets
+│    ├── ca.crt
+│    └── ca.key
+└── workspace
+    ├── bucket.conf
+    ├── docker
+    │   ├── Dockerfile
+    │   └── requirements.txt
+    ├── jobs
+    └── workers.json
 
-5 directories, 11 files
+7 directories, 8 files
+
 </code></pre>
 <hr>
 <h4 id="generated-files-and-directories" tabindex="-1"><a class="observablehq-header-anchor" href="#generated-files-and-directories"><strong>Generated Files and Directories</strong></a></h4>
 <ul>
-<li><strong><code>secrets/ca.key</code></strong> &amp; <strong><code>ca.crt</code></strong>: CA private key and public certificate for issue certs for agents and jobs.</li>
+<li><strong><code>secrets/ca.key</code></strong> &amp; <strong><code>ca.crt</code></strong>: CA private key and public certificate for issue certs for workers and jobs.</li>
 <li><strong><code>logs/*.log</code></strong>: Logs for operations.</li>
-<li><strong><code>data/*.db</code></strong>: SQLite databases stores metadata.
-<ul>
-<li><code>kv.db</code>: Configuration key-value pairs.</li>
-</ul>
-</li>
+<li><strong><code>data/maand.db</code></strong>: SQLite databases stores metadata.</li>
 <li><strong><code>workspace/</code></strong>:
 <ul>
-<li><code>variables.env</code>: Environment variables for agents and jobs.</li>
-<li><code>secrets.env</code>: Sensitive data like passwords and API keys.</li>
-<li><code>agents.json</code>: Agent and role configurations.</li>
+<li><code>bucket.conf</code>: Environment variables for workers and jobs.</li>
+<li><code>workers.json</code>: Workers and labels configurations.</li>
 <li><code>command.sh</code>: Placeholder for scripts.</li>
+<li><code>docker</code>: bucket container files</li>
+<li><code>jobs</code>: jobs folder</li>
 </ul>
 </li>
 </ul>
 <hr>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./agent"><span>Agent</span></a><a rel="next" href="./roles"><span>Roles</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-01T13:25:36">Jan 1, 2025</a>.</div>
+<nav><a rel="prev" href="./worker"><span>Worker</span></a><a rel="next" href="./labels"><span>Labels</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

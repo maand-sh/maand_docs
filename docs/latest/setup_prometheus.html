@@ -32,7 +32,7 @@ import "./_observablehq/client.c8b258ba.js";
     <summary>Guide</summary>
     <ol>
     <li class="observablehq-link"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link"><a href="./agent_setup">2. Agent Setup</a></li>
+    <li class="observablehq-link"><a href="./worker_setup">2. Worker Setup</a></li>
     <li class="observablehq-link"><a href="./run_command">3. Maand run_command</a></li>
     <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
     <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
@@ -46,9 +46,9 @@ import "./_observablehq/client.c8b258ba.js";
   <section>
     <summary>Insides</summary>
     <ol>
-    <li class="observablehq-link"><a href="./agent">Agent</a></li>
+    <li class="observablehq-link"><a href="./worker">Worker</a></li>
     <li class="observablehq-link"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./roles">Roles</a></li>
+    <li class="observablehq-link"><a href="./labels">Labels</a></li>
     <li class="observablehq-link"><a href="./job">Job</a></li>
     <li class="observablehq-link"><a href="./allocations">Allocations</a></li>
     <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
@@ -73,7 +73,7 @@ import "./_observablehq/client.c8b258ba.js";
 </aside>
 <main id="observablehq-main" class="observablehq">
 <h1 id="prometheus" tabindex="-1"><a class="observablehq-header-anchor" href="#prometheus">Prometheus</a></h1>
-<p>This guide demonstrates creating and deploying a job to manage <strong>prometheus</strong> to a agent and connect <strong>node_exporter</strong>.</p>
+<p>This guide demonstrates creating and deploying a job to manage <strong>prometheus</strong> to a worker and connect <strong>node_exporter</strong>.</p>
 <h2 id="create-a-job" tabindex="-1"><a class="observablehq-header-anchor" href="#create-a-job"><strong>Create a Job</strong></a></h2>
 <ol>
 <li>
@@ -85,7 +85,7 @@ import "./_observablehq/client.c8b258ba.js";
 <p>Verify the folder structure:</p>
 <pre data-language="plaintext"><code class="language-plaintext">.
 └── workspace
-    ├── agents.json
+    ├── workers.json
     ├── jobs
     │   └── node_exporter
     │   │   ├── docker-compose.yaml
@@ -140,7 +140,7 @@ Configuration for running <code>node_exporter</code>:</p>
      <span class="hljs-attr">volumes:</span>
      <span class="hljs-bullet">-</span> <span class="hljs-string">./prometheus.yml:/etc/prometheus/prometheus.yml</span>
      <span class="hljs-bullet">-</span> <span class="hljs-string">./web.config.yml:/etc/prometheus/web.config.yml</span>
-     <span class="hljs-bullet">-</span> <span class="hljs-string">/opt/agent/${BUCKET}/certs:/etc/prometheus/certs</span>
+     <span class="hljs-bullet">-</span> <span class="hljs-string">/opt/worker/${BUCKET}/certs:/etc/prometheus/certs</span>
 </code></pre>
 </li>
 </ol>
@@ -168,7 +168,7 @@ a255d9cb-7286-59f1-8775-8a0544503891  prometheus     0         0               p
 <pre data-language="bash"><code class="language-bash">$ maand <span class="hljs-built_in">cat</span> allocations
 </code></pre>
 <p>Example output:</p>
-<pre data-language="plaintext"><code class="language-plaintext">agent_ip       job            disabled  removed
+<pre data-language="plaintext"><code class="language-plaintext">worker_ip      job            disabled  removed
 -------------  -------------  --------  -------
 10.27.221.181  node_exporter  0         0      
 10.27.221.181  prometheus     0         0      
@@ -180,19 +180,19 @@ a255d9cb-7286-59f1-8775-8a0544503891  prometheus     0         0               p
 <hr>
 <h2 id="deploy" tabindex="-1"><a class="observablehq-header-anchor" href="#deploy"><strong>Deploy</strong></a></h2>
 <p>Deploy the job to the agents:</p>
-<pre data-language="bash"><code class="language-bash">$ maand update
+<pre data-language="bash"><code class="language-bash">$ maand deploy
 </code></pre>
 <hr>
 <h2 id="verify" tabindex="-1"><a class="observablehq-header-anchor" href="#verify"><strong>Verify</strong></a></h2>
 <ol>
 <li>
-<p>SSH into an agent and confirm the job files are deployed:</p>
-<pre data-language="bash"><code class="language-bash">$ ssh -i secrets/agent.key agent@10.27.221.181 <span class="hljs-string">'tree /opt/agent'</span>
+<p>SSH into an worker and confirm the job files are deployed:</p>
+<pre data-language="bash"><code class="language-bash">$ ssh -i secrets/worker.key worker@10.27.221.181 <span class="hljs-string">'tree /opt/worker'</span>
 </code></pre>
 </li>
 <li>
 <p>Example output:</p>
-<pre data-language="plaintext"><code class="language-plaintext">/opt/agent
+<pre data-language="plaintext"><code class="language-plaintext">/opt/worker
 └── db3c0da7-6709-4d8c-94a0-5f66b0e32249
     ├── jobs
     │   └── node_exporter
@@ -208,8 +208,8 @@ a255d9cb-7286-59f1-8775-8a0544503891  prometheus     0         0               p
 </ol>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="prev" href="./add_health_check"><span>9. Health Check</span></a><a rel="next" href="./agent"><span>Agent</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-01T13:25:36">Jan 1, 2025</a>.</div>
+<nav><a rel="prev" href="./add_health_check"><span>9. Health Check</span></a><a rel="next" href="./worker"><span>Worker</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

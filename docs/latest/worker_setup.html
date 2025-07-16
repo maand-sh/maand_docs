@@ -32,7 +32,7 @@ import "./_observablehq/client.c8b258ba.js";
     <summary>Guide</summary>
     <ol>
     <li class="observablehq-link"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link observablehq-link-active"><a href="./agent_setup">2. Agent Setup</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./worker_setup">2. Worker Setup</a></li>
     <li class="observablehq-link"><a href="./run_command">3. Maand run_command</a></li>
     <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
     <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
@@ -46,9 +46,9 @@ import "./_observablehq/client.c8b258ba.js";
   <section>
     <summary>Insides</summary>
     <ol>
-    <li class="observablehq-link"><a href="./agent">Agent</a></li>
+    <li class="observablehq-link"><a href="./worker">Worker</a></li>
     <li class="observablehq-link"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./roles">Roles</a></li>
+    <li class="observablehq-link"><a href="./labels">Labels</a></li>
     <li class="observablehq-link"><a href="./job">Job</a></li>
     <li class="observablehq-link"><a href="./allocations">Allocations</a></li>
     <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
@@ -69,15 +69,15 @@ import "./_observablehq/client.c8b258ba.js";
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<h1 id="agent" tabindex="-1"><a class="observablehq-header-anchor" href="#agent">Agent</a></h1>
-<p>An <strong>Agent</strong> is a Linux machine identified by its <strong>IP address</strong> and <strong>role</strong>, defined in <code>agents.json</code>.</p>
+<h1 id="worker" tabindex="-1"><a class="observablehq-header-anchor" href="#worker">Worker</a></h1>
+<p>An <strong>Worker</strong> is a Linux machine identified by its <strong>IP address</strong> and <strong>labels</strong>, defined in <code>workers.json</code>.</p>
 <hr>
 <p>Maand uses SSH for communication, requiring user permissions and specific configurations.</p>
 <h2 id="prerequisites" tabindex="-1"><a class="observablehq-header-anchor" href="#prerequisites"><strong>Prerequisites</strong></a></h2>
 <ol>
 <li>
 <p><strong>User Permissions</strong>
-The SSH user (e.g., <code>agent</code>) must have:</p>
+The SSH user (e.g., <code>worker</code>) must have:</p>
 <ul>
 <li>Non-interactive command execution privileges.</li>
 <li>Sudo/root access for administrative tasks.</li>
@@ -85,7 +85,7 @@ The SSH user (e.g., <code>agent</code>) must have:</p>
 </li>
 <li>
 <p><strong>Key File</strong>
-Place the private SSH key (<code>agent.key</code>) in the <code>secrets</code> folder.</p>
+Place the private SSH key (e.g., <code>worker.key</code>) in the <code>secrets</code> folder.</p>
 </li>
 </ol>
 <hr>
@@ -93,22 +93,22 @@ Place the private SSH key (<code>agent.key</code>) in the <code>secrets</code> f
 <ol>
 <li>
 <p><strong>Place Key File</strong>
-Move the <code>agent.key</code> file to the <code>secrets</code> directory:</p>
-<pre data-language="plaintext"><code class="language-plaintext">platform-services/secrets/agent.key
+Move the <code>worker.key</code> file to the <code>secrets</code> directory:</p>
+<pre data-language="plaintext"><code class="language-plaintext">platform-services/secrets/worker.key
 </code></pre>
 </li>
 <li>
 <p><strong>Update <code>maand.conf</code></strong>
 Configure SSH details in <code>maand.conf</code>:</p>
 <pre data-language="ini"><code class="language-ini"><span class="hljs-section">[default]</span>
-<span class="hljs-attr">ca_ttl</span> = <span class="hljs-number">3650</span>          <span class="hljs-comment"># Certificate Authority validity</span>
-<span class="hljs-attr">use_sudo</span> = <span class="hljs-number">1</span>           <span class="hljs-comment"># Enable sudo for privileged tasks</span>
-<span class="hljs-attr">ssh_user</span> = agent       <span class="hljs-comment"># SSH user</span>
-<span class="hljs-attr">ssh_key</span> = secrets/homelab.key  <span class="hljs-comment"># Path to private SSH key</span>
+<span class="hljs-attr">ca_ttl</span> = <span class="hljs-number">3650</span>           <span class="hljs-comment"># Certificate Authority validity</span>
+<span class="hljs-attr">use_sudo</span> = <span class="hljs-number">1</span>            <span class="hljs-comment"># Enable sudo for privileged tasks</span>
+<span class="hljs-attr">ssh_user</span> = worker       <span class="hljs-comment"># SSH user</span>
+<span class="hljs-attr">ssh_key</span> = secrets/worker.key  <span class="hljs-comment"># Path to private SSH key</span>
 </code></pre>
 </li>
 <li>
-<p><strong>Install Tools on Agents</strong>
+<p><strong>Install Tools on Workers</strong>
 Ensure each agent has the following installed:</p>
 <ul>
 <li><code>rsync</code>, <code>make</code>, <code>docker</code>, <code>docker-compose</code>, <code>python3</code>.</li>
@@ -118,7 +118,7 @@ Ensure each agent has the following installed:</p>
 <hr>
 <h3 id="defining-agents" tabindex="-1"><a class="observablehq-header-anchor" href="#defining-agents"><strong>Defining Agents</strong></a></h3>
 <ol>
-<li>Create the <code>agents.json</code> file in <code>workspace/</code>:<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">[</span>
+<li>Create the <code>workers.json</code> file in <code>workspace/</code>:<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">[</span>
   <span class="hljs-punctuation">{</span> <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.27.221.181"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
   <span class="hljs-punctuation">{</span> <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.27.221.144"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
   <span class="hljs-punctuation">{</span> <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.27.221.170"</span> <span class="hljs-punctuation">}</span>
@@ -138,7 +138,7 @@ Compile the changes:</p>
 <li>
 <p><strong>Verify Connectivity</strong>
 Test communication with agents:</p>
-<pre data-language="bash"><code class="language-bash">$ maand <span class="hljs-built_in">uptime</span>
+<pre data-language="bash"><code class="language-bash">$ maand run_command <span class="hljs-string">'uptime'</span>
 [10.27.221.181] 14:39:54 up 1:06, load average: 0.11, 0.07, 0.01
 [10.27.221.170] 14:39:54 up 1:06, load average: 0.03, 0.08, 0.08
 [10.27.221.144] 14:39:54 up 1:06, load average: 0.12, 0.05, 0.01
@@ -146,11 +146,11 @@ Test communication with agents:</p>
 </li>
 </ol>
 <hr>
-<p>Your setup is complete, and Maand is ready to orchestrate jobs across your agents.</p>
+<p>Your setup is complete, and Maand is ready to orchestrate jobs across your workers.</p>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./maand_init"><span>1. Maand init</span></a><a rel="next" href="./run_command"><span>3. Maand run_command</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-01T13:25:36">Jan 1, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

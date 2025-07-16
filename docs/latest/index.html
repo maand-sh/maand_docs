@@ -32,7 +32,7 @@ import "./_observablehq/client.c8b258ba.js";
     <summary>Guide</summary>
     <ol>
     <li class="observablehq-link"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link"><a href="./agent_setup">2. Agent Setup</a></li>
+    <li class="observablehq-link"><a href="./worker_setup">2. Worker Setup</a></li>
     <li class="observablehq-link"><a href="./run_command">3. Maand run_command</a></li>
     <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
     <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
@@ -46,9 +46,9 @@ import "./_observablehq/client.c8b258ba.js";
   <section>
     <summary>Insides</summary>
     <ol>
-    <li class="observablehq-link"><a href="./agent">Agent</a></li>
+    <li class="observablehq-link"><a href="./worker">Worker</a></li>
     <li class="observablehq-link"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./roles">Roles</a></li>
+    <li class="observablehq-link"><a href="./labels">Labels</a></li>
     <li class="observablehq-link"><a href="./job">Job</a></li>
     <li class="observablehq-link"><a href="./allocations">Allocations</a></li>
     <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
@@ -64,27 +64,27 @@ import "./_observablehq/client.c8b258ba.js";
 </aside>
 <main id="observablehq-main" class="observablehq">
 <h1 id="maand" tabindex="-1"><a class="observablehq-header-anchor" href="#maand">Maand</a></h1>
-<p>Maand is a lightweight, <strong>agentless orchestration framework</strong> for managing workloads across Linux machines. It uses <strong>SSH</strong> for communication, requiring no additional software on agents, ensuring simple and efficient task management.</p>
+<p>Maand is a lightweight, <strong>workload orchestrator</strong>, broker-less, provisioner, file based, ensuring simple and efficient task management.</p>
 <hr>
 <h3 id="key-concepts" tabindex="-1"><a class="observablehq-header-anchor" href="#key-concepts"><strong>Key Concepts</strong></a></h3>
 <ul>
-<li><strong>Agent</strong>: A Linux machine identified by its <strong>IP address</strong> and <strong>roles</strong>, defined in <code>agents.json</code>. Maand communicates via SSH.</li>
-<li><strong>Job</strong>: A directory with a <code>manifest.json</code> (configuration) and <code>Makefile</code> (actions like <code>start</code>, <code>stop</code>). Supports binaries, Docker, and systemd tasks.</li>
-<li><strong>Labels</strong>: Labels linking jobs and agents, enabling workload assignment and static service discovery.</li>
-<li><strong>Bucket</strong>: Logical grouping of related jobs for better organization.</li>
+<li><strong>Worker</strong>: A Linux machine identified by its <strong>IP address</strong> and <strong>labels</strong>, defined in <code>workers.json</code>. Maand communicates via SSH.</li>
+<li><strong>Job</strong>: A directory with a <code>manifest.json</code> (configuration) and <code>Makefile</code> (actions like <code>start</code>, <code>stop</code>). Supports binaries, shell script, docker or docker compose, and systemd tasks.</li>
+<li><strong>Labels and Selectors</strong>: linking jobs and agents, enabling workload assignment and static service discovery.</li>
+<li><strong>Bucket</strong>: Logical grouping of related jobs for better organization and control.</li>
 </ul>
 <hr>
 <h3 id="highlights" tabindex="-1"><a class="observablehq-header-anchor" href="#highlights"><strong>Highlights</strong></a></h3>
 <ul>
-<li><strong>Agentless</strong>: No installations on target machines; uses SSH.</li>
-<li><strong>Versatile</strong>: Handles any kind of workloads (binaries, Docker, and systemd services).</li>
+<li><strong>Broker-less</strong>: No installations on target machines; uses SSH, rsync and make.</li>
+<li><strong>Versatile</strong>: Handles any kind of workloads (binaries, Docker, docker compose, podmand, and systemd services).</li>
 <li><strong>Static Service Discovery</strong>: Maps labels to IPs for dynamic yet consistent configurations.</li>
 <li><strong>Simple Setup</strong>: Lightweight, easy to configure, and highly flexible.</li>
 </ul>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="next" href="./maand_init"><span>1. Maand init</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-01-01T13:25:36">Jan 1, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>
