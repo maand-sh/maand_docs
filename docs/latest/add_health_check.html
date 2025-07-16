@@ -101,15 +101,15 @@ import "./_observablehq/client.c8b258ba.js";
 <span class="hljs-keyword">import</span> os
 
 <span class="hljs-keyword">def</span> <span class="hljs-title function_">execute</span>():
-    nodes = os.getenv(<span class="hljs-string">"WORKER_NODES"</span>)
-    nodes = nodes.split(<span class="hljs-string">","</span>)
-    <span class="hljs-keyword">for</span> node <span class="hljs-keyword">in</span> nodes:
-        r = requests.get(<span class="hljs-string">f"http://<span class="hljs-subst">{node}</span>:9100/metrics"</span>)
+    workers = os.getenv(<span class="hljs-string">"WORKER_WORKERS"</span>)
+    workers = workers.split(<span class="hljs-string">","</span>)
+    <span class="hljs-keyword">for</span> worker <span class="hljs-keyword">in</span> workers:
+        r = requests.get(<span class="hljs-string">f"http://<span class="hljs-subst">{worker}</span>:9100/metrics"</span>)
         r.raise_for_status()
 </code></pre>
 <p><strong>What It Does</strong>:</p>
 <ul>
-<li>Retrieves the list of worker IPs from the <code>WORKER_NODES</code> environment variable.</li>
+<li>Retrieves the list of worker IPs from the <code>WORKER_WORKERS</code> environment variable.</li>
 <li>Sends HTTP requests to each worker on port 9100 to verify node_exporter is running.</li>
 <li>Raises an exception if a node's health check fails.</li>
 </ul>
@@ -121,10 +121,11 @@ import "./_observablehq/client.c8b258ba.js";
 <p>Example output</p>
 <pre data-language="plaintext"><code class="language-plaintext">health check successed : node_exporter
 </code></pre>
+<p>Maand execute health checks part of deploy command, this make sure deployments are always verified.</p>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./job_control"><span>8. Job Control</span></a><a rel="next" href="./setup_prometheus"><span>10. Prometheus</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T12:42:58">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

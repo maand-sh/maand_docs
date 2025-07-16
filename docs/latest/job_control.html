@@ -73,7 +73,7 @@ import "./_observablehq/client.c8b258ba.js";
 <p>Maand simplifies the lifecycle management of jobs across all workers using predefined <code>Makefile</code> targets (<code>start</code>, <code>stop</code>, <code>restart</code>).</p>
 <hr>
 <h2 id="start-all-jobs" tabindex="-1"><a class="observablehq-header-anchor" href="#start-all-jobs"><strong>Start All Jobs</strong></a></h2>
-<pre data-language="bash"><code class="language-bash">$ maand job --target start
+<pre data-language="bash"><code class="language-bash">$ maand job start
 </code></pre>
 <ul>
 <li>Runs the <code>start</code> target in the <code>Makefile</code> of each deployed job.</li>
@@ -83,7 +83,7 @@ Starts the <code>node_exporter</code> service.</li>
 </ul>
 <hr>
 <h2 id="stop-all-jobs" tabindex="-1"><a class="observablehq-header-anchor" href="#stop-all-jobs"><strong>Stop All Jobs</strong></a></h2>
-<pre data-language="bash"><code class="language-bash">$ maand job --target stop
+<pre data-language="bash"><code class="language-bash">$ maand job stop
 </code></pre>
 <ul>
 <li>Runs the <code>stop</code> target in the <code>Makefile</code> of each deployed job.</li>
@@ -93,7 +93,7 @@ Stops and removes the <code>node_exporter</code> container.</li>
 </ul>
 <hr>
 <h2 id="restart-all-jobs" tabindex="-1"><a class="observablehq-header-anchor" href="#restart-all-jobs"><strong>Restart All Jobs</strong></a></h2>
-<pre data-language="bash"><code class="language-bash">$ maand job --target restart
+<pre data-language="bash"><code class="language-bash">$ maand job restart
 </code></pre>
 <ul>
 <li>Runs the <code>stop</code> target followed by the <code>start</code> target in the <code>Makefile</code> of each job.</li>
@@ -114,7 +114,7 @@ docker-compose up -d --remove-orphans
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./job_setup"><span>7. Job Setup</span></a><a rel="next" href="./add_health_check"><span>9. Health Check</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T12:42:58">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>

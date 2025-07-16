@@ -103,9 +103,9 @@ import "./_observablehq/client.c8b258ba.js";
 <ol>
 <li>
 <p><strong><code>manifest.json</code></strong><br>
-Define the roles the job applies to:</p>
+Define the selectors the job applies to:</p>
 <pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">"roles"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
     <span class="hljs-string">"prometheus"</span>
   <span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span>
@@ -125,7 +125,7 @@ Define job commands to manage the task:</p>
 </li>
 <li>
 <p><strong><code>docker-compose.yaml</code></strong><br>
-Configuration for running <code>node_exporter</code>:</p>
+Configuration for running <code>prometheus</code>:</p>
 <pre data-language="yaml"><code class="language-yaml"> <span class="hljs-attr">services:</span>
  <span class="hljs-attr">prometheus:</span>
      <span class="hljs-attr">image:</span> <span class="hljs-string">prom/prometheus</span>
@@ -157,9 +157,9 @@ Configuration for running <code>node_exporter</code>:</p>
 <pre data-language="bash"><code class="language-bash">$ maand <span class="hljs-built_in">cat</span> <span class="hljs-built_in">jobs</span>
 </code></pre>
 <p>Example output:</p>
-<pre data-language="plaintext"><code class="language-plaintext">job_id                                name           disabled  deployment_seq  roles
+<pre data-language="plaintext"><code class="language-plaintext">job_id                                name           disabled  deployment_seq  selectors
 ------------------------------------  -------------  --------  --------------  -----
-a255d9cb-7286-59f1-8775-8a0544503891  node_exporter  0         0               agent
+a255d9cb-7286-59f1-8775-8a0544503891  node_exporter  0         0               worker
 a255d9cb-7286-59f1-8775-8a0544503891  prometheus     0         0               prometheus
 </code></pre>
 </li>
@@ -209,7 +209,7 @@ a255d9cb-7286-59f1-8775-8a0544503891  prometheus     0         0               p
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./add_health_check"><span>9. Health Check</span></a><a rel="next" href="./worker"><span>Worker</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T11:44:43">Jul 16, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T12:42:58">Jul 16, 2025</a>.</div>
 </footer>
 </div>
 </body>
