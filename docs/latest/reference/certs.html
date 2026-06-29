@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>TLS certificates | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="./manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="./resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="./deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="./templates">Templates</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="./kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="./kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="./kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="./job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="./observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="./cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="./cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="./cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="./cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="./cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="./cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="./cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="./cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="./cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="./cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#overview">Overview</a></li>
+<li class="observablehq-secondary-link"><a href="#bucket-ca-maand-init">Bucket CA (maand init)</a></li>
+<li class="observablehq-secondary-link"><a href="#job-manifest-certs">Job manifest (certs)</a></li>
+<li class="observablehq-secondary-link"><a href="#bucket-configuration-maand-conf">Bucket configuration (maand.conf)</a></li>
+<li class="observablehq-secondary-link"><a href="#where-certificates-live">Where certificates live</a></li>
+<li class="observablehq-secondary-link"><a href="#using-certs-in-your-job">Using certs in your job</a></li>
+<li class="observablehq-secondary-link"><a href="#examples">Examples</a></li>
+<li class="observablehq-secondary-link"><a href="#inspecting-certificates-maand-cat-certs">Inspecting certificates (maand cat certs)</a></li>
+<li class="observablehq-secondary-link"><a href="#troubleshooting">Troubleshooting</a></li>
+<li class="observablehq-secondary-link"><a href="#related">Related</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="tls-certificates" tabindex="-1"><a class="observablehq-header-anchor" href="#tls-certificates">TLS certificates</a></h1>
+<p>Maand generates a bucket <strong>certificate authority (CA)</strong> at init and <strong>per-job TLS certificates</strong> at build time. Material is stored in the <strong>KV store</strong>, then copied to workers during <strong>deploy</strong> under each job’s <code>certs/</code> directory.</p>
+<p>Related: <a href="./configuration">configuration.md</a> · <a href="./cli/build#certificates">build.md</a> · <a href="./cli/deploy#staging-and-rsync">deploy.md</a> · <a href="./kv/persistence">KV persistence</a></p>
+<hr>
+<h2 id="overview" tabindex="-1"><a class="observablehq-header-anchor" href="#overview">Overview</a></h2>
+<pre data-language="text"><code class="language-text">maand init
+  └── secrets/ca.crt, ca.key          (bucket CA, long-lived)
+
+maand build
+  └── BuildCerts
+        ├── signs leaf certs with CA
+        └── KV: maand/job/&lt;job&gt;/worker/&lt;ip&gt;/certs/&lt;name&gt;.{crt,key}
+        └── KV: maand/worker/certs/ca.crt   (CA PEM for all workers)
+
+maand deploy
+  └── tmp/workers/&lt;ip&gt;/jobs/&lt;job&gt;/certs/
+        ├── &lt;name&gt;.crt, &lt;name&gt;.key
+        └── ca.crt
+  └── rsync → /opt/worker/&lt;bucket_id&gt;/jobs/&lt;job&gt;/certs/
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Location</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bucket CA</strong></td>
+<td><code>&lt;bucket&gt;/secrets/ca.crt</code>, <code>ca.key</code></td>
+<td>Signs all job leaf certificates</td>
+</tr>
+<tr>
+<td><strong>Build / KV</strong></td>
+<td><code>maand/job/&lt;job&gt;/worker/&lt;ip&gt;/certs/*</code></td>
+<td>Canonical PEM storage between build and deploy</td>
+</tr>
+<tr>
+<td><strong>Worker disk</strong></td>
+<td><code>/opt/worker/&lt;bucket_id&gt;/jobs/&lt;job&gt;/certs/</code></td>
+<td>What your app/Makefile reads at runtime</td>
+</tr>
+</tbody>
+</table>
+<p>Certificates are <strong>not</strong> checked into the workspace. Declare them in <strong><code>manifest.json</code></strong>; maand generates keys and PEMs.</p>
+<hr>
+<h2 id="bucket-ca-maand-init" tabindex="-1"><a class="observablehq-header-anchor" href="#bucket-ca-maand-init">Bucket CA (<code>maand init</code>)</a></h2>
+<p>On first <strong><code>maand init</code></strong>, maand creates:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>secrets/ca.crt</code></td>
+<td>Self-signed CA certificate</td>
+</tr>
+<tr>
+<td><code>secrets/ca.key</code></td>
+<td>CA private key (PKCS#1 RSA)</td>
+</tr>
+</tbody>
+</table>
+<p>Defaults:</p>
+<ul>
+<li><strong>Subject CN</strong> = bucket ID</li>
+<li><strong>TTL</strong> = 10 years (<code>10 × 365</code> days)</li>
+<li><strong>Key size</strong> = 4096-bit RSA (1024 in test mode)</li>
+</ul>
+<p>If only one of <code>ca.crt</code> / <code>ca.key</code> exists, init fails — both must be present or both absent.</p>
+<p>The CA PEM is copied into KV at <strong><code>maand/worker/certs/ca.crt</code></strong> on every build so deploy can place it on each worker.</p>
+<h3 id="rotating-the-ca" tabindex="-1"><a class="observablehq-header-anchor" href="#rotating-the-ca">Rotating the CA</a></h3>
+<p>Replacing <strong><code>secrets/ca.crt</code></strong> or <strong><code>secrets/ca.key</code></strong> changes the CA file hash. The next <strong><code>maand build</code></strong> regenerates <strong>all</strong> job leaf certificates signed by the new CA.</p>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># Backup old CA, install new pair under secrets/, then:</span>
+maand build
+maand deploy    <span class="hljs-comment"># push new leaf certs + ca.crt to workers</span>
+</code></pre>
+<p>Plan a rolling <strong><code>maand deploy</code></strong> so every allocation picks up the new trust chain. Applications must trust the new <code>ca.crt</code>.</p>
+<hr>
+<h2 id="job-manifest-certs" tabindex="-1"><a class="observablehq-header-anchor" href="#job-manifest-certs">Job manifest (<code>certs</code>)</a></h2>
+<p>Add a <strong><code>certs</code></strong> map to <strong><code>workspace/jobs/&lt;job&gt;/manifest.json</code></strong>. Each key is a cert <strong>name</strong> (used for filenames and KV keys).</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"certs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"tls"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"pkcs8"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"one"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"subject"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"common_name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"api.internal"</span> <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"client"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"pkcs8"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"one"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"subject"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"common_name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"api-cluster"</span> <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subject.common_name</code></td>
+<td>(required)</td>
+<td>X.509 subject CN</td>
+</tr>
+<tr>
+<td><code>pkcs8</code></td>
+<td><code>false</code></td>
+<td><code>true</code> → private key PEM type <strong><code>PRIVATE KEY</code></strong> (PKCS#8); <code>false</code> → <strong><code>RSA PRIVATE KEY</code></strong> (PKCS#1)</td>
+</tr>
+<tr>
+<td><code>one</code></td>
+<td><code>false</code></td>
+<td><code>true</code> → <strong>one shared</strong> cert/key pair copied to every allocation; <code>false</code> → <strong>per-worker</strong> cert (SANs include that worker’s IP)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="per-worker-vs-shared-one" tabindex="-1"><a class="observablehq-header-anchor" href="#per-worker-vs-shared-one">Per-worker vs shared (<code>one</code>)</a></h3>
+<table>
+<thead>
+<tr>
+<th><code>one</code></th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>false</code> (default)</td>
+<td>Each allocation gets its own key pair. Leaf cert <strong>IP SANs</strong>: <code>127.0.0.1</code> + that worker’s IP.</td>
+</tr>
+<tr>
+<td><code>true</code></td>
+<td>One cert is generated (using the first worker in the allocation set) and the <strong>same</strong> <code>.crt</code>/<code>.key</code> PEMs are written to every worker namespace. SANs include <code>127.0.0.1</code> and <strong>all</strong> allocated worker IPs. Use for cluster-wide identities (e.g. mutual TLS where all nodes present the same cert).</td>
+</tr>
+</tbody>
+</table>
+<p>Certs are generated for <strong>all non-removed allocations</strong> (active and disabled). Disabled allocations still receive KV material on build; deploy stages it without starting the process.</p>
+<h3 id="removing-certs" tabindex="-1"><a class="observablehq-header-anchor" href="#removing-certs">Removing certs</a></h3>
+<p>Delete the <strong><code>certs</code></strong> block from the manifest (or remove a name). The next <strong><code>maand build</code></strong> purges matching <strong><code>certs/*</code></strong> keys from affected allocation namespaces.</p>
+<hr>
+<h2 id="bucket-configuration-maand-conf" tabindex="-1"><a class="observablehq-header-anchor" href="#bucket-configuration-maand-conf">Bucket configuration (<code>maand.conf</code>)</a></h2>
+<p>Leaf certificate lifetime and renewal are controlled in <strong><code>maand.conf</code></strong> at the bucket root:</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-attr">ssh_user</span> = <span class="hljs-string">"agent"</span>
+<span class="hljs-attr">ssh_key</span> = <span class="hljs-string">"worker.key"</span>
+<span class="hljs-attr">certs_ttl</span> = <span class="hljs-number">60</span>
+<span class="hljs-attr">certs_renewal_buffer</span> = <span class="hljs-number">10</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default in code</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>certs_ttl</code></td>
+<td><code>60</code> (days) if unset or <code>0</code></td>
+<td>Validity period for <strong>newly generated</strong> leaf certificates</td>
+</tr>
+<tr>
+<td><code>certs_renewal_buffer</code></td>
+<td><code>0</code> if unset</td>
+<td>Regenerate a stored cert when within this many days of <code>NotAfter</code> (<code>0</code> = only after expiry)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="auto-rotation-at-build-time" tabindex="-1"><a class="observablehq-header-anchor" href="#auto-rotation-at-build-time">Auto-rotation at build time</a></h3>
+<p>Rotation is <strong>not</strong> a background daemon. <strong><code>maand build</code></strong> checks each stored leaf cert and regenerates when:</p>
+<ol>
+<li><strong>Missing</strong> — no <code>certs/&lt;name&gt;.crt</code> or <code>.key</code> in KV</li>
+<li><strong>CA changed</strong> — <code>secrets/ca.crt</code> hash differs from last promoted build</li>
+<li><strong>Manifest changed</strong> — <code>certs</code> section hash differs (<code>build_certs</code> namespace)</li>
+<li><strong>Expiring soon</strong> — <code>now &gt;= NotAfter - certs_renewal_buffer</code> (see below)</li>
+</ol>
+<p>If none apply, existing PEMs are <strong>reused</strong> (repeat builds without config changes do not churn certificates).</p>
+<p><strong>Renewal buffer math</strong></p>
+<pre data-language="text"><code class="language-text">regenerate when:  now &gt;= cert.NotAfter - (certs_renewal_buffer days)
+                 (or now &gt;= NotAfter when buffer is 0)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th><code>certs_renewal_buffer</code></th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10</code></td>
+<td>Regenerate when within <strong>10 days</strong> of expiry (recommended for scheduled builds)</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>Regenerate only <strong>after</strong> <code>NotAfter</code> has passed</td>
+</tr>
+</tbody>
+</table>
+<p>If <strong><code>certs_renewal_buffer</code> ≥ <code>certs_ttl</code></strong>, every leaf cert is always in the renewal window (regenerated on each <strong><code>maand build</code></strong>).</p>
+<p>Set both values explicitly in <code>maand.conf</code>. Example from <a href="./configuration">configuration.md</a>:</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-attr">certs_ttl</span> = <span class="hljs-number">60</span>
+<span class="hljs-attr">certs_renewal_buffer</span> = <span class="hljs-number">10</span>
+</code></pre>
+<h3 id="operational-rotation-workflow" tabindex="-1"><a class="observablehq-header-anchor" href="#operational-rotation-workflow">Operational rotation workflow</a></h3>
+<p>Schedule regular <strong><code>maand build</code></strong> (cron/CI). When the renewal buffer triggers, build writes new PEMs to KV. <strong><code>maand deploy</code></strong> then rsyncs them to workers.</p>
+<pre data-language="bash"><code class="language-bash">maand build
+maand deploy --dry-run   <span class="hljs-comment"># optional: see if rollout needed</span>
+maand deploy
+</code></pre>
+<p>After deploy, apps read updated files from:</p>
+<pre data-language="text"><code class="language-text">/opt/worker/&lt;bucket_id&gt;/jobs/&lt;job&gt;/certs/&lt;name&gt;.crt
+/opt/worker/&lt;bucket_id&gt;/jobs/&lt;job&gt;/certs/&lt;name&gt;.key
+/opt/worker/&lt;bucket_id&gt;/jobs/&lt;job&gt;/certs/ca.crt
+</code></pre>
+<p>Restart or reload the job if it caches TLS material (e.g. <strong><code>make restart</code></strong> on the next deploy wave, or your own hook).</p>
+<h3 id="prometheus-metrics-optional" tabindex="-1"><a class="observablehq-header-anchor" href="#prometheus-metrics-optional">Prometheus metrics (optional)</a></h3>
+<p>When a <strong>prometheus</strong> job ships <code>prometheus.yml</code> or <code>prometheus.yml.tpl</code>, <strong><code>maand deploy</code></strong> (after commit) pushes certificate expiry gauges to Prometheus remote write (<code>/api/v1/write</code>). Push runs <strong>only at deploy</strong>, not at <strong><code>maand build</code></strong>. Failures are <strong>best-effort</strong> — logged, deploy still succeeds. Transient failures (503, other 5xx, network errors) are retried up to 5 times with backoff (2s–15s) because Prometheus may not accept remote write immediately after rollout.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maand_cert_not_after_seconds</code></td>
+<td>Unix timestamp of certificate <code>NotAfter</code></td>
+</tr>
+<tr>
+<td><code>maand_cert_expiring</code></td>
+<td><code>1</code> when within <code>certs_renewal_buffer</code> of expiry (same window as build renewal)</td>
+</tr>
+<tr>
+<td><code>maand_cert_expired</code></td>
+<td><code>1</code> when past <code>NotAfter</code></td>
+</tr>
+</tbody>
+</table>
+<p>Labels: <code>scope</code> (<code>ca</code> or <code>job</code>), <code>job</code>, <code>worker</code>, <code>cert</code>, <code>common_name</code>, <code>status</code>.</p>
+<p><strong>Remote write URL</strong> — auto-discovered from the <strong>prometheus</strong> job in the workspace: first non-removed allocation IP and <strong><code>prometheus_port_http</code></strong> → <code>http://&lt;worker&gt;:&lt;port&gt;/api/v1/write</code>. No <code>maand.conf</code> setting; if there is no prometheus job with server config, push is skipped.</p>
+<p><strong>Authentication</strong> — when <strong><code>secrets/job/prometheus</code></strong> contains <strong><code>admin_username</code></strong> and <strong><code>admin_password</code></strong> (same credentials used for the Prometheus web UI), maand sends HTTP Basic auth on remote write. If neither key exists, push is unauthenticated (legacy). If only one is set, push fails with a log message. Set secrets via <strong><code>pre_deploy</code></strong> / job commands or inspect with:</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv get secrets/job/prometheus admin_username --reveal
+maand <span class="hljs-built_in">cat</span> kv get secrets/job/prometheus admin_password --reveal
+</code></pre>
+<p>Prometheus must run with <strong><code>--web.enable-remote-write-receiver</code></strong>. Deploy also writes embedded cert alert rules to <strong><code>rules/maand/certs.yaml</code></strong> on the prometheus worker. See <a href="../guides/prometheus#certificate-alerts">prometheus.md</a>.</p>
+<hr>
+<h2 id="where-certificates-live" tabindex="-1"><a class="observablehq-header-anchor" href="#where-certificates-live">Where certificates live</a></h2>
+<h3 id="kv-after-build" tabindex="-1"><a class="observablehq-header-anchor" href="#kv-after-build">KV (after build)</a></h3>
+<table>
+<thead>
+<tr>
+<th>Namespace</th>
+<th>Keys</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maand/worker</code></td>
+<td><code>certs/ca.crt</code></td>
+</tr>
+<tr>
+<td><code>maand/job/&lt;job&gt;/worker/&lt;ip&gt;</code></td>
+<td><code>certs/&lt;name&gt;.crt</code>, <code>certs/&lt;name&gt;.key</code></td>
+</tr>
+</tbody>
+</table>
+<p>Inspect:</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> certs --<span class="hljs-built_in">jobs</span> api
+maand <span class="hljs-built_in">cat</span> certs --workers 10.0.0.1
+maand <span class="hljs-built_in">cat</span> kv get maand/job/api/worker/10.0.0.1 certs/tls.crt   <span class="hljs-comment"># raw PEM (truncated in list)</span>
+</code></pre>
+<p>Job commands and templates may read PEMs from the allocation namespace (prefer <strong>file paths on the worker</strong> for large certs in production).</p>
+<h3 id="worker-filesystem-after-deploy" tabindex="-1"><a class="observablehq-header-anchor" href="#worker-filesystem-after-deploy">Worker filesystem (after deploy)</a></h3>
+<p>During deploy staging, <strong><code>updateCerts</code></strong> writes:</p>
+<pre data-language="text"><code class="language-text">tmp/workers/&lt;ip&gt;/jobs/&lt;job&gt;/certs/
+├── &lt;name&gt;.crt    # mode 0644
+├── &lt;name&gt;.key    # mode 0600
+└── ca.crt
+</code></pre>
+<p>The tree is rsynced with the rest of the job. <strong><code>BuildJobAllocationVariables</code></strong> runs after <strong><code>BuildCerts</code></strong> so cert sync does not delete allocation metadata keys (<code>*_allocation_index</code>, <code>peer_workers</code>).</p>
+<hr>
+<h2 id="using-certs-in-your-job" tabindex="-1"><a class="observablehq-header-anchor" href="#using-certs-in-your-job">Using certs in your job</a></h2>
+<h3 id="makefile-application" tabindex="-1"><a class="observablehq-header-anchor" href="#makefile-application">Makefile / application</a></h3>
+<p>Point your service at the deploy path (values also available as template fields <code>.JobPath</code> and <code>.BucketPath</code>):</p>
+<pre data-language="makefile"><code class="language-makefile">TLS_CERT := <span class="hljs-variable">$(CURDIR)</span>/certs/tls.crt
+TLS_KEY  := <span class="hljs-variable">$(CURDIR)</span>/certs/tls.key
+TLS_CA   := <span class="hljs-variable">$(CURDIR)</span>/certs/ca.crt
+</code></pre>
+<p><code>CURDIR</code> is the job directory on the worker when <strong><code>make start</code></strong> runs via <code>runner.py</code>.</p>
+<h3 id="templates" tabindex="-1"><a class="observablehq-header-anchor" href="#templates">Templates</a></h3>
+<p>Prefer filesystem paths in rendered config:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"tls_cert"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ .JobPath }}/certs/tls.crt"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"tls_key"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ .JobPath }}/certs/tls.key"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"tls_ca"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ .JobPath }}/certs/ca.crt"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>See <a href="./templates">templates.md</a>.</p>
+<h3 id="job-commands" tabindex="-1"><a class="observablehq-header-anchor" href="#job-commands">Job commands</a></h3>
+<p>Read from the runtime KV API or use paths after deploy. Namespace: <code>maand/job/&lt;job&gt;/worker/&lt;worker_ip&gt;</code>.</p>
+<hr>
+<h2 id="examples" tabindex="-1"><a class="observablehq-header-anchor" href="#examples">Examples</a></h2>
+<h3 id="single-service-tls-per-worker" tabindex="-1"><a class="observablehq-header-anchor" href="#single-service-tls-per-worker">Single service TLS (per worker)</a></h3>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"certs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"tls"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"subject"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"common_name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"api.example.com"</span> <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Each worker gets a distinct key; cert includes that host’s IP and <code>127.0.0.1</code>.</p>
+<h3 id="shared-cluster-cert" tabindex="-1"><a class="observablehq-header-anchor" href="#shared-cluster-cert">Shared cluster cert</a></h3>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"certs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"internal"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"one"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"pkcs8"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"subject"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"common_name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"mycluster"</span> <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>All allocations share identical PEMs in KV and on disk.</p>
+<h3 id="stricter-renewal" tabindex="-1"><a class="observablehq-header-anchor" href="#stricter-renewal">Stricter renewal</a></h3>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-comment"># maand.conf</span>
+<span class="hljs-attr">certs_ttl</span> = <span class="hljs-number">90</span>
+<span class="hljs-attr">certs_renewal_buffer</span> = <span class="hljs-number">30</span>
+</code></pre>
+<p>Build regenerates leaf certs in the last 30 days of their 90-day life. Pair with weekly <strong><code>maand build &amp;&amp; maand deploy</code></strong>.</p>
+<hr>
+<h2 id="inspecting-certificates-maand-cat-certs" tabindex="-1"><a class="observablehq-header-anchor" href="#inspecting-certificates-maand-cat-certs">Inspecting certificates (<code>maand cat certs</code>)</a></h2>
+<p>List the bucket CA and every job leaf cert stored in KV with expiration and renewal status:</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> certs
+maand <span class="hljs-built_in">cat</span> certs --<span class="hljs-built_in">jobs</span> api,postgres
+maand <span class="hljs-built_in">cat</span> certs --workers 10.0.0.1
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scope</code></td>
+<td><code>ca</code> (bucket CA in <code>secrets/</code>) or <code>job</code> (leaf cert in KV)</td>
+</tr>
+<tr>
+<td><code>job</code> / <code>worker</code></td>
+<td>Allocation (blank for CA)</td>
+</tr>
+<tr>
+<td><code>cert</code></td>
+<td>Cert name from manifest (<code>tls</code>, <code>client</code>, …) or <code>ca</code></td>
+</tr>
+<tr>
+<td><code>common_name</code></td>
+<td>X.509 subject CN</td>
+</tr>
+<tr>
+<td><code>not_after</code></td>
+<td>Certificate expiry (UTC)</td>
+</tr>
+<tr>
+<td><code>days_left</code></td>
+<td>Whole days until expiry (negative if expired)</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>ok</code>, <code>expiring</code> (same window as <strong><code>maand build</code></strong> renewal), <code>expired</code>, or <code>invalid</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="troubleshooting" tabindex="-1"><a class="observablehq-header-anchor" href="#troubleshooting">Troubleshooting</a></h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No <code>certs/</code> on worker</td>
+<td>Job not deployed, or manifest has no <code>certs</code> block</td>
+</tr>
+<tr>
+<td>Cert unchanged across builds</td>
+<td>Still valid and outside renewal buffer; expected</td>
+</tr>
+<tr>
+<td>All certs regenerated</td>
+<td>CA file changed, manifest <code>certs</code> edited, or cert entered renewal window</td>
+</tr>
+<tr>
+<td>Build OK, worker has old cert</td>
+<td>Run <strong><code>maand deploy</code></strong> after build</td>
+</tr>
+<tr>
+<td><code>ErrInvalidManifest</code> on cert</td>
+<td>Invalid <code>subject</code> JSON</td>
+</tr>
+<tr>
+<td>App rejects peer cert</td>
+<td>Worker still using old <code>ca.crt</code> — redeploy after CA rotation; check <strong><code>maand cat certs</code></strong></td>
+</tr>
+<tr>
+<td>Disabled allocation missing certs in KV</td>
+<td>Run <strong><code>maand build</code></strong> — disabled rows still get cert material</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="related" tabindex="-1"><a class="observablehq-header-anchor" href="#related">Related</a></h2>
+<ul>
+<li><a href="./configuration">configuration.md</a> — <code>maand.conf</code> fields</li>
+<li><a href="./cli/build">build.md</a> — build pipeline step <code>BuildCerts</code></li>
+<li><a href="./kv/persistence">KV persistence</a> — persistence and namespaces</li>
+<li><a href="../guides/disable-and-drain">disable and drain</a> — disabled allocations still receive build certs</li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./templates"><span>Templates</span></a><a rel="next" href="./kv/"><span>KV overview</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

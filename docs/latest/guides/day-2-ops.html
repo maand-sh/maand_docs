@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Tutorial: Day-2 operations | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="./rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="./disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="./debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="./job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="./prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="./worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../reference/configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../reference/manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../reference/resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../reference/deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../reference/templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../reference/certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../reference/job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../reference/observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#inspect-catalog-state">Inspect catalog state</a></li>
+<li class="observablehq-secondary-link"><a href="#manual-job-control">Manual job control</a></li>
+<li class="observablehq-secondary-link"><a href="#health-checks">Health checks</a></li>
+<li class="observablehq-secondary-link"><a href="#prometheus-monitoring">Prometheus monitoring</a></li>
+<li class="observablehq-secondary-link"><a href="#ad-hoc-commands-on-workers">Ad-hoc commands on workers</a></li>
+<li class="observablehq-secondary-link"><a href="#disable-an-allocation-temporarily">Disable an allocation temporarily</a></li>
+<li class="observablehq-secondary-link"><a href="#remove-a-worker-or-job">Remove a worker or job</a></li>
+<li class="observablehq-secondary-link"><a href="#partial-deploy-and-dry-run">Partial deploy and dry-run</a></li>
+<li class="observablehq-secondary-link"><a href="#per-job-config-overrides">Per-job config overrides</a></li>
+<li class="observablehq-secondary-link"><a href="#upgrade-maand-schema">Upgrade maand schema</a></li>
+<li class="observablehq-secondary-link"><a href="#rolling-upgrades">Rolling upgrades</a></li>
+<li class="observablehq-secondary-link"><a href="#troubleshooting-checklist">Troubleshooting checklist</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="tutorial-day-2-operations" tabindex="-1"><a class="observablehq-header-anchor" href="#tutorial-day-2-operations">Tutorial: Day-2 operations</a></h1>
+<p>After <a href="../start/quickstart">getting started</a>, use these patterns for everyday cluster operations. Assumes a working bucket with deployed jobs.</p>
+<hr>
+<h2 id="inspect-catalog-state" tabindex="-1"><a class="observablehq-header-anchor" href="#inspect-catalog-state">Inspect catalog state</a></h2>
+<p>Quick summary:</p>
+<pre data-language="bash"><code class="language-bash">maand info
+</code></pre>
+<p>Detailed tables:</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> workers
+maand <span class="hljs-built_in">cat</span> <span class="hljs-built_in">jobs</span>
+maand <span class="hljs-built_in">cat</span> allocations
+maand <span class="hljs-built_in">cat</span> job_commands
+maand <span class="hljs-built_in">cat</span> job_ports
+maand <span class="hljs-built_in">cat</span> certs
+maand <span class="hljs-built_in">cat</span> kv
+</code></pre>
+<p>Filter allocations:</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> allocations --<span class="hljs-built_in">jobs</span> api,worker
+maand <span class="hljs-built_in">cat</span> allocations --workers 10.0.0.1
+</code></pre>
+<p>Check TLS expiry (CA + job leaf certs):</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> certs
+maand <span class="hljs-built_in">cat</span> certs --<span class="hljs-built_in">jobs</span> api,postgres
+</code></pre>
+<p>Read one KV key:</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv get maand/job/api name
+</code></pre>
+<hr>
+<h2 id="manual-job-control" tabindex="-1"><a class="observablehq-header-anchor" href="#manual-job-control">Manual job control</a></h2>
+<p><code>maand job</code> runs Makefile targets (or <strong><code>job_control</code></strong> commands) on workers. It verifies each worker’s <code>worker.json</code> matches the database — run <strong><code>maand deploy</code></strong> first if you see sync errors.</p>
+<pre data-language="bash"><code class="language-bash">maand job restart api
+maand job run api --target reload
+maand job stop api --allocations 10.0.0.2
+maand job start api --health_check
+maand job run api --target migrate
+maand job status api
+</code></pre>
+<p>Use <strong><code>maand job run --target reload</code></strong> after <strong><code>maand deploy --sync-only</code></strong> when you pushed config to disk but want the process to pick it up yourself.</p>
+<table>
+<thead>
+<tr>
+<th>vs deploy</th>
+<th><code>maand deploy</code></th>
+<th><code>maand job</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>When</td>
+<td>Catalog or job files changed</td>
+<td>Ops / one-off lifecycle</td>
+</tr>
+<tr>
+<td>Sync check</td>
+<td>No</td>
+<td>Yes (<code>update_seq</code>)</td>
+</tr>
+<tr>
+<td>Hash skip</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="../reference/cli/job">job.md</a>.</p>
+<hr>
+<h2 id="health-checks" tabindex="-1"><a class="observablehq-header-anchor" href="#health-checks">Health checks</a></h2>
+<p>Each job may use <strong>manifest probes</strong>, a <strong>custom command</strong>, or <strong>both</strong> (probes run first):</p>
+<p><strong>Option A — manifest probes</strong> (tcp/http/ssh) in <code>manifest.json</code> — see <a href="../reference/cli/health-check#built-in-manifest-health-recommended">health-check.md</a>.</p>
+<p><strong>Option B — custom command:</strong></p>
+<pre data-language="json"><code class="language-json"><span class="hljs-attr">"commands"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"command_health"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"executed_on"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"health_check"</span><span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Add <strong><code>workspace/jobs/api/_modules/command_health.py</code></strong> (see <a href="../reference/job-command-api">job-command-api.md</a>).</p>
+<p>Run checks:</p>
+<pre data-language="bash"><code class="language-bash">maand health_check
+maand health_check --<span class="hljs-built_in">jobs</span> api --<span class="hljs-built_in">wait</span> --verbose
+</code></pre>
+<p>Mark unhealthy command-based allocations and redeploy:</p>
+<pre data-language="bash"><code class="language-bash">maand health_check --update-hash --<span class="hljs-built_in">jobs</span> api
+maand deploy --<span class="hljs-built_in">jobs</span> api
+</code></pre>
+<p>Force a full redeploy without workspace changes:</p>
+<pre data-language="bash"><code class="language-bash">maand deploy --force --<span class="hljs-built_in">jobs</span> api
+</code></pre>
+<p>Deploy runs health checks automatically after restart when health is configured.</p>
+<p>See <a href="../reference/cli/health-check">health-check.md</a>.</p>
+<hr>
+<h2 id="prometheus-monitoring" tabindex="-1"><a class="observablehq-header-anchor" href="#prometheus-monitoring">Prometheus monitoring</a></h2>
+<p>Add <strong><code>_prometheus/</code></strong> under each job that exposes metrics (see <a href="./prometheus">prometheus.md</a>):</p>
+<pre data-language="text"><code class="language-text">workspace/jobs/api/_prometheus/
+├── scrape.yaml              # optional
+├── alerts/                  # optional
+├── runbooks/                # optional
+└── dashboards/              # optional
+</code></pre>
+<p>After adding or changing <code>_prometheus/</code> content:</p>
+<pre data-language="bash"><code class="language-bash">maand build
+maand deploy --<span class="hljs-built_in">jobs</span> api,...      <span class="hljs-comment"># app jobs first</span>
+maand deploy --<span class="hljs-built_in">jobs</span> prometheus   <span class="hljs-comment"># assemble rules, runbooks, dashboards, scrape config</span>
+</code></pre>
+<p>Console pages: runbooks at <code>/consoles/runbooks/...</code>, dashboards at <code>/consoles/dashboards/...</code> — see <a href="./prometheus">prometheus.md</a>.</p>
+<hr>
+<h2 id="ad-hoc-commands-on-workers" tabindex="-1"><a class="observablehq-header-anchor" href="#ad-hoc-commands-on-workers">Ad-hoc commands on workers</a></h2>
+<p><strong><code>maand run_command</code></strong> runs shell on workers (not job workspaces):</p>
+<pre data-language="bash"><code class="language-bash">maand run_command <span class="hljs-string">"uptime"</span>
+maand run_command <span class="hljs-string">"df -h /opt/worker"</span> --workers 10.0.0.1,10.0.0.2
+maand run_command <span class="hljs-string">"hostname"</span> --labels worker --concurrency 4
+maand run_command <span class="hljs-string">"systemctl status myservice"</span> --health_check
+</code></pre>
+<p>Host needs <code>bash</code> and <code>ssh</code>; workers need <code>bash</code> and <code>timeout</code>.</p>
+<p>See <a href="../reference/cli/run-command">run-command.md</a>.</p>
+<hr>
+<h2 id="disable-an-allocation-temporarily" tabindex="-1"><a class="observablehq-header-anchor" href="#disable-an-allocation-temporarily">Disable an allocation temporarily</a></h2>
+<p>See <a href="./disable-and-drain">disable and drain</a> for the full guide (per-allocation, per-job, per-worker, re-enable).</p>
+<p>Create or edit <strong><code>workspace/disabled.json</code></strong>:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"jobs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"api"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"allocations"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"10.0.0.2"</span><span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Disable every job on a worker:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"workers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"10.0.0.3"</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Disable an entire job everywhere:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"jobs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"api"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Then:</p>
+<pre data-language="bash"><code class="language-bash">maand build
+maand deploy
+</code></pre>
+<p>Disabled allocations are skipped for start/restart/reload/rsync; deploy <strong>stops</strong> them if running and <strong>keeps</strong> artifacts and KV. Re-enable: clear <strong><code>disabled.json</code></strong>, <strong><code>maand build</code></strong>, <strong><code>maand deploy</code></strong>.</p>
+<hr>
+<h2 id="remove-a-worker-or-job" tabindex="-1"><a class="observablehq-header-anchor" href="#remove-a-worker-or-job">Remove a worker or job</a></h2>
+<ol>
+<li>Remove the host from <strong><code>workers.json</code></strong> or delete <strong><code>workspace/jobs/&lt;name&gt;/</code></strong></li>
+<li><strong><code>maand build</code></strong> — marks related allocations <strong><code>removed = 1</code></strong></li>
+<li><strong><code>maand deploy</code></strong> — stops jobs, removes deployed job files (keeps <code>data/</code> and <code>logs/</code> on workers)</li>
+<li><strong><code>maand gc</code></strong> — deletes worker <code>data/</code>/<code>logs/</code>/<code>bin/</code>, allocation rows, and KV references</li>
+</ol>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># after editing workspace</span>
+maand build
+maand deploy
+maand gc
+maand gc --retain-days 7   <span class="hljs-comment"># keep deleted KV history longer</span>
+</code></pre>
+<p>See <a href="../reference/cli/gc">gc.md</a>.</p>
+<hr>
+<h2 id="partial-deploy-and-dry-run" tabindex="-1"><a class="observablehq-header-anchor" href="#partial-deploy-and-dry-run">Partial deploy and dry-run</a></h2>
+<p>Check whether deploy would change anything:</p>
+<pre data-language="bash"><code class="language-bash">maand deploy --dry-run
+</code></pre>
+<p>Deploy only specific jobs (still ordered by <code>deployment_seq</code>):</p>
+<pre data-language="bash"><code class="language-bash">maand deploy --<span class="hljs-built_in">jobs</span> api,worker
+</code></pre>
+<p>If deploy fails partway, fix the issue and re-run — hash tracking resumes unchanged allocations.</p>
+<p>Force redeploy when content is already promoted:</p>
+<pre data-language="bash"><code class="language-bash">maand deploy --force --<span class="hljs-built_in">jobs</span> api
+maand deploy --dry-run --force    <span class="hljs-comment"># preview</span>
+</code></pre>
+<p>Push files without lifecycle (rsync + promote only; fails when any allocation still needs <strong>start</strong>):</p>
+<pre data-language="bash"><code class="language-bash">maand deploy --sync-only --<span class="hljs-built_in">jobs</span> api
+maand deploy --dry-run --sync-only --<span class="hljs-built_in">jobs</span> api    <span class="hljs-comment"># preview sync actions</span>
+</code></pre>
+<p>For ongoing config-only rollouts, prefer <strong><code>restart_policy: reload</code></strong> in the manifest — see <a href="../reference/cli/deploy#applying-changes-on-workers">Applying changes on workers</a>.</p>
+<p>See <a href="../reference/cli/deploy">deploy.md</a>.</p>
+<hr>
+<h2 id="per-job-config-overrides" tabindex="-1"><a class="observablehq-header-anchor" href="#per-job-config-overrides">Per-job config overrides</a></h2>
+<p>Optional <strong><code>workspace/bucket.jobs.conf</code></strong>:</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-section">[api]</span>
+<span class="hljs-attr">memory</span> = <span class="hljs-string">"512 mb"</span>
+</code></pre>
+<p>If <strong><code>maand.conf</code></strong> sets <code>job_config_selector = "prod"</code>, use <strong><code>bucket.jobs.prod.conf</code></strong> instead.</p>
+<p>After editing:</p>
+<pre data-language="bash"><code class="language-bash">maand build
+maand deploy -b
+</code></pre>
+<hr>
+<h2 id="upgrade-maand-schema" tabindex="-1"><a class="observablehq-header-anchor" href="#upgrade-maand-schema">Upgrade maand schema</a></h2>
+<p>When upgrading the maand binary:</p>
+<pre data-language="bash"><code class="language-bash">maand init    <span class="hljs-comment"># applies DB migrations, keeps bucket_id and CA</span>
+maand build
+maand deploy
+</code></pre>
+<hr>
+<h2 id="rolling-upgrades" tabindex="-1"><a class="observablehq-header-anchor" href="#rolling-upgrades">Rolling upgrades</a></h2>
+<p>See <a href="./rolling-deploy">rolling-deploy</a> for <strong><code>update_parallel_count</code></strong>, version-only deploys, and rolling worker reboots.</p>
+<hr>
+<h2 id="troubleshooting-checklist" tabindex="-1"><a class="observablehq-header-anchor" href="#troubleshooting-checklist">Troubleshooting checklist</a></h2>
+<p>See <a href="./debugging-deploy">debugging-deploy.md</a> for a full deploy troubleshooting guide.</p>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>worker.json</code> / <code>update_seq</code> mismatch</td>
+<td><code>maand deploy</code></td>
+</tr>
+<tr>
+<td>Host prerequisite error</td>
+<td>Install <code>ssh</code>/<code>rsync</code>/<code>python3</code>/<code>bun</code> on CLI host</td>
+</tr>
+<tr>
+<td>Worker prerequisite error</td>
+<td>Install <code>make</code>/<code>python3</code>/<code>rsync</code> on worker; fix <code>sudo</code></td>
+</tr>
+<tr>
+<td>No allocations for job</td>
+<td>Check selectors vs worker labels; run <code>maand build</code></td>
+</tr>
+<tr>
+<td>Build resource error</td>
+<td>Add <code>memory</code>/<code>cpu</code> to workers or lower job limits</td>
+</tr>
+<tr>
+<td>Port collision</td>
+<td>Remove duplicate port names; maand assigns unique numbers from the pool</td>
+</tr>
+<tr>
+<td><code>ErrPortRangeExhausted</code></td>
+<td>Widen <code>port_min</code>/<code>port_max</code> in <code>bucket.conf</code> or remove unused jobs/ports</td>
+</tr>
+<tr>
+<td><code>ErrInvalidJobVersion</code></td>
+<td>Add or fix <code>version</code> on jobs in the dependency graph</td>
+</tr>
+<tr>
+<td><code>ErrJobCommandDemandVersionMismatch</code></td>
+<td>Bump upstream job version or relax <code>min_version</code>/<code>max_version</code></td>
+</tr>
+<tr>
+<td>Upgrade script needs old/new release</td>
+<td>Read <code>CURRENT_VERSION</code> / <code>NEW_VERSION</code> in Makefile or job command env — <a href="../reference/cli/deploy#allocation-version-tracking">deploy.md</a></td>
+</tr>
+</tbody>
+</table>
+<p>Concept reference: <a href="../start/concepts">concepts.md</a></p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="../start/comparison-orchestrators"><span>Comparison</span></a><a rel="next" href="./rolling-deploy"><span>Rolling deploy</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Job resources, bucket overrides, and environment selectors | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="./manifest">Manifest</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="./deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="./templates">Templates</a></li>
+    <li class="observablehq-link"><a href="./certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="./kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="./kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="./kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="./job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="./observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="./cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="./cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="./cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="./cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="./cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="./cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="./cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="./cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="./cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="./cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#how-the-pieces-fit-together">How the pieces fit together</a></li>
+<li class="observablehq-secondary-link"><a href="#memory-and-cpu-in-manifest-json">Memory and CPU in manifest.json</a></li>
+<li class="observablehq-secondary-link"><a href="#bucket-level-override-bucket-jobs-conf">Bucket-level override (bucket.jobs.conf)</a></li>
+<li class="observablehq-secondary-link"><a href="#worker-capacity-workers-json">Worker capacity (workers.json)</a></li>
+<li class="observablehq-secondary-link"><a href="#selectors-for-different-environments">Selectors for different environments</a></li>
+<li class="observablehq-secondary-link"><a href="#end-to-end-example">End-to-end example</a></li>
+<li class="observablehq-secondary-link"><a href="#troubleshooting">Troubleshooting</a></li>
+<li class="observablehq-secondary-link"><a href="#related">Related</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="job-resources-bucket-overrides-and-environment-selectors" tabindex="-1"><a class="observablehq-header-anchor" href="#job-resources-bucket-overrides-and-environment-selectors">Job resources, bucket overrides, and environment selectors</a></h1>
+<p>Maand uses three layers to place jobs and validate capacity:</p>
+<ol>
+<li><strong><code>manifest.json</code></strong> — declares <strong>min/max</strong> memory and CPU for a job (portable bounds checked into git).</li>
+<li><strong><code>bucket.jobs*.conf</code></strong> — sets the <strong>actual reservation</strong> (<code>current_memory_mb</code> / <code>current_cpu_mhz</code>) for the current environment; values must stay within manifest min/max.</li>
+<li><strong><code>workers.json</code></strong> — declares <strong>host capacity</strong> and <strong>labels</strong> used for placement and validation.</li>
+</ol>
+<p><strong>Environment file naming:</strong> <code>maand.conf</code> → <strong><code>job_config_selector</code></strong> picks the override file. Empty selector → <strong><code>bucket.jobs.conf</code></strong>. Non-empty (e.g. <code>"prod"</code>) → <strong><code>bucket.jobs.prod.conf</code></strong>. General pattern: <strong><code>bucket.jobs.&lt;selector&gt;.conf</code></strong>.</p>
+<p>After edits, run <strong><code>maand build</code></strong>. Build fails if a reservation exceeds manifest bounds, or if active allocations on a worker need more memory/CPU than that worker declares.</p>
+<p>Related: <a href="./configuration">configuration.md</a> · <a href="../start/concepts#allocation">concepts.md</a> · <a href="./cli/build#workspace-workers-json">build.md</a></p>
+<hr>
+<h2 id="how-the-pieces-fit-together" tabindex="-1"><a class="observablehq-header-anchor" href="#how-the-pieces-fit-together">How the pieces fit together</a></h2>
+<pre data-language="text"><code class="language-text">manifest.json          bucket.jobs.prod.conf       workers.json
+  min / max bounds  →    memory / cpu override  →   capacity + labels
+        │                         │                        │
+        └──────────── build ──────┴────────────────────────┘
+                              │
+                    allocations (label match)
+                    ValidateWorkerResources
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>File</th>
+<th>What it controls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Job bounds</td>
+<td><code>workspace/jobs/&lt;job&gt;/manifest.json</code></td>
+<td>Allowed memory/CPU range (<code>min</code> / <code>max</code>)</td>
+</tr>
+<tr>
+<td>Job reservation</td>
+<td><code>workspace/bucket.jobs[.&lt;env&gt;].conf</code></td>
+<td><strong>Current</strong> memory/CPU charged against workers (must be within bounds)</td>
+</tr>
+<tr>
+<td>Worker capacity</td>
+<td><code>workspace/workers.json</code></td>
+<td>Available memory/CPU; <strong>labels</strong> for placement</td>
+</tr>
+</tbody>
+</table>
+<p>Disabled allocations are excluded from capacity validation (<code>removed=0</code>, <code>disabled=0</code> only).</p>
+<hr>
+<h2 id="memory-and-cpu-in-manifest-json" tabindex="-1"><a class="observablehq-header-anchor" href="#memory-and-cpu-in-manifest-json">Memory and CPU in <code>manifest.json</code></a></h2>
+<p>Declare optional limits under <code>resources</code>:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"prod"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"resources"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"256 mb"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2 gb"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"500 mhz"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2000 mhz"</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h3 id="rules" tabindex="-1"><a class="observablehq-header-anchor" href="#rules">Rules</a></h3>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Omitted <code>min</code> / <code>max</code></td>
+<td>Treated as <code>0</code> (no bound on that side)</td>
+</tr>
+<tr>
+<td><code>min</code> set, <code>max</code> omitted or <code>0</code></td>
+<td><code>max</code> defaults to <code>min</code></td>
+</tr>
+<tr>
+<td><code>min</code> &gt; <code>max</code></td>
+<td>Build fails (<code>ErrInvalidManifest</code>)</td>
+</tr>
+<tr>
+<td>Units</td>
+<td>Memory: <code>mb</code>, <code>gb</code>, <code>tb</code> (case-insensitive). CPU: <code>mhz</code>, <code>ghz</code>, <code>thz</code></td>
+</tr>
+<tr>
+<td>Plain numbers</td>
+<td><code>"512"</code> → 512 MB or 512 MHz</td>
+</tr>
+</tbody>
+</table>
+<p>If both memory and CPU are omitted (all zeros), the job does not participate in worker resource validation unless a bucket override sets <code>memory</code> or <code>cpu</code>.</p>
+<h3 id="what-build-stores" tabindex="-1"><a class="observablehq-header-anchor" href="#what-build-stores">What build stores</a></h3>
+<table>
+<thead>
+<tr>
+<th>DB / KV field</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>min_memory_mb</code>, <code>max_memory_mb</code></td>
+<td>Manifest <code>resources.memory</code></td>
+</tr>
+<tr>
+<td><code>min_cpu_mhz</code>, <code>max_cpu_mhz</code></td>
+<td>Manifest <code>resources.cpu</code></td>
+</tr>
+<tr>
+<td><code>current_memory_mb</code>, <code>current_cpu_mhz</code></td>
+<td>Manifest max, or bucket override (below)</td>
+</tr>
+</tbody>
+</table>
+<p>KV namespace <strong><code>maand/job/&lt;job&gt;</code></strong> exposes <code>min_memory_mb</code>, <code>max_memory_mb</code>, <code>memory</code>, <code>min_cpu_mhz</code>, <code>max_cpu_mhz</code>, <code>cpu</code> for templates and commands.</p>
+<hr>
+<h2 id="bucket-level-override-bucket-jobs-conf" tabindex="-1"><a class="observablehq-header-anchor" href="#bucket-level-override-bucket-jobs-conf">Bucket-level override (<code>bucket.jobs.conf</code>)</a></h2>
+<p>Per-job <strong>reservations</strong> live in TOML under <strong><code>workspace/</code></strong>. They set what build stores as <strong><code>current_memory_mb</code></strong> and <strong><code>current_cpu_mhz</code></strong> — the values summed per worker during validation.</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-section">[api]</span>
+<span class="hljs-attr">memory</span> = <span class="hljs-string">"512 mb"</span>
+<span class="hljs-attr">cpu</span> = <span class="hljs-string">"1500 mhz"</span>
+
+<span class="hljs-section">[worker]</span>
+<span class="hljs-attr">memory</span> = <span class="hljs-string">"128 mb"</span>
+</code></pre>
+<h3 id="bounds-checking" tabindex="-1"><a class="observablehq-header-anchor" href="#bounds-checking">Bounds checking</a></h3>
+<p>The override must fall <strong>inside</strong> the manifest min/max:</p>
+<pre data-language="text"><code class="language-text">manifest min ≤ bucket.jobs.conf value ≤ manifest max
+</code></pre>
+<p>Examples:</p>
+<table>
+<thead>
+<tr>
+<th>Manifest</th>
+<th><code>bucket.jobs.conf</code></th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>min: 128</code>, <code>max: 512</code></td>
+<td><code>memory = "192 mb"</code></td>
+<td>OK — current = 192</td>
+</tr>
+<tr>
+<td><code>min: 128</code>, <code>max: 256</code></td>
+<td><code>memory = "512 mb"</code></td>
+<td>Build fails — above max</td>
+</tr>
+<tr>
+<td>no memory in manifest</td>
+<td><code>memory = "256 mb"</code></td>
+<td>OK — min and max set to 256</td>
+</tr>
+</tbody>
+</table>
+<p>The same rules apply to <strong><code>cpu</code></strong>.</p>
+<h3 id="environment-specific-files-job-config-selector" tabindex="-1"><a class="observablehq-header-anchor" href="#environment-specific-files-job-config-selector">Environment-specific files (<code>job_config_selector</code>)</a></h3>
+<p>Set <strong><code>job_config_selector</code></strong> in <strong><code>maand.conf</code></strong> to pick which override file build reads:</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-comment"># maand.conf</span>
+<span class="hljs-attr">job_config_selector</span> = <span class="hljs-string">"prod"</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th><code>job_config_selector</code></th>
+<th>File read</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>""</code> (default)</td>
+<td><code>workspace/bucket.jobs.conf</code></td>
+</tr>
+<tr>
+<td><code>"prod"</code></td>
+<td><code>workspace/bucket.jobs.prod.conf</code></td>
+</tr>
+<tr>
+<td><code>"staging"</code></td>
+<td><code>workspace/bucket.jobs.staging.conf</code></td>
+</tr>
+</tbody>
+</table>
+<p>Example layout for two environments on one bucket checkout:</p>
+<pre data-language="text"><code class="language-text">workspace/
+├── bucket.jobs.conf          # default / dev
+├── bucket.jobs.staging.conf
+└── bucket.jobs.prod.conf
+</code></pre>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-comment"># bucket.jobs.staging.conf</span>
+<span class="hljs-section">[api]</span>
+<span class="hljs-attr">memory</span> = <span class="hljs-string">"256 mb"</span>
+<span class="hljs-attr">cpu</span> = <span class="hljs-string">"500 mhz"</span>
+</code></pre>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-comment"># bucket.jobs.prod.conf</span>
+<span class="hljs-section">[api]</span>
+<span class="hljs-attr">memory</span> = <span class="hljs-string">"1 gb"</span>
+<span class="hljs-attr">cpu</span> = <span class="hljs-string">"2000 mhz"</span>
+</code></pre>
+<p>Switch environments by changing <strong><code>job_config_selector</code></strong> in <code>maand.conf</code>, then <strong><code>maand build</code></strong>. Job manifests stay the same; only the reservation file changes.</p>
+<p>Override keys are also copied to KV namespace <strong><code>vars/bucket/job/&lt;job&gt;</code></strong> (along with any other keys in that job’s TOML section).</p>
+<hr>
+<h2 id="worker-capacity-workers-json" tabindex="-1"><a class="observablehq-header-anchor" href="#worker-capacity-workers-json">Worker capacity (<code>workers.json</code>)</a></h2>
+<p>Workers must declare capacity when any <strong>active</strong> allocation on that host reserves memory or CPU:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.0.0.1"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"labels"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"prod"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"8192 mb"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4000 mhz"</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.0.0.2"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"labels"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"staging"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4096 mb"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2000 mhz"</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">]</span>
+</code></pre>
+<p>Build sums <strong><code>current_memory_mb</code></strong> and <strong><code>current_cpu_mhz</code></strong> of all active allocations on each worker and compares to <strong><code>available_memory_mb</code></strong> / <strong><code>available_cpu_mhz</code></strong>.</p>
+<p>Typical failure:</p>
+<pre data-language="text"><code class="language-text">worker_ip 10.0.0.1, available memory is 4096.00 MB, required memory is 5120.00 MB
+</code></pre>
+<p>Fix by raising worker capacity, lowering a job reservation in <code>bucket.jobs.conf</code>, or moving a job to another worker (selectors).</p>
+<hr>
+<h2 id="selectors-for-different-environments" tabindex="-1"><a class="observablehq-header-anchor" href="#selectors-for-different-environments">Selectors for different environments</a></h2>
+<p><strong>Selectors</strong> are worker <strong>labels</strong>. Build creates an allocation for job × worker only when <strong>every</strong> job selector appears on the worker. When <code>selectors</code> is omitted from the manifest, the <strong>job name</strong> is the selector. The label <strong><code>worker</code></strong> is added automatically to every host.</p>
+<h3 id="pattern-one-job-environment-labels" tabindex="-1"><a class="observablehq-header-anchor" href="#pattern-one-job-environment-labels">Pattern: one job, environment labels</a></h3>
+<p><strong>Workers</strong></p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span> <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.0.0.10"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"labels"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"prod"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"16 gb"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"8 ghz"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-punctuation">{</span> <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.0.0.20"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"labels"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"staging"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"8 gb"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4 ghz"</span> <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">]</span>
+</code></pre>
+<p><strong>Job</strong> (<code>workspace/jobs/api/manifest.json</code>)</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"prod"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"resources"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"256 mb"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4 gb"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"200 mhz"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4000 mhz"</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p><code>api</code> allocates only on <strong><code>10.0.0.10</code></strong>. Staging workers never receive it.</p>
+<p>For a staging copy, add <code>workspace/jobs/api-staging/</code> (or reuse the same tree) with:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span> <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"staging"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"resources"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> ... <span class="hljs-punctuation">}</span> <span class="hljs-punctuation">}</span>
+</code></pre>
+<h3 id="pattern-shared-manifest-bounds-per-env-reservations" tabindex="-1"><a class="observablehq-header-anchor" href="#pattern-shared-manifest-bounds-per-env-reservations">Pattern: shared manifest bounds, per-env reservations</a></h3>
+<p>Keep one manifest with wide bounds in git:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-attr">"resources"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"128 mb"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4 gb"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"100 mhz"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"8000 mhz"</span> <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Tune actual reservations per environment in the matching <code>bucket.jobs.&lt;env&gt;.conf</code> without editing the job directory.</p>
+<h3 id="pattern-one-bucket-per-environment" tabindex="-1"><a class="observablehq-header-anchor" href="#pattern-one-bucket-per-environment">Pattern: one bucket per environment</a></h3>
+<p>Many teams use <strong>separate bucket directories</strong> (or separate <code>maand.conf</code> / selector) per environment instead of mixing prod and staging workers in one <code>workers.json</code>. Selectors then separate job types (<code>gpu</code>, <code>arm</code>) within that environment.</p>
+<h3 id="inspecting-placement" tabindex="-1"><a class="observablehq-header-anchor" href="#inspecting-placement">Inspecting placement</a></h3>
+<pre data-language="bash"><code class="language-bash">maand build
+maand <span class="hljs-built_in">cat</span> allocations
+maand <span class="hljs-built_in">cat</span> allocations --<span class="hljs-built_in">jobs</span> api
+</code></pre>
+<p>Each row is a (job, worker) pair. If a job has no rows, no worker matched all selectors (manifest <code>selectors</code>, or the job name when selectors are omitted).</p>
+<hr>
+<h2 id="end-to-end-example" tabindex="-1"><a class="observablehq-header-anchor" href="#end-to-end-example">End-to-end example</a></h2>
+<p><strong>Goal:</strong> <code>api</code> runs on prod with 1 GB RAM; <code>api-staging</code> on staging with 256 MB.</p>
+<ol>
+<li>
+<p><strong><code>workers.json</code></strong> — prod and staging hosts with labels and capacity (see above).</p>
+</li>
+<li>
+<p><strong><code>jobs/api/manifest.json</code></strong></p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"prod"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"resources"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"256 mb"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2 gb"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"500 mhz"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2000 mhz"</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>jobs/api-staging/manifest.json</code></strong> — same resources, <code>"selectors": ["worker", "staging"]</code>.</p>
+</li>
+<li>
+<p><strong><code>maand.conf</code></strong> — <code>job_config_selector = "prod"</code>.</p>
+</li>
+<li>
+<p><strong><code>bucket.jobs.prod.conf</code></strong></p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-section">[api]</span>
+<span class="hljs-attr">memory</span> = <span class="hljs-string">"1 gb"</span>
+<span class="hljs-attr">cpu</span> = <span class="hljs-string">"1500 mhz"</span>
+</code></pre>
+</li>
+<li>
+<p>Switch to staging: set <code>job_config_selector = "staging"</code>, use <strong><code>bucket.jobs.staging.conf</code></strong>:</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-section">[api-staging]</span>
+<span class="hljs-attr">memory</span> = <span class="hljs-string">"256 mb"</span>
+<span class="hljs-attr">cpu</span> = <span class="hljs-string">"500 mhz"</span>
+</code></pre>
+</li>
+<li>
+<p>Build and verify:</p>
+<pre data-language="bash"><code class="language-bash">maand build
+maand <span class="hljs-built_in">cat</span> allocations
+maand <span class="hljs-built_in">cat</span> kv --<span class="hljs-built_in">jobs</span> api,api-staging
+</code></pre>
+<p>KV for each job includes <code>memory</code>, <code>min_memory_mb</code>, <code>max_memory_mb</code>, and the same for CPU.</p>
+</li>
+</ol>
+<hr>
+<h2 id="troubleshooting" tabindex="-1"><a class="observablehq-header-anchor" href="#troubleshooting">Troubleshooting</a></h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ErrInsufficientResource</code> on build</td>
+<td>Sum of job reservations on a worker exceeds <code>workers.json</code> capacity</td>
+</tr>
+<tr>
+<td><code>worker_ip … must specify memory in workers.json</code></td>
+<td>Job reserves memory but worker has no <code>memory</code> field</td>
+</tr>
+<tr>
+<td><code>ErrUnsupportedResourceConfiguration</code></td>
+<td><code>bucket.jobs.conf</code> memory/CPU outside manifest min/max</td>
+</tr>
+<tr>
+<td>Job has no allocations</td>
+<td>No worker has all required selector labels</td>
+</tr>
+<tr>
+<td>Override ignored</td>
+<td>Wrong <code>job_config_selector</code> or typo in TOML job section name (must match job directory name)</td>
+</tr>
+<tr>
+<td>Validation ignores a job</td>
+<td>Allocation is <strong>disabled</strong> or <strong>removed</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="related" tabindex="-1"><a class="observablehq-header-anchor" href="#related">Related</a></h2>
+<ul>
+<li><a href="./configuration">configuration.md</a> — <code>maand.conf</code>, <code>bucket.jobs.conf</code>, <code>job_config_selector</code></li>
+<li><a href="./cli/build#resource-validation">build.md</a> — build pipeline and validation step</li>
+<li><a href="../start/concepts#allocation">concepts.md</a> — how label matching creates allocations</li>
+<li><a href="./kv/persistence">KV persistence</a> — <code>maand/job/&lt;job&gt;</code> and <code>vars/bucket/job/&lt;job&gt;</code> namespaces</li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./manifest"><span>Manifest</span></a><a rel="next" href="./deployment-sequence"><span>Deployment sequence</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

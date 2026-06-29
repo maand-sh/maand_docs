@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Rolling upgrades and rolling worker reboots | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="./disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="./debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="./job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="./prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="./worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../reference/configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../reference/manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../reference/resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../reference/deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../reference/templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../reference/certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../reference/job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../reference/observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#rolling-job-upgrade-deploy">Rolling job upgrade (deploy)</a></li>
+<li class="observablehq-secondary-link"><a href="#rolling-job-restart-without-deploy">Rolling job restart (without deploy)</a></li>
+<li class="observablehq-secondary-link"><a href="#rolling-worker-reboot">Rolling worker reboot</a></li>
+<li class="observablehq-secondary-link"><a href="#health-checks-during-rolling-work">Health checks during rolling work</a></li>
+<li class="observablehq-secondary-link"><a href="#inspect-rolling-state">Inspect rolling state</a></li>
+<li class="observablehq-secondary-link"><a href="#related">Related</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="rolling-upgrades-and-rolling-worker-reboots" tabindex="-1"><a class="observablehq-header-anchor" href="#rolling-upgrades-and-rolling-worker-reboots">Rolling upgrades and rolling worker reboots</a></h1>
+<p>Maand rolls out <strong>job</strong> changes through <strong><code>maand deploy</code></strong> (content hash and/or version). <strong>Worker host</strong> reboots and ad-hoc restarts use <strong><code>maand job</code></strong> and <strong><code>maand run_command</code></strong>. This guide covers both.</p>
+<hr>
+<h2 id="rolling-job-upgrade-deploy" tabindex="-1"><a class="observablehq-header-anchor" href="#rolling-job-upgrade-deploy">Rolling job upgrade (deploy)</a></h2>
+<p>Deploy is the primary way to roll out workspace changes. Maand compares <strong>content hashes</strong> and <strong>version targets</strong> per allocation, rsyncs when needed, then runs <strong><code>start</code></strong>, <strong><code>restart</code></strong>, <strong><code>reload</code></strong>, or nothing — according to manifest policy and optional CLI flags.</p>
+<h3 id="when-an-allocation-is-touched" tabindex="-1"><a class="observablehq-header-anchor" href="#when-an-allocation-is-touched">When an allocation is touched</a></h3>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>What deploy does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First deploy on worker</td>
+<td><strong><code>make start</code></strong></td>
+</tr>
+<tr>
+<td>Content changed since last promote</td>
+<td>Rsync, then lifecycle per <strong><code>restart_policy</code></strong></td>
+</tr>
+<tr>
+<td>Version bumped, files unchanged</td>
+<td>Same lifecycle (often <strong><code>reload</code></strong> when policy is <code>reload</code>)</td>
+</tr>
+<tr>
+<td>Already promoted</td>
+<td><strong>Skip</strong> that job</td>
+</tr>
+<tr>
+<td><strong><code>--force</code></strong></td>
+<td>Roll all active allocations (policy still applies to <em>how</em>)</td>
+</tr>
+<tr>
+<td><strong><code>--sync-only</code></strong></td>
+<td>Rsync + promote only; <strong>errors</strong> if <strong><code>start</code></strong> is required</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="../reference/cli/deploy#applying-changes-on-workers">deploy.md</a> for <strong><code>restart_policy</code></strong>, <strong><code>restart_globs</code></strong>, and <strong><code>--sync-only</code></strong>.</p>
+<h3 id="choosing-a-lifecycle-strategy" tabindex="-1"><a class="observablehq-header-anchor" href="#choosing-a-lifecycle-strategy">Choosing a lifecycle strategy</a></h3>
+<table>
+<thead>
+<tr>
+<th>Job type</th>
+<th>Typical manifest</th>
+<th>Makefile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stateful (Postgres, Kafka)</td>
+<td><code>"restart_policy": "always"</code></td>
+<td><code>restart</code> recreates or restarts service</td>
+</tr>
+<tr>
+<td>Monitoring (Prometheus)</td>
+<td><code>"restart_policy": "reload"</code></td>
+<td><code>reload</code> calls <code>/-/reload</code></td>
+</tr>
+<tr>
+<td>App with compose + static config</td>
+<td><code>"restart_policy": "reload"</code> + <strong><code>restart_globs</code></strong> for compose/Dockerfile</td>
+<td><code>reload</code> for config; <code>restart</code> when globs match</td>
+</tr>
+<tr>
+<td>Files consumed without process hook</td>
+<td><code>"restart_policy": "never"</code> or <strong><code>--sync-only</code></strong></td>
+<td>Process watches disk or you run <code>maand job run … --target reload</code></td>
+</tr>
+</tbody>
+</table>
+<p>Add a <strong><code>reload:</code></strong> target whenever policy is <strong><code>reload</code></strong>. Without it, deploy still invokes <code>make reload</code> and the target must exist.</p>
+<h3 id="configure-batch-size" tabindex="-1"><a class="observablehq-header-anchor" href="#configure-batch-size">Configure batch size</a></h3>
+<p>Two manifest fields control rollout batching:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Phase</th>
+<th>Default</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>deploy_parallel_count</code></strong></td>
+<td>First deploy (<strong>start</strong> new allocations)</td>
+<td><code>0</code> (= all at once)</td>
+<td>Start new allocations in batches of N; <strong>one health check</strong> after all batches</td>
+</tr>
+<tr>
+<td><strong><code>update_parallel_count</code></strong></td>
+<td>Upgrades (<strong>restart</strong> / <strong>reload</strong> changed allocations)</td>
+<td><code>1</code></td>
+<td>Lifecycle in batches of N; <strong>health check after each batch</strong> when a target runs</td>
+</tr>
+</tbody>
+</table>
+<p>In <strong><code>workspace/jobs/&lt;job&gt;/manifest.json</code></strong>:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2.0.0"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"deploy_parallel_count"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"update_parallel_count"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Both fields use <strong><code>deploy_order</code></strong> (KV key <code>maand/job/&lt;job&gt;/deploy_order</code>, synced from catalog on build) to pick worker order within each batch. Override in <strong><code>pre_deploy</code></strong> with <strong><code>put_deploy_order()</code></strong> — see <a href="../reference/job-command-api">job-command-api.md</a>. Deploy validates softly and falls back to catalog order if the list is stale.</p>
+<p>Example: job <strong><code>api</code></strong> on workers <code>10.0.0.1</code> … <code>10.0.0.4</code> with <strong><code>update_parallel_count: 2</code></strong> and <strong><code>restart_policy: always</code></strong>:</p>
+<pre data-language="text"><code class="language-text">Batch 1: restart 10.0.0.1 and 10.0.0.2 (parallel)
+         → health_check (wait) for the job
+Batch 2: restart 10.0.0.3 and 10.0.0.4 (parallel)
+         → health_check again
+</code></pre>
+<p>With <strong><code>restart_policy: reload</code></strong>, the same batches call <strong><code>make reload</code></strong> instead (or <strong><code>restart</code></strong> on workers where <strong><code>restart_globs</code></strong> matched).</p>
+<p>Set <strong><code>update_parallel_count</code></strong> to the largest restart burst you can tolerate while keeping the service healthy (often 1 for stateful jobs, higher for stateless). Use <strong><code>deploy_parallel_count</code></strong> the same way for <strong>first deploy</strong> when bringing up a multi-node cluster (Vault, Cassandra, Postgres primaries/replicas).</p>
+<p>After each batch start, restart, or reload, maand runs <strong><code>after_allocation_started</code></strong> hooks (if registered), then the health gate for that phase.</p>
+<h3 id="version-and-makefile-env" tabindex="-1"><a class="observablehq-header-anchor" href="#version-and-makefile-env">Version and Makefile env</a></h3>
+<p>On <strong>start</strong>, <strong>restart</strong>, and <strong>reload</strong>, the worker Makefile receives:</p>
+<pre data-language="text"><code class="language-text">CURRENT_VERSION=&lt;running, pre-promote&gt;
+NEW_VERSION=&lt;target from build&gt;
+</code></pre>
+<p>Use them for migration scripts:</p>
+<pre data-language="makefile"><code class="language-makefile"><span class="hljs-section">restart:</span>
+	./bin/upgrade.sh <span class="hljs-string">"<span class="hljs-variable">$(CURRENT_VERSION)</span>"</span> <span class="hljs-string">"<span class="hljs-variable">$(NEW_VERSION)</span>"</span>
+	<span class="hljs-variable">$(MAKE)</span> start
+</code></pre>
+<p>After a successful deploy wave, <strong><code>promoteAllocationHash</code></strong> sets <strong><code>current_version = new_version</code></strong> in the catalog.</p>
+<h3 id="deployment-sequence-deployment-seq" tabindex="-1"><a class="observablehq-header-anchor" href="#deployment-sequence-deployment-seq">Deployment sequence (<code>deployment_seq</code>)</a></h3>
+<p>Jobs with <strong>demands</strong> deploy in waves by <strong><code>deployment_seq</code></strong> (lower first). Within one sequence value, jobs are independent; each job applies its own <strong><code>deploy_parallel_count</code></strong> (starts) and <strong><code>update_parallel_count</code></strong> (restarts).</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> <span class="hljs-built_in">jobs</span>                    <span class="hljs-comment"># deployment_seq column</span>
+maand deploy --<span class="hljs-built_in">jobs</span> api,worker    <span class="hljs-comment"># still respects seq order</span>
+</code></pre>
+<p>See <a href="../reference/deployment-sequence">deployment-sequence.md</a>.</p>
+<h3 id="job-control-custom-rollout" tabindex="-1"><a class="observablehq-header-anchor" href="#job-control-custom-rollout"><code>job_control</code> custom rollout</a></h3>
+<p>If any manifest command uses <strong><code>executed_on: ["job_control"]</code></strong>, default Makefile lifecycle (start/restart/reload) is <strong>not</strong> used. Your script receives:</p>
+<pre data-language="text"><code class="language-text">NEW_ALLOCATIONS=10.0.0.1,10.0.0.2
+UPDATED_ALLOCATIONS=10.0.0.3
+CURRENT_VERSION=...
+NEW_VERSION=...
+</code></pre>
+<p>Implement canary or blue/green logic inside the command. See <a href="../reference/job-command-api">job-command-api.md</a>.</p>
+<h3 id="recommended-upgrade-flow" tabindex="-1"><a class="observablehq-header-anchor" href="#recommended-upgrade-flow">Recommended upgrade flow</a></h3>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 1. Change workspace (manifest version, files, templates)</span>
+vim workspace/jobs/api/manifest.json
+
+<span class="hljs-comment"># 2. Plan</span>
+maand build
+maand deploy --dry-run
+
+<span class="hljs-comment"># 3. Roll out</span>
+maand deploy
+<span class="hljs-comment"># or: maand deploy --jobs api</span>
+
+<span class="hljs-comment"># 4. Verify</span>
+maand <span class="hljs-built_in">cat</span> deployments --<span class="hljs-built_in">jobs</span> api
+maand health_check --<span class="hljs-built_in">jobs</span> api --<span class="hljs-built_in">wait</span>
+</code></pre>
+<h3 id="version-only-upgrade-no-file-change" tabindex="-1"><a class="observablehq-header-anchor" href="#version-only-upgrade-no-file-change">Version-only upgrade (no file change)</a></h3>
+<p>Bump <strong><code>version</code></strong> in <strong><code>manifest.json</code></strong> only:</p>
+<pre data-language="bash"><code class="language-bash">maand build
+maand deploy --dry-run    <span class="hljs-comment"># should show restart</span>
+maand deploy
+</code></pre>
+<h3 id="force-redeploy-same-tree" tabindex="-1"><a class="observablehq-header-anchor" href="#force-redeploy-same-tree">Force redeploy (same tree)</a></h3>
+<p>After <strong><code>maand health_check --update-hash</code></strong> or operator-initiated reroll:</p>
+<pre data-language="bash"><code class="language-bash">maand deploy --force --<span class="hljs-built_in">jobs</span> api
+</code></pre>
+<hr>
+<h2 id="rolling-job-restart-without-deploy" tabindex="-1"><a class="observablehq-header-anchor" href="#rolling-job-restart-without-deploy">Rolling job restart (without deploy)</a></h2>
+<p>Use when the catalog is already promoted but processes need a bounce (config reload, memory leak, etc.).</p>
+<h3 id="all-allocations" tabindex="-1"><a class="observablehq-header-anchor" href="#all-allocations">All allocations</a></h3>
+<pre data-language="bash"><code class="language-bash">maand job restart api
+maand health_check --<span class="hljs-built_in">jobs</span> api --<span class="hljs-built_in">wait</span>    <span class="hljs-comment"># optional</span>
+</code></pre>
+<h3 id="one-worker-at-a-time" tabindex="-1"><a class="observablehq-header-anchor" href="#one-worker-at-a-time">One worker at a time</a></h3>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-keyword">for</span> ip <span class="hljs-keyword">in</span> 10.0.0.1 10.0.0.2 10.0.0.3; <span class="hljs-keyword">do</span>
+  maand job restart api --allocations <span class="hljs-string">"<span class="hljs-variable">$ip</span>"</span>
+  maand health_check --<span class="hljs-built_in">jobs</span> api --<span class="hljs-built_in">wait</span>
+<span class="hljs-keyword">done</span>
+</code></pre>
+<h3 id="custom-makefile-target" tabindex="-1"><a class="observablehq-header-anchor" href="#custom-makefile-target">Custom Makefile target</a></h3>
+<pre data-language="bash"><code class="language-bash">maand job run api --target reload
+</code></pre>
+<p>Requires <strong><code>maand deploy</code></strong> to have run at least once (<code>worker.json</code> / <strong><code>update_seq</code></strong> in sync).</p>
+<hr>
+<h2 id="rolling-worker-reboot" tabindex="-1"><a class="observablehq-header-anchor" href="#rolling-worker-reboot">Rolling worker reboot</a></h2>
+<p>Host OS reboot patterns (disable → reboot → re-enable): <a href="./worker-reboot">worker-reboot.md</a>.</p>
+<hr>
+<h2 id="health-checks-during-rolling-work" tabindex="-1"><a class="observablehq-header-anchor" href="#health-checks-during-rolling-work">Health checks during rolling work</a></h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>After each deploy batch</td>
+<td>Automatic when job defines manifest probes or <strong><code>health_check</code></strong> commands</td>
+</tr>
+<tr>
+<td>After manual restart</td>
+<td><code>maand health_check --jobs api --wait</code></td>
+</tr>
+<tr>
+<td>After worker reboot</td>
+<td><code>maand health_check --wait</code> or per-job <strong><code>--jobs</code></strong></td>
+</tr>
+<tr>
+<td>After <code>run_command</code> batch</td>
+<td><code>maand run_command ... --health_check</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="inspect-rolling-state" tabindex="-1"><a class="observablehq-header-anchor" href="#inspect-rolling-state">Inspect rolling state</a></h2>
+<pre data-language="bash"><code class="language-bash">maand deploy --dry-run
+maand <span class="hljs-built_in">cat</span> deployments --<span class="hljs-built_in">jobs</span> api
+maand <span class="hljs-built_in">cat</span> allocations --<span class="hljs-built_in">jobs</span> api
+</code></pre>
+<p>During deploy, different workers may briefly show different <strong><code>current_version</code></strong> values until each batch promotes.</p>
+<hr>
+<h2 id="related" tabindex="-1"><a class="observablehq-header-anchor" href="#related">Related</a></h2>
+<ul>
+<li><a href="../reference/cli/deploy">deploy.md</a> — full deploy pipeline and version tracking</li>
+<li><a href="./disable-and-drain">disable and drain</a> — drain workers or jobs</li>
+<li><a href="../reference/cli/job">job.md</a> — manual start/stop/restart/reload</li>
+<li><a href="../reference/cli/run-command">run-command.md</a> — SSH batches and <strong><code>--concurrency</code></strong></li>
+<li><a href="../reference/cli/health-check">health-check.md</a> — probes and wait/retry</li>
+<li><a href="./debugging-deploy">debugging-deploy.md</a> — when rolling upgrade stalls or fails</li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./day-2-ops"><span>Day-2 operations</span></a><a rel="next" href="./disable-and-drain"><span>Disable and drain</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

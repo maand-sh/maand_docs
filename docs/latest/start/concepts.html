@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Core concepts | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section class="observablehq-section-active">
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./overview">Overview</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="./quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="./comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../reference/configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../reference/manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../reference/resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../reference/deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../reference/templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../reference/certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../reference/job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../reference/observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#bucket">Bucket</a></li>
+<li class="observablehq-secondary-link"><a href="#worker">Worker</a></li>
+<li class="observablehq-secondary-link"><a href="#job">Job</a></li>
+<li class="observablehq-secondary-link"><a href="#allocation">Allocation</a></li>
+<li class="observablehq-secondary-link"><a href="#how-the-three-relate">How the three relate</a></li>
+<li class="observablehq-secondary-link"><a href="#deployment-sequence">Deployment sequence</a></li>
+<li class="observablehq-secondary-link"><a href="#job-commands-vs-makefile-vs-run-command">Job commands vs Makefile vs run_command</a></li>
+<li class="observablehq-secondary-link"><a href="#typical-state-flow">Typical state flow</a></li>
+<li class="observablehq-secondary-link"><a href="#further-reading">Further reading</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="core-concepts" tabindex="-1"><a class="observablehq-header-anchor" href="#core-concepts">Core concepts</a></h1>
+<p>Maand is an <strong>agentless</strong> workload orchestrator. You run the <strong><code>maand</code> CLI</strong> on a <strong>host machine</strong> (laptop, CI runner, or bastion). That host holds the <strong>bucket</strong> — local files and SQLite state. Workers are ordinary Linux hosts reached over <strong>SSH</strong>; nothing is installed on them except what you deploy (job files, <code>runner.py</code>, and runtime directories).</p>
+<pre data-language="text"><code class="language-text">┌──────────────────── maand CLI host ────────────────────┐
+│  bucket/                                               │
+│    maand.db + KV    workspace/    secrets/    tmp/     │
+│         │                │                             │
+│         │    build reads │                             │
+│         ▼                ▼                             │
+│    catalog (workers, jobs, allocations)                │
+└────────────────────────┬───────────────────────────────┘
+                         │ ssh + rsync (deploy, job control)
+         ┌───────────────┼───────────────┐
+         ▼               ▼               ▼
+    Worker A         Worker B         Worker C
+    /opt/worker/&lt;bucket_id&gt;/
+</code></pre>
+<p>Official site: <a href="https://maand.sh/latest" target="_blank" rel="noopener noreferrer">maand.sh/latest</a></p>
+<hr>
+<h2 id="bucket" tabindex="-1"><a class="observablehq-header-anchor" href="#bucket">Bucket</a></h2>
+<p>A <strong>bucket</strong> is one maand project directory. Run all maand commands from that directory (or with <code>bucket.Location</code> set to it in tests).</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maand.conf</code></td>
+<td>SSH user/key, sudo, cert TTL, <code>job_config_selector</code>, <code>log_format</code></td>
+</tr>
+<tr>
+<td><code>data/maand.db</code></td>
+<td>SQLite catalog: workers, jobs, allocations, hashes, KV history</td>
+</tr>
+<tr>
+<td><code>workspace/</code></td>
+<td>Source of truth you edit: <code>workers.json</code>, <code>jobs/&lt;name&gt;/</code>, optional <code>disabled.json</code></td>
+</tr>
+<tr>
+<td><code>secrets/</code></td>
+<td>CA, worker SSH private key, KV encryption key</td>
+</tr>
+<tr>
+<td><code>tmp/</code></td>
+<td>Staging for deploy and job-command workspaces</td>
+</tr>
+<tr>
+<td><code>logs/</code></td>
+<td>Structured command logs from deploy, rsync, SSH, job commands (<code>logs/runs/&lt;run_id&gt;/</code> per invocation)</td>
+</tr>
+</tbody>
+</table>
+<p>Each bucket has a stable <strong><code>bucket_id</code></strong> (UUID) and an <strong><code>update_seq</code></strong> incremented on every deploy. Workers store both in <code>worker.json</code> so manual job control can detect drift.</p>
+<p><strong>Build</strong> reads <code>workspace/</code> → updates <code>maand.db</code> and KV. <strong>Deploy</strong> reads the DB → rsyncs to workers. Workers are never the source of truth for catalog data.</p>
+<hr>
+<h2 id="worker" tabindex="-1"><a class="observablehq-header-anchor" href="#worker">Worker</a></h2>
+<p>A <strong>worker</strong> is a cluster node — an SSH target identified by <strong>IP or hostname</strong>.</p>
+<h3 id="definition" tabindex="-1"><a class="observablehq-header-anchor" href="#definition">Definition</a></h3>
+<p>Workers are declared in <strong><code>workspace/workers.json</code></strong>:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.0.0.1"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"labels"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"gpu"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"8192 mb"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4000 mhz"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"tags"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"zone"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"a"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"rack"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1"</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">]</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>host</code></td>
+<td>SSH address (unique)</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td>Used for job placement; label <strong><code>worker</code></strong> is added automatically</td>
+</tr>
+<tr>
+<td><code>memory</code> / <code>cpu</code></td>
+<td>Capacity for resource validation when jobs declare limits</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>Arbitrary metadata → KV namespace <code>maand/worker/&lt;ip&gt;/tags/&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td>Order in the array (assigned on read)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="on-the-worker-after-deploy" tabindex="-1"><a class="observablehq-header-anchor" href="#on-the-worker-after-deploy">On the worker after deploy</a></h3>
+<pre data-language="text"><code class="language-text">/opt/worker/&lt;bucket_id&gt;/
+├── worker.json          # bucket_id, worker_id, update_seq, labels
+├── jobs.json            # list of jobs on this worker (+ disabled flag)
+├── bin/runner.py        # runs Makefile targets via SSH job control
+└── jobs/&lt;job&gt;/          # staged job tree (Makefile, configs, data/, logs/, bin/)
+</code></pre>
+<h3 id="worker-lifecycle" tabindex="-1"><a class="observablehq-header-anchor" href="#worker-lifecycle">Worker lifecycle</a></h3>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>What happens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add host to <code>workers.json</code> + <strong>build</strong></td>
+<td>New row in <code>worker</code> table</td>
+</tr>
+<tr>
+<td><strong>Deploy</strong></td>
+<td>Creates <code>/opt/worker/&lt;bucket_id&gt;/</code>, syncs jobs</td>
+</tr>
+<tr>
+<td>Remove host from <code>workers.json</code> + <strong>build</strong></td>
+<td>Allocations marked <strong><code>removed</code></strong>; worker row dropped from catalog</td>
+</tr>
+<tr>
+<td><strong>Deploy</strong> after removal</td>
+<td>Stop job; remove deployed files; keep <code>data/</code> and <code>logs/</code>; clear allocation hash on deploy (redeploy starts fresh, reuses data/logs)</td>
+</tr>
+<tr>
+<td><strong>GC</strong></td>
+<td>Delete worker <code>data/</code>/<code>logs/</code>/<code>bin/</code>; purge removed allocation rows and KV</td>
+</tr>
+</tbody>
+</table>
+<p>Workers do not run a maand agent. Deploy and <code>maand job</code> invoke <strong><code>runner.py</code></strong> over SSH; <code>maand run_command</code> runs arbitrary shell commands over SSH.</p>
+<hr>
+<h2 id="job" tabindex="-1"><a class="observablehq-header-anchor" href="#job">Job</a></h2>
+<p>A <strong>job</strong> is a deployable unit — a directory under <strong><code>workspace/jobs/&lt;name&gt;/</code></strong>.</p>
+<h3 id="required-layout" tabindex="-1"><a class="observablehq-header-anchor" href="#required-layout">Required layout</a></h3>
+<pre data-language="text"><code class="language-text">workspace/jobs/api/
+├── manifest.json       # version, selectors, resources, commands, certs
+├── Makefile            # start / stop / restart (default deploy lifecycle)
+├── _modules/           # optional: command_&lt;name&gt;.py | .ts | .js
+├── config.tpl          # optional: Go templates → rendered at deploy
+└── …                   # other files copied into maand.db on build
+</code></pre>
+<h3 id="manifest-highlights" tabindex="-1"><a class="observablehq-header-anchor" href="#manifest-highlights">Manifest highlights</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>version</code></td>
+<td>Semver-like release id; required when the job participates in the <a href="../reference/deployment-sequence">dependency graph</a>; drives deploy <strong><code>new_version</code></strong> per allocation</td>
+</tr>
+<tr>
+<td><code>selectors</code></td>
+<td>Worker <strong>labels</strong> for placement; when omitted, the <strong>job name</strong> is used</td>
+</tr>
+<tr>
+<td><code>resources.memory</code> / <code>cpu</code></td>
+<td><strong>Min/max bounds</strong> in the manifest; <strong>actual</strong> memory/CPU for the current environment from <code>bucket.jobs.conf</code> or <code>bucket.jobs.&lt;env&gt;.conf</code> (selected by <code>job_config_selector</code> in <code>maand.conf</code>) — <a href="../reference/resources-and-placement">resources-and-placement.md</a></td>
+</tr>
+<tr>
+<td><code>resources.ports</code></td>
+<td>Named ports: <code>{}</code> (maand assigns from <code>bucket.conf</code> pool) or an integer (fixed in manifest)</td>
+</tr>
+<tr>
+<td><code>update_parallel_count</code></td>
+<td>Rolling batch size for <strong><code>restart</code></strong> / <strong><code>reload</code></strong> during deploy</td>
+</tr>
+<tr>
+<td><code>restart_policy</code></td>
+<td><code>always</code> / <code>reload</code> / <code>never</code> — how upgrades apply after rsync (<a href="../reference/cli/deploy#applying-changes-on-workers">deploy</a>)</td>
+</tr>
+<tr>
+<td><code>restart_globs</code></td>
+<td>Optional; with <code>reload</code>, paths that force <strong><code>restart</code></strong> when changed</td>
+</tr>
+<tr>
+<td><code>deploy_parallel_count</code></td>
+<td>Rolling batch size for <strong><code>start</code></strong> on first deploy (0 = all at once)</td>
+</tr>
+<tr>
+<td><code>commands</code></td>
+<td>Named hooks (<code>command_*</code>) with <code>executed_on</code> events</td>
+</tr>
+<tr>
+<td><code>health_check</code></td>
+<td>Optional built-in probes (tcp/http/ssh) and/or a <code>health_check</code> command (probes first)</td>
+</tr>
+<tr>
+<td><code>certs</code></td>
+<td>TLS definitions → generated at build, deployed under <code>jobs/&lt;job&gt;/certs/</code> — <a href="../reference/certs">certs.md</a></td>
+</tr>
+</tbody>
+</table>
+<p>Manifest reference: <a href="../reference/manifest">manifest.md</a>. Configuration: <a href="../reference/configuration">configuration.md</a>. Command scripts: <a href="../reference/cli/job-command">cli/job-command.md</a>.</p>
+<h3 id="job-lifecycle-on-workers" tabindex="-1"><a class="observablehq-header-anchor" href="#job-lifecycle-on-workers">Job lifecycle on workers</a></h3>
+<p>Each deploy wave <strong>rsyncs</strong> the job tree, then optionally runs Makefile targets on the worker:</p>
+<ol>
+<li><strong>New allocation</strong> → <strong><code>make start</code></strong></li>
+<li><strong>Upgrade</strong> → depends on <strong><code>restart_policy</code></strong>:
+<ul>
+<li><strong><code>always</code></strong> → <strong><code>make restart</code></strong></li>
+<li><strong><code>reload</code></strong> → <strong><code>make reload</code></strong>, or <strong><code>make restart</code></strong> when a changed file matches <strong><code>restart_globs</code></strong></li>
+<li><strong><code>never</code></strong> → no lifecycle (files only)</li>
+</ul>
+</li>
+</ol>
+<p>The Makefile receives <strong><code>CURRENT_VERSION</code></strong> (running) and <strong><code>NEW_VERSION</code></strong> (target). Custom rollouts use a <strong><code>job_control</code></strong> command instead of the default targets.</p>
+<p>Runtime state lives in <strong><code>data/</code></strong>, <strong><code>logs/</code></strong>, and <strong><code>bin/</code></strong> on the worker — not in the workspace (build rejects those dirs in git).</p>
+<hr>
+<h2 id="allocation" tabindex="-1"><a class="observablehq-header-anchor" href="#allocation">Allocation</a></h2>
+<p>An <strong>allocation</strong> is the binding <strong>(job × worker)</strong>: “run job <em>api</em> on worker <em>10.0.0.1</em>.”</p>
+<p>Maand creates allocations automatically during <strong>build</strong> by <strong>label matching</strong>:</p>
+<ol>
+<li>For each worker, collect its labels (including <code>worker</code>).</li>
+<li>For each job, use manifest <code>selectors</code> when set; otherwise use the <strong>job name</strong> as the selector.</li>
+<li>Require <strong>every</strong> selector to appear on the worker.</li>
+<li>Insert or update a row in <strong><code>allocations</code></strong> for each match.</li>
+</ol>
+<pre data-language="text"><code class="language-text">workers.json              jobs/api/manifest.json
+  labels: [worker,         selectors: [worker, prod]
+           prod]                   │
+       │                           │  selectors: [worker, prod]
+       └──── all match? ───────────┘
+                 │
+                 ▼
+        allocation (api @ 10.0.0.1)
+        alloc_id = hash("api|10.0.0.1")
+</code></pre>
+<p>Dedicated jobs can omit manifest selectors when the worker carries the job name (for example job <strong><code>prometheus</code></strong> on a worker labeled <strong><code>prometheus</code></strong>).</p>
+<h3 id="allocation-fields" tabindex="-1"><a class="observablehq-header-anchor" href="#allocation-fields">Allocation fields</a></h3>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alloc_id</code></td>
+<td>Stable UUID derived from job + worker IP</td>
+</tr>
+<tr>
+<td><code>worker_ip</code> / <code>job</code></td>
+<td>The pair</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>1</code> when excluded via <code>disabled.json</code> or resource rules</td>
+</tr>
+<tr>
+<td><code>removed</code></td>
+<td><code>1</code> when worker or job left the workspace (soft delete until deploy/GC)</td>
+</tr>
+<tr>
+<td><code>deployment_seq</code></td>
+<td>Wave order during deploy (from command <strong>demands</strong>)</td>
+</tr>
+</tbody>
+</table>
+<p>Each allocation tracks catalog <strong><code>current_version</code></strong> (last promoted, in <strong><code>hash</code></strong>) and <strong><code>new_version</code></strong> (build target, in <strong><code>allocations</code></strong>). Per-allocation KV stores a single <strong><code>version</code></strong> key (target). Templates and job commands expose running vs target via <strong><code>.CurrentVersion</code></strong> / <strong><code>.NewVersion</code></strong> and <strong><code>CURRENT_VERSION</code></strong> / <strong><code>NEW_VERSION</code></strong> — see <a href="../reference/cli/deploy#allocation-version-tracking">deploy.md</a>.</p>
+<h3 id="active-vs-inactive" tabindex="-1"><a class="observablehq-header-anchor" href="#active-vs-inactive">Active vs inactive</a></h3>
+<p>An allocation is <strong>active</strong> when <code>removed = 0</code> and <code>disabled = 0</code>. A <strong>disabled</strong> allocation (<code>removed = 0</code>, <code>disabled = 1</code>) still gets build KV (certs, per-allocation metadata, deploy staging). Deploy <strong>never starts</strong> disabled allocations (no start/restart/reload/rsync). Content and version changes are still staged and promoted; after re-enable, deploy <strong>starts</strong> the allocation.</p>
+<p><strong>KV nuance:</strong> <code>maand/job/&lt;job&gt;/workers</code>, <code>maand/job/&lt;job&gt;/deploy_order</code>, and <code>maand/worker/&lt;ip&gt;/jobs</code> list <strong>active</strong> allocations only. Per-allocation keys such as <strong><code>peer_workers</code></strong> use <strong>non-removed</strong> peers (disabled peers may still appear). See <a href="../reference/kv/namespaces">KV namespaces</a>.</p>
+<p>Only <strong>active</strong> allocations receive:</p>
+<ul>
+<li>Deploy rsync and lifecycle (start/restart/reload) plus rollout hooks that run on workers</li>
+<li><code>maand job_command</code>, <code>maand health_check</code></li>
+<li>Default targets for <code>maand job start|stop|restart|run --target reload</code></li>
+</ul>
+<p>Inspect allocations:</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> allocations
+maand <span class="hljs-built_in">cat</span> allocations --<span class="hljs-built_in">jobs</span> api --workers 10.0.0.1
+</code></pre>
+<h3 id="disabling-without-removing" tabindex="-1"><a class="observablehq-header-anchor" href="#disabling-without-removing">Disabling without removing</a></h3>
+<p><strong><code>workspace/disabled.json</code></strong> marks allocations disabled without deleting workspace files:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"jobs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"api"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"allocations"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"10.0.0.2"</span><span class="hljs-punctuation">]</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"workers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"10.0.0.3"</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>Disable all instances of a job: <code>"api": {}</code></li>
+<li>Disable one worker for a job: <code>"allocations": ["10.0.0.2"]</code></li>
+<li>Disable every job on a worker: <code>"workers": ["10.0.0.3"]</code></li>
+</ul>
+<p>Run <strong><code>maand build</code></strong> after editing <code>disabled.json</code>.</p>
+<p>Full how-to (disable one allocation, entire job, entire worker, re-enable): <a href="../guides/disable-and-drain">disable and drain</a>.</p>
+<hr>
+<h2 id="how-the-three-relate" tabindex="-1"><a class="observablehq-header-anchor" href="#how-the-three-relate">How the three relate</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Question it answers</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Worker</strong></td>
+<td><em>Where</em> can work run?</td>
+<td><code>10.0.0.1</code> with labels <code>worker</code>, <code>gpu</code></td>
+</tr>
+<tr>
+<td><strong>Job</strong></td>
+<td><em>What</em> workload?</td>
+<td><code>api</code> — manifest, Makefile, files</td>
+</tr>
+<tr>
+<td><strong>Allocation</strong></td>
+<td><em>Which job on which worker?</em></td>
+<td><code>api</code> on <code>10.0.0.1</code>, <code>alloc_id=…</code></td>
+</tr>
+</tbody>
+</table>
+<p>One job typically has <strong>many</strong> allocations (one per matching worker). One worker typically hosts <strong>many</strong> jobs (one allocation per job).</p>
+<hr>
+<h2 id="deployment-sequence" tabindex="-1"><a class="observablehq-header-anchor" href="#deployment-sequence">Deployment sequence</a></h2>
+<p>Jobs that depend on each other (via <strong><code>demands</code></strong> in manifest commands) get a <strong><code>deployment_seq</code></strong> during build. <strong>Deploy</strong> processes sequence <strong>0</strong>, then <strong>1</strong>, and so on — so depended-on jobs reach workers before dependents.</p>
+<p>Full reference: <a href="../reference/deployment-sequence">deployment-sequence.md</a>.</p>
+<p>Details in <a href="../reference/cli/build">cli/build.md</a> and <a href="../reference/cli/deploy">cli/deploy.md</a>.</p>
+<hr>
+<h2 id="job-commands-vs-makefile-vs-run-command" tabindex="-1"><a class="observablehq-header-anchor" href="#job-commands-vs-makefile-vs-run-command">Job commands vs Makefile vs run_command</a></h2>
+<table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>Runs on</th>
+<th>Trigger</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Makefile</strong> (<code>start</code>/<code>stop</code>/<code>restart</code>/<code>reload</code>)</td>
+<td>Worker</td>
+<td>Deploy, <code>maand job</code></td>
+<td>Process lifecycle</td>
+</tr>
+<tr>
+<td><strong>Job commands</strong> (<code>command_*</code>)</td>
+<td>CLI host</td>
+<td>build/deploy/CLI/health_check</td>
+<td>Migrations, KV, hooks</td>
+</tr>
+<tr>
+<td><strong><code>maand run_command</code></strong></td>
+<td>Worker (raw shell)</td>
+<td>Manual</td>
+<td>Ops, debugging</td>
+</tr>
+</tbody>
+</table>
+<p>Job commands talk to maand’s <strong>runtime HTTP API</strong> and <strong>KV store</strong> on the CLI host. See <a href="../reference/cli/job-command">cli/job-command.md</a> and <a href="../reference/job-command-api">job-command-api.md</a>.</p>
+<hr>
+<h2 id="typical-state-flow" tabindex="-1"><a class="observablehq-header-anchor" href="#typical-state-flow">Typical state flow</a></h2>
+<pre data-language="text"><code class="language-text">edit workspace/workers.json, workspace/jobs/*
+        │
+        ▼
+   maand build          ← catalog + KV + certs; no SSH to workers
+        │
+        ▼
+   maand deploy         ← rsync + lifecycle (start/restart/reload) + hooks
+        │
+        ├── maand health_check
+        ├── maand job restart &lt;job&gt;
+        ├── maand jobcommand &lt;cmd&gt; [job]
+        ├── maand run_command "…"
+        └── maand gc     ← after removals
+</code></pre>
+<hr>
+<h2 id="further-reading" tabindex="-1"><a class="observablehq-header-anchor" href="#further-reading">Further reading</a></h2>
+<ul>
+<li><a href="./overview">overview.md</a> — capabilities and limits</li>
+<li><a href="./quickstart">quickstart.md</a> — hands-on first deploy</li>
+<li><a href="../reference/">reference/README.md</a> — configuration, manifest, CLI, KV, logging</li>
+<li><a href="../">Documentation index</a> — full doc index</li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./overview"><span>Overview</span></a><a rel="next" href="./quickstart"><span>Quickstart</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

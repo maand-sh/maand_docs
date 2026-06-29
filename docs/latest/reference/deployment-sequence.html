@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Deployment sequence and demands | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="./manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="./resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="./templates">Templates</a></li>
+    <li class="observablehq-link"><a href="./certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="./kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="./kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="./kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="./job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="./observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="./cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="./cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="./cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="./cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="./cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="./cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="./cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="./cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="./cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="./cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#command-demands">Command demands</a></li>
+<li class="observablehq-secondary-link"><a href="#deployment-seq">deployment_seq</a></li>
+<li class="observablehq-secondary-link"><a href="#where-sequence-is-used">Where sequence is used</a></li>
+<li class="observablehq-secondary-link"><a href="#end-to-end-example">End-to-end example</a></li>
+<li class="observablehq-secondary-link"><a href="#inspect-and-debug">Inspect and debug</a></li>
+<li class="observablehq-secondary-link"><a href="#quick-reference">Quick reference</a></li>
+<li class="observablehq-secondary-link"><a href="#related">Related</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="deployment-sequence-and-demands" tabindex="-1"><a class="observablehq-header-anchor" href="#deployment-sequence-and-demands">Deployment sequence and demands</a></h1>
+<p>How <strong>command demands</strong> express cross-job dependencies and how <strong><code>deployment_seq</code></strong> orders <strong><code>maand build</code></strong> (<code>post_build</code>) and <strong><code>maand deploy</code></strong> waves.</p>
+<p>Manifest fields: <a href="./manifest">manifest.md</a>. Concepts: <a href="../start/concepts">start/concepts</a>.</p>
+<hr>
+<h2 id="command-demands" tabindex="-1"><a class="observablehq-header-anchor" href="#command-demands">Command demands</a></h2>
+<p>A <strong>demand</strong> says: the named upstream job must appear <strong>earlier</strong> in deployment order. Demands are declared per command; <strong><code>deployment_seq</code> is computed per job</strong>.</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"commands"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"command_migrate"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"executed_on"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"pre_deploy"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"demands"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">"job"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"database"</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">"command"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"command_schema"</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">"config"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min_version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2.0.0"</span> <span class="hljs-punctuation">}</span>
+      <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>demands.job</code></td>
+<td>Upstream job name</td>
+</tr>
+<tr>
+<td><code>demands.command</code></td>
+<td>Upstream command on that job</td>
+</tr>
+<tr>
+<td><code>demands.config</code></td>
+<td>JSON for runtime <code>GET /demands</code>; <strong><code>min_version</code></strong> / <strong><code>max_version</code></strong> validated at build</td>
+</tr>
+</tbody>
+</table>
+<p>Both <strong><code>demands.job</code></strong> and <strong><code>demands.command</code></strong> must be set together or both empty. Self-reference is rejected.</p>
+<h3 id="build-validation" tabindex="-1"><a class="observablehq-header-anchor" href="#build-validation">Build validation</a></h3>
+<p>After all jobs sync, <strong><code>ValidateJobCommandDemands</code></strong> runs:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Partial demand pair</td>
+<td><code>ErrInvalidJobCommandDemand</code></td>
+</tr>
+<tr>
+<td>Unknown upstream job/command</td>
+<td><code>ErrInvalidJobCommandDemand</code></td>
+</tr>
+<tr>
+<td>Missing <code>version</code> on dependency participants</td>
+<td><code>ErrInvalidJobVersion</code></td>
+</tr>
+<tr>
+<td>Upstream version outside min/max</td>
+<td><code>ErrJobCommandDemandVersionMismatch</code></td>
+</tr>
+<tr>
+<td>Cycle in demand graph</td>
+<td><code>ErrCircularJobCommandDependency</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="runtime-behavior" tabindex="-1"><a class="observablehq-header-anchor" href="#runtime-behavior">Runtime behavior</a></h3>
+<p>Demands do <strong>not</strong> auto-run the upstream command. Scripts can call <strong><code>GET /demands</code></strong> to see downstream dependents:</p>
+<pre data-language="python"><code class="language-python"><span class="hljs-keyword">import</span> maand
+<span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> maand.demands():
+    <span class="hljs-built_in">print</span>(d[<span class="hljs-string">"job"</span>], d[<span class="hljs-string">"command"</span>], d[<span class="hljs-string">"demand_config"</span>])
+</code></pre>
+<p>API details: <a href="./job-command-api">job-command-api.md</a>.</p>
+<hr>
+<h2 id="deployment-seq" tabindex="-1"><a class="observablehq-header-anchor" href="#deployment-seq"><code>deployment_seq</code></a></h2>
+<p>Integer assigned to every <strong>job</strong> (and copied to all <strong>allocations</strong>) during <strong><code>maand build</code></strong>. Lower numbers deploy first.</p>
+<h3 id="computation" tabindex="-1"><a class="observablehq-header-anchor" href="#computation">Computation</a></h3>
+<p>After <strong><code>BuildAllocations</code></strong>, <strong><code>BuildDeploymentSequence</code></strong>:</p>
+<ol>
+<li>Builds a graph from <strong><code>job_commands</code></strong> where <strong><code>demand_job != ''</code></strong> (edge: dependent → upstream).</li>
+<li>Seeds jobs with at least one command having empty demand at level <strong>0</strong>.</li>
+<li>Recursively assigns level <strong>N+1</strong> to jobs demanding a job at level <strong>N</strong>.</li>
+<li>Sets each job’s <strong><code>deployment_seq</code></strong> to the <strong>maximum</strong> level among its commands.</li>
+</ol>
+<p>Jobs with <strong>no commands</strong> stay at sequence <strong>0</strong>.</p>
+<h3 id="example-chain" tabindex="-1"><a class="observablehq-header-anchor" href="#example-chain">Example chain</a></h3>
+<pre data-language="text"><code class="language-text">database (seq 0)  ──demand──►  api (seq 1)  ──demand──►  frontend (seq 2)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Job</th>
+<th>Command</th>
+<th>demands</th>
+<th>deployment_seq</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>database</code></td>
+<td><code>command_schema</code></td>
+<td><em>(empty)</em></td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td><code>api</code></td>
+<td><code>command_migrate</code></td>
+<td><code>database</code> / <code>command_schema</code></td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td><code>frontend</code></td>
+<td><code>command_assets</code></td>
+<td><code>api</code> / <code>command_migrate</code></td>
+<td><strong>2</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Multiple demands → <strong>max depth</strong> across chains. Cycles fail build.</p>
+<hr>
+<h2 id="where-sequence-is-used" tabindex="-1"><a class="observablehq-header-anchor" href="#where-sequence-is-used">Where sequence is used</a></h2>
+<h3 id="maand-deploy" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-deploy"><code>maand deploy</code></a></h3>
+<pre data-language="text"><code class="language-text">for seq in 0..max:
+  jobs ← all jobs with deployment_seq = seq (respect --jobs filter)
+  for each job needing rollout:
+    pre_deploy → stage → rsync → lifecycle batches (start/restart/reload) → post_deploy → promote
+  commit partial progress; continue even if one job failed
+</code></pre>
+<p>Within one sequence value, jobs roll out <strong>independently</strong>. Each job applies its own <strong><code>deploy_parallel_count</code></strong> (starts) and <strong><code>update_parallel_count</code></strong> (upgrades: restart or reload). Worker order within batches uses KV <strong><code>deploy_order</code></strong>.</p>
+<p>Deploy <strong>never</strong> runs a higher sequence before a lower one finishes its wave.</p>
+<p>Rolling batch details: <a href="../guides/rolling-deploy">guides/rolling-deploy.md</a>.</p>
+<h3 id="maand-build-post-build" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-build-post-build"><code>maand build</code> — <code>post_build</code></a></h3>
+<p>After the main transaction commits, <strong><code>post_build</code></strong> hooks run in <strong>sequence order</strong> (0 first). Any failure <strong>fails the build</strong>.</p>
+<h3 id="not-ordered-by-deployment-seq" tabindex="-1"><a class="observablehq-header-anchor" href="#not-ordered-by-deployment-seq">Not ordered by <code>deployment_seq</code></a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Ordering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maand job start/stop/restart/reload</code></td>
+<td>Manual</td>
+</tr>
+<tr>
+<td><code>maand job_command</code> (cli)</td>
+<td>Selected job only</td>
+</tr>
+<tr>
+<td><code>maand health_check</code></td>
+<td>Per <code>--jobs</code> flag</td>
+</tr>
+<tr>
+<td><code>maand run_command</code></td>
+<td>Unrelated</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="end-to-end-example" tabindex="-1"><a class="observablehq-header-anchor" href="#end-to-end-example">End-to-end example</a></h2>
+<p><strong>Goal:</strong> Database schema before API migration.</p>
+<p><strong><code>workspace/jobs/database/manifest.json</code>:</strong></p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1.0.0"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"commands"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"command_schema"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"executed_on"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"post_build"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"cli"</span><span class="hljs-punctuation">]</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p><strong><code>workspace/jobs/api/manifest.json</code>:</strong></p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1.0.0"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"commands"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"command_migrate"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"executed_on"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"pre_deploy"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"cli"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"demands"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">"job"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"database"</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">"command"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"command_schema"</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">"config"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min_version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1.0.0"</span> <span class="hljs-punctuation">}</span>
+      <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<pre data-language="bash"><code class="language-bash">maand build
+maand <span class="hljs-built_in">cat</span> <span class="hljs-built_in">jobs</span>          <span class="hljs-comment"># database seq 0, api seq 1</span>
+maand deploy            <span class="hljs-comment"># wave 0: database; wave 1: api</span>
+</code></pre>
+<hr>
+<h2 id="inspect-and-debug" tabindex="-1"><a class="observablehq-header-anchor" href="#inspect-and-debug">Inspect and debug</a></h2>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> <span class="hljs-built_in">jobs</span>
+maand <span class="hljs-built_in">cat</span> job_commands
+maand <span class="hljs-built_in">cat</span> allocations
+maand deploy --dry-run
+</code></pre>
+<hr>
+<h2 id="quick-reference" tabindex="-1"><a class="observablehq-header-anchor" href="#quick-reference">Quick reference</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Stored in</th>
+<th>Set by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command + demand</td>
+<td><code>job_commands</code></td>
+<td><code>maand build</code></td>
+</tr>
+<tr>
+<td><code>deployment_seq</code></td>
+<td><code>allocations.deployment_seq</code></td>
+<td><code>BuildDeploymentSequence</code></td>
+</tr>
+<tr>
+<td>Deploy wave order</td>
+<td>—</td>
+<td><code>maand deploy</code> (0 → max)</td>
+</tr>
+<tr>
+<td><code>post_build</code> order</td>
+<td>—</td>
+<td><code>maand build</code> (0 → max)</td>
+</tr>
+<tr>
+<td>Rolling upgrades</td>
+<td><code>update_parallel_count</code></td>
+<td>Per job, per wave (restart or reload)</td>
+</tr>
+<tr>
+<td>Rolling first deploy</td>
+<td><code>deploy_parallel_count</code></td>
+<td>Per job, per wave</td>
+</tr>
+<tr>
+<td>Rollout worker order</td>
+<td><code>deploy_order</code> KV</td>
+<td>Build sync; optional <code>pre_deploy</code> override</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="related" tabindex="-1"><a class="observablehq-header-anchor" href="#related">Related</a></h2>
+<ul>
+<li><a href="./manifest">manifest.md</a></li>
+<li><a href="./cli/deploy">cli/deploy.md</a></li>
+<li><a href="./cli/build">cli/build.md</a></li>
+<li><a href="../guides/debugging-deploy">guides/debugging-deploy.md</a></li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./resources-and-placement"><span>Resources and placement</span></a><a rel="next" href="./templates"><span>Templates</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Templates () | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="./manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="./resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="./deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./templates">Templates</a></li>
+    <li class="observablehq-link"><a href="./certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="./kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="./kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="./kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="./job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="./observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="./cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="./cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="./cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="./cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="./cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="./cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="./cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="./cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="./cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="./cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#when-rendering-runs">When rendering runs</a></li>
+<li class="observablehq-secondary-link"><a href="#template-data-dot-context">Template data (dot context)</a></li>
+<li class="observablehq-secondary-link"><a href="#template-functions">Template functions</a></li>
+<li class="observablehq-secondary-link"><a href="#example">Example</a></li>
+<li class="observablehq-secondary-link"><a href="#prometheus-scrape-configs">Prometheus scrape configs</a></li>
+<li class="observablehq-secondary-link"><a href="#secrets-in-templates">Secrets in templates</a></li>
+<li class="observablehq-secondary-link"><a href="#common-errors">Common errors</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="templates-tpl" tabindex="-1"><a class="observablehq-header-anchor" href="#templates-tpl">Templates (<code>.tpl</code>)</a></h1>
+<p>Files ending in <strong><code>.tpl</code></strong> under <strong><code>workspace/jobs/&lt;job&gt;/</code></strong> are rendered at <strong>deploy</strong> staging time with Go <strong><code>text/template</code></strong>. Output drops the <code>.tpl</code> suffix (e.g. <code>config.json.tpl</code> → <code>config.json</code>).</p>
+<p>Related: <a href="./cli/deploy#staging-and-rsync">deploy.md</a> · <a href="./kv/namespaces">KV namespaces</a> · <a href="./cli/job-command">cli/job-command.md</a></p>
+<hr>
+<h2 id="when-rendering-runs" tabindex="-1"><a class="observablehq-header-anchor" href="#when-rendering-runs">When rendering runs</a></h2>
+<p>During <strong><code>maand deploy</code></strong>, after job files are copied to <code>tmp/workers/&lt;ip&gt;/jobs/&lt;job&gt;/</code> and before rsync to the worker. Each <strong>active allocation</strong> gets its own render pass (per-worker KV and version context).</p>
+<hr>
+<h2 id="template-data-dot-context" tabindex="-1"><a class="observablehq-header-anchor" href="#template-data-dot-context">Template data (dot context)</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.AllocationID</code></td>
+<td>string</td>
+<td>Stable allocation UUID</td>
+</tr>
+<tr>
+<td><code>.Job</code></td>
+<td>string</td>
+<td>Job name</td>
+</tr>
+<tr>
+<td><code>.CurrentVersion</code></td>
+<td>string</td>
+<td>Running version on this allocation</td>
+</tr>
+<tr>
+<td><code>.NewVersion</code></td>
+<td>string</td>
+<td>Target version from build</td>
+</tr>
+<tr>
+<td><code>.WorkerIP</code></td>
+<td>string</td>
+<td>Worker host</td>
+</tr>
+<tr>
+<td><code>.WorkerID</code></td>
+<td>string</td>
+<td>Worker UUID</td>
+</tr>
+<tr>
+<td><code>.Labels</code></td>
+<td><code>[]string</code></td>
+<td>Worker labels</td>
+</tr>
+<tr>
+<td><code>.BucketPath</code></td>
+<td>string</td>
+<td><code>/opt/worker/&lt;bucket_id&gt;</code> on worker</td>
+</tr>
+<tr>
+<td><code>.JobPath</code></td>
+<td>string</td>
+<td><code>/opt/worker/&lt;bucket_id&gt;/jobs/&lt;job&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Equivalent KV:</p>
+<pre data-language="text"><code class="language-text">{{ get "maand/job/api/worker/10.0.0.1" "version" }}
+</code></pre>
+<hr>
+<h2 id="template-functions" tabindex="-1"><a class="observablehq-header-anchor" href="#template-functions">Template functions</a></h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Usage</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>get</code></td>
+<td><code>{{ get "vars/job/api" "cluster_name" }}</code></td>
+<td>Namespace must be allowed; <strong>panics</strong> if key missing</td>
+</tr>
+<tr>
+<td><code>getOptional</code></td>
+<td><code>{{ getOptional "maand/job/clickhouse" "workers" }}</code></td>
+<td>Same namespace rules; returns <strong><code>""</code></strong> if key or namespace entry missing (still panics on disallowed namespace)</td>
+</tr>
+<tr>
+<td><code>getSecret</code></td>
+<td><code>{{ getSecret "db_password" }}</code></td>
+<td>Shorthand for <code>secrets/job/&lt;job&gt;</code>; panics if missing</td>
+</tr>
+<tr>
+<td><code>keys</code></td>
+<td><code>{{ range keys "vars/job/api" }}...{{ end }}</code></td>
+<td>List keys in a namespace</td>
+</tr>
+<tr>
+<td><code>split</code></td>
+<td><code>{{ split "a,b" "," }}</code></td>
+<td>String → slice</td>
+</tr>
+<tr>
+<td><code>trim</code></td>
+<td><code>{{ trim "  host  " }}</code></td>
+<td><code>strings.TrimSpace</code></td>
+</tr>
+<tr>
+<td><code>join</code></td>
+<td><code>{{ join .Labels "," }}</code></td>
+<td>Slice → string</td>
+</tr>
+<tr>
+<td><code>upper</code> / <code>lower</code></td>
+<td><code>{{ upper "hello" }}</code></td>
+<td>Case conversion</td>
+</tr>
+<tr>
+<td><code>add</code> / <code>sub</code> / <code>mul</code> / <code>div</code></td>
+<td><code>{{ add 1 2 }}</code></td>
+<td>Integer math</td>
+</tr>
+<tr>
+<td><code>min</code> / <code>max</code></td>
+<td><code>{{ min 128 (max 4 (div $memMB 64)) }}</code></td>
+<td>Integer bounds</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td><code>{{ int (get "vars/job/postgres" "memory") }}</code></td>
+<td>Parse string or pass through int</td>
+</tr>
+<tr>
+<td><code>scrapeConfigs</code></td>
+<td><code>{{ scrapeConfigs }}</code></td>
+<td>Expands catalog scrape jobs at deploy render (live allocations + ports)</td>
+</tr>
+<tr>
+<td><code>ruleFiles</code></td>
+<td><code>{{ ruleFiles }}</code></td>
+<td>Lists assembled alert rule paths at deploy render (<code>rules/&lt;job&gt;/&lt;file&gt;.yaml</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Missing keys or disallowed namespaces <strong>panic</strong> at render time (deploy fails for that job), except <strong><code>getOptional</code></strong> which returns an empty string.</p>
+<p><strong>Deploy <code>.tpl</code> only:</strong> <code>get</code>, <code>getOptional</code>, <code>getSecret</code>, <code>scrapeConfigs</code>, and <code>ruleFiles</code> are available on job templates at staging time.</p>
+<p><strong><code>_prometheus/scrape.yaml.tpl</code></strong> (build time) uses a smaller func map: <code>get</code>, <code>getSecret</code>, <code>keys</code> — <strong>no</strong> <code>getOptional</code>, <strong>no</strong> <code>scrapeConfigs</code>, <strong>no</strong> <code>.WorkerIP</code>. See <a href="../guides/prometheus">prometheus.md</a>.</p>
+<p>Go <strong><code>text/template</code></strong> built-ins are also available: <code>eq</code>, <code>ne</code>, <code>lt</code>, <code>le</code>, <code>gt</code>, <code>ge</code>, <code>printf</code>, <code>and</code>, <code>or</code>, <code>not</code>, <code>len</code>, <code>index</code>, <code>range</code>, <code>if</code>, <code>define</code>, <code>template</code>.</p>
+<p>Job command scripts receive the same allocation context via env — see <a href="./job-command-api#environment-variables-job-command-scripts">job-command-api.md</a> (<code>ALLOCATION_INDEX</code>, <code>CURRENT_VERSION</code>, <code>NEW_VERSION</code>, …).</p>
+<hr>
+<h2 id="example" tabindex="-1"><a class="observablehq-header-anchor" href="#example">Example</a></h2>
+<p><strong><code>workspace/jobs/api/config.json.tpl</code>:</strong></p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"cluster"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ get "</span>vars/job/api<span class="hljs-string">" "</span>cluster_name<span class="hljs-string">" }}"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ .NewVersion }}"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"worker"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ .WorkerIP }}"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"listen_port"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ get "</span>maand/bucket<span class="hljs-string">" "</span>http_port<span class="hljs-string">" }}"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Populate <strong><code>vars/job/api</code></strong> via <strong><code>vars.toml</code></strong>, <strong><code>pre_deploy</code></strong> hooks, or <strong><code>post_build</code></strong> before deploy.</p>
+<h3 id="memory-sizing-postgres-style" tabindex="-1"><a class="observablehq-header-anchor" href="#memory-sizing-postgres-style">Memory sizing (postgres-style)</a></h3>
+<p><strong><code>workspace/jobs/postgres/postgresql.conf.tpl</code>:</strong></p>
+<pre data-language="text"><code class="language-text">{{ define "pgMemUnit" -}}
+{{- $mb := int . -}}
+{{- if ge $mb 1024 -}}
+{{- div $mb 1024 -}}GB
+{{- else -}}
+{{- $mb -}}MB
+{{- end -}}
+{{- end }}
+{{- $memMB := int (get "vars/job/postgres" "memory") -}}
+{{- $sharedMB := div $memMB 4 -}}
+{{- $cacheMB := div (mul $memMB 3) 4 -}}
+{{- $maintMB := min 2048 (div $memMB 16) -}}
+{{- $workMB := min 128 (max 4 (div $memMB 64)) -}}
+shared_buffers = {{ template "pgMemUnit" $sharedMB }}
+effective_cache_size = {{ template "pgMemUnit" $cacheMB }}
+maintenance_work_mem = {{ $maintMB }}MB
+work_mem = {{ $workMB }}MB
+</code></pre>
+<p>Use <strong><code>{{ get (printf "maand/worker/%s" .WorkerIP) "postgres_allocation_index" }}</code></strong> for per-worker metadata from build.</p>
+<hr>
+<h2 id="prometheus-scrape-configs" tabindex="-1"><a class="observablehq-header-anchor" href="#prometheus-scrape-configs">Prometheus scrape configs</a></h2>
+<p>Jobs with <code>_prometheus/scrape.yaml</code> or <strong><code>scrape.yaml.tpl</code></strong> store unexpanded configs in KV at build. Template scrape files are rendered at build with job-level context (<code>.Job</code>, <code>get</code>, <code>getSecret</code> — not <code>scrapeConfigs</code> or <code>.WorkerIP</code>). <strong><code>{{ scrapeConfigs }}</code></strong> expands <code>maand:port/*</code> placeholders when the prometheus job is staged.</p>
+<p><strong><code>workspace/jobs/prometheus/prometheus.yml.tpl</code>:</strong></p>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-attr">global:</span>
+  <span class="hljs-attr">scrape_interval:</span> <span class="hljs-string">15s</span>
+
+<span class="hljs-attr">scrape_configs:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">job_name:</span> <span class="hljs-string">prometheus</span>
+    <span class="hljs-attr">static_configs:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">targets:</span> [<span class="hljs-string">'127.0.0.1:9090'</span>]
+{{ <span class="hljs-string">scrapeConfigs</span> }}
+</code></pre>
+<p>See <a href="../guides/prometheus">prometheus.md</a> for <code>_prometheus/</code> layout, alerts, runbooks, and dashboards.</p>
+<hr>
+<h2 id="secrets-in-templates" tabindex="-1"><a class="observablehq-header-anchor" href="#secrets-in-templates">Secrets in templates</a></h2>
+<p>Use <strong><code>getSecret</code></strong> for values written by job commands (<code>put_job_secret</code>). Do not commit secrets in the workspace.</p>
+<pre data-language="text"><code class="language-text">password = {{ getSecret "db_password" }}
+</code></pre>
+<hr>
+<h2 id="common-errors" tabindex="-1"><a class="observablehq-header-anchor" href="#common-errors">Common errors</a></h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Template panic: namespace not available</td>
+<td>Key is outside allowed namespaces for this job — see <a href="./kv/persistence#who-can-read-which-namespaces">KV persistence</a></td>
+</tr>
+<tr>
+<td>Template panic: key not found</td>
+<td>Use <strong><code>getOptional</code></strong> when upstream job KV may be empty; otherwise run hook that writes KV before deploy, or add <strong><code>vars.toml</code></strong></td>
+</tr>
+<tr>
+<td>Stale value after hook</td>
+<td>Ensure hook runs in <strong><code>pre_deploy</code></strong> (before stage) or value is in build-time KV</td>
+</tr>
+</tbody>
+</table>
+<p>Debugging: <a href="../guides/debugging-deploy#template-kv-errors-during-stage">debugging-deploy.md</a>.</p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./deployment-sequence"><span>Deployment sequence</span></a><a rel="next" href="./certs"><span>Certificates</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

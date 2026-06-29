@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Logging and observability | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="../kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="../kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="../kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../job-command-api">Job command API</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./logging">Logging</a></li>
+    <li class="observablehq-link"><a href="../cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="../cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="../cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="../cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="../cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="../cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="../cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="../cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="../cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="../cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#log-files">Log files</a></li>
+<li class="observablehq-secondary-link"><a href="#on-disk-format">On-disk format</a></li>
+<li class="observablehq-secondary-link"><a href="#terminal-output-live-cli">Terminal output (live CLI)</a></li>
+<li class="observablehq-secondary-link"><a href="#maand-logs-show">maand logs show</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="logging-and-observability" tabindex="-1"><a class="observablehq-header-anchor" href="#logging-and-observability">Logging and observability</a></h1>
+<p>Maand writes structured logs for deploy, rsync, SSH, job commands, GC, health checks, and related operations.</p>
+<p>Related: <a href="../configuration#maand-conf-bucket-root">configuration.md</a> (<code>log_format</code>) · <a href="../../guides/debugging-deploy">debugging-deploy.md</a></p>
+<hr>
+<h2 id="log-files" tabindex="-1"><a class="observablehq-header-anchor" href="#log-files">Log files</a></h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>logs/&lt;worker_ip&gt;.log</code></td>
+<td>All lines for commands targeting that worker (append-only)</td>
+</tr>
+<tr>
+<td><code>logs/maand.log</code></td>
+<td>Bucket-local commands and job-level events (<code>worker=-</code>)</td>
+</tr>
+<tr>
+<td><code>logs/runs/&lt;run_id&gt;/</code></td>
+<td>Copy of one CLI invocation (same line format per worker)</td>
+</tr>
+</tbody>
+</table>
+<p>Every <code>maand</code> command gets a <strong>run id</strong> (UUID). Begin/end lines include <code>run=&lt;uuid&gt;</code> so you can correlate workers touched in one invocation.</p>
+<hr>
+<h2 id="on-disk-format" tabindex="-1"><a class="observablehq-header-anchor" href="#on-disk-format">On-disk format</a></h2>
+<p>Set <strong><code>log_format</code></strong> in <strong><code>maand.conf</code></strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Encoding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kv</code> (default)</td>
+<td>Space-separated <code>key=value</code> lines</td>
+</tr>
+<tr>
+<td><code>json</code> or <code>jsonl</code></td>
+<td>One JSON object per line</td>
+</tr>
+</tbody>
+</table>
+<h3 id="command-boundaries" tabindex="-1"><a class="observablehq-header-anchor" href="#command-boundaries">Command boundaries</a></h3>
+<pre data-language="text"><code class="language-text">ts=2026-06-02T22:07:01.123Z level=INFO event=command_begin run=&lt;uuid&gt; maand=deploy seq=17 worker=10.48.200.3 job=postgres phase=reconcile action=stop cmd="python3 ... runner.py stop postgres"
+ts=2026-06-02T22:07:01.200Z level=INFO run=&lt;uuid&gt; maand=deploy seq=17 worker=10.48.200.3 job=postgres phase=reconcile action=stop stream=stdout msg="Container postgres  Stopping"
+ts=2026-06-02T22:07:02.456Z level=INFO event=command_end run=&lt;uuid&gt; maand=deploy worker=10.48.200.3 job=postgres phase=reconcile action=stop exit=0 duration_ms=1333
+</code></pre>
+<p>Subprocess stdout/stderr are <strong>structured stream lines</strong> with <code>stream=stdout</code> or <code>stream=stderr</code> and <code>msg=...</code>. Legacy log files may still contain payload-only <code>| msg</code> / <code>! msg</code> lines; parsers accept both.</p>
+<h3 id="events" tabindex="-1"><a class="observablehq-header-anchor" href="#events">Events</a></h3>
+<p>Common <strong><code>event</code></strong> values: <code>command_begin</code>, <code>command_end</code>, <code>deploy_skip</code>, <code>reconcile_skip_stop</code>.</p>
+<p>Common <strong><code>phase</code></strong> values: <code>reconcile</code>, <code>rsync</code>, <code>rollout</code>, <code>job_command</code>, <code>run_command</code>, <code>gc</code>, <code>post_build</code>, <code>validate</code>, <code>job_control</code>.</p>
+<p>Job-level messages use <strong><code>worker=-</code></strong>. Per-worker commands include <strong><code>worker=&lt;ip&gt;</code></strong> and usually <strong><code>job=&lt;name&gt;</code></strong>.</p>
+<hr>
+<h2 id="terminal-output-live-cli" tabindex="-1"><a class="observablehq-header-anchor" href="#terminal-output-live-cli">Terminal output (live CLI)</a></h2>
+<p>While a command runs, maand prints a <strong>human-readable</strong> stream view to stderr (via the Go log package):</p>
+<pre data-language="text"><code class="language-text">postgres@10.48.200.3 | Container postgres  Stopping
+cassandra@10.48.200.1 | seed: 10.48.200.1
+jobcommand: zookeeper
+zookeeper@10.48.200.1 | ensemble: 3 nodes
+</code></pre>
+<ul>
+<li>Stream lines: <strong><code>job@worker | message</code></strong> (stderr uses <strong><code>!</code></strong>)</li>
+<li>Job-only context: <strong><code>job | message</code></strong></li>
+<li>Multi-job <strong><code>maand jobcommand</code></strong>: <strong><code>jobcommand: &lt;job&gt;</code></strong> header before each job’s block</li>
+</ul>
+<p>On-disk logs keep the full structured fields; the terminal view is for readability.</p>
+<p>Deploy skip lines remain plain text plus a structured event, for example:</p>
+<pre data-language="text"><code class="language-text">deploy: skip job "cassandra" (already promoted on all allocations)
+ts=... event=deploy_skip ... worker=- job=cassandra reason=already_promoted
+</code></pre>
+<hr>
+<h2 id="maand-logs-show" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-logs-show"><code>maand logs show</code></a></h2>
+<pre data-language="bash"><code class="language-bash">maand logs show [flags]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--format</code></td>
+<td><strong><code>raw</code></strong> (default): lines as stored; <strong><code>human</code></strong>: grouped command blocks</td>
+</tr>
+<tr>
+<td><code>--worker</code></td>
+<td>Filter by worker IP (omit to search all <code>logs/*.log</code>)</td>
+</tr>
+<tr>
+<td><code>--run</code></td>
+<td>Filter by run id; with <code>--run-dir</code>, read from <code>logs/runs/&lt;run&gt;/</code></td>
+</tr>
+<tr>
+<td><code>--job</code></td>
+<td>Filter by job name</td>
+</tr>
+<tr>
+<td><code>--phase</code></td>
+<td>Filter by phase</td>
+</tr>
+<tr>
+<td><code>--event</code></td>
+<td>Filter by event name</td>
+</tr>
+<tr>
+<td><code>--tail N</code></td>
+<td>Last N matching lines (<code>raw</code>) or command blocks (<code>human</code>)</td>
+</tr>
+<tr>
+<td><code>--run-dir</code></td>
+<td>Read per-run files under <code>logs/runs/&lt;run&gt;/</code> instead of aggregate logs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="human-format" tabindex="-1"><a class="observablehq-header-anchor" href="#human-format">Human format</a></h3>
+<pre data-language="bash"><code class="language-bash">maand logs show --worker 10.48.200.3 --job postgres --format human
+</code></pre>
+<p>Example:</p>
+<pre data-language="text"><code class="language-text">2026-06-02 22:07:01  deploy  seq=17  run=8f3a2c12
+  reconcile  stop  postgres@10.48.200.3
+  $ python3 .../runner.py stop postgres
+  postgres@10.48.200.3 | Container postgres  Stopping
+  ok  exit=0  1.3s
+</code></pre>
+<p>Stream lines in human view include <strong><code>job@worker</code></strong> when known.</p>
+<h3 id="examples" tabindex="-1"><a class="observablehq-header-anchor" href="#examples">Examples</a></h3>
+<pre data-language="bash"><code class="language-bash">maand logs show --worker 10.48.200.3 --job postgres --phase reconcile --format human
+maand logs show --event deploy_skip --format human
+maand logs show --run 8f3a2c1d-... --run-dir --worker 10.48.200.3 --format human
+grep <span class="hljs-string">'event=command_begin'</span> logs/10.48.200.3.<span class="hljs-built_in">log</span>
+grep <span class="hljs-string">'job=cassandra'</span> logs/10.48.200.1.<span class="hljs-built_in">log</span>
+</code></pre>
+<p>Use <strong><code>--format human</code></strong> for debugging; use <strong><code>raw</code></strong> or grep for automation.</p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="../job-command-api"><span>Job command API</span></a><a rel="next" href="../cli/commands"><span>CLI commands</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Prometheus monitoring () | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="./rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="./disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="./debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="./job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="./worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../reference/configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../reference/manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../reference/resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../reference/deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../reference/templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../reference/certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../reference/job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../reference/observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#job-layout">Job layout</a></li>
+<li class="observablehq-secondary-link"><a href="#prerequisites">Prerequisites</a></li>
+<li class="observablehq-secondary-link"><a href="#prometheus-scrape-yaml">_prometheus/scrape.yaml</a></li>
+<li class="observablehq-secondary-link"><a href="#prometheus-alerts">_prometheus/alerts/</a></li>
+<li class="observablehq-secondary-link"><a href="#build-maand-build">Build (maand build)</a></li>
+<li class="observablehq-secondary-link"><a href="#deploy-assembly">Deploy assembly</a></li>
+<li class="observablehq-secondary-link"><a href="#prometheus-job-config">Prometheus job config</a></li>
+<li class="observablehq-secondary-link"><a href="#operator-workflow">Operator workflow</a></li>
+<li class="observablehq-secondary-link"><a href="#runbooks">Runbooks</a></li>
+<li class="observablehq-secondary-link"><a href="#dashboards">Dashboards</a></li>
+<li class="observablehq-secondary-link"><a href="#participation">Participation</a></li>
+<li class="observablehq-secondary-link"><a href="#example-node-exporter">Example: node_exporter</a></li>
+<li class="observablehq-secondary-link"><a href="#related-commands">Related commands</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="prometheus-monitoring-prometheus" tabindex="-1"><a class="observablehq-header-anchor" href="#prometheus-monitoring-prometheus">Prometheus monitoring (<code>_prometheus/</code>)</a></h1>
+<p>Jobs opt in to monitoring by adding a <strong><code>_prometheus/</code></strong> folder under <code>workspace/jobs/&lt;job&gt;/</code>. Each subfolder or file is optional: scrape config, alerts, runbooks, and dashboards are independent.</p>
+<p>Maand <strong>build</strong> validates <code>_prometheus/</code> content, stores files in <code>job_files</code>, and writes <strong>scrape configs only</strong> to KV (<code>maand/prometheus/*</code>). The <strong>prometheus job</strong> renders its config at deploy; alerts, runbooks, and dashboards are assembled from <code>job_files</code>.</p>
+<p>Related: <a href="../reference/cli/build">build.md</a> · <a href="../reference/cli/deploy">deploy.md</a> · <a href="../reference/templates">templates.md</a> · <a href="../reference/cli/health-check">health-check.md</a></p>
+<hr>
+<h2 id="job-layout" tabindex="-1"><a class="observablehq-header-anchor" href="#job-layout">Job layout</a></h2>
+<pre data-language="text"><code class="language-text">workspace/jobs/api/
+├── manifest.json
+├── _prometheus/
+│   ├── scrape.yaml          # []scrape_config — native Prometheus shape
+│   ├── scrape.yaml.tpl      # optional; rendered at build (job-level templates)
+│   ├── alerts/
+│   │   ├── slo.yaml
+│   │   └── errors.yaml
+│   ├── runbooks/            # optional
+│   │   └── ApiDown.md
+│   └── dashboards/          # optional Prometheus console pages
+│       └── overview.html
+└── ...
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_prometheus/scrape.yaml</code></td>
+<td>YAML <strong>array</strong> of Prometheus <code>scrape_config</code> items</td>
+</tr>
+<tr>
+<td><code>_prometheus/scrape.yaml.tpl</code></td>
+<td>Optional template rendered at <strong>build</strong> (see below)</td>
+</tr>
+<tr>
+<td><code>_prometheus/alerts/*.yaml</code></td>
+<td>Alerting rule groups (multiple files OK)</td>
+</tr>
+<tr>
+<td><code>_prometheus/runbooks/*.md</code></td>
+<td>Runbooks linked from alert annotations</td>
+</tr>
+<tr>
+<td><code>_prometheus/dashboards/**</code></td>
+<td>Prometheus console HTML (and assets) copied at deploy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Not synced to workers</strong> — <code>_prometheus/</code> is excluded from deploy rsync (like <code>_modules</code>). Build copies content into <strong><code>job_files</code></strong>. Deploy assembles alerts, runbooks, dashboards, and expanded scrape config when staging the <strong>prometheus</strong> job.</p>
+<hr>
+<h2 id="prerequisites" tabindex="-1"><a class="observablehq-header-anchor" href="#prerequisites">Prerequisites</a></h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prometheus server job</strong> in workspace (<code>prometheus.yml</code> or <code>prometheus.yml.tpl</code>)</td>
+<td>Enables <code>_prometheus/</code> <strong>validation</strong> and scrape <strong>KV</strong> at build; enables deploy-time assembly (rules, consoles, <code>{{ scrapeConfigs }}</code>)</td>
+</tr>
+<tr>
+<td>No prometheus server job</td>
+<td><code>_prometheus/</code> on app jobs is <strong>ignored</strong> at build (invalid scrape.yaml + scrape.yaml.tpl pairs are not rejected); scrape KV is cleared</td>
+</tr>
+<tr>
+<td>Active allocations (for <code>maand:port/*</code> scrape targets)</td>
+<td>Job appears in aggregate <strong><code>scrape_jobs</code></strong> / <strong><code>scrape_configs</code></strong>; without active allocations the job is omitted from aggregate KV but <strong><code>scrape/&lt;job&gt;</code></strong> per-job KV is still written</td>
+</tr>
+<tr>
+<td>Literal <code>host:port</code> scrape targets</td>
+<td>No active allocations required — job always included in scrape catalog</td>
+</tr>
+</tbody>
+</table>
+<p>Nothing in <code>_prometheus/</code> is required on any job. A job may ship scrape only, alerts only, runbooks only, dashboards only, or any combination.</p>
+<hr>
+<h2 id="prometheus-scrape-yaml" tabindex="-1"><a class="observablehq-header-anchor" href="#prometheus-scrape-yaml"><code>_prometheus/scrape.yaml</code></a></h2>
+<p>Root is a YAML array. Each element uses the same fields as <a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config" target="_blank" rel="noopener noreferrer">Prometheus scrape_config</a>.</p>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">job_name:</span> <span class="hljs-string">api</span>
+  <span class="hljs-attr">metrics_path:</span> <span class="hljs-string">/metrics</span>
+  <span class="hljs-attr">scheme:</span> <span class="hljs-string">http</span>
+  <span class="hljs-attr">static_configs:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">targets:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">maand:port/api_metrics_port</span>
+      <span class="hljs-attr">labels:</span>
+        <span class="hljs-attr">maand_job:</span> <span class="hljs-string">api</span>
+</code></pre>
+<p>Use <strong><code>maand:job</code></strong> instead of repeating the maand job name for <code>job_name</code> and label values. Build stores the resolved name in <strong><code>maand/job/&lt;job&gt;/job_name</code></strong> KV:</p>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">job_name:</span> <span class="hljs-string">maand:job</span>
+  <span class="hljs-attr">static_configs:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">targets:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">maand:port/api_metrics_port</span>
+      <span class="hljs-attr">labels:</span>
+        <span class="hljs-attr">maand_job:</span> <span class="hljs-string">maand:job</span>
+</code></pre>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv get maand/job/api job_name
+</code></pre>
+<p>Multiple scrape jobs per maand job are allowed (separate array entries). <strong><code>job_name</code> must be unique across the whole bucket</strong> (after <code>maand:job</code> expansion).</p>
+<h3 id="dynamic-targets-maand-port" tabindex="-1"><a class="observablehq-header-anchor" href="#dynamic-targets-maand-port">Dynamic targets (<code>maand:port/*</code>)</a></h3>
+<p>Use placeholders where worker IPs and assigned ports are not known at commit time:</p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Expands to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maand:port/&lt;port_key&gt;</code></td>
+<td>Every <strong>active allocation</strong> → <code>&lt;worker_ip&gt;:&lt;assigned_port&gt;</code></td>
+</tr>
+<tr>
+<td><code>maand:port/_implicit</code></td>
+<td><code>&lt;job&gt;_metrics_port</code> → <code>metrics_port</code> → sole <code>*_metrics_port</code></td>
+</tr>
+<tr>
+<td><code>maand:port/&lt;port_key&gt;/&lt;worker_ip&gt;</code></td>
+<td>Single allocation on that worker</td>
+</tr>
+<tr>
+<td><code>maand:job</code></td>
+<td>Maand job folder name (for <code>job_name</code> and <code>static_configs.labels</code> values)</td>
+</tr>
+</tbody>
+</table>
+<p><code>&lt;port_key&gt;</code> must exist in <code>manifest.resources.ports</code>. Literal <code>host:port</code> targets pass through unchanged.</p>
+<p>Service discovery configs (<code>kubernetes_sd_configs</code>, etc.) are <strong>not</strong> supported in v1 — use <code>static_configs</code> with maand placeholders.</p>
+<h3 id="scrape-yaml-tpl-optional" tabindex="-1"><a class="observablehq-header-anchor" href="#scrape-yaml-tpl-optional"><code>scrape.yaml.tpl</code> (optional)</a></h3>
+<p>Use <strong><code>scrape.yaml.tpl</code></strong> instead of <strong><code>scrape.yaml</code></strong> when you need Go templates at build time. <strong>Do not define both</strong> — build fails like <code>prometheus.yml</code> / <code>prometheus.yml.tpl</code>.</p>
+<p>Rendered during <strong><code>maand build</code></strong> (after job KV is synced). Supports <strong><code>get</code></strong>, <strong><code>getSecret</code></strong>, <strong><code>keys</code></strong> — not <strong><code>getOptional</code></strong>, <strong><code>scrapeConfigs</code></strong>, or per-allocation fields such as <strong><code>{{ .WorkerIP }}</code></strong>. Use <strong><code>maand:port/*</code></strong> for targets.</p>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-comment"># _prometheus/scrape.yaml.tpl</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">job_name:</span> {{ <span class="hljs-string">.Job</span> }}
+  <span class="hljs-attr">metrics_path:</span> {{ <span class="hljs-string">get</span> <span class="hljs-string">"vars/job/api"</span> <span class="hljs-string">"metrics_path"</span> }}
+  <span class="hljs-attr">static_configs:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">targets:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">maand:port/api_metrics_port</span>
+      <span class="hljs-attr">labels:</span>
+        <span class="hljs-attr">maand_job:</span> {{ <span class="hljs-string">.Job</span> }}
+</code></pre>
+<p>Build stores the <strong>rendered YAML</strong> (with <code>maand:port/*</code> and <code>maand:job</code> still unexpanded) in KV. Deploy expands placeholders when rendering <code>{{ scrapeConfigs }}</code>.</p>
+<hr>
+<h2 id="prometheus-alerts" tabindex="-1"><a class="observablehq-header-anchor" href="#prometheus-alerts"><code>_prometheus/alerts/</code></a></h2>
+<p>Rules stay <strong>authored per job</strong>. Build validates YAML structure, required fields, optional runbook references, and <strong>unique alert names across the whole bucket</strong> (recording rules use <code>record:</code> instead of <code>alert:</code>).</p>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-comment"># _prometheus/alerts/availability.yaml</span>
+<span class="hljs-attr">groups:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">api</span>
+    <span class="hljs-attr">rules:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">alert:</span> <span class="hljs-string">ApiDown</span>
+        <span class="hljs-attr">expr:</span> <span class="hljs-string">up{job="api"}</span> <span class="hljs-string">==</span> <span class="hljs-number">0</span>
+        <span class="hljs-attr">for:</span> <span class="hljs-string">5m</span>
+        <span class="hljs-attr">labels:</span>
+          <span class="hljs-attr">severity:</span> <span class="hljs-string">critical</span>
+        <span class="hljs-attr">annotations:</span>
+          <span class="hljs-attr">summary:</span> <span class="hljs-string">"API <span class="hljs-template-variable">{{ $labels.instance }}</span> down"</span>
+          <span class="hljs-attr">runbook:</span> <span class="hljs-string">ApiDown</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">record:</span> <span class="hljs-string">api:up:sum</span>
+        <span class="hljs-attr">expr:</span> <span class="hljs-string">sum(up{job="api"})</span>
+</code></pre>
+<p>Each rule must define <strong><code>expr</code></strong> and exactly one of <strong><code>alert</code></strong> or <strong><code>record</code></strong>.</p>
+<p>If <code>annotations.runbook</code> is set, <code>_prometheus/runbooks/&lt;name&gt;.md</code> must exist. During <strong><code>maand deploy --jobs prometheus</code></strong>, maand removes <strong><code>runbook</code></strong> and adds <strong><code>runbook_url</code></strong> pointing at the rendered console page unless you set <strong><code>runbook_url</code></strong> yourself.</p>
+<hr>
+<h2 id="build-maand-build" tabindex="-1"><a class="observablehq-header-anchor" href="#build-maand-build">Build (<code>maand build</code>)</a></h2>
+<p>Runs only when a <strong>prometheus server job</strong> exists in the workspace.</p>
+<h3 id="validation-all-jobs" tabindex="-1"><a class="observablehq-header-anchor" href="#validation-all-jobs">Validation (all jobs)</a></h3>
+<ul>
+<li>Scrape YAML shape, port references, forbidden SD configs</li>
+<li>Alert YAML shape, global unique alert names, runbook file references</li>
+<li>Mutual exclusion: <code>scrape.yaml</code> vs <code>scrape.yaml.tpl</code>; <code>prometheus.yml</code> vs <code>prometheus.yml.tpl</code></li>
+</ul>
+<p>All <code>_prometheus/</code> files are stored in <strong><code>job_files</code></strong>. Alerts, runbooks, and dashboards are <strong>not</strong> written to KV.</p>
+<h3 id="scrape-kv-maand-prometheus" tabindex="-1"><a class="observablehq-header-anchor" href="#scrape-kv-maand-prometheus">Scrape KV (<code>maand/prometheus/*</code>)</a></h3>
+<table>
+<thead>
+<tr>
+<th>KV key</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scrape_configs</code></td>
+<td>JSON array of unexpanded configs for jobs in <strong><code>scrape_jobs</code></strong></td>
+</tr>
+<tr>
+<td><code>scrape/&lt;job&gt;</code></td>
+<td>Per-job unexpanded scrape configs (always written when scrape file exists)</td>
+</tr>
+<tr>
+<td><code>scrape_jobs</code></td>
+<td>Comma-separated jobs included in the aggregate catalog</td>
+</tr>
+<tr>
+<td><code>scrape_jobs_length</code></td>
+<td>Count of <code>scrape_jobs</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Aggregate inclusion:</strong> a job with <code>maand:port/*</code> targets is listed in <code>scrape_jobs</code> / <code>scrape_configs</code> only when it has at least one <strong>active</strong> allocation. Jobs with only literal targets are always included.</p>
+<p>At deploy, jobs with zero expanded targets are <strong>skipped</strong> (not an error).</p>
+<p>Inspect after build:</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> prometheus
+maand <span class="hljs-built_in">cat</span> prometheus get api scrape.yaml
+maand <span class="hljs-built_in">cat</span> prometheus scrape
+maand <span class="hljs-built_in">cat</span> kv get maand/prometheus scrape_jobs
+maand <span class="hljs-built_in">cat</span> kv get maand/prometheus scrape/&lt;job&gt;
+</code></pre>
+<hr>
+<h2 id="deploy-assembly" tabindex="-1"><a class="observablehq-header-anchor" href="#deploy-assembly">Deploy assembly</a></h2>
+<p>When staging the prometheus job (see <a href="../reference/cli/deploy#prometheus-job-staging">deploy.md</a>):</p>
+<ol>
+<li><strong>Alert rules</strong> — copy each <code>_prometheus/alerts/*.yaml</code> from <code>job_files</code> to <code>rules/&lt;maand_job&gt;/</code>; inject <strong><code>runbook_url</code></strong> from <strong><code>runbook</code></strong> annotation; add <strong><code>rules/maand/certs.yaml</code></strong> when server config exists</li>
+<li><strong>Runbooks</strong> — render markdown to <code>consoles/runbooks/&lt;job&gt;/&lt;slug&gt;.html</code> (+ index, CSS)</li>
+<li><strong>Dashboards</strong> — copy <code>consoles/dashboards/&lt;job&gt;/&lt;path&gt;</code> preserving subdirectories (+ index, CSS)</li>
+<li><strong>Config</strong> — render <code>prometheus.yml.tpl</code> with <strong><code>{{ scrapeConfigs }}</code></strong> and <strong><code>{{ ruleFiles }}</code></strong></li>
+<li><strong>Cert metrics</strong> — after deploy commit, best-effort remote write of cert expiry gauges (not at build)</li>
+</ol>
+<p>Mount on the prometheus container:</p>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-attr">volumes:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">./prometheus.yml:/etc/prometheus/prometheus.yml:ro</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">./rules:/etc/prometheus/rules:ro</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">./consoles:/etc/prometheus/consoles:z</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">./maand:/etc/prometheus/consoles/maand:z</span>   <span class="hljs-comment"># optional workspace custom pages</span>
+</code></pre>
+<hr>
+<h2 id="prometheus-job-config" tabindex="-1"><a class="observablehq-header-anchor" href="#prometheus-job-config">Prometheus job config</a></h2>
+<h3 id="option-a-prometheus-yml-tpl-recommended" tabindex="-1"><a class="observablehq-header-anchor" href="#option-a-prometheus-yml-tpl-recommended">Option A — <code>prometheus.yml.tpl</code> (recommended)</a></h3>
+<p>Combine hardcoded scrape jobs with the build catalog:</p>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-attr">global:</span>
+  <span class="hljs-attr">scrape_interval:</span> <span class="hljs-string">15s</span>
+  <span class="hljs-attr">evaluation_interval:</span> <span class="hljs-string">15s</span>
+
+<span class="hljs-attr">scrape_configs:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">job_name:</span> <span class="hljs-string">prometheus</span>
+    <span class="hljs-attr">static_configs:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">targets:</span> [<span class="hljs-string">'127.0.0.1:9090'</span>]
+{{ <span class="hljs-string">scrapeConfigs</span> }}
+
+{{ <span class="hljs-string">ruleFiles</span> }}
+</code></pre>
+<p><code>{{ scrapeConfigs }}</code> expands <code>maand:port/*</code> placeholders using <strong>live allocations and assigned ports</strong> at deploy render time, then injects the YAML fragment. When the catalog or allocation topology changes, redeploy the prometheus job so the rendered hash updates.</p>
+<p><code>{{ ruleFiles }}</code> lists every assembled alert file as <code>rules/&lt;maand_job&gt;/&lt;file&gt;.yaml</code> (paths relative to <code>prometheus.yml</code>). Prefer this over globs.</p>
+<p>If you use a glob instead, Prometheus only supports Go <strong><code>filepath.Glob</code></strong> syntax — <strong>not</strong> <code>**</code>. Maand lays out rules as <code>rules/&lt;job&gt;/&lt;file&gt;.yaml</code>, so use one <code>*</code> per directory level:</p>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-attr">rule_files:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">rules/*/*.yaml</span>
+</code></pre>
+<p>Inside Docker, mount the rules tree and use absolute paths if you prefer:</p>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-attr">rule_files:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">/etc/prometheus/rules/*/*.yaml</span>
+</code></pre>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-comment"># docker-compose.yml.tpl (prometheus job)</span>
+<span class="hljs-attr">volumes:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">./prometheus.yml:/etc/prometheus/prometheus.yml:ro</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">./rules:/etc/prometheus/rules:ro</span>
+</code></pre>
+<h3 id="option-b-static-prometheus-yml" tabindex="-1"><a class="observablehq-header-anchor" href="#option-b-static-prometheus-yml">Option B — static <code>prometheus.yml</code></a></h3>
+<p>If <strong><code>prometheus.yml</code></strong> exists and <strong><code>prometheus.yml.tpl</code> does not</strong>, the file is copied as-is with no maand injection. Use for fully manual setups.</p>
+<p><strong>Do not define both</strong> — build fails with <code>ErrInvalidJob</code>.</p>
+<h3 id="alert-rules-at-deploy" tabindex="-1"><a class="observablehq-header-anchor" href="#alert-rules-at-deploy">Alert rules at deploy</a></h3>
+<p>Deploy <strong>assembles</strong> alert YAML from every job's <code>_prometheus/alerts/</code> in <code>job_files</code> into <code>rules/&lt;maand_job&gt;/</code> under the prometheus staging tree (see <a href="#deploy-assembly">Deploy assembly</a> above).</p>
+<hr>
+<h2 id="operator-workflow" tabindex="-1"><a class="observablehq-header-anchor" href="#operator-workflow">Operator workflow</a></h2>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 1. Add _prometheus/ to app jobs; declare metrics ports in manifest</span>
+maand build
+
+<span class="hljs-comment"># 2. Deploy application jobs</span>
+maand deploy --<span class="hljs-built_in">jobs</span> api,...
+
+<span class="hljs-comment"># 3. Redeploy prometheus to pick up new scrape targets and rules</span>
+maand deploy --<span class="hljs-built_in">jobs</span> prometheus
+</code></pre>
+<p>Prometheus should run with <strong><code>--web.enable-lifecycle</code></strong> so config reload works after deploy.</p>
+<h3 id="certificate-alerts" tabindex="-1"><a class="observablehq-header-anchor" href="#certificate-alerts">Certificate alerts</a></h3>
+<p>When the <strong>prometheus</strong> job ships server config, deploy assembles <strong><code>rules/maand/certs.yaml</code></strong> alongside per-job alert files. These rules fire on pushed cert metrics (<code>maand_cert_expiring</code>, <code>maand_cert_expired</code>, etc.) — see <a href="../reference/certs#prometheus-metrics-optional">certs.md</a>.</p>
+<p>After <strong><code>maand deploy</code></strong>, maand pushes current cert expiry gauges via Prometheus remote write to:</p>
+<pre data-language="text"><code class="language-text">http://&lt;prometheus-allocation&gt;:&lt;prometheus_port_http&gt;/api/v1/write
+</code></pre>
+<p>Push runs <strong>only at deploy</strong> (not <strong><code>maand build</code></strong>). Discovery uses the <strong>prometheus</strong> job from the workspace (first non-removed allocation). If that job has no server config or no allocations, push is skipped.</p>
+<p>Requires <strong><code>--web.enable-remote-write-receiver</code></strong> on Prometheus (in addition to lifecycle):</p>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-attr">command:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">'--web.enable-lifecycle'</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">'--web.enable-remote-write-receiver'</span>
+</code></pre>
+<p>When <strong><code>secrets/job/prometheus</code></strong> defines <strong><code>admin_username</code></strong> and <strong><code>admin_password</code></strong>, cert metric remote write uses HTTP Basic auth (same credentials as the Prometheus UI). If the web UI is protected, both secrets must be set or deploy logs a cert-metrics push error.</p>
+<h2 id="runbooks" tabindex="-1"><a class="observablehq-header-anchor" href="#runbooks">Runbooks</a></h2>
+<p>During <strong><code>maand deploy</code></strong>, when staging the <strong>prometheus</strong> job, maand renders every catalog runbook to HTML under <strong><code>consoles/runbooks/&lt;job&gt;/&lt;slug&gt;.html</code></strong> (plus <strong><code>consoles/runbooks/index.html</code></strong> and <strong><code>consoles/runbooks/style.css</code></strong>). Source markdown stays in <strong><code>job_files</code></strong> from build; it is not rsynced from workspace.</p>
+<p>Runbooks are <strong>not</strong> written under workspace <strong><code>maand/</code></strong> — that folder is for optional custom console pages you check in (for example <code>maand/workers.html</code>).</p>
+<p>Mount deploy-generated runbooks and optional custom pages separately:</p>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-comment"># docker-compose.yml.tpl (prometheus job)</span>
+<span class="hljs-attr">volumes:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">./consoles:/etc/prometheus/consoles:z</span>          <span class="hljs-comment"># deploy writes consoles/runbooks/ here</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">./maand:/etc/prometheus/consoles/maand:z</span>        <span class="hljs-comment"># optional custom pages from workspace</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">./maand_libraries:/etc/prometheus/console_libraries:z</span>
+  <span class="hljs-comment"># ...</span>
+<span class="hljs-attr">command:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">'--web.console.templates=/etc/prometheus/consoles'</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">'--web.console.libraries=/etc/prometheus/console_libraries'</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>URL (Prometheus UI)</th>
+<th>File on worker</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/consoles/runbooks/</code></td>
+<td><code>consoles/runbooks/index.html</code></td>
+</tr>
+<tr>
+<td><code>/consoles/runbooks/&lt;job&gt;/&lt;slug&gt;.html</code></td>
+<td><code>consoles/runbooks/&lt;job&gt;/&lt;slug&gt;.html</code></td>
+</tr>
+<tr>
+<td><code>/consoles/maand/workers.html</code></td>
+<td><code>maand/workers.html</code> (workspace, not deploy-generated)</td>
+</tr>
+</tbody>
+</table>
+<p>Link from alert annotations with <strong><code>runbook</code></strong> in workspace source only — deploy removes <strong><code>runbook</code></strong> and sets <strong><code>runbook_url</code></strong>:</p>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-comment"># workspace source</span>
+<span class="hljs-attr">annotations:</span>
+  <span class="hljs-attr">runbook:</span> <span class="hljs-string">container_restarting</span>
+
+<span class="hljs-comment"># deployed rules (prometheus worker)</span>
+<span class="hljs-attr">annotations:</span>
+  <span class="hljs-attr">runbook_url:</span> <span class="hljs-string">http://10.48.198.160:9090/consoles/runbooks/node_agent/container_restarting.html</span>
+</code></pre>
+<p>Override <strong><code>runbook_url</code></strong> in the alert YAML when you need a different base URL.</p>
+<hr>
+<h2 id="dashboards" tabindex="-1"><a class="observablehq-header-anchor" href="#dashboards">Dashboards</a></h2>
+<p>During <strong><code>maand deploy</code></strong>, when staging the <strong>prometheus</strong> job, maand copies every file under <strong><code>_prometheus/dashboards/</code></strong> to <strong><code>consoles/dashboards/&lt;job&gt;/&lt;path&gt;</code></strong>, preserving subdirectories. Source files stay in <strong><code>job_files</code></strong> from build; they are not rsynced from workspace.</p>
+<p>Optional <strong><code>_prometheus/dashboards/.dashboardignore</code></strong> (gitignore-style, one pattern per line) omits matching files from <strong><code>dashboards/index.html</code></strong> only. Ignored files are still copied to the worker and reachable by direct URL. Deploy reads the latest <strong><code>.dashboardignore</code> from workspace</strong> (run <strong><code>maand build</code></strong> if you rely on catalog-only workflows elsewhere).</p>
+<pre data-language="gitignore"><code class="language-gitignore"># partials and fragments — not listed on index
+_partial.html
+partials/**
+**/worker_detail.html
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>URL (Prometheus UI)</th>
+<th>File on worker</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/consoles/dashboards/</code></td>
+<td><code>consoles/dashboards/index.html</code></td>
+</tr>
+<tr>
+<td><code>/consoles/dashboards/&lt;job&gt;/overview.html</code></td>
+<td><code>consoles/dashboards/&lt;job&gt;/overview.html</code></td>
+</tr>
+<tr>
+<td><code>/consoles/dashboards/&lt;job&gt;/slo/latency.html</code></td>
+<td><code>consoles/dashboards/&lt;job&gt;/slo/latency.html</code></td>
+</tr>
+</tbody>
+</table>
+<p>The same <strong><code>./consoles:/etc/prometheus/consoles</code></strong> mount serves runbooks and dashboards.</p>
+<hr>
+<h2 id="participation" tabindex="-1"><a class="observablehq-header-anchor" href="#participation">Participation</a></h2>
+<table>
+<thead>
+<tr>
+<th>Job has</th>
+<th>Scraped</th>
+<th>Rules loaded</th>
+<th>Runbooks</th>
+<th>Dashboards</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_prometheus/scrape.yaml</code> only</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>_prometheus/alerts/</code> only</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>_prometheus/dashboards/</code> only</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>both scrape + alerts</td>
+<td>yes</td>
+<td>yes</td>
+<td>optional</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>neither</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="example-node-exporter" tabindex="-1"><a class="observablehq-header-anchor" href="#example-node-exporter">Example: node_exporter</a></h2>
+<p><strong><code>manifest.json</code></strong> — runs on any worker that has the <strong><code>node_exporter</code></strong> label (job name); add <code>"selectors": ["worker"]</code> when sharing a generic worker pool:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"resources"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"ports"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"node_exporter_metrics_port"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Or on shared workers:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"resources"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"ports"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"node_exporter_metrics_port"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p><strong><code>_prometheus/scrape.yaml</code></strong></p>
+<pre data-language="yaml"><code class="language-yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">job_name:</span> <span class="hljs-string">node_exporter</span>
+  <span class="hljs-attr">metrics_path:</span> <span class="hljs-string">/metrics</span>
+  <span class="hljs-attr">static_configs:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">targets:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">maand:port/node_exporter_metrics_port</span>
+      <span class="hljs-attr">labels:</span>
+        <span class="hljs-attr">maand_job:</span> <span class="hljs-string">node_exporter</span>
+</code></pre>
+<hr>
+<h2 id="related-commands" tabindex="-1"><a class="observablehq-header-anchor" href="#related-commands">Related commands</a></h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maand build</code></td>
+<td>Validate <code>_prometheus/</code>; store in <code>job_files</code>; write scrape KV (when prometheus server job exists)</td>
+</tr>
+<tr>
+<td><code>maand deploy --jobs prometheus</code></td>
+<td>Assemble rules, runbooks, dashboards; render config; cert metric push</td>
+</tr>
+<tr>
+<td><code>maand cat kv get maand/prometheus scrape_jobs</code></td>
+<td>Inspect scrape catalog</td>
+</tr>
+<tr>
+<td><code>maand cat prometheus</code></td>
+<td>List jobs with <code>_prometheus/</code> content (from <code>job_files</code> / workspace)</td>
+</tr>
+<tr>
+<td><code>maand cat prometheus get &lt;job&gt; &lt;path&gt;</code></td>
+<td>Print one <code>_prometheus/</code> file</td>
+</tr>
+<tr>
+<td><code>maand cat prometheus scrape [--jobs …]</code></td>
+<td>Preview expanded scrape configs (same logic as deploy)</td>
+</tr>
+</tbody>
+</table>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./job-commands-tutorial"><span>Job commands tutorial</span></a><a rel="next" href="./worker-reboot"><span>Worker reboot</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Job command runtime API | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="./manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="./resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="./deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="./templates">Templates</a></li>
+    <li class="observablehq-link"><a href="./certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="./kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="./kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="./kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="./observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="./cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="./cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="./cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="./cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="./cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="./cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="./cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="./cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="./cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="./cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#execution-model">Execution model</a></li>
+<li class="observablehq-secondary-link"><a href="#runtime-http-api">Runtime HTTP API</a></li>
+<li class="observablehq-secondary-link"><a href="#python-and-bun-helpers">Python and Bun helpers</a></li>
+<li class="observablehq-secondary-link"><a href="#kv-persistence-by-context">KV persistence by context</a></li>
+<li class="observablehq-secondary-link"><a href="#http-api-errors">HTTP API errors</a></li>
+<li class="observablehq-secondary-link"><a href="#related">Related</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="job-command-runtime-api" tabindex="-1"><a class="observablehq-header-anchor" href="#job-command-runtime-api">Job command runtime API</a></h1>
+<p>Python/Bun scripts reach maand through an in-process HTTP API on the CLI host. For when to use hooks and event names, see <a href="./cli/job-command">cli/job-command.md</a>.</p>
+<hr>
+<h2 id="execution-model" tabindex="-1"><a class="observablehq-header-anchor" href="#execution-model">Execution model</a></h2>
+<pre data-language="text"><code class="language-text">Open DB + kv.Initialize
+StartRuntimeAPI (HTTP on localhost:8080 in maand process)
+For each active allocation (worker IP):
+  Stage tmp/workers/&lt;ip&gt;/jobs/&lt;job&gt;/ from job_files + certs from KV
+  Run script on CLI host via bash (python3 or bun)
+  Script reaches API at JOB_COMMAND_API_HOST=127.0.0.1
+Commit (CLI path) or return error to caller (deploy/health_check)
+</code></pre>
+<p>Important details:</p>
+<ul>
+<li><strong>Where code runs:</strong> bash on the <strong>CLI host</strong>, working directory = bucket root. Output is logged to structured lines in <code>logs/&lt;worker_ip&gt;.log</code> (or <code>logs/maand.log</code> for bucket-local). Each line includes timestamp, run id, command phase, and payload. Per-run copies live under <code>logs/runs/&lt;run_id&gt;/</code>.</li>
+<li><strong>Per-allocation context:</strong> one process per allocation; env vars identify worker IP and allocation UUID even though the process is local.</li>
+<li><strong>Worker access:</strong> use Python <strong><code>run_ssh</code></strong>, <strong><code>run_runner_target</code></strong>, or <strong><code>run_make_target</code></strong> to execute on <code>ALLOCATION_IP</code>. Bun scripts must shell out to <code>ssh</code> themselves or call a Python helper.</li>
+<li><strong>Staging:</strong> <code>tmp/workers/&lt;ip&gt;/jobs/&lt;job&gt;/</code> mirrors deploy layout (files + certs) so scripts can read local copies if needed.</li>
+</ul>
+<h3 id="environment-variables-job-command-scripts" tabindex="-1"><a class="observablehq-header-anchor" href="#environment-variables-job-command-scripts">Environment variables (job command scripts)</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ALLOCATION_ID</code></td>
+<td>Stable allocation UUID</td>
+</tr>
+<tr>
+<td><code>ALLOCATION_IP</code></td>
+<td>Worker host for this invocation</td>
+</tr>
+<tr>
+<td><code>ALLOCATION_INDEX</code></td>
+<td>Zero-based index among non-removed peers (same as <code>&lt;job&gt;_allocation_index</code> in per-allocation KV)</td>
+</tr>
+<tr>
+<td><code>JOB</code></td>
+<td>Job name</td>
+</tr>
+<tr>
+<td><code>EVENT</code></td>
+<td>Event name (<code>pre_deploy</code>, <code>cli</code>, …)</td>
+</tr>
+<tr>
+<td><code>COMMAND</code></td>
+<td>Command name</td>
+</tr>
+<tr>
+<td><code>DISABLED</code></td>
+<td><code>0</code> or <code>1</code> — allocation marked disabled in catalog</td>
+</tr>
+<tr>
+<td><code>CURRENT_VERSION</code></td>
+<td>Running version on this allocation (<code>0.0.0</code> before first promote)</td>
+</tr>
+<tr>
+<td><code>NEW_VERSION</code></td>
+<td>Target version from the current build/deploy plan</td>
+</tr>
+<tr>
+<td><code>JOB_COMMAND_API_HOST</code></td>
+<td>Host to reach runtime API (<code>127.0.0.1</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Per-allocation KV exposes <strong><code>version</code></strong> (build target) under <code>maand/job/&lt;job&gt;/worker/&lt;ip&gt;/</code>. Running vs target for rollout logic lives in the catalog (<code>hash.current_version</code>, <code>allocations.new_version</code>) and template fields <strong><code>.CurrentVersion</code></strong> / <strong><code>.NewVersion</code></strong>.</p>
+<p>Deploy <strong><code>job_control</code></strong> also sets:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NEW_ALLOCATIONS</code></td>
+<td>Comma-separated worker IPs getting a fresh promote</td>
+</tr>
+<tr>
+<td><code>UPDATED_ALLOCATIONS</code></td>
+<td>Comma-separated worker IPs getting a restart/update</td>
+</tr>
+</tbody>
+</table>
+<p>(<code>CURRENT_VERSION</code> and <code>NEW_VERSION</code> are set for all job command events, not only <code>job_control</code>.)</p>
+<p><strong><code>after_allocation_started</code></strong> / <strong><code>after_allocation_stopped</code></strong> also receive batch rollout env (in addition to per-allocation vars):</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BATCH_ALLOCATIONS</code></td>
+<td>Comma-separated worker IPs in this batch</td>
+</tr>
+<tr>
+<td><code>BATCH_INDEX</code></td>
+<td>Zero-based batch index</td>
+</tr>
+<tr>
+<td><code>BATCH_COUNT</code></td>
+<td>Total batches in the current phase</td>
+</tr>
+<tr>
+<td><code>DEPLOY_PHASE</code></td>
+<td><code>new</code>, <code>update</code>, or <code>stop</code></td>
+</tr>
+<tr>
+<td><code>DEPLOY_ORDER</code></td>
+<td>Full comma-separated order list</td>
+</tr>
+<tr>
+<td><code>DEPLOY_ORDER_SOURCE</code></td>
+<td><code>kv</code> or <code>default</code></td>
+</tr>
+<tr>
+<td><code>JOB</code></td>
+<td>Job name (same as env above; set again for batch hooks)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="concurrency" tabindex="-1"><a class="observablehq-header-anchor" href="#concurrency">Concurrency</a></h3>
+<ul>
+<li><strong><code>JobCommand(..., concurrency N)</code></strong> runs up to <strong>N</strong> allocations in parallel.</li>
+<li>Failures aggregate into a <strong>run error</strong> listing per-worker errors.</li>
+<li>Use <strong><code>acquire_semaphore</code></strong> when parallel allocations must serialize a critical section (migrations, external API with rate limits).</li>
+</ul>
+<hr>
+<h2 id="runtime-http-api" tabindex="-1"><a class="observablehq-header-anchor" href="#runtime-http-api">Runtime HTTP API</a></h2>
+<p>Started by <strong><code>jobcommand.StartRuntimeAPI(tx)</code></strong> for the lifetime of build/deploy/health_check/job_command sessions.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Listen address</td>
+<td><strong><code>localhost:8080</code></strong> (not exposed outside the host)</td>
+</tr>
+<tr>
+<td>Request body</td>
+<td>JSON, <strong><code>Content-Type: application/json</code></strong></td>
+</tr>
+<tr>
+<td>Allocation scope</td>
+<td>Header <strong><code>X-ALLOCATION-ID</code></strong> (required on every route)</td>
+</tr>
+<tr>
+<td>Event scope</td>
+<td>Header <strong><code>EVENT</code></strong> (required; must match the running hook)</td>
+</tr>
+<tr>
+<td>Command scope</td>
+<td>Header <strong><code>COMMAND</code></strong> (required; used by <code>/demands</code> and semaphore scoping)</td>
+</tr>
+</tbody>
+</table>
+<p>Embedded <strong><code>maand.py</code></strong> / <strong><code>maand.ts</code></strong> set these headers automatically from env vars.</p>
+<h3 id="endpoint-summary" tabindex="-1"><a class="observablehq-header-anchor" href="#endpoint-summary">Endpoint summary</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/kv</code></td>
+<td>Read a key from an allowed namespace</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td><code>/kv</code></td>
+<td>Write a non-secret key under <strong><code>vars/job/&lt;current job&gt;</code></strong> only</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/kv</code></td>
+<td>Delete a key under <strong><code>vars/job/&lt;current job&gt;</code></strong> only</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td><code>/kv/secret</code></td>
+<td>Write encrypted secret under <strong><code>secrets/job/&lt;current job&gt;</code></strong></td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/kv/secret</code></td>
+<td>Delete secret under <strong><code>secrets/job/&lt;current job&gt;</code></strong></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/kv/keys</code></td>
+<td>List keys under job-level namespaces</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/demands</code></td>
+<td>List downstream commands that depend on this job+command</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/semaphore/acquire</code></td>
+<td>Block until this allocation holds a slot</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/semaphore/release</code></td>
+<td>Release a held slot</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/semaphore/status?name=...</code></td>
+<td>Inspect holders and waiters</td>
+</tr>
+</tbody>
+</table>
+<h3 id="kv-read-vs-write" tabindex="-1"><a class="observablehq-header-anchor" href="#kv-read-vs-write">KV read vs write</a></h3>
+<table>
+<thead>
+<tr>
+<th>Namespace pattern</th>
+<th>GET <code>/kv</code></th>
+<th>PUT/DELETE <code>/kv</code></th>
+<th>PUT/DELETE <code>/kv/secret</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maand/bucket</code>, <code>maand/worker</code>, <code>maand/worker/&lt;ip&gt;</code>, tags</td>
+<td>✓</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><code>vars/bucket</code>, <code>vars/bucket/job/&lt;job&gt;</code></td>
+<td>✓</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><code>maand/job/&lt;job&gt;/worker/&lt;ip&gt;</code></td>
+<td>✓</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><code>maand/job/&lt;job&gt;</code> key <strong><code>deploy_order</code></strong> only</td>
+<td>✓</td>
+<td>✓ on <strong><code>pre_deploy</code></strong> or <strong><code>cli</code></strong></td>
+<td>✗</td>
+</tr>
+<tr>
+<td><code>vars/job/&lt;job&gt;</code> (current job)</td>
+<td>✓</td>
+<td>✓</td>
+<td>✗</td>
+</tr>
+<tr>
+<td><code>secrets/job/&lt;job&gt;</code> (current job)</td>
+<td>✓ (decrypted)</td>
+<td>✗</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Upstream demand jobs (<code>maand/job/*</code>, <code>vars/job/*</code>, <code>secrets/job/*</code>)</td>
+<td>✓ if declared in manifest <strong><code>demands</code></strong></td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+</tbody>
+</table>
+<p>Writes to other <strong><code>maand/*</code></strong> keys, <strong><code>vars/bucket/*</code></strong>, and upstream jobs are rejected. Use <strong><code>put_deploy_order</code></strong> / <strong><code>putDeployOrder</code></strong> (or PUT <code>/kv</code> on <code>maand/job/&lt;job&gt;</code> + key <code>deploy_order</code>) to override rollout order for one deploy; build resets it on the next <strong><code>maand build</code></strong>.</p>
+<p><strong>PUT <code>deploy_order</code></strong> body:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"namespace"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"maand/job/api"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"key"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"deploy_order"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"value"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.0.0.2,10.0.0.1"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<pre data-language="python"><code class="language-python"><span class="hljs-keyword">from</span> maand <span class="hljs-keyword">import</span> put_deploy_order
+
+put_deploy_order([<span class="hljs-string">"10.0.0.2"</span>, <span class="hljs-string">"10.0.0.1"</span>]).raise_for_status()
+</code></pre>
+<p><strong>GET <code>/kv</code></strong> body:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span> <span class="hljs-attr">"namespace"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"vars/job/api"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"key"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"db_url"</span> <span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Response (200):</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span> <span class="hljs-attr">"namespace"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"vars/job/api"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"key"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"db_url"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"value"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"postgres://..."</span> <span class="hljs-punctuation">}</span>
+</code></pre>
+<p><strong>PUT <code>/kv</code></strong> body (value required):</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span> <span class="hljs-attr">"namespace"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"vars/job/api"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"key"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"db_url"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"value"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"postgres://..."</span> <span class="hljs-punctuation">}</span>
+</code></pre>
+<p><strong>PUT <code>/kv/secret</code></strong> body:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span> <span class="hljs-attr">"namespace"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"secrets/job/api"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"key"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"db_password"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"value"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"plain-text-secret"</span> <span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Values are encrypted with AES-256-GCM using <code>secrets/kv.key</code> before storage in <code>maand.db</code>.</p>
+<p><strong>DELETE</strong> <code>/kv</code> and <code>/kv/secret</code> use the same JSON body as GET (<code>namespace</code> + <code>key</code>; no <code>value</code>).</p>
+<p><strong>GET <code>/kv/keys</code></strong> — optional body <code>{ "namespace": "vars/job/api" }</code>. Omit <code>namespace</code> to list both <strong><code>vars/job/&lt;job&gt;</code></strong> and <strong><code>secrets/job/&lt;job&gt;</code></strong> (secret listing returns key names only, never values).</p>
+<h3 id="kv-writes-during-health-check" tabindex="-1"><a class="observablehq-header-anchor" href="#kv-writes-during-health-check">KV writes during <code>health_check</code></a></h3>
+<p><strong>PUT</strong>, <strong>DELETE</strong>, and <strong><code>/kv/secret</code></strong> writes are <strong>rejected</strong> when the <strong><code>EVENT</code></strong> header is <strong><code>health_check</code></strong>. Health check scripts must be read-only with respect to KV — use <strong><code>pre_deploy</code></strong> or <strong><code>post_deploy</code></strong> to create or update vars and secrets.</p>
+<h3 id="get-demands" tabindex="-1"><a class="observablehq-header-anchor" href="#get-demands"><code>GET /demands</code></a></h3>
+<p>Returns job commands whose manifest <strong><code>demands</code></strong> point at <strong>this job</strong> and <strong>this command name</strong> (reverse dependency lookup).</p>
+<p>Response (200) — array of:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"job"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"api"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"command"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"command_migrate"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"demand_config"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min_version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2.0.0"</span> <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p><strong>When to use:</strong> a shared upstream command (e.g. <code>command_schema</code> on <code>database</code>) can inspect who depends on it and tailor behavior using <code>demand_config</code> (feature flags, schema versions, etc.).</p>
+<h3 id="semaphores" tabindex="-1"><a class="observablehq-header-anchor" href="#semaphores">Semaphores</a></h3>
+<p>Coordinate cross-allocation locks inside one job command session. Scoped by <strong><code>job</code> + <code>EVENT</code> + name</strong> — the same name under <code>pre_deploy</code> and <code>post_deploy</code> are independent semaphores.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>capacity</code></td>
+<td>1</td>
+<td>1–64</td>
+</tr>
+<tr>
+<td><code>timeout_seconds</code></td>
+<td>600</td>
+<td>max 3600</td>
+</tr>
+</tbody>
+</table>
+<p><strong>POST <code>/semaphore/acquire</code></strong> body:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span> <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"migration"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"capacity"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"timeout_seconds"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">600</span> <span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Response (200):</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"migration"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"allocation_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"&lt;uuid&gt;"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"capacity"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"acquired"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p><strong>POST <code>/semaphore/release</code></strong> body: <code>{ "name": "migration" }</code></p>
+<p><strong>GET <code>/semaphore/status?name=migration</code></strong> response:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"migration"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"capacity"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"holders"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"&lt;allocation-uuid&gt;"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"waiting"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"available"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p><strong>When to use semaphores:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th><code>capacity</code></th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single-writer migration</td>
+<td>1</td>
+<td>Only one allocation runs DDL at a time</td>
+</tr>
+<tr>
+<td>Rolling batch</td>
+<td>N</td>
+<td>Allow N concurrent restarts against an external API</td>
+</tr>
+<tr>
+<td>Leader bootstrap</td>
+<td>1</td>
+<td>First acquirer writes shared KV, others read</td>
+</tr>
+</tbody>
+</table>
+<p>Always <strong><code>release_semaphore</code></strong> in a <code>finally</code> / <code>try/finally</code> block so a failed script does not hold the lock for the rest of the deploy session.</p>
+<p>Example (Python):</p>
+<pre data-language="python"><code class="language-python"><span class="hljs-keyword">from</span> maand <span class="hljs-keyword">import</span> acquire_semaphore, release_semaphore, allocation_ip
+
+acquire_semaphore(<span class="hljs-string">"migrate"</span>, capacity=<span class="hljs-number">1</span>, timeout_seconds=<span class="hljs-number">900</span>).raise_for_status()
+<span class="hljs-keyword">try</span>:
+    run_migration_for(allocation_ip())
+<span class="hljs-keyword">finally</span>:
+    release_semaphore(<span class="hljs-string">"migrate"</span>)
+</code></pre>
+<p>Semaphores exist only in memory for the current maand process session — they do not survive CLI restart.</p>
+<hr>
+<h2 id="python-and-bun-helpers" tabindex="-1"><a class="observablehq-header-anchor" href="#python-and-bun-helpers">Python and Bun helpers</a></h2>
+<p>Embedded <strong><code>maand.py</code></strong> / <strong><code>maand.ts</code></strong> wrap the HTTP API. Prefer these over raw HTTP.</p>
+<h3 id="context-env" tabindex="-1"><a class="observablehq-header-anchor" href="#context-env">Context (env)</a></h3>
+<table>
+<thead>
+<tr>
+<th>Python</th>
+<th>Bun</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>allocation_id()</code></td>
+<td><code>allocationId()</code></td>
+<td><code>ALLOCATION_ID</code></td>
+</tr>
+<tr>
+<td><code>allocation_ip()</code></td>
+<td><code>allocationIp()</code></td>
+<td><code>ALLOCATION_IP</code></td>
+</tr>
+<tr>
+<td><code>allocation_index()</code></td>
+<td><code>allocationIndex()</code></td>
+<td><code>ALLOCATION_INDEX</code></td>
+</tr>
+<tr>
+<td><code>job_name()</code></td>
+<td><code>jobName()</code></td>
+<td><code>JOB</code></td>
+</tr>
+<tr>
+<td><code>command_event()</code></td>
+<td><code>commandEvent()</code></td>
+<td><code>EVENT</code></td>
+</tr>
+<tr>
+<td><code>command_name()</code></td>
+<td><code>commandName()</code></td>
+<td><code>COMMAND</code></td>
+</tr>
+<tr>
+<td><code>is_allocation_disabled()</code></td>
+<td><code>isAllocationDisabled()</code></td>
+<td><code>DISABLED == "1"</code></td>
+</tr>
+</tbody>
+</table>
+<p>Aliases: <code>get_allocation_id</code>, <code>get_job</code>, <code>kv_get</code>, etc. (both runtimes).</p>
+<h3 id="kv" tabindex="-1"><a class="observablehq-header-anchor" href="#kv">KV</a></h3>
+<table>
+<thead>
+<tr>
+<th>Python</th>
+<th>Bun</th>
+<th>API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>get_store_value(ns, key)</code></td>
+<td><code>getStoreValue(ns, key)</code></td>
+<td>GET <code>/kv</code> → <code>Response</code></td>
+</tr>
+<tr>
+<td><code>get_kv_value(ns, key)</code></td>
+<td><em>(parse JSON yourself)</em></td>
+<td>GET <code>/kv</code> → plaintext <code>value</code></td>
+</tr>
+<tr>
+<td><code>put_deploy_order(order)</code></td>
+<td><code>putDeployOrder(order)</code></td>
+<td>PUT <code>/kv</code> → <code>maand/job/&lt;job&gt;/deploy_order</code></td>
+</tr>
+<tr>
+<td><code>get_deploy_order()</code></td>
+<td><code>getDeployOrder()</code></td>
+<td>GET <code>/kv</code> → <code>deploy_order</code></td>
+</tr>
+<tr>
+<td><code>put_job_variable(key, val)</code></td>
+<td><code>putJobVariable(key, val)</code></td>
+<td>PUT <code>/kv</code></td>
+</tr>
+<tr>
+<td><code>put_job_secret(key, val)</code></td>
+<td><code>putJobSecret(key, val)</code></td>
+<td>PUT <code>/kv/secret</code></td>
+</tr>
+<tr>
+<td><code>delete_job_variable(key)</code></td>
+<td><code>deleteJobVariable(key)</code></td>
+<td>DELETE <code>/kv</code></td>
+</tr>
+<tr>
+<td><code>delete_job_secret(key)</code></td>
+<td><code>deleteJobSecret(key)</code></td>
+<td>DELETE <code>/kv/secret</code></td>
+</tr>
+<tr>
+<td><code>list_job_keys(ns=None)</code></td>
+<td><code>listJobKeys(ns?)</code></td>
+<td>GET <code>/kv/keys</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="demands-and-semaphores" tabindex="-1"><a class="observablehq-header-anchor" href="#demands-and-semaphores">Demands and semaphores</a></h3>
+<table>
+<thead>
+<tr>
+<th>Python</th>
+<th>Bun</th>
+<th>API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list_command_demands()</code></td>
+<td><code>listCommandDemands()</code></td>
+<td>GET <code>/demands</code></td>
+</tr>
+<tr>
+<td><code>acquire_semaphore(name, capacity=1, timeout_seconds=600)</code></td>
+<td><code>acquireSemaphore(...)</code></td>
+<td>POST <code>/semaphore/acquire</code></td>
+</tr>
+<tr>
+<td><code>release_semaphore(name)</code></td>
+<td><code>releaseSemaphore(name)</code></td>
+<td>POST <code>/semaphore/release</code></td>
+</tr>
+<tr>
+<td><code>semaphore_status(name)</code></td>
+<td><code>semaphoreStatus(name)</code></td>
+<td>GET <code>/semaphore/status</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="worker-ssh-python-only" tabindex="-1"><a class="observablehq-header-anchor" href="#worker-ssh-python-only">Worker SSH (Python only)</a></h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>load_ssh()</code></td>
+<td>Parse <code>maand.conf</code> → <code>(user, key_path, use_sudo)</code></td>
+</tr>
+<tr>
+<td><code>run_ssh(worker_ip, remote_cmd, ...)</code></td>
+<td>Arbitrary remote command over SSH</td>
+</tr>
+<tr>
+<td><code>run_runner_target(target, ...)</code></td>
+<td><code>runner.py &lt;target&gt; --jobs &lt;job&gt;</code> on worker (same as deploy)</td>
+</tr>
+<tr>
+<td><code>run_make_target(target, ...)</code></td>
+<td><code>make -C /opt/worker/&lt;bucket&gt;/jobs/&lt;job&gt; &lt;target&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Bun scripts that need SSH should invoke <strong><code>ssh</code></strong> directly or call a thin Python wrapper script.</p>
+<h3 id="python-virtualenv-recommended" tabindex="-1"><a class="observablehq-header-anchor" href="#python-virtualenv-recommended">Python virtualenv (recommended)</a></h3>
+<p>Create a venv <strong>per job</strong> under <code>_modules</code> (not copied into <code>tmp/</code> during runs; maand calls the workspace interpreter):</p>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-built_in">cd</span> workspace/jobs/&lt;job&gt;/_modules
+python3 -m venv .venv
+<span class="hljs-built_in">source</span> .venv/bin/activate   <span class="hljs-comment"># optional for manual work</span>
+pip install -r requirements.txt
+pip install requests        <span class="hljs-comment"># required if scripts use maand.py</span>
+</code></pre>
+<p>Maand uses, in order:</p>
+<ol>
+<li><code>workspace/jobs/&lt;job&gt;/_modules/.venv/bin/python3</code></li>
+<li><code>workspace/jobs/&lt;job&gt;/_modules/venv/bin/python3</code></li>
+<li><code>python3</code> on your PATH</li>
+</ol>
+<p><code>.venv</code>, <code>venv</code>, <code>node_modules</code>, and <code>__pycache__</code> are skipped during <strong><code>maand build</code></strong> file indexing.</p>
+<h3 id="bun" tabindex="-1"><a class="observablehq-header-anchor" href="#bun">Bun</a></h3>
+<p>Install <a href="https://bun.sh" target="_blank" rel="noopener noreferrer">Bun</a> on the CLI host. Per job:</p>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-built_in">cd</span> workspace/jobs/&lt;job&gt;/_modules
+bun install
+</code></pre>
+<hr>
+<h2 id="kv-persistence-by-context" tabindex="-1"><a class="observablehq-header-anchor" href="#kv-persistence-by-context">KV persistence by context</a></h2>
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>When KV writes persist to <code>maand.db</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>maand build</code></strong></td>
+<td>End of main build transaction (<code>PersistToTransaction</code>).</td>
+</tr>
+<tr>
+<td><strong><code>post_build</code></strong> hooks</td>
+<td>Separate session transaction at end of hook pass (failures fail build).</td>
+</tr>
+<tr>
+<td><strong><code>maand job_command</code></strong></td>
+<td>Successful CLI commit.</td>
+</tr>
+<tr>
+<td><strong><code>maand deploy</code></strong></td>
+<td><strong><code>kv.PersistSession()</code></strong> after each job's <code>pre_deploy</code> and after each <strong><code>deployJob</code></strong>.</td>
+</tr>
+<tr>
+<td><strong><code>maand health_check</code></strong></td>
+<td>KV writes rejected (read-only).</td>
+</tr>
+</tbody>
+</table>
+<p>Use <strong><code>pre_deploy</code></strong> to write secrets consumed by <strong><code>.tpl</code></strong> on the same deploy. Full persistence and purge rules: <a href="./kv/persistence">kv/persistence.md</a>. Namespace keys: <a href="./kv/namespaces">kv/namespaces.md</a>.</p>
+<hr>
+<h2 id="http-api-errors" tabindex="-1"><a class="observablehq-header-anchor" href="#http-api-errors">HTTP API errors</a></h2>
+<table>
+<thead>
+<tr>
+<th>HTTP</th>
+<th>Message</th>
+<th>Typical cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td><code>X-ALLOCATION-ID header is missing</code></td>
+<td>Raw HTTP call without header</td>
+</tr>
+<tr>
+<td>404</td>
+<td><code>Invalid allocation ID</code></td>
+<td>Stale or wrong allocation UUID</td>
+</tr>
+<tr>
+<td>400</td>
+<td><code>Both namespace and key are required</code></td>
+<td>Incomplete JSON body</td>
+</tr>
+<tr>
+<td>400</td>
+<td><code>Invalid or unauthorized namespace</code></td>
+<td>Write to read-only namespace, wrong job, or upstream not in demands</td>
+</tr>
+<tr>
+<td>404</td>
+<td><code>KV get operation failed</code></td>
+<td>Key does not exist</td>
+</tr>
+<tr>
+<td>400</td>
+<td><code>KV writes are not allowed during health_check</code></td>
+<td>PUT/DELETE during health_check event</td>
+</tr>
+<tr>
+<td>408</td>
+<td><code>Timed out waiting for semaphore</code></td>
+<td><code>timeout_seconds</code> elapsed</td>
+</tr>
+<tr>
+<td>409</td>
+<td><code>Semaphore acquire or release failed</code></td>
+<td>Release without hold, or internal conflict</td>
+</tr>
+<tr>
+<td>415</td>
+<td><code>Content-Type must be application/json</code></td>
+<td>Missing or wrong content type</td>
+</tr>
+<tr>
+<td>400</td>
+<td><code>Invalid JSON format</code></td>
+<td>Malformed request body</td>
+</tr>
+</tbody>
+</table>
+<p>Check <strong><code>logs/&lt;worker_ip&gt;.log</code></strong> and CLI output when <strong><code>--verbose</code></strong> is set.</p>
+<hr>
+<h2 id="related" tabindex="-1"><a class="observablehq-header-anchor" href="#related">Related</a></h2>
+<ul>
+<li><a href="./cli/job-command">cli/job-command.md</a> — events, patterns, checklist</li>
+<li><a href="./kv/namespaces">kv/namespaces.md</a> · <a href="./kv/persistence">kv/persistence.md</a></li>
+<li><a href="./cli/build">cli/build.md</a> · <a href="./cli/deploy">cli/deploy.md</a></li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./kv/persistence"><span>KV persistence</span></a><a rel="next" href="./observability/logging"><span>Logging</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Configuration reference | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="./manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="./resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="./deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="./templates">Templates</a></li>
+    <li class="observablehq-link"><a href="./certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="./kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="./kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="./kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="./job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="./observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="./cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="./cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="./cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="./cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="./cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="./cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="./cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="./cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="./cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="./cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#prerequisites-cli-host-and-workers">Prerequisites (CLI host and workers)</a></li>
+<li class="observablehq-secondary-link"><a href="#maand-conf-bucket-root">maand.conf (bucket root)</a></li>
+<li class="observablehq-secondary-link"><a href="#workspace-bucket-conf">workspace/bucket.conf</a></li>
+<li class="observablehq-secondary-link"><a href="#job-memory-and-cpu-manifest-bounds-vs-bucket-overrides">Job memory and CPU: manifest bounds vs bucket overrides</a></li>
+<li class="observablehq-secondary-link"><a href="#workspace-bucket-jobs-conf-optional">workspace/bucket.jobs.conf (optional)</a></li>
+<li class="observablehq-secondary-link"><a href="#workspace-jobs-job-vars-toml-optional">workspace/jobs/&lt;job&gt;/vars.toml (optional)</a></li>
+<li class="observablehq-secondary-link"><a href="#workspace-disabled-json-optional">workspace/disabled.json (optional)</a></li>
+<li class="observablehq-secondary-link"><a href="#workspace-workers-json">workspace/workers.json</a></li>
+<li class="observablehq-secondary-link"><a href="#workspace-jobs-job-manifest-json">workspace/jobs/&lt;job&gt;/manifest.json</a></li>
+<li class="observablehq-secondary-link"><a href="#upgrading-configuration-after-a-maand-binary-upgrade">Upgrading configuration after a maand binary upgrade</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="configuration-reference" tabindex="-1"><a class="observablehq-header-anchor" href="#configuration-reference">Configuration reference</a></h1>
+<p>Maand reads configuration from the <strong>bucket root</strong> and <strong><code>workspace/</code></strong>. Edit these files, then run <strong><code>maand build</code></strong> (and usually <strong><code>maand deploy</code></strong>) for changes to take effect.</p>
+<p>Related: <a href="./cli/build">build.md</a> · <a href="../start/concepts#bucket">concepts.md</a> · <a href="./cli/commands#maand-init">commands.md</a></p>
+<hr>
+<h2 id="prerequisites-cli-host-and-workers" tabindex="-1"><a class="observablehq-header-anchor" href="#prerequisites-cli-host-and-workers">Prerequisites (CLI host and workers)</a></h2>
+<table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Required tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CLI host</strong></td>
+<td><code>maand</code> (built with <code>CGO_ENABLED=1</code>), <code>bash</code>, <code>ssh</code>, <code>rsync</code>, <code>python3</code>; <code>bun</code> when any job command uses <code>.ts</code>/<code>.js</code></td>
+</tr>
+<tr>
+<td><strong>Workers</strong></td>
+<td><code>python3</code>, <code>make</code>, <code>rsync</code>, <code>bash</code>, <code>timeout</code>; <code>sudo</code> when <code>use_sudo = true</code></td>
+</tr>
+</tbody>
+</table>
+<p>SSH: private key in <strong><code>secrets/&lt;ssh_key&gt;</code></strong> authorized for <strong><code>ssh_user</code></strong> on every worker. See <a href="../start/quickstart">quickstart</a>.</p>
+<hr>
+<h2 id="maand-conf-bucket-root" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-conf-bucket-root"><code>maand.conf</code> (bucket root)</a></h2>
+<p>SSH, certificate, and job-config selector settings. Created on first <strong><code>maand init</code></strong>; not overwritten on later inits.</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-attr">ssh_user</span> = <span class="hljs-string">"agent"</span>
+<span class="hljs-attr">ssh_key</span> = <span class="hljs-string">"worker.key"</span>
+<span class="hljs-attr">ssh_port</span> = <span class="hljs-number">22</span>
+<span class="hljs-attr">use_sudo</span> = <span class="hljs-literal">true</span>
+<span class="hljs-attr">certs_ttl</span> = <span class="hljs-number">60</span>
+<span class="hljs-attr">certs_renewal_buffer</span> = <span class="hljs-number">10</span>
+<span class="hljs-attr">job_config_selector</span> = <span class="hljs-string">""</span>
+<span class="hljs-attr">log_format</span> = <span class="hljs-string">"kv"</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssh_user</code></td>
+<td><code>agent</code></td>
+<td>Remote user for deploy, job control, and <code>run_command</code></td>
+</tr>
+<tr>
+<td><code>ssh_key</code></td>
+<td><code>worker.key</code></td>
+<td>Private key file under <strong><code>secrets/</code></strong></td>
+</tr>
+<tr>
+<td><code>ssh_port</code></td>
+<td><code>22</code></td>
+<td>SSH port for worker connections and worker health checks</td>
+</tr>
+<tr>
+<td><code>use_sudo</code></td>
+<td><code>true</code></td>
+<td>Prefix remote rsync and some commands with <code>sudo</code></td>
+</tr>
+<tr>
+<td><code>certs_ttl</code></td>
+<td><code>60</code></td>
+<td>Days until generated job certs expire</td>
+</tr>
+<tr>
+<td><code>certs_renewal_buffer</code></td>
+<td><code>0</code> if omitted</td>
+<td>Regenerate leaf certs when within this many days of expiry (<code>0</code> = only after <code>NotAfter</code>)</td>
+</tr>
+<tr>
+<td><code>job_config_selector</code></td>
+<td><code>""</code></td>
+<td>Suffix for <strong><code>bucket.jobs.&lt;selector&gt;.conf</code></strong> (see below)</td>
+</tr>
+<tr>
+<td><code>log_format</code></td>
+<td><code>kv</code></td>
+<td>Bucket log encoding: <strong><code>kv</code></strong>, <strong><code>json</code></strong>, or <strong><code>jsonl</code></strong> (JSON lines)</td>
+</tr>
+</tbody>
+</table>
+<p>Full TLS guide: <a href="./certs">certs.md</a>.</p>
+<p>Path on disk: <strong><code>&lt;bucket&gt;/maand.conf</code></strong>. Worker key path used at runtime: <strong><code>secrets/&lt;ssh_key&gt;</code></strong>.</p>
+<hr>
+<h2 id="workspace-bucket-conf" tabindex="-1"><a class="observablehq-header-anchor" href="#workspace-bucket-conf"><code>workspace/bucket.conf</code></a></h2>
+<p>Bucket-wide settings (TOML). Created on <strong><code>maand init</code></strong> with a default port pool:</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-attr">port_min</span> = <span class="hljs-string">"30000"</span>
+<span class="hljs-attr">port_max</span> = <span class="hljs-string">"39999"</span>
+<span class="hljs-attr">my_setting</span> = <span class="hljs-string">"value"</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>port_min</code> / <code>port_max</code></td>
+<td>Inclusive pool for maand-assigned (<code>{}</code>) job ports only; fixed manifest ports are not limited to this range</td>
+</tr>
+<tr>
+<td>Other keys</td>
+<td>Copied to KV namespace <strong><code>vars/bucket</code></strong> at build</td>
+</tr>
+</tbody>
+</table>
+<p>Job manifests declare ports as <strong><code>{}</code></strong> (assign from pool) or a <strong>fixed integer</strong> (any port number). See <a href="./cli/build#workspace-bucket-conf">build.md</a>.</p>
+<hr>
+<h2 id="job-memory-and-cpu-manifest-bounds-vs-bucket-overrides" tabindex="-1"><a class="observablehq-header-anchor" href="#job-memory-and-cpu-manifest-bounds-vs-bucket-overrides">Job memory and CPU: manifest bounds vs bucket overrides</a></h2>
+<p>Memory and CPU are configured in <strong>two places</strong>; <strong><code>maand.conf</code></strong> picks which override file applies to the current environment.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>File</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bounds</strong></td>
+<td><code>workspace/jobs/&lt;job&gt;/manifest.json</code> → <code>resources.memory</code> / <code>resources.cpu</code></td>
+<td><strong>Min</strong> and <strong>max</strong> the job is allowed to use (checked into git with the job)</td>
+</tr>
+<tr>
+<td><strong>Reservation</strong></td>
+<td><code>workspace/bucket.jobs.conf</code> or <code>workspace/bucket.jobs.&lt;selector&gt;.conf</code></td>
+<td><strong>Actual</strong> memory/CPU for this bucket/environment — must be <strong>within</strong> manifest min/max</td>
+</tr>
+<tr>
+<td><strong>Environment pick</strong></td>
+<td><code>maand.conf</code> → <code>job_config_selector</code></td>
+<td>Chooses which <code>bucket.jobs*.conf</code> file build reads</td>
+</tr>
+</tbody>
+</table>
+<p>Example manifest bounds:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-attr">"resources"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"256 mb"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2 gb"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"500 mhz"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2000 mhz"</span> <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Example reservation for job <code>api</code> in the current environment:</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-section">[api]</span>
+<span class="hljs-attr">memory</span> = <span class="hljs-string">"512 mb"</span>
+<span class="hljs-attr">cpu</span> = <span class="hljs-string">"1500 mhz"</span>
+</code></pre>
+<p>Build stores the reservation as <strong><code>current_memory_mb</code></strong> / <strong><code>current_cpu_mhz</code></strong> and validates:</p>
+<pre data-language="text"><code class="language-text">manifest min ≤ bucket.jobs value ≤ manifest max
+</code></pre>
+<p>Worker capacity in <strong><code>workers.json</code></strong> must cover the sum of reservations on each host.</p>
+<hr>
+<h2 id="workspace-bucket-jobs-conf-optional" tabindex="-1"><a class="observablehq-header-anchor" href="#workspace-bucket-jobs-conf-optional"><code>workspace/bucket.jobs.conf</code> (optional)</a></h2>
+<p>Per-job TOML sections. <strong><code>memory</code></strong> and <strong><code>cpu</code></strong> set the reservation for that job; other keys are copied to KV only.</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-section">[api]</span>
+<span class="hljs-attr">memory</span> = <span class="hljs-string">"512 mb"</span>
+<span class="hljs-attr">cpu</span> = <span class="hljs-string">"1500 mhz"</span>
+<span class="hljs-attr">my_setting</span> = <span class="hljs-string">"staging-only"</span>
+</code></pre>
+<h3 id="environment-selector-job-config-selector" tabindex="-1"><a class="observablehq-header-anchor" href="#environment-selector-job-config-selector">Environment selector (<code>job_config_selector</code>)</a></h3>
+<p>Set <strong><code>job_config_selector</code></strong> in <strong><code>maand.conf</code></strong> to switch environments without editing job manifests. Build loads <strong>one</strong> override file:</p>
+<table>
+<thead>
+<tr>
+<th><code>job_config_selector</code> in <code>maand.conf</code></th>
+<th>Override file read</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>""</code> (default)</td>
+<td><code>workspace/bucket.jobs.conf</code></td>
+</tr>
+<tr>
+<td><code>"prod"</code></td>
+<td><code>workspace/bucket.jobs.prod.conf</code></td>
+</tr>
+<tr>
+<td><code>"staging"</code></td>
+<td><code>workspace/bucket.jobs.staging.conf</code></td>
+</tr>
+</tbody>
+</table>
+<p>Pattern: <strong><code>bucket.jobs.&lt;selector&gt;.conf</code></strong> where <code>&lt;selector&gt;</code> matches <code>job_config_selector</code>.</p>
+<p>Example layout:</p>
+<pre data-language="text"><code class="language-text">workspace/
+├── bucket.jobs.conf           # default / dev reservations
+├── bucket.jobs.staging.conf   # used when job_config_selector = "staging"
+└── bucket.jobs.prod.conf      # used when job_config_selector = "prod"
+</code></pre>
+<p>Change <strong><code>job_config_selector</code></strong>, then <strong><code>maand build</code></strong>. Manifest min/max stay the same; only the active reservation file changes.</p>
+<p>Overrides are written to <strong><code>vars/bucket/job/&lt;job&gt;</code></strong> at build. Only <strong><code>memory</code></strong> and <strong><code>cpu</code></strong> affect reservations and worker validation.</p>
+<p>Full guide (validation, placement labels, examples): <a href="./resources-and-placement">resources-and-placement.md</a>.</p>
+<hr>
+<h2 id="workspace-jobs-job-vars-toml-optional" tabindex="-1"><a class="observablehq-header-anchor" href="#workspace-jobs-job-vars-toml-optional"><code>workspace/jobs/&lt;job&gt;/vars.toml</code> (optional)</a></h2>
+<p>Stable job-scoped variables merged into <strong><code>vars/job/&lt;job&gt;</code></strong> at build (put-only; keys not listed are preserved). See <a href="./kv/namespaces">KV namespaces</a>.</p>
+<hr>
+<h2 id="workspace-disabled-json-optional" tabindex="-1"><a class="observablehq-header-anchor" href="#workspace-disabled-json-optional"><code>workspace/disabled.json</code> (optional)</a></h2>
+<p>Drain or pause workloads without removing workspace files. Always follow edits with <strong><code>maand build</code></strong>.</p>
+<p>Full guide: <a href="../guides/disable-and-drain">disable and drain</a>.</p>
+<hr>
+<h2 id="workspace-workers-json" tabindex="-1"><a class="observablehq-header-anchor" href="#workspace-workers-json"><code>workspace/workers.json</code></a></h2>
+<p>Worker catalog — hosts, labels, capacity, tags. See <a href="../start/concepts#worker">concepts.md</a> and <a href="./cli/build#workspace-workers-json">build.md</a>.</p>
+<hr>
+<h2 id="workspace-jobs-job-manifest-json" tabindex="-1"><a class="observablehq-header-anchor" href="#workspace-jobs-job-manifest-json"><code>workspace/jobs/&lt;job&gt;/manifest.json</code></a></h2>
+<p>Job definition — selectors, resources, commands, certs, health. Canonical reference: <a href="./manifest">manifest.md</a>.</p>
+<hr>
+<h2 id="upgrading-configuration-after-a-maand-binary-upgrade" tabindex="-1"><a class="observablehq-header-anchor" href="#upgrading-configuration-after-a-maand-binary-upgrade">Upgrading configuration after a maand binary upgrade</a></h2>
+<p>After installing a newer maand binary, run <strong><code>maand init</code></strong> before any other command. The CLI checks schema version on every command (except <strong><code>init</code></strong>) and refuses to run when the database is behind the binary.</p>
+<pre data-language="bash"><code class="language-bash">maand init    <span class="hljs-comment"># schema migrations; keeps bucket_id and CA</span>
+maand build
+maand deploy
+</code></pre>
+<p>If you skip <strong><code>init</code></strong>, commands such as <strong><code>build</code></strong> or <strong><code>deploy</code></strong> print an error like <code>database schema upgrade required … run maand init to upgrade</code>.</p>
+<p>See <a href="../guides/day-2-ops#upgrade-maand-schema">day-2 operations</a>.</p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="../guides/worker-reboot"><span>Worker reboot</span></a><a rel="next" href="./manifest"><span>Manifest</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

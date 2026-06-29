@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Disabling workers, jobs, and allocations | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="./rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="./debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="./job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="./prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="./worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../reference/configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../reference/manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../reference/resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../reference/deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../reference/templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../reference/certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../reference/job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../reference/observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#disabled-json-format">disabled.json format</a></li>
+<li class="observablehq-secondary-link"><a href="#how-to-disable">How to disable</a></li>
+<li class="observablehq-secondary-link"><a href="#what-happens-on-build-and-deploy">What happens on build and deploy</a></li>
+<li class="observablehq-secondary-link"><a href="#how-to-re-enable">How to re-enable</a></li>
+<li class="observablehq-secondary-link"><a href="#disabled-vs-removed">Disabled vs removed</a></li>
+<li class="observablehq-secondary-link"><a href="#operations-that-skip-disabled-allocations">Operations that skip disabled allocations</a></li>
+<li class="observablehq-secondary-link"><a href="#examples">Examples</a></li>
+<li class="observablehq-secondary-link"><a href="#related">Related</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="disabling-workers-jobs-and-allocations" tabindex="-1"><a class="observablehq-header-anchor" href="#disabling-workers-jobs-and-allocations">Disabling workers, jobs, and allocations</a></h1>
+<p>Use <strong><code>workspace/disabled.json</code></strong> for <strong>maintenance</strong> — drain a node, allocation, or entire job <strong>without</strong> removing workspace files, catalog rows, or worker <strong><code>data/</code></strong> / <strong><code>logs/</code></strong>.</p>
+<p>A disabled allocation is otherwise the same as an active one: it stays in <strong><code>allocations</code></strong>, build refreshes job and per-allocation KV and certs, and deploy <strong>stages, hashes, and promotes</strong> content. The <strong>only</strong> difference is runtime: maand <strong>never starts</strong> a disabled allocation (no lifecycle — start, restart, reload — and no rsync on deploy).</p>
+<p>For removal (soft-delete until GC), see <a href="../reference/cli/gc">gc.md</a> and <a href="./day-2-ops#remove-a-worker-or-job">day-2-ops.md</a>.</p>
+<hr>
+<h2 id="disabled-json-format" tabindex="-1"><a class="observablehq-header-anchor" href="#disabled-json-format"><code>disabled.json</code> format</a></h2>
+<p>File path: <strong><code>workspace/disabled.json</code></strong> (optional; missing file means nothing disabled).</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"jobs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"api"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"vault"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"allocations"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"10.0.0.2"</span><span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"workers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"10.0.0.3"</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>jobs.&lt;name&gt;</code></strong> with empty object <code>{}</code></td>
+<td>Disable <strong>every</strong> allocation for that job (all workers).</td>
+</tr>
+<tr>
+<td><strong><code>jobs.&lt;name&gt;.allocations</code></strong></td>
+<td>Disable only those worker IPs for that job.</td>
+</tr>
+<tr>
+<td><strong><code>workers</code></strong></td>
+<td>Disable <strong>every</strong> job on those worker IPs.</td>
+</tr>
+</tbody>
+</table>
+<p>Rules:</p>
+<ul>
+<li>Job and worker entries can be combined in one file.</li>
+<li>A worker listed under <strong><code>workers</code></strong> disables all its allocations, even if not listed under <strong><code>jobs</code></strong>.</li>
+<li>Edit <strong><code>disabled.json</code></strong>, then always run <strong><code>maand build</code></strong> so <code>allocations.disabled</code> updates in <code>maand.db</code>.</li>
+</ul>
+<hr>
+<h2 id="how-to-disable" tabindex="-1"><a class="observablehq-header-anchor" href="#how-to-disable">How to disable</a></h2>
+<h3 id="one-allocation-job-on-one-worker" tabindex="-1"><a class="observablehq-header-anchor" href="#one-allocation-job-on-one-worker">One allocation (job on one worker)</a></h3>
+<p>Drain <strong><code>api</code></strong> on <strong><code>10.0.0.2</code></strong> only:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"jobs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"api"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"allocations"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"10.0.0.2"</span><span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<pre data-language="bash"><code class="language-bash">maand build
+maand deploy
+</code></pre>
+<p>Deploy <strong>stops</strong> the job on that worker if it was running. Other workers keep running <strong><code>api</code></strong>.</p>
+<h3 id="entire-job-all-workers" tabindex="-1"><a class="observablehq-header-anchor" href="#entire-job-all-workers">Entire job (all workers)</a></h3>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"jobs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"api"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<pre data-language="bash"><code class="language-bash">maand build
+maand deploy
+</code></pre>
+<p>Every <strong><code>api</code></strong> allocation is stopped; deploy skips lifecycle and rsync for <strong><code>api</code></strong>.</p>
+<h3 id="entire-worker-all-jobs-on-a-host" tabindex="-1"><a class="observablehq-header-anchor" href="#entire-worker-all-jobs-on-a-host">Entire worker (all jobs on a host)</a></h3>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"workers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"10.0.0.3"</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<pre data-language="bash"><code class="language-bash">maand build
+maand deploy
+</code></pre>
+<p>Use this before host maintenance: drain all jobs on the machine without deleting job definitions.</p>
+<h3 id="combine-job-and-worker-rules" tabindex="-1"><a class="observablehq-header-anchor" href="#combine-job-and-worker-rules">Combine job and worker rules</a></h3>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"jobs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"vault"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"allocations"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"10.0.0.1"</span><span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"workers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"10.0.0.4"</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<hr>
+<h2 id="what-happens-on-build-and-deploy" tabindex="-1"><a class="observablehq-header-anchor" href="#what-happens-on-build-and-deploy">What happens on build and deploy</a></h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Disabled allocation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>maand build</code></strong></td>
+<td>Sets <code>allocations.disabled = 1</code>. Same job KV, per-allocation KV (<code>*_allocation_index</code>, <code>peer_workers</code>), and certs as active peers. Re-enable clears the flag when the entry is removed from <code>disabled.json</code>.</td>
+</tr>
+<tr>
+<td><strong><code>maand deploy</code> reconcile</strong></td>
+<td><strong>Stop</strong> if previously deployed (<code>previous_hash</code> set). <strong>Keep</strong> deploy artifacts, <strong><code>data/</code></strong>, <strong><code>logs/</code></strong>, hash row, and KV.</td>
+</tr>
+<tr>
+<td><strong>Staging / hash / promote</strong></td>
+<td>Same as active — content and <strong><code>new_version</code></strong> stay current.</td>
+</tr>
+<tr>
+<td><strong>Lifecycle / rsync</strong></td>
+<td><strong>Skipped</strong> (no start, restart, reload, or rsync) — the only runtime difference from active.</td>
+</tr>
+<tr>
+<td><strong><code>maand job start</code></strong></td>
+<td>Skipped unless you target active allocations only.</td>
+</tr>
+</tbody>
+</table>
+<p>Inspect state:</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> allocations --<span class="hljs-built_in">jobs</span> api
+maand <span class="hljs-built_in">cat</span> deployments --<span class="hljs-built_in">jobs</span> api
+maand deploy --dry-run
+</code></pre>
+<p>After disable, <strong><code>maand deploy --dry-run</code></strong> should show <strong><code>stop</code></strong> on allocations that were running (rollout <code>disabled</code> in <strong><code>cat deployments</code></strong>). If build changed content or version while disabled, dry-run shows <strong><code>stop+promote</code></strong> or <strong><code>promote</code></strong> (<code>disabled_restart</code> in <strong><code>cat deployments</code></strong>) — deploy stages and promotes without starting the allocation.</p>
+<p><strong><code>cat deployments</code> rollout</strong> for disabled rows:</p>
+<table>
+<thead>
+<tr>
+<th>Rollout</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>disabled</code></td>
+<td>Stopped; hashes and versions match (promoted).</td>
+</tr>
+<tr>
+<td><code>disabled_restart</code></td>
+<td>Stopped; content or version changed since last promote — deploy updated the plan but did not restart.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="how-to-re-enable" tabindex="-1"><a class="observablehq-header-anchor" href="#how-to-re-enable">How to re-enable</a></h2>
+<ol>
+<li>Remove the job, allocation, or worker entry from <strong><code>disabled.json</code></strong> (or replace with <code>{}</code> / delete the file).</li>
+<li><strong><code>maand build</code></strong> — clears <code>disabled = 0</code> and marks the allocation for rollout on the next deploy.</li>
+<li><strong><code>maand deploy</code></strong> — runs the planned lifecycle (<strong><code>make start</code></strong>, <strong><code>restart</code></strong>, or <strong><code>reload</code></strong> per <strong><code>restart_policy</code></strong>, or <strong><code>job_control</code></strong>) on re-enabled workers.</li>
+</ol>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># disabled.json no longer lists api on 10.0.0.2</span>
+maand build
+maand deploy
+maand job status api --allocations 10.0.0.2   <span class="hljs-comment"># optional check</span>
+</code></pre>
+<p>Re-enable does <strong>not</strong> require a workspace content change. Hash and KV from before disable are reused.</p>
+<hr>
+<h2 id="disabled-vs-removed" tabindex="-1"><a class="observablehq-header-anchor" href="#disabled-vs-removed">Disabled vs removed</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Disabled</strong></th>
+<th><strong>Removed</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trigger</td>
+<td><code>disabled.json</code></td>
+<td>Drop worker from <strong><code>workers.json</code></strong> or delete <strong><code>workspace/jobs/&lt;job&gt;/</code></strong></td>
+</tr>
+<tr>
+<td>Catalog row</td>
+<td>Kept (<code>removed=0</code>)</td>
+<td>Kept until <strong><code>maand gc</code></strong> (<code>removed=1</code>)</td>
+</tr>
+<tr>
+<td>Deploy artifacts on worker</td>
+<td><strong>Kept</strong></td>
+<td><strong>Removed</strong> ( <strong><code>data/</code></strong> / <strong><code>logs/</code></strong> kept until GC)</td>
+</tr>
+<tr>
+<td>Hash row</td>
+<td><strong>Kept</strong></td>
+<td><strong>Deleted</strong> on deploy reconcile</td>
+</tr>
+<tr>
+<td>Job KV</td>
+<td><strong>Kept</strong></td>
+<td>Purged when no non-removed allocations remain</td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td>Maintenance, drain, pause</td>
+<td>Decommission job or worker</td>
+</tr>
+</tbody>
+</table>
+<p>Workflow for <strong>removal</strong>:</p>
+<pre data-language="bash"><code class="language-bash">maand build
+maand deploy
+maand gc
+</code></pre>
+<hr>
+<h2 id="operations-that-skip-disabled-allocations" tabindex="-1"><a class="observablehq-header-anchor" href="#operations-that-skip-disabled-allocations">Operations that skip disabled allocations</a></h2>
+<p>These target <strong>active</strong> allocations only (<code>removed=0</code>, <code>disabled=0</code>):</p>
+<ul>
+<li>Default deploy lifecycle (start / restart / reload) and per-job rsync</li>
+<li><strong><code>maand job_command</code></strong> (unless you use hooks that run at build/deploy catalog level)</li>
+<li><strong><code>maand health_check</code></strong> default job list (use <strong><code>--jobs</code></strong> explicitly if needed)</li>
+</ul>
+<p>These still see disabled rows where relevant:</p>
+<ul>
+<li><strong><code>maand cat allocations</code></strong>, <strong><code>maand cat deployments</code></strong> (use <strong><code>--active</code></strong> to filter)</li>
+<li><strong><code>maand cat kv --jobs &lt;job&gt;</code></strong> — includes namespaces for disabled-but-not-removed allocations</li>
+<li>Deploy <strong>hash refresh</strong> and <strong>promote</strong> for disabled jobs (catalog stays current)</li>
+</ul>
+<hr>
+<h2 id="examples" tabindex="-1"><a class="observablehq-header-anchor" href="#examples">Examples</a></h2>
+<h3 id="maintenance-window-on-one-worker" tabindex="-1"><a class="observablehq-header-anchor" href="#maintenance-window-on-one-worker">Maintenance window on one worker</a></h3>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 1. Drain</span>
+<span class="hljs-built_in">cat</span> &gt; workspace/disabled.json &lt;&lt;<span class="hljs-string">'EOF'</span>
+{ <span class="hljs-string">"workers"</span>: [<span class="hljs-string">"10.0.0.3"</span>] }
+EOF
+maand build &amp;&amp; maand deploy
+
+<span class="hljs-comment"># 2. Patch host (reboot, kernel, etc.) — see rolling-upgrade.md</span>
+
+<span class="hljs-comment"># 3. Re-enable</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">'{}'</span> &gt; workspace/disabled.json   <span class="hljs-comment"># or remove workers entry</span>
+maand build &amp;&amp; maand deploy
+</code></pre>
+<h3 id="pause-a-job-globally-keep-shipping-config" tabindex="-1"><a class="observablehq-header-anchor" href="#pause-a-job-globally-keep-shipping-config">Pause a job globally; keep shipping config</a></h3>
+<p>While <strong><code>api</code></strong> is disabled, you can still edit <strong><code>workspace/jobs/api/</code></strong>, run <strong><code>maand build</code></strong>, and <strong><code>maand deploy</code></strong>. Catalog hashes and versions update; workers stay stopped until you clear <strong><code>disabled.json</code></strong> and deploy again.</p>
+<h3 id="verify-disable-took-effect" tabindex="-1"><a class="observablehq-header-anchor" href="#verify-disable-took-effect">Verify disable took effect</a></h3>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> allocations --<span class="hljs-built_in">jobs</span> api
+<span class="hljs-comment"># disabled=1 on target rows</span>
+
+maand <span class="hljs-built_in">cat</span> deployments --<span class="hljs-built_in">jobs</span> api
+<span class="hljs-comment"># rollout=disabled or disabled_restart</span>
+
+maand deploy --dry-run
+<span class="hljs-comment"># re-enabled rows may show start; disabled rows omitted from active rollout</span>
+</code></pre>
+<hr>
+<h2 id="related" tabindex="-1"><a class="observablehq-header-anchor" href="#related">Related</a></h2>
+<ul>
+<li><a href="../start/concepts">concepts.md</a> — active vs inactive allocations</li>
+<li><a href="../reference/cli/deploy#removed-and-disabled-allocations">deploy.md</a> — reconcile behavior</li>
+<li><a href="../reference/cli/build">build.md</a> — <code>disabled.json</code> during build</li>
+<li><a href="./rolling-deploy">rolling-deploy</a> — rolling restarts and worker reboots</li>
+<li><a href="./debugging-deploy">debugging-deploy.md</a> — when disable/re-enable does not behave as expected</li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./rolling-deploy"><span>Rolling deploy</span></a><a rel="next" href="./debugging-deploy"><span>Debugging deploy</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

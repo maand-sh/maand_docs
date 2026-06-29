@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="generator" content="Observable Framework v1.13.0">
-<title>Maand</title>
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Maand documentation | Maand</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="preload" as="style" href="./_observablehq/theme-near-midnight.d49e655d.css">
+<link rel="preload" as="style" href="./_observablehq/theme-near-midnight.07766c04.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
-<link rel="stylesheet" type="text/css" href="./_observablehq/theme-near-midnight.d49e655d.css">
-<link rel="modulepreload" href="./_observablehq/client.c8b258ba.js">
-<link rel="modulepreload" href="./_observablehq/runtime.9393ab6d.js">
-<link rel="modulepreload" href="./_observablehq/stdlib.30061640.js">
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="./_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.318537f4.js">
 <link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
 <script type="module">
 
-import "./_observablehq/client.c8b258ba.js";
+import "./_observablehq/client.e3eccb51.js";
 
 </script>
 </head>
@@ -28,63 +28,201 @@ import "./_observablehq/client.c8b258ba.js";
     <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
     <li class="observablehq-link observablehq-link-active"><a href="./">Maand</a></li>
   </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("./_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
   <section>
-    <summary>Guide</summary>
+    <summary>Start</summary>
     <ol>
-    <li class="observablehq-link"><a href="./maand_init">1. Maand init</a></li>
-    <li class="observablehq-link"><a href="./worker_setup">2. Worker Setup</a></li>
-    <li class="observablehq-link"><a href="./run_command">3. Maand run_command</a></li>
-    <li class="observablehq-link"><a href="./build">4. Maand build</a></li>
-    <li class="observablehq-link"><a href="./deploy">5. Maand deploy</a></li>
-    <li class="observablehq-link"><a href="./assign_labels">6. Assign Labels</a></li>
-    <li class="observablehq-link"><a href="./job_setup">7. Job Setup</a></li>
-    <li class="observablehq-link"><a href="./job_control">8. Job Control</a></li>
-    <li class="observablehq-link"><a href="./add_health_check">9. Health Check</a></li>
-    <li class="observablehq-link"><a href="./setup_prometheus">10. Prometheus</a></li>
+    <li class="observablehq-link"><a href="./start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="./start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="./start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="./start/comparison-orchestrators">Comparison</a></li>
     </ol>
   </section>
   <section>
-    <summary>Insides</summary>
+    <summary>Guides</summary>
     <ol>
-    <li class="observablehq-link"><a href="./worker">Worker</a></li>
-    <li class="observablehq-link"><a href="./bucket">Bucket</a></li>
-    <li class="observablehq-link"><a href="./labels">Labels</a></li>
-    <li class="observablehq-link"><a href="./job">Job</a></li>
-    <li class="observablehq-link"><a href="./allocations">Allocations</a></li>
-    <li class="observablehq-link"><a href="./job_command">Job Command</a></li>
-    <li class="observablehq-link"><a href="./health_check">Health Check</a></li>
+    <li class="observablehq-link"><a href="./guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="./guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="./guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="./guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="./guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="./guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="./guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./reference/configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="./reference/manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="./reference/resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="./reference/deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="./reference/templates">Templates</a></li>
+    <li class="observablehq-link"><a href="./reference/certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="./reference/kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="./reference/kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="./reference/kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="./reference/job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="./reference/observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="./reference/cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="./reference/cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="./reference/cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="./reference/cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="./reference/cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="./reference/cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="./reference/cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="./reference/cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="./reference/cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="./reference/cli/logs">CLI logs</a></li>
     </ol>
   </section>
 </nav>
-<script>{const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#how-this-documentation-is-organized">How this documentation is organized</a></li>
+<li class="observablehq-secondary-link"><a href="#typical-workflow">Typical workflow</a></li>
+<li class="observablehq-secondary-link"><a href="#bucket-layout">Bucket layout</a></li>
+<li class="observablehq-secondary-link"><a href="#reader-paths">Reader paths</a></li>
+<li class="observablehq-secondary-link"><a href="#inspect-state">Inspect state</a></li>
+<li class="observablehq-secondary-link"><a href="#local-integration-tests">Local integration tests</a></li>
+</ol>
 </nav>
 </aside>
 <main id="observablehq-main" class="observablehq">
-<h1 id="maand" tabindex="-1"><a class="observablehq-header-anchor" href="#maand">Maand</a></h1>
-<p>Maand is a lightweight, <strong>workload orchestrator</strong>, broker-less, provisioner, file based, ensuring simple and efficient task management.</p>
+<h1 id="maand-documentation" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-documentation">Maand documentation</a></h1>
+<p>Maand is an <strong>agentless</strong> workload orchestrator. State lives in a local <strong>bucket</strong> (<code>maand.db</code>, KV, secrets, staged files). Workers are reached over <strong>SSH</strong> from the <strong>CLI host</strong>; job commands run on the host with <strong>python3</strong> and <strong>bun</strong>.</p>
 <hr>
-<h3 id="key-concepts" tabindex="-1"><a class="observablehq-header-anchor" href="#key-concepts"><strong>Key Concepts</strong></a></h3>
-<ul>
-<li><strong>Worker</strong>: A Linux machine identified by its <strong>IP address</strong> and <strong>labels</strong>, defined in <code>workers.json</code>. Maand communicates via SSH.</li>
-<li><strong>Job</strong>: A directory with a <code>manifest.json</code> (configuration) and <code>Makefile</code> (actions like <code>start</code>, <code>stop</code>). Supports binaries, shell script, docker or docker compose, and systemd tasks.</li>
-<li><strong>Labels and Selectors</strong>: linking jobs and agents, enabling workload assignment and static service discovery.</li>
-<li><strong>Bucket</strong>: Logical grouping of related jobs for better organization and control.</li>
-</ul>
+<h2 id="how-this-documentation-is-organized" tabindex="-1"><a class="observablehq-header-anchor" href="#how-this-documentation-is-organized">How this documentation is organized</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Purpose</th>
+<th>Start here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Start</strong></td>
+<td>Mental model and first deploy</td>
+<td><a href="./start/">start/README.md</a></td>
+</tr>
+<tr>
+<td><strong>Guides</strong></td>
+<td>Task-oriented how-tos</td>
+<td><a href="./guides/">guides/README.md</a></td>
+</tr>
+<tr>
+<td><strong>Reference</strong></td>
+<td>Schemas, CLI, KV, configuration</td>
+<td><a href="./reference/">reference/README.md</a></td>
+</tr>
+</tbody>
+</table>
+<p>Each topic has <strong>one canonical page</strong>. Other files summarize and link — they do not repeat full schemas.</p>
 <hr>
-<h3 id="highlights" tabindex="-1"><a class="observablehq-header-anchor" href="#highlights"><strong>Highlights</strong></a></h3>
-<ul>
-<li><strong>Broker-less</strong>: No installations on target machines; uses SSH, rsync and make.</li>
-<li><strong>Versatile</strong>: Handles any kind of workloads (binaries, Docker, docker compose, podmand, and systemd services).</li>
-<li><strong>Static Service Discovery</strong>: Maps labels to IPs for dynamic yet consistent configurations.</li>
-<li><strong>Simple Setup</strong>: Lightweight, easy to configure, and highly flexible.</li>
-</ul>
+<h2 id="typical-workflow" tabindex="-1"><a class="observablehq-header-anchor" href="#typical-workflow">Typical workflow</a></h2>
+<pre data-language="text"><code class="language-text">maand init → edit workspace → maand build → maand deploy → health_check / job ops → gc
+</code></pre>
+<hr>
+<h2 id="bucket-layout" tabindex="-1"><a class="observablehq-header-anchor" href="#bucket-layout">Bucket layout</a></h2>
+<pre data-language="text"><code class="language-text">./                          # bucket root (run all maand commands here)
+├── maand.conf              # SSH, certs, job_config_selector, log_format
+├── data/maand.db
+├── workspace/
+│   ├── workers.json
+│   ├── disabled.json       # optional
+│   ├── bucket.conf
+│   ├── bucket.jobs.conf    # optional; or bucket.jobs.&lt;env&gt;.conf
+│   └── jobs/&lt;job&gt;/
+│       ├── manifest.json
+│       ├── Makefile        # or Makefile.tpl
+│       ├── _modules/
+│       ├── _prometheus/    # optional
+│       └── *.tpl
+├── secrets/
+├── tmp/
+└── logs/                   # structured command logs; logs/runs/&lt;run_id&gt;/
+</code></pre>
+<hr>
+<h2 id="reader-paths" tabindex="-1"><a class="observablehq-header-anchor" href="#reader-paths">Reader paths</a></h2>
+<table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First deploy</td>
+<td><a href="./start/quickstart">quickstart</a> → <a href="./start/concepts">concepts</a></td>
+</tr>
+<tr>
+<td>Memory / CPU / environments</td>
+<td><a href="./reference/resources-and-placement">resources-and-placement</a> → <a href="./reference/configuration">configuration</a></td>
+</tr>
+<tr>
+<td>Rolling cluster upgrade</td>
+<td><a href="./guides/rolling-deploy">rolling-deploy</a> → <a href="./reference/manifest">manifest</a></td>
+</tr>
+<tr>
+<td>Multi-job deploy order</td>
+<td><a href="./reference/deployment-sequence">deployment-sequence</a> → <a href="./reference/cli/deploy">deploy</a></td>
+</tr>
+<tr>
+<td>Deploy failed or skipped</td>
+<td><a href="./guides/debugging-deploy">debugging-deploy</a> → <a href="./reference/observability/logging">logging</a></td>
+</tr>
+<tr>
+<td>Push config without restart</td>
+<td><a href="./reference/cli/deploy#applying-changes-on-workers">deploy — applying changes</a> — <strong><code>restart_policy: reload</code></strong>, <strong><code>restart_globs</code></strong>, <strong><code>--sync-only</code></strong></td>
+</tr>
+<tr>
+<td>Disable / drain</td>
+<td><a href="./guides/disable-and-drain">disable-and-drain</a></td>
+</tr>
+<tr>
+<td>Job hooks (Python/Bun)</td>
+<td><a href="./guides/job-commands-tutorial">job-commands-tutorial</a> → <a href="./reference/cli/job-command">job-command</a></td>
+</tr>
+<tr>
+<td>Prometheus integration</td>
+<td><a href="./guides/prometheus">prometheus</a></td>
+</tr>
+<tr>
+<td>Compare to other tools</td>
+<td><a href="./start/comparison-orchestrators">comparison-orchestrators</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="inspect-state" tabindex="-1"><a class="observablehq-header-anchor" href="#inspect-state">Inspect state</a></h2>
+<pre data-language="bash"><code class="language-bash">maand info
+maand <span class="hljs-built_in">cat</span> workers
+maand <span class="hljs-built_in">cat</span> <span class="hljs-built_in">jobs</span>
+maand <span class="hljs-built_in">cat</span> allocations
+maand <span class="hljs-built_in">cat</span> deployments
+maand <span class="hljs-built_in">cat</span> certs
+maand <span class="hljs-built_in">cat</span> kv get maand/job/&lt;job&gt; version
+maand logs show --job &lt;job&gt; --format human
+</code></pre>
+<hr>
+<h2 id="local-integration-tests" tabindex="-1"><a class="observablehq-header-anchor" href="#local-integration-tests">Local integration tests</a></h2>
+<p>See the main maand repository <code>assets/README.md</code>, then:</p>
+<pre data-language="bash"><code class="language-bash">go <span class="hljs-built_in">test</span> -tags=integration ./tests/integration/... -v -<span class="hljs-built_in">timeout</span> 25m
+</code></pre>
+<p>Not run in CI.</p>
 </main>
 <footer id="observablehq-footer">
-<nav><a rel="next" href="./maand_init"><span>1. Maand init</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-07-16T12:55:53">Jul 16, 2025</a>.</div>
+<nav><a rel="next" href="./start/overview"><span>Overview</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
 </footer>
 </div>
 </body>

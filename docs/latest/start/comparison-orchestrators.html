@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>maand vs Kubernetes vs Nomad | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section class="observablehq-section-active">
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./overview">Overview</a></li>
+    <li class="observablehq-link"><a href="./concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="./quickstart">Quickstart</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../reference/configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../reference/manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../reference/resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../reference/deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../reference/templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../reference/certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../reference/job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../reference/observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#tl-dr">TL;DR</a></li>
+<li class="observablehq-secondary-link"><a href="#orchestration-model">Orchestration model</a></li>
+<li class="observablehq-secondary-link"><a href="#deployment-ordering-and-rolling-restarts">Deployment ordering and rolling restarts</a></li>
+<li class="observablehq-secondary-link"><a href="#bootstrap-and-initialization">Bootstrap and initialization</a></li>
+<li class="observablehq-secondary-link"><a href="#configuration-and-templating">Configuration and templating</a></li>
+<li class="observablehq-secondary-link"><a href="#cluster-visibility-and-operations">Cluster visibility and operations</a></li>
+<li class="observablehq-secondary-link"><a href="#portability-and-multi-cluster">Portability and multi-cluster</a></li>
+<li class="observablehq-secondary-link"><a href="#scaling">Scaling</a></li>
+<li class="observablehq-secondary-link"><a href="#summary-when-to-choose-what">Summary: when to choose what</a></li>
+<li class="observablehq-secondary-link"><a href="#feature-matrix">Feature matrix</a></li>
+<li class="observablehq-secondary-link"><a href="#related">Related</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="maand-vs-kubernetes-vs-nomad" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-vs-kubernetes-vs-nomad">maand vs Kubernetes vs Nomad</a></h1>
+<p>A side-by-side comparison of orchestration models and where maand fits.</p>
+<hr>
+<h2 id="tl-dr" tabindex="-1"><a class="observablehq-header-anchor" href="#tl-dr">TL;DR</a></h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>maand</th>
+<th>Kubernetes</th>
+<th>Nomad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Model</strong></td>
+<td>Worker pool + job batching</td>
+<td>Pod/container cluster</td>
+<td>Task/job scheduler</td>
+</tr>
+<tr>
+<td><strong>Scale</strong></td>
+<td>Single cluster, tens of workers</td>
+<td>Multi-cluster, thousands+ of nodes</td>
+<td>Multi-cloud/DC, 1000s of nodes</td>
+</tr>
+<tr>
+<td><strong>Deployment order</strong></td>
+<td>Built-in (<code>deploy_order</code>), per-deploy override</td>
+<td>StatefulSet ordinals, not restart order</td>
+<td>External orchestration required</td>
+</tr>
+<tr>
+<td><strong>State management</strong></td>
+<td>Integrated KV store, per-job bootstrap commands</td>
+<td>External etcd; no native bootstrap</td>
+<td>Consul KV; external orchestration</td>
+</tr>
+<tr>
+<td><strong>Configuration</strong></td>
+<td>Go templates + KV, per-worker SSH</td>
+<td>ConfigMaps, volumes, declarative</td>
+<td>HCL + Consul templates</td>
+</tr>
+<tr>
+<td><strong>Bootstrap complexity</strong></td>
+<td>Simple: <code>command_node_up</code> per node</td>
+<td>Operators / init containers</td>
+<td>External (e.g., Consul leader election)</td>
+</tr>
+<tr>
+<td><strong>Typical workload size</strong></td>
+<td>10–100 workers; 1–10 services per worker</td>
+<td>100s–1000s of nodes; 100s of services</td>
+<td>1000s of workers; 100s–1000s of tasks</td>
+</tr>
+<tr>
+<td><strong>Operations model</strong></td>
+<td>CLI-driven deploy; visibility-first</td>
+<td>Declarative desired state</td>
+<td>Job submission + status</td>
+</tr>
+<tr>
+<td><strong>Best for</strong></td>
+<td>Stateful clusters (Vault, Cassandra, databases) on managed hardware</td>
+<td>Cloud-native, stateless, multi-tenant workloads</td>
+<td>Heterogeneous workloads, multi-region batch jobs</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="orchestration-model" tabindex="-1"><a class="observablehq-header-anchor" href="#orchestration-model">Orchestration model</a></h2>
+<h3 id="maand" tabindex="-1"><a class="observablehq-header-anchor" href="#maand">maand</a></h3>
+<ul>
+<li><strong>Worker pool</strong>: fixed set of named hosts (<code>workers.json</code>) with labels and capacity.</li>
+<li><strong>Job placement</strong>: select by label match (e.g., <code>["cassandra", "vault"]</code>).</li>
+<li><strong>Deployment</strong>: explicit CLI commands (<code>maand deploy</code>, <code>maand job start/stop</code>). Executes <strong>rollout scripts</strong> (Makefile + job commands) on each worker's CLI host in configurable batches.</li>
+<li><strong>Statefulness</strong>: inherent. Each worker is a distinct host running persistent services. SSH is the transport; data persists on disk.</li>
+</ul>
+<h3 id="kubernetes" tabindex="-1"><a class="observablehq-header-anchor" href="#kubernetes">Kubernetes</a></h3>
+<ul>
+<li><strong>Cluster abstraction</strong>: nodes are ephemeral; workloads are portable pods.</li>
+<li><strong>Placement</strong>: selectors, taints/tolerations, affinity rules match pods to nodes dynamically.</li>
+<li><strong>Deployment</strong>: declarative manifests (Deployment, StatefulSet, DaemonSet). Desired state → controllers reconcile.</li>
+<li><strong>Statefulness</strong>: explicit via StatefulSet (ordinal identity), PersistentVolumes, and operators.</li>
+</ul>
+<h3 id="nomad" tabindex="-1"><a class="observablehq-header-anchor" href="#nomad">Nomad</a></h3>
+<ul>
+<li><strong>Task model</strong>: jobs (collections of task groups) submitted to a pool of heterogeneous nodes.</li>
+<li><strong>Placement</strong>: constraints (CPU, memory, tags, zone). Bin-packing scheduler.</li>
+<li><strong>Deployment</strong>: job submission with update stragegy (rolling, canary, blue/green). Server-side state management.</li>
+<li><strong>Statefulness</strong>: possible but not the primary model; more suited to batch and stateless workloads.</li>
+</ul>
+<hr>
+<h2 id="deployment-ordering-and-rolling-restarts" tabindex="-1"><a class="observablehq-header-anchor" href="#deployment-ordering-and-rolling-restarts">Deployment ordering and rolling restarts</a></h2>
+<h3 id="maand-first-class-feature" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-first-class-feature">maand — <strong>first-class feature</strong></a></h3>
+<pre><code>deploy_order: ["10.0.0.1", "10.0.0.3", "10.0.0.2"]
+deploy_parallel_count: 1  (or any N)
+</code></pre>
+<ul>
+<li>Each restart/start batch respects <code>deploy_order</code>.</li>
+<li>Override per-deploy in <code>pre_deploy</code> via <code>put_deploy_order(...)</code> — e.g., leader-last for Raft clusters.</li>
+<li>Example: Vault rolling restart → followers first, active leader last (≤1 leadership transfer).</li>
+</ul>
+<h3 id="kubernetes-no-native-ordering" tabindex="-1"><a class="observablehq-header-anchor" href="#kubernetes-no-native-ordering">Kubernetes — <strong>no native ordering</strong></a></h3>
+<ul>
+<li>StatefulSet ordinals (pod-0, pod-1, pod-2) exist for <strong>identity</strong>, not restart order.</li>
+<li>Default rolling update: parallel subject to <code>maxUnavailable</code>.</li>
+<li><strong>Workaround</strong>: custom controller/operator (e.g., Vault Operator, etcd-operator) enforces restart order via webhooks or explicit orchestration.</li>
+</ul>
+<h3 id="nomad-no-native-per-allocation-ordering" tabindex="-1"><a class="observablehq-header-anchor" href="#nomad-no-native-per-allocation-ordering">Nomad — <strong>no native per-allocation ordering</strong></a></h3>
+<ul>
+<li>Update strategy: <code>canary</code>, <code>blue_green</code>, rolling with <code>max_parallel</code> — but no "node A, then B, then C" control.</li>
+<li><strong>Workaround</strong>: external orchestration via Nomad API + a coordinating script (semaphores, leader election).</li>
+</ul>
+<hr>
+<h2 id="bootstrap-and-initialization" tabindex="-1"><a class="observablehq-header-anchor" href="#bootstrap-and-initialization">Bootstrap and initialization</a></h2>
+<h3 id="maand-integrated" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-integrated">maand — <strong>integrated</strong></a></h3>
+<ul>
+<li>Job commands (<code>post_build</code>, <code>pre_deploy</code>, <code>post_deploy</code>, <code>after_allocation_started</code>).</li>
+<li>Cluster state tracked in <strong>embedded SQLite KV store</strong> with scoped namespaces (<code>maand/job/&lt;job&gt;</code>, <code>vars/job/&lt;job&gt;</code>, <code>secrets/job/&lt;job&gt;</code>).</li>
+<li>Example: Vault bootstrap<pre data-language="python"><code class="language-python"><span class="hljs-comment"># leader initializes cluster, stores unseal keys in KV</span>
+<span class="hljs-keyword">if</span> is_leader: vault_exec(<span class="hljs-string">"operator init"</span>)
+put_job_secret(<span class="hljs-string">"unseal_key_1"</span>, key)
+
+<span class="hljs-comment"># followers read keys and unseal</span>
+unseal_node(worker_ip)
+</code></pre>
+— Single deploy orchestrates the entire cluster.</li>
+</ul>
+<h3 id="kubernetes-external" tabindex="-1"><a class="observablehq-header-anchor" href="#kubernetes-external">Kubernetes — <strong>external</strong></a></h3>
+<ul>
+<li>No native bootstrap orchestration.</li>
+<li>Patterns:
+<ul>
+<li><strong>Init containers</strong>: sequential setup (download configs, check dependencies).</li>
+<li><strong>Job resources</strong>: run one-off initialization, then deploy apps.</li>
+<li><strong>Operators</strong>: custom controllers watch CRDs and manage complex workflows (Vault Operator, Postgres Operator).</li>
+<li><strong>Helm hooks</strong>: <code>pre-install</code>, <code>post-install</code> — limited control.</li>
+</ul>
+</li>
+<li>State <strong>external</strong>: leader election via etcd locks, shared KV → etcd, Consul, or a database.</li>
+</ul>
+<h3 id="nomad-external" tabindex="-1"><a class="observablehq-header-anchor" href="#nomad-external">Nomad — <strong>external</strong></a></h3>
+<ul>
+<li>Similar to Kubernetes: no native bootstrap.</li>
+<li>Patterns:
+<ul>
+<li><strong>Task lifecycle hooks</strong>: <code>prestart</code>, <code>poststart</code> (limited).</li>
+<li><strong>Consul watches</strong>: scripts triggered by Consul state changes.</li>
+<li><strong>External orchestrator</strong>: separate tool (custom script, Terraform, scheduler) orchestrates initialization.</li>
+</ul>
+</li>
+<li>State: Consul KV for elections, shared state.</li>
+</ul>
+<hr>
+<h2 id="configuration-and-templating" tabindex="-1"><a class="observablehq-header-anchor" href="#configuration-and-templating">Configuration and templating</a></h2>
+<h3 id="maand-1" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-1">maand</a></h3>
+<ul>
+<li><strong>Go templates</strong> rendered at deploy time → per-worker <code>.tpl</code> files.</li>
+<li>Access to job KV (global and per-node), job variables, worker metadata.</li>
+<li>Example:<pre data-language="hcl"><code class="language-hcl"># cassandra.yaml.tpl
+listen_address: {{ .WorkerIP }}
+seeds: "{{ get "maand/worker" "cassandra_0" }}"
+</code></pre>
+</li>
+<li><strong>Per-worker customization</strong>: each node sees its own metadata (<code>WorkerIP</code>, <code>ALLOCATION_IP</code>).</li>
+<li>Simple, deterministic, no runtime reconfiguration.</li>
+</ul>
+<h3 id="kubernetes-1" tabindex="-1"><a class="observablehq-header-anchor" href="#kubernetes-1">Kubernetes</a></h3>
+<ul>
+<li><strong>ConfigMaps and Secrets</strong>: store config, mounted as volumes.</li>
+<li><strong>Helm</strong>: template values into manifests (Go templates or Kustomize).</li>
+<li><strong>Environment variables</strong>: from ConfigMaps, Secrets, downward API.</li>
+<li><strong>Re-render on change</strong>: requires redeployment or in-pod reconciliation.</li>
+<li>Stateless by design: config changes trigger new pods.</li>
+</ul>
+<h3 id="nomad-1" tabindex="-1"><a class="observablehq-header-anchor" href="#nomad-1">Nomad</a></h3>
+<ul>
+<li><strong>HCL templates</strong> in job specs.</li>
+<li><strong>Consul template</strong>: renders configs from Consul KV at runtime → daemon-less automatic updates.</li>
+<li>More dynamic than maand; less structured than K8s.</li>
+</ul>
+<hr>
+<h2 id="cluster-visibility-and-operations" tabindex="-1"><a class="observablehq-header-anchor" href="#cluster-visibility-and-operations">Cluster visibility and operations</a></h2>
+<h3 id="maand-2" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-2">maand</a></h3>
+<ul>
+<li><strong>CLI-first</strong>: <code>maand cat</code> for inspection (jobs, workers, allocations, KV, deployments, certs, health).</li>
+<li><strong>Structured logs</strong>: <code>maand logs show</code>, <code>maand run_command</code> for SSH batch execution.</li>
+<li><strong>Single source of truth</strong>: SQLite catalog (workers, jobs, allocations, versions, KV).</li>
+<li><strong>Rollout transparency</strong>: <code>maand deploy --dry-run</code> shows exactly what will change.</li>
+<li><strong>Operations model</strong>: explicit, imperative. Deploy is a CLI invocation; auditable and scriptable.</li>
+</ul>
+<h3 id="kubernetes-2" tabindex="-1"><a class="observablehq-header-anchor" href="#kubernetes-2">Kubernetes</a></h3>
+<ul>
+<li><strong><code>kubectl</code> imperative</strong> or <strong>GitOps declarative</strong> (ArgoCD, Flux).</li>
+<li><strong>Eventual consistency</strong>: desired state → controllers reconcile.</li>
+<li><strong>Debugging</strong>: <code>kubectl logs</code>, <code>kubectl describe pod</code>, <code>kubectl exec</code>.</li>
+<li><strong>Complexity</strong>: learning curve; many abstractions (Deployments, Services, Ingress, RBAC, etc.).</li>
+<li><strong>Observability</strong>: Prometheus, logging sidecars; no single CLI for everything.</li>
+</ul>
+<h3 id="nomad-2" tabindex="-1"><a class="observablehq-header-anchor" href="#nomad-2">Nomad</a></h3>
+<ul>
+<li><strong>Job submission</strong>: <code>nomad job run</code> (imperative).</li>
+<li><strong>Status</strong>: <code>nomad status</code>, <code>nomad logs</code>, <code>nomad alloc logs</code>.</li>
+<li><strong>Simpler</strong> than K8s but less structured than maand for stateful workloads.</li>
+</ul>
+<hr>
+<h2 id="portability-and-multi-cluster" tabindex="-1"><a class="observablehq-header-anchor" href="#portability-and-multi-cluster">Portability and multi-cluster</a></h2>
+<h3 id="maand-3" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-3">maand</a></h3>
+<ul>
+<li><strong>Single-cluster only</strong>: one <code>maand.db</code> and one worker pool per invocation.</li>
+<li><strong>Portable clusters</strong>: can restart maand on a different CLI host pointing to the same workers (KV and catalog on disk/workers).</li>
+<li><strong>Not designed for</strong>: multi-DC failover, multi-region active/active.</li>
+</ul>
+<h3 id="kubernetes-3" tabindex="-1"><a class="observablehq-header-anchor" href="#kubernetes-3">Kubernetes</a></h3>
+<ul>
+<li><strong>Multi-cluster native</strong>: federation, GitOps (ArgoCD, Flux) across clusters.</li>
+<li><strong>Node portability</strong>: workload can move across nodes dynamically.</li>
+<li><strong>Cloud portability</strong>: K8s API is standard across cloud providers.</li>
+<li><strong>Default choice</strong> for public cloud, SaaS, and hybrid deployments.</li>
+</ul>
+<h3 id="nomad-3" tabindex="-1"><a class="observablehq-header-anchor" href="#nomad-3">Nomad</a></h3>
+<ul>
+<li><strong>Multi-region / multi-DC</strong>: designed for it. Federated servers, gossip pool, automatic failover.</li>
+<li><strong>Heterogeneous hardware</strong>: can schedule on bare-metal, cloud, containers.</li>
+<li><strong>Better for</strong>: enterprises with on-prem + cloud, edge deployments.</li>
+</ul>
+<hr>
+<h2 id="scaling" tabindex="-1"><a class="observablehq-header-anchor" href="#scaling">Scaling</a></h2>
+<h3 id="maand-4" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-4">maand</a></h3>
+<ul>
+<li><strong>Typical</strong>: 10–100 workers, 1–10 services per worker.</li>
+<li><strong>Scaling model</strong>: add workers to <code>workers.json</code>, rebuild, redeploy affected jobs.</li>
+<li><strong>Overhead</strong>: SQLite catalog, per-worker SSH — starts showing strain above 100s of nodes.</li>
+<li><strong>Best for</strong>: manageable clusters (small to mid-size deployments, on-prem or co-lo).</li>
+</ul>
+<h3 id="kubernetes-4" tabindex="-1"><a class="observablehq-header-anchor" href="#kubernetes-4">Kubernetes</a></h3>
+<ul>
+<li><strong>Typical</strong>: 100s–1000s+ of nodes, 100s of services.</li>
+<li><strong>Autoscaling</strong>: HPA (horizontal), VPA (vertical), cluster autoscaling.</li>
+<li><strong>Efficiency</strong>: bin-packing, multi-tenant isolation.</li>
+<li><strong>Overhead</strong>: etcd, apiserver, kubelet (lighter per-node than maand's SSH model).</li>
+</ul>
+<h3 id="nomad-4" tabindex="-1"><a class="observablehq-header-anchor" href="#nomad-4">Nomad</a></h3>
+<ul>
+<li><strong>Typical</strong>: 1000s of nodes.</li>
+<li><strong>Scaling</strong>: built-in federation, gossip, raft consensus.</li>
+<li><strong>Heterogeneous workloads</strong>: efficient scheduling of diverse task types.</li>
+</ul>
+<hr>
+<h2 id="summary-when-to-choose-what" tabindex="-1"><a class="observablehq-header-anchor" href="#summary-when-to-choose-what">Summary: when to choose what</a></h2>
+<h3 id="choose-maand-if" tabindex="-1"><a class="observablehq-header-anchor" href="#choose-maand-if">Choose <strong>maand</strong> if:</a></h3>
+<ul>
+<li>✅ Small-to-mid cluster (10–100 workers), stable topology.</li>
+<li>✅ Stateful workloads (Vault, Cassandra, databases, distributed systems).</li>
+<li>✅ Need <strong>deployment ordering</strong> and <strong>integrated bootstrap</strong> (e.g., leader-last restarts, cluster initialization in one deploy).</li>
+<li>✅ Prefer <strong>CLI-driven</strong>, explicit operations with full visibility.</li>
+<li>✅ Single-cluster; no multi-DC failover needs.</li>
+<li>✅ Managed/co-located hardware (not cloud auto-scaling).</li>
+</ul>
+<h3 id="choose-kubernetes-if" tabindex="-1"><a class="observablehq-header-anchor" href="#choose-kubernetes-if">Choose <strong>Kubernetes</strong> if:</a></h3>
+<ul>
+<li>✅ Cloud-native, multi-tenant, stateless workloads.</li>
+<li>✅ Need multi-cluster, GitOps, infrastructure-as-code.</li>
+<li>✅ Public cloud (AWS, GCP, Azure).</li>
+<li>✅ Autoscaling, dynamic node elasticity.</li>
+<li>✅ Standardized on containers and declarative state.</li>
+<li>✅ Large teams, ecosystem/community support (Operators, Helm, ArgoCD).</li>
+</ul>
+<h3 id="choose-nomad-if" tabindex="-1"><a class="observablehq-header-anchor" href="#choose-nomad-if">Choose <strong>Nomad</strong> if:</a></h3>
+<ul>
+<li>✅ Heterogeneous workloads (containers, VMs, batch jobs, binaries).</li>
+<li>✅ Multi-region / multi-DC with federation.</li>
+<li>✅ On-prem + cloud hybrid.</li>
+<li>✅ Workloads beyond containers (legacy binaries, GPUs, edge).</li>
+<li>✅ Smaller learning curve than K8s; simpler than maand for state management.</li>
+</ul>
+<hr>
+<h2 id="feature-matrix" tabindex="-1"><a class="observablehq-header-anchor" href="#feature-matrix">Feature matrix</a></h2>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>maand</th>
+<th>Kubernetes</th>
+<th>Nomad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bootstrap orchestration</strong></td>
+<td>✅ Integrated</td>
+<td>⚠️ Requires operators</td>
+<td>⚠️ External tooling</td>
+</tr>
+<tr>
+<td><strong>Deployment ordering</strong></td>
+<td>✅ Built-in</td>
+<td>❌ No</td>
+<td>❌ External</td>
+</tr>
+<tr>
+<td><strong>CLI visibility</strong></td>
+<td>✅ Single source</td>
+<td>⚠️ Multiple tools</td>
+<td>⚠️ Multiple tools</td>
+</tr>
+<tr>
+<td><strong>Stateful workloads</strong></td>
+<td>✅ Native</td>
+<td>⚠️ Operators + complexity</td>
+<td>⚠️ Not primary model</td>
+</tr>
+<tr>
+<td><strong>Multi-cluster</strong></td>
+<td>❌ No</td>
+<td>✅ Yes</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td><strong>Autoscaling</strong></td>
+<td>❌ Manual</td>
+<td>✅ Yes</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td><strong>Multi-DC failover</strong></td>
+<td>❌ No</td>
+<td>⚠️ Complex</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td><strong>Learning curve</strong></td>
+<td>✅ Shallow</td>
+<td>❌ Steep</td>
+<td>⚠️ Medium</td>
+</tr>
+<tr>
+<td><strong>Heterogeneous workloads</strong></td>
+<td>⚠️ Limited</td>
+<td>⚠️ Container-focused</td>
+<td>✅ Excellent</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="related" tabindex="-1"><a class="observablehq-header-anchor" href="#related">Related</a></h2>
+<ul>
+<li><a href="./concepts">start/concepts.md</a> — maand's core model (workers, jobs, allocations)</li>
+<li><a href="../guides/job-commands-tutorial">guides/job-commands-tutorial.md</a> — bootstrap patterns in maand</li>
+<li><a href="../reference/deployment-sequence">deployment-sequence.md</a> — maand's deployment ordering</li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./quickstart"><span>Quickstart</span></a><a rel="next" href="../guides/day-2-ops"><span>Day-2 operations</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

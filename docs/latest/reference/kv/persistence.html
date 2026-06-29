@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>KV persistence and access control | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="./">KV overview</a></li>
+    <li class="observablehq-link"><a href="./namespaces">KV namespaces</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="../cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="../cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="../cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="../cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="../cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="../cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="../cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="../cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="../cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="../cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#namespace-overview">Namespace overview</a></li>
+<li class="observablehq-secondary-link"><a href="#who-can-read-which-namespaces">Who can read which namespaces</a></li>
+<li class="observablehq-secondary-link"><a href="#persistence-timing">Persistence timing</a></li>
+<li class="observablehq-secondary-link"><a href="#version-history">Version history</a></li>
+<li class="observablehq-secondary-link"><a href="#related">Related</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="kv-persistence-and-access-control" tabindex="-1"><a class="observablehq-header-anchor" href="#kv-persistence-and-access-control">KV persistence and access control</a></h1>
+<p>When KV changes are written to <strong><code>maand.db</code></strong>, who can read/write which namespaces, and how purge/GC works.</p>
+<p><strong>Key reference and examples:</strong> <a href="./namespaces">namespaces.md</a> · <strong>Index:</strong> <a href="./">README.md</a></p>
+<p>Inspect:</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv
+maand <span class="hljs-built_in">cat</span> kv --<span class="hljs-built_in">jobs</span> api --active
+maand <span class="hljs-built_in">cat</span> kv get --reveal secrets/job/api db_password
+</code></pre>
+<hr>
+<h2 id="namespace-overview" tabindex="-1"><a class="observablehq-header-anchor" href="#namespace-overview">Namespace overview</a></h2>
+<table>
+<thead>
+<tr>
+<th>Namespace</th>
+<th>Written by</th>
+<th>Survives rebuild?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maand/bucket</code></td>
+<td>build</td>
+<td>yes (synced)</td>
+<td>Global: <code>bucket_id</code>, <code>jobs</code>, <code>activejobs</code>, port names</td>
+</tr>
+<tr>
+<td><code>maand/worker/&lt;ip&gt;</code></td>
+<td>build</td>
+<td>yes</td>
+<td>Worker metadata, labels, peers</td>
+</tr>
+<tr>
+<td><code>maand/worker/&lt;ip&gt;/tags/&lt;key&gt;</code></td>
+<td>build</td>
+<td>yes</td>
+<td>From <code>workers.json</code> tags</td>
+</tr>
+<tr>
+<td><code>maand/job/&lt;job&gt;</code></td>
+<td>build</td>
+<td>yes (when job active)</td>
+<td>Job metadata, <code>version</code>, <code>deploy_order</code>, workers</td>
+</tr>
+<tr>
+<td><code>maand/job/&lt;job&gt;/worker/&lt;ip&gt;</code></td>
+<td>build + deploy</td>
+<td>yes (when alloc active)</td>
+<td>Certs, peers, version</td>
+</tr>
+<tr>
+<td><code>vars/bucket</code></td>
+<td>build</td>
+<td>yes</td>
+<td>From <code>bucket.conf</code></td>
+</tr>
+<tr>
+<td><code>vars/bucket/job/&lt;job&gt;</code></td>
+<td>build</td>
+<td>yes (when job active)</td>
+<td>From <code>bucket.jobs*.conf</code></td>
+</tr>
+<tr>
+<td><code>vars/job/&lt;job&gt;</code></td>
+<td>build + job commands</td>
+<td><strong>yes</strong></td>
+<td>App config; not wiped on rebuild</td>
+</tr>
+<tr>
+<td><code>secrets/job/&lt;job&gt;</code></td>
+<td>job commands</td>
+<td><strong>yes</strong></td>
+<td>AES-256-GCM encrypted</td>
+</tr>
+<tr>
+<td><code>maand/prometheus</code></td>
+<td>build</td>
+<td>yes (synced)</td>
+<td><strong>Scrape configs only</strong> — alerts/runbooks/dashboards stay in <code>job_files</code> — <a href="../../guides/prometheus">prometheus</a></td>
+</tr>
+</tbody>
+</table>
+<p>When a job has <strong>no active allocations</strong>, build and deploy purge build-owned namespaces; <strong><code>vars/job</code></strong> and <strong><code>secrets/job</code></strong> are retained unless <strong><code>maand build --purge-job-kv</code></strong> or deploy reconcile removes them. <strong><code>maand gc</code></strong> purges remainder. See <a href="../cli/gc">cli/gc.md</a>.</p>
+<hr>
+<h2 id="who-can-read-which-namespaces" tabindex="-1"><a class="observablehq-header-anchor" href="#who-can-read-which-namespaces">Who can read which namespaces</a></h2>
+<p><strong>Job commands</strong> and <strong>templates</strong> on allocation <code>(job, worker_ip)</code> may read:</p>
+<ul>
+<li><code>maand/bucket</code>, <code>vars/bucket</code></li>
+<li><code>maand/worker</code>, <code>maand/worker/&lt;ip&gt;</code>, <code>maand/worker/&lt;ip&gt;/tags</code></li>
+<li><code>maand/job/&lt;job&gt;</code>, <code>vars/bucket/job/&lt;job&gt;</code>, <code>vars/job/&lt;job&gt;</code>, <code>secrets/job/&lt;job&gt;</code></li>
+<li><code>maand/job/&lt;job&gt;/worker/&lt;ip&gt;</code></li>
+<li>Upstream jobs in command <strong>demands</strong>: <code>maand/job/&lt;upstream&gt;</code>, <code>vars/job/&lt;upstream&gt;</code>, <code>secrets/job/&lt;upstream&gt;</code></li>
+</ul>
+<p><strong><code>maand cat kv --jobs &lt;job&gt;</code></strong> lists the same union across all non-removed allocations.</p>
+<p>Writes from job commands are limited to <strong><code>vars/job/&lt;current job&gt;</code></strong> and <strong><code>secrets/job/&lt;current job&gt;</code></strong>. Full matrix: <a href="../job-command-api#kv-read-vs-write">job-command-api.md</a>.</p>
+<hr>
+<h2 id="persistence-timing" tabindex="-1"><a class="observablehq-header-anchor" href="#persistence-timing">Persistence timing</a></h2>
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>When writes hit <code>maand.db</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>maand build</code></strong></td>
+<td>End of main transaction; <strong><code>post_build</code></strong> hooks persist in a follow-up transaction</td>
+</tr>
+<tr>
+<td><strong><code>maand deploy</code></strong></td>
+<td>After each job's <code>pre_deploy</code> and after each <code>deployJob</code> (KV checkpoint)</td>
+</tr>
+<tr>
+<td><strong><code>maand job_command</code></strong></td>
+<td>On successful CLI exit</td>
+</tr>
+<tr>
+<td><strong><code>maand health_check</code></strong></td>
+<td>Read-only (mutations rejected)</td>
+</tr>
+</tbody>
+</table>
+<p>Deploy checkpoints roll back if the deploy transaction aborts before commit. Partial deploy commits KV for successful jobs.</p>
+<hr>
+<h2 id="version-history" tabindex="-1"><a class="observablehq-header-anchor" href="#version-history">Version history</a></h2>
+<p>KV keeps multiple versions per key. <strong><code>maand gc --retain-days N</code></strong> trims deleted history. Latest active keys: <strong><code>maand cat kv --active</code></strong>.</p>
+<hr>
+<h2 id="related" tabindex="-1"><a class="observablehq-header-anchor" href="#related">Related</a></h2>
+<ul>
+<li><a href="./namespaces">namespaces.md</a> — keys, examples, cookbook</li>
+<li><a href="../job-command-api">job-command-api.md</a></li>
+<li><a href="../templates">templates.md</a></li>
+<li><a href="../cli/build">cli/build.md</a></li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./namespaces"><span>KV namespaces</span></a><a rel="next" href="../job-command-api"><span>Job command API</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

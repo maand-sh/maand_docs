@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="../kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="../kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="../kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="./commands">CLI commands</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./build">CLI build</a></li>
+    <li class="observablehq-link"><a href="./deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="./health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="./job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="./job">CLI job</a></li>
+    <li class="observablehq-link"><a href="./run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="./gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="./info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="./logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#cli">CLI</a></li>
+<li class="observablehq-secondary-link"><a href="#prerequisites">Prerequisites</a></li>
+<li class="observablehq-secondary-link"><a href="#workspace-inputs">Workspace inputs</a></li>
+<li class="observablehq-secondary-link"><a href="#what-build-does-order">What build does (order)</a></li>
+<li class="observablehq-secondary-link"><a href="#post-build-job-commands">post_build job commands</a></li>
+<li class="observablehq-secondary-link"><a href="#database-tables-touched">Database tables touched</a></li>
+<li class="observablehq-secondary-link"><a href="#common-errors">Common errors</a></li>
+<li class="observablehq-secondary-link"><a href="#when-to-run-build">When to run build</a></li>
+<li class="observablehq-secondary-link"><a href="#related">Related</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="maand-build" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-build"><code>maand build</code></a></h1>
+<p><strong>Build</strong> reads your workspace from disk, updates the bucket database (<code>maand.db</code>), fills the in-memory <strong>KV store</strong> (then persists it), and generates TLS material. It does <strong>not</strong> contact workers.</p>
+<hr>
+<h2 id="cli" tabindex="-1"><a class="observablehq-header-anchor" href="#cli">CLI</a></h2>
+<pre data-language="bash"><code class="language-bash">maand build [--purge-job-kv]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--purge-job-kv</code></td>
+<td>Mark <code>vars/job/&lt;job&gt;</code> and <code>secrets/job/&lt;job&gt;</code> deleted when a job has no active allocations</td>
+</tr>
+<tr>
+<td><em>(default)</em></td>
+<td>Full workspace reconcile (no job or worker filter)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="prerequisites" tabindex="-1"><a class="observablehq-header-anchor" href="#prerequisites">Prerequisites</a></h2>
+<ol>
+<li><strong><code>maand init</code></strong> in the bucket directory (creates DB schema, default <code>maand.conf</code>, CA, SSH key, <code>tmp/</code>).</li>
+<li><strong><code>CGO_ENABLED=1</code></strong> when compiling maand (SQLite driver).</li>
+<li><strong>Host tools</strong> for <code>post_build</code> job commands: <code>python3</code>, <code>bun</code> (if using Bun commands), <code>bash</code>, <code>ssh</code>, <code>rsync</code>.</li>
+<li>Valid <strong><code>workspace/workers.json</code></strong> and at least one job under <strong><code>workspace/jobs/&lt;name&gt;/</code></strong> with <code>manifest.json</code> and <strong><code>Makefile</code></strong>.</li>
+</ol>
+<hr>
+<h2 id="workspace-inputs" tabindex="-1"><a class="observablehq-header-anchor" href="#workspace-inputs">Workspace inputs</a></h2>
+<h3 id="workspace-workers-json" tabindex="-1"><a class="observablehq-header-anchor" href="#workspace-workers-json"><code>workspace/workers.json</code></a></h3>
+<p>Array of workers (hosts are SSH targets from the maand CLI host):</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.0.0.1"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"labels"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"gpu"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4096 mb"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2000 mhz"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"tags"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"zone"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"a"</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">]</span>
+</code></pre>
+<ul>
+<li><strong><code>host</code></strong>: Worker IP or hostname (required, unique).</li>
+<li><strong><code>labels</code></strong>: Used for job <strong>selectors</strong> (label matching). The label <code>worker</code> is always added automatically.</li>
+<li><strong><code>memory</code> / <code>cpu</code></strong>: Parsed to MB / MHz; stored on the worker row and exposed in KV.</li>
+<li><strong><code>tags</code></strong>: Arbitrary key/value strings → namespace <code>maand/worker/&lt;ip&gt;/tags/&lt;key&gt;</code>.</li>
+<li><strong><code>position</code></strong>: Ordering field (assigned from array index on read).</li>
+</ul>
+<p>Workers removed from <code>workers.json</code> are marked <strong><code>removed</code></strong> on allocations (not deleted until deploy/GC).</p>
+<h3 id="workspace-jobs-job-manifest-json" tabindex="-1"><a class="observablehq-header-anchor" href="#workspace-jobs-job-manifest-json"><code>workspace/jobs/&lt;job&gt;/manifest.json</code></a></h3>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1.0.0"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"update_parallel_count"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"deploy_parallel_count"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"resources"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"128 mb"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"512 mb"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"100 mhz"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"500 mhz"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"ports"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"http_port"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"commands"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"command_setup"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"executed_on"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"post_build"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"pre_deploy"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"demands"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">"job"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"other_job"</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">"command"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"command_base"</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">"config"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span>
+      <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"certs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"tls"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"pkcs8"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"one"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"subject"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"common_name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"app.example"</span> <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>version</code></td>
+<td>Job version string — see <a href="#job-version">Job version</a> below</td>
+</tr>
+<tr>
+<td><code>selectors</code></td>
+<td>Worker <strong>labels</strong> for placement. When omitted, the <strong>job name</strong> is used (all selectors must match worker labels).</td>
+</tr>
+<tr>
+<td><code>update_parallel_count</code></td>
+<td>Rolling restart batch size during <strong>deploy</strong> upgrades (minimum 1; default 1).</td>
+</tr>
+<tr>
+<td><code>restart_policy</code></td>
+<td>Default <strong><code>always</code></strong>. <strong><code>reload</code></strong> runs <code>make reload</code> on upgrades; <strong><code>never</code></strong> rsyncs without lifecycle.</td>
+</tr>
+<tr>
+<td><code>restart_globs</code></td>
+<td>Only with <strong><code>reload</code></strong>. Changed paths matching a glob run <strong><code>restart</code></strong> instead of <strong><code>reload</code></strong>.</td>
+</tr>
+<tr>
+<td><code>deploy_parallel_count</code></td>
+<td>Rolling <strong>start</strong> batch size on first deploy (0 = all new allocations at once).</td>
+</tr>
+<tr>
+<td><code>resources.memory</code> / <code>cpu</code></td>
+<td><strong>Min/max bounds</strong> in manifest; <strong>actual</strong> reservation from <code>bucket.jobs.conf</code> or <code>bucket.jobs.&lt;env&gt;.conf</code> (<code>job_config_selector</code> in <code>maand.conf</code>) — <a href="../resources-and-placement">resources-and-placement.md</a>.</td>
+</tr>
+<tr>
+<td><code>resources.ports</code></td>
+<td>Named ports: <code>{}</code> (maand assigns from pool) or integer (fixed; any port number)</td>
+</tr>
+<tr>
+<td><code>commands</code></td>
+<td>Named commands (must be prefixed <code>command_</code>).</td>
+</tr>
+<tr>
+<td><code>certs</code></td>
+<td>Per-job cert definitions → generated into KV per worker.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="job-version" tabindex="-1"><a class="observablehq-header-anchor" href="#job-version">Job version</a></h3>
+<p>Each job may declare <strong><code>version</code></strong> in <code>manifest.json</code>. Build stores it in <strong><code>job.version</code></strong> and KV (<code>maand/job/&lt;job&gt;/version</code>). When omitted, the target version is stored as <strong><code>0.0.0</code></strong>.</p>
+<p>Per-allocation <strong>target</strong> version (<code>allocations.new_version</code>) is set on <strong><code>maand build</code></strong> from <code>manifest.json</code>. <strong>Running</strong> version (<code>hash.current_version</code>) is updated on <strong>deploy</strong> promote — see <a href="./deploy#allocation-version-tracking">deploy.md</a>.</p>
+<p><strong>Format</strong> (validated when the field is present or required):</p>
+<ul>
+<li>Semver-like: <code>major.minor.patch</code> (missing segments default to <code>0</code>, so <code>"1"</code> → <code>1.0.0</code>)</li>
+<li>Optional leading <code>v</code> (<code>v2.1.0</code>)</li>
+<li>Optional prerelease suffix (<code>2.0.0-rc1</code>)</li>
+<li>Rejected: empty string, <code>unknown</code>, more than three numeric segments</li>
+</ul>
+<p><strong>When <code>version</code> is required</strong></p>
+<table>
+<thead>
+<tr>
+<th>Job role</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standalone job (no demands, not demanded)</td>
+<td>Optional — omit allowed</td>
+</tr>
+<tr>
+<td>Job with <strong><code>demands.job</code></strong> set on any command</td>
+<td>Must declare <strong><code>version</code></strong></td>
+</tr>
+<tr>
+<td>Upstream job referenced by another job’s demand</td>
+<td>Must declare <strong><code>version</code></strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Version constraints on dependencies</strong></p>
+<p>In <strong><code>demands.config</code></strong>, optional bounds are checked against the <strong>upstream job’s <code>version</code></strong> at build:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-attr">"demands"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"job"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"database"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"command"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"command_schema"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"config"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"min_version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2.0.0"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"max_version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"3.0.0"</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li><code>min_version</code> / <code>max_version</code>: string (<code>"2.1.0"</code>) or integer (<code>2</code> → <code>2.0.0</code>)</li>
+<li>Build fails with <strong><code>ErrJobCommandDemandVersionMismatch</code></strong> when upstream version is out of range</li>
+</ul>
+<p>Full rules: <a href="../manifest#version">manifest.md</a> · <a href="../deployment-sequence#build-validation">deployment-sequence.md</a></p>
+<h3 id="job-directory-rules" tabindex="-1"><a class="observablehq-header-anchor" href="#job-directory-rules">Job directory rules</a></h3>
+<ul>
+<li><strong><code>Makefile</code></strong> or <strong><code>Makefile.tpl</code></strong> is <strong>required</strong> (default deploy uses <code>runner.py</code> → <code>make start|stop|restart|reload</code> per <strong><code>restart_policy</code></strong>; <code>.tpl</code> is rendered at deploy).</li>
+<li>Reserved directories on disk: <strong><code>data/</code></strong>, <strong><code>logs/</code></strong>, <strong><code>bin/</code></strong> must <strong>not</strong> exist under the job folder (they are created on workers at runtime).</li>
+<li>Job files are copied into table <strong><code>job_files</code></strong> (content stored in DB).</li>
+</ul>
+<h3 id="health-check-build-validation" tabindex="-1"><a class="observablehq-header-anchor" href="#health-check-build-validation">Health check (build validation)</a></h3>
+<p>A job may define <strong>manifest probes</strong>, a <strong>health_check command</strong>, or <strong>both</strong>:</p>
+<ul>
+<li><strong><code>health_check</code></strong> in <code>manifest.json</code> (built-in tcp/http/ssh probes), and/or</li>
+<li>A <strong><code>command_*</code></strong> with <strong><code>executed_on</code>: <code>["health_check"]</code></strong></li>
+</ul>
+<p>When both are defined, manifest probes run first at check time, then commands. Manifest probes are stored in <strong><code>job.health_check</code></strong> (JSON). Command-based health is stored in <strong><code>job_commands</code></strong> like other events. See <a href="./health-check">health-check.md</a>.</p>
+<h3 id="workspace-disabled-json-optional" tabindex="-1"><a class="observablehq-header-anchor" href="#workspace-disabled-json-optional"><code>workspace/disabled.json</code> (optional)</a></h3>
+<p>How-to: <a href="../../guides/disable-and-drain">disable-and-drain.md</a>.</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"jobs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"myjob"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"allocations"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"10.0.0.1"</span><span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"workers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"10.0.0.2"</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>Disable entire job: <code>"jobs": { "myjob": {} }</code>.</li>
+<li>Disable specific workers for a job: <code>"allocations": ["&lt;worker_ip&gt;", ...]</code>.</li>
+<li>Disable all jobs on a worker: <code>"workers": ["&lt;ip&gt;", ...]</code>.</li>
+</ul>
+<p>Disabled allocations are not <strong>active</strong> for deploy/job commands but rows remain until removed from workspace/build.</p>
+<h3 id="workspace-bucket-jobs-conf-optional" tabindex="-1"><a class="observablehq-header-anchor" href="#workspace-bucket-jobs-conf-optional"><code>workspace/bucket.jobs.conf</code> (optional)</a></h3>
+<p>Per-job <strong>reservations</strong> for memory and CPU in the current environment. Values must fall within manifest <strong>min/max</strong> (<code>resources.memory</code> / <code>resources.cpu</code>).</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-section">[myjob]</span>
+<span class="hljs-attr">memory</span> = <span class="hljs-string">"256 mb"</span>
+<span class="hljs-attr">cpu</span> = <span class="hljs-string">"500 mhz"</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th><code>job_config_selector</code> in <code>maand.conf</code></th>
+<th>File used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>""</code></td>
+<td><code>bucket.jobs.conf</code></td>
+</tr>
+<tr>
+<td><code>"prod"</code></td>
+<td><code>bucket.jobs.prod.conf</code></td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="../configuration#job-memory-and-cpu-manifest-bounds-vs-bucket-overrides">configuration.md</a> and <a href="../resources-and-placement">resources-and-placement.md</a>.</p>
+<h3 id="workspace-bucket-conf" tabindex="-1"><a class="observablehq-header-anchor" href="#workspace-bucket-conf"><code>workspace/bucket.conf</code></a></h3>
+<p>Bucket-wide settings (TOML key/value). Created on <strong><code>maand init</code></strong> with a default <strong>port pool</strong>:</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-attr">port_min</span> = <span class="hljs-string">"30000"</span>
+<span class="hljs-attr">port_max</span> = <span class="hljs-string">"39999"</span>
+</code></pre>
+<p>Job manifests declare named ports in two ways:</p>
+<ul>
+<li><strong><code>{}</code></strong> — maand assigns the lowest free port in the inclusive <code>port_min</code>–<code>port_max</code> range at build time.</li>
+<li><strong>An integer</strong> — you pin the port number in the manifest (any valid port; not limited to the bucket pool).</li>
+</ul>
+<p>Assigned numbers are stored in <strong><code>job_ports</code></strong> and exposed in KV namespace <strong><code>maand/bucket</code></strong> (key <code>&lt;port_name&gt;</code>). Maand-provisioned ports keep the same number across rebuilds while it remains inside <strong><code>port_min</code>–<code>port_max</code></strong>. Changing a port from a <strong>fixed integer</strong> to <strong><code>{}</code></strong> reassigns from the pool when the stored number is outside that range (for example fixed <code>9500</code> → <code>{}</code> with default pool <code>30000</code>–<code>39999</code>). Fixed ports always follow the manifest value.</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-attr">"resources"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"ports"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"database_port"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5432</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"http_port"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Port names must be lowercase identifiers (<code>database_port</code>, <code>http_port</code>). The same port number cannot be used by two jobs or two port names in the bucket.</p>
+<p>Other keys in <code>bucket.conf</code> are copied to KV namespace <strong><code>vars/bucket</code></strong>.</p>
+<h3 id="maand-conf" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-conf"><code>maand.conf</code></a></h3>
+<p>Bucket-root SSH and cert settings. Full field reference: <a href="../configuration#maand-conf-bucket-root">configuration.md</a>.</p>
+<hr>
+<h2 id="what-build-does-order" tabindex="-1"><a class="observablehq-header-anchor" href="#what-build-does-order">What <code>build</code> does (order)</a></h2>
+<p>All steps run in one <strong>transaction</strong> (except post-build hooks), then <code>VACUUM</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Function</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>kv.Initialize</code></td>
+<td>Load KV from DB into memory.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>BuildWorkers</code></td>
+<td>Sync <code>workers.json</code> → <code>worker</code>, labels, tags; drop removed workers from catalog.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>BuildJobs</code></td>
+<td>Sync each job manifest → <code>job</code>, <code>job_selectors</code>, <code>job_commands</code>, <code>job_files</code>, <code>job_ports</code>, <code>job_certs</code>.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>ValidateJobCommandDemands</code></td>
+<td>Verify demand job/command refs; parse <strong><code>version</code></strong>; check <strong><code>min_version</code></strong> / <strong><code>max_version</code></strong>.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>BuildAllocations</code></td>
+<td>Label-match jobs to workers → <code>allocations</code> rows (<code>alloc_id</code>, <code>deployment_seq</code> initially 0).</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>BuildDeploymentSequence</code></td>
+<td>Compute <code>deployment_seq</code> from <strong>command demands</strong> (dependency order).</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>BuildVariables</code></td>
+<td>Populate KV namespaces (workers, jobs, bucket vars, job/allocation metadata).</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>BuildCerts</code></td>
+<td>Regenerate CA/job certs when CA or cert config changed; write cert PEMs into KV.</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>BuildJobAllocationVariables</code></td>
+<td>Per-allocation keys (<code>*_allocation_index</code>, <code>peer_workers</code>) after certs so cert sync does not delete them.</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>BuildPrometheusCatalog</code></td>
+<td>When a <strong>prometheus server job</strong> exists (<code>prometheus.yml</code> or <code>.tpl</code>): validate all <code>_prometheus/</code> (alerts, runbook refs, scrape shape); write <strong>scrape-only</strong> KV. Jobs with <code>maand:port/*</code> targets and <strong>no active allocations</strong> are omitted from aggregate <code>scrape_jobs</code> / <code>scrape_configs</code> but keep per-job <code>scrape/&lt;job&gt;</code> KV. Without a prometheus server job, scrape KV is cleared and <code>_prometheus/</code> validation is skipped.</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>PurgeStaleVersions</code></td>
+<td>Trim old KV versions (keep 7 per key).</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>ValidateWorkerResources</code></td>
+<td>Ensure allocated jobs fit worker memory/CPU.</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>PersistToTransaction</code></td>
+<td>Write KV changes into <code>key_value</code> table.</td>
+</tr>
+<tr>
+<td>14</td>
+<td><strong>Commit</strong></td>
+<td>Persist catalog.</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>runPostBuildHooks</code></td>
+<td><strong>Separate transaction</strong>; runs <code>post_build</code> commands, then <strong>persists <code>vars/job</code> KV</strong>; failures <strong>fail the build</strong>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="deployment-sequence-deployment-seq" tabindex="-1"><a class="observablehq-header-anchor" href="#deployment-sequence-deployment-seq">Deployment sequence (<code>deployment_seq</code>)</a></h3>
+<p>Derived from <strong><code>job_commands.demand_job</code></strong> edges. See <strong><a href="../deployment-sequence">deployment-sequence.md</a></strong> for the full reference.</p>
+<p>Summary:</p>
+<ul>
+<li>Jobs with no upstream demands → sequence <strong>0</strong>.</li>
+<li>If job B’s command demands job A → B’s sequence is greater than A’s (max chain depth if multiple demands).</li>
+<li><strong>Circular demands</strong> fail the build with <code>ErrCircularJobCommandDependency</code>.</li>
+<li>All allocations for a job share the same <code>deployment_seq</code>.</li>
+</ul>
+<p>Deploy runs sequences <strong>0 .. max</strong> in order so depended-on jobs deploy first. <strong><code>post_build</code></strong> hooks use the same order.</p>
+<h3 id="allocations" tabindex="-1"><a class="observablehq-header-anchor" href="#allocations">Allocations</a></h3>
+<ul>
+<li>One row per <strong>(worker_ip, job)</strong> match.</li>
+<li><strong><code>alloc_id</code></strong>: Stable UUID from <code>hash(job|workerIP)</code>.</li>
+<li><strong><code>removed</code></strong>: Set when worker or job disappears from workspace (cleaned on deploy).</li>
+<li><strong><code>disabled</code></strong>: From <code>disabled.json</code> or resource validation.</li>
+</ul>
+<h3 id="kv-namespaces-build-output" tabindex="-1"><a class="observablehq-header-anchor" href="#kv-namespaces-build-output">KV namespaces (build output)</a></h3>
+<p>Build populates catalog-backed namespaces (<code>maand/*</code>, <code>vars/bucket/*</code>, worker and job metadata, certs). Stable app config lives in <strong><code>vars/job/&lt;job&gt;</code></strong> and <strong><code>secrets/job/&lt;job&gt;</code></strong>.</p>
+<p>Full namespace reference: <a href="../kv/namespaces">KV namespaces</a>. Persistence and purge: <a href="../kv/persistence">KV persistence</a>.</p>
+<h3 id="certificates" tabindex="-1"><a class="observablehq-header-anchor" href="#certificates">Certificates</a></h3>
+<p>See <a href="../certs">certs.md</a> for the full guide (CA, manifest options, auto-rotation, deploy paths). Summary:</p>
+<ul>
+<li>Bucket <strong>CA</strong> in <code>secrets/ca.crt</code> / <code>ca.key</code> (created on <code>maand init</code>).</li>
+<li>Per-job certs from manifest → KV per allocation → <code>jobs/&lt;job&gt;/certs/</code> on workers at deploy.</li>
+<li>Regenerated when CA or manifest <code>certs</code> hash changes, or when a leaf cert enters the <code>certs_renewal_buffer</code> window (<code>maand.conf</code>).</li>
+<li>Removing <code>certs</code> from the manifest purges <code>certs/*</code> KV keys on the next build.</li>
+</ul>
+<h2 id="post-build-job-commands" tabindex="-1"><a class="observablehq-header-anchor" href="#post-build-job-commands"><code>post_build</code> job commands</a></h2>
+<p>After the main commit, build runs every command registered with <strong><code>executed_on</code> containing <code>post_build</code></strong>, in <strong>deployment sequence</strong> order on <strong>active allocations</strong> on the <strong>CLI host</strong> (same runtime as deploy hooks).</p>
+<ul>
+<li>Uses <code>jobcommand.JobCommand</code> (same as deploy/CLI).</li>
+<li><strong>Any hook failure fails <code>maand build</code></strong> (main catalog commit already succeeded; fix hooks and re-run build).</li>
+<li>Useful for validation or codegen that must run before deploy.</li>
+</ul>
+<h3 id="resource-validation" tabindex="-1"><a class="observablehq-header-anchor" href="#resource-validation">Resource validation</a></h3>
+<p>If allocated jobs require memory or CPU (<code>resources.memory</code> / <code>resources.cpu</code> in the manifest), each worker hosting those jobs <strong>must</strong> declare <code>memory</code> / <code>cpu</code> in <code>workers.json</code>. Build fails when requirements exceed capacity or when a worker omits capacity while jobs require it.</p>
+<hr>
+<h2 id="database-tables-touched" tabindex="-1"><a class="observablehq-header-anchor" href="#database-tables-touched">Database tables touched</a></h2>
+<p><code>worker</code>, <code>worker_labels</code>, <code>worker_tags</code>, <code>job</code>, <code>job_selectors</code>, <code>job_commands</code>, <code>job_files</code>, <code>job_ports</code>, <code>job_certs</code>, <code>allocations</code>, <code>hash</code>, <code>key_value</code>, <code>bucket</code>, <code>schema_version</code>.</p>
+<p>Inspect with:</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> workers
+maand <span class="hljs-built_in">cat</span> <span class="hljs-built_in">jobs</span>
+maand <span class="hljs-built_in">cat</span> allocations
+maand <span class="hljs-built_in">cat</span> job_commands
+maand <span class="hljs-built_in">cat</span> certs
+maand <span class="hljs-built_in">cat</span> kv
+</code></pre>
+<hr>
+<h2 id="common-errors" tabindex="-1"><a class="observablehq-header-anchor" href="#common-errors">Common errors</a></h2>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Typical cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ErrInvalidWorkerJSON</code></td>
+<td>Duplicate host, bad memory/cpu format</td>
+</tr>
+<tr>
+<td><code>ErrInvalidManifest</code></td>
+<td>Bad resources, missing Makefile</td>
+</tr>
+<tr>
+<td><code>ErrInvalidJobCommandDemand</code></td>
+<td>Unknown demand job/command or partial demand pair</td>
+</tr>
+<tr>
+<td><code>ErrInvalidJobVersion</code></td>
+<td>Invalid or missing version on dependency participant</td>
+</tr>
+<tr>
+<td><code>ErrJobCommandDemandVersionMismatch</code></td>
+<td>Upstream version outside demand min/max</td>
+</tr>
+<tr>
+<td><code>ErrPortKeyFormat</code></td>
+<td>Invalid port name in manifest</td>
+</tr>
+<tr>
+<td><code>ErrInvalidManifestPort</code></td>
+<td>Port value is not <code>{}</code> or a valid integer in range</td>
+</tr>
+<tr>
+<td><code>ErrInvalidPortRange</code></td>
+<td>Bad <code>port_min</code> / <code>port_max</code> in <code>bucket.conf</code></td>
+</tr>
+<tr>
+<td><code>ErrPortRangeExhausted</code></td>
+<td>No free ports left in the pool</td>
+</tr>
+<tr>
+<td><code>ErrCircularJobCommandDependency</code></td>
+<td>Demand cycle between jobs</td>
+</tr>
+<tr>
+<td>Worker resource validation</td>
+<td>Job memory/CPU exceeds worker capacity, or worker missing memory/CPU when jobs require it</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="when-to-run-build" tabindex="-1"><a class="observablehq-header-anchor" href="#when-to-run-build">When to run build</a></h2>
+<ul>
+<li>After changing <strong>workers.json</strong>, <strong>jobs</strong>, <strong>disabled.json</strong>, or <strong>bucket.jobs.conf</strong>.</li>
+<li>Before <strong><code>maand deploy</code></strong> (or use <code>maand deploy --build</code> / <code>-b</code>).</li>
+<li>When you need <strong>cert</strong> rotation or catalog refresh before deploy.</li>
+</ul>
+<p>Build does <strong>not</strong> start or restart processes on workers; that is <strong>deploy</strong>.</p>
+<hr>
+<h2 id="related" tabindex="-1"><a class="observablehq-header-anchor" href="#related">Related</a></h2>
+<ul>
+<li><a href="./deploy">deploy.md</a> — push artifacts and roll out</li>
+<li><a href="./job-command">job-command.md</a> · <a href="../job-command-api">job-command-api.md</a></li>
+<li><a href="../kv/namespaces">KV namespaces</a> · <a href="../kv/persistence">KV persistence</a></li>
+<li><a href="../templates">templates.md</a> — <code>.tpl</code> rendering</li>
+<li><a href="../configuration">configuration.md</a> — <code>maand.conf</code>, <code>bucket.conf</code></li>
+<li><a href="./health-check">health-check.md</a> — <code>health_check</code> event</li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./commands"><span>CLI commands</span></a><a rel="next" href="./deploy"><span>CLI deploy</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

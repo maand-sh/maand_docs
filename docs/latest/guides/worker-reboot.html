@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Rolling worker reboot (host OS) | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="./rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="./disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="./debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="./job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="./prometheus">Prometheus</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../reference/configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../reference/manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../reference/resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../reference/deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../reference/templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../reference/certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../reference/job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../reference/observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#pattern-a-disable-worker-reboot-re-enable">Pattern A — disable worker, reboot, re-enable</a></li>
+<li class="observablehq-secondary-link"><a href="#pattern-b-rolling-reboot-across-a-fleet">Pattern B — rolling reboot across a fleet</a></li>
+<li class="observablehq-secondary-link"><a href="#pattern-c-parallel-ssh-only-no-catalog-drain">Pattern C — parallel SSH only (no catalog drain)</a></li>
+<li class="observablehq-secondary-link"><a href="#after-reboot-sync-check">After reboot: sync check</a></li>
+<li class="observablehq-secondary-link"><a href="#related">Related</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="rolling-worker-reboot-host-os" tabindex="-1"><a class="observablehq-header-anchor" href="#rolling-worker-reboot-host-os">Rolling worker reboot (host OS)</a></h1>
+<p>Maand has no built-in <strong><code>reboot</code></strong> command. Use <strong>disable → stop → reboot → re-enable</strong>.</p>
+<p>Related: <a href="./disable-and-drain">disable-and-drain.md</a> · <a href="./rolling-deploy">rolling-deploy.md</a></p>
+<hr>
+<h2 id="pattern-a-disable-worker-reboot-re-enable" tabindex="-1"><a class="observablehq-header-anchor" href="#pattern-a-disable-worker-reboot-re-enable">Pattern A — disable worker, reboot, re-enable</a></h2>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 1. Drain all jobs on the host</span>
+<span class="hljs-built_in">cat</span> &gt; workspace/disabled.json &lt;&lt;<span class="hljs-string">'EOF'</span>
+{ <span class="hljs-string">"workers"</span>: [<span class="hljs-string">"10.0.0.3"</span>] }
+EOF
+maand build &amp;&amp; maand deploy
+
+<span class="hljs-comment"># 2. Reboot (SSH from maand host)</span>
+maand run_command <span class="hljs-string">"sudo shutdown -r now"</span> --workers 10.0.0.3
+
+<span class="hljs-comment"># 3. Wait for SSH (manual or scripted sleep)</span>
+
+<span class="hljs-comment"># 4. Re-enable — remove 10.0.0.3 from disabled.json</span>
+maand build &amp;&amp; maand deploy
+
+<span class="hljs-comment"># 5. Optional: verify all jobs after re-enable</span>
+maand health_check --<span class="hljs-built_in">jobs</span> api,worker --<span class="hljs-built_in">wait</span>
+</code></pre>
+<p>Disabled allocations <strong>keep</strong> deploy artifacts and KV; after reboot, <strong><code>deploy</code></strong> <strong>starts</strong> jobs again on re-enable.</p>
+<hr>
+<h2 id="pattern-b-rolling-reboot-across-a-fleet" tabindex="-1"><a class="observablehq-header-anchor" href="#pattern-b-rolling-reboot-across-a-fleet">Pattern B — rolling reboot across a fleet</a></h2>
+<pre data-language="bash"><code class="language-bash">maand run_command <span class="hljs-string">"sudo shutdown -r now"</span> --workers 10.0.0.1,10.0.0.2,10.0.0.3 --concurrency 1
+
+<span class="hljs-comment"># Optional: verify all jobs after the rolling reboot</span>
+maand health_check --<span class="hljs-built_in">wait</span>
+</code></pre>
+<p>No shell loop is required for the reboot command itself; <strong><code>maand run_command</code></strong> batches workers and honors <strong><code>--concurrency</code></strong>.</p>
+<p>If you want strict <strong>disable -&gt; deploy -&gt; reboot -&gt; re-enable -&gt; deploy</strong> per worker, you still need per-worker <code>disabled.json</code> edits (scripted or manual).</p>
+<hr>
+<h2 id="pattern-c-parallel-ssh-only-no-catalog-drain" tabindex="-1"><a class="observablehq-header-anchor" href="#pattern-c-parallel-ssh-only-no-catalog-drain">Pattern C — parallel SSH only (no catalog drain)</a></h2>
+<p>For workers where a hard reboot without drain is acceptable:</p>
+<pre data-language="bash"><code class="language-bash">maand run_command <span class="hljs-string">"sudo shutdown -r now"</span> --workers 10.0.0.1,10.0.0.2 --concurrency 1
+</code></pre>
+<p>You can add <strong><code>--health_check</code></strong> to <strong><code>maand run_command</code></strong> to run job health checks after each command batch:</p>
+<pre data-language="bash"><code class="language-bash">maand run_command <span class="hljs-string">"systemctl restart docker"</span> --workers 10.0.0.1,10.0.0.2 --concurrency 1 --health_check
+</code></pre>
+<p>For <strong>reboot</strong> specifically, prefer explicit <strong><code>maand health_check --wait</code></strong> after the host returns, because health checks triggered immediately after <code>shutdown -r now</code> may run while the worker is still booting.</p>
+<p><strong><code>--concurrency 1</code></strong> reboots one host at a time. After reboot, processes may be down until <strong><code>maand job start</code></strong> or <strong><code>maand deploy</code></strong>. Prefer Pattern A for production.</p>
+<hr>
+<h2 id="after-reboot-sync-check" tabindex="-1"><a class="observablehq-header-anchor" href="#after-reboot-sync-check">After reboot: sync check</a></h2>
+<pre data-language="bash"><code class="language-bash">maand job status api --allocations 10.0.0.3
+</code></pre>
+<p>If <strong><code>worker.json</code> / <code>update_seq</code> mismatch</strong>, run <strong><code>maand deploy</code></strong> before <strong><code>maand job</code></strong>.</p>
+<hr>
+<h2 id="related" tabindex="-1"><a class="observablehq-header-anchor" href="#related">Related</a></h2>
+<ul>
+<li><a href="./disable-and-drain">disable-and-drain.md</a></li>
+<li><a href="../reference/cli/run-command">../reference/cli/run-command.md</a></li>
+<li><a href="../reference/cli/health-check">../reference/cli/health-check.md</a></li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./prometheus"><span>Prometheus</span></a><a rel="next" href="../reference/configuration"><span>Configuration</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

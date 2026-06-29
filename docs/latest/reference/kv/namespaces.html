@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>KV namespaces and variables | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="./">KV overview</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="./persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="../cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="../cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="../cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="../cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="../cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="../cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="../cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="../cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="../cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="../cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#namespace-map">Namespace map</a></li>
+<li class="observablehq-secondary-link"><a href="#global-bucket-variables">Global (bucket) variables</a></li>
+<li class="observablehq-secondary-link"><a href="#worker-variables">Worker variables</a></li>
+<li class="observablehq-secondary-link"><a href="#job-variables">Job variables</a></li>
+<li class="observablehq-secondary-link"><a href="#allocation-variables-job-worker">Allocation variables (job × worker)</a></li>
+<li class="observablehq-secondary-link"><a href="#end-to-end-example">End-to-end example</a></li>
+<li class="observablehq-secondary-link"><a href="#quick-reference-where-to-put-config">Quick reference: where to put config</a></li>
+<li class="observablehq-secondary-link"><a href="#inspecting-kv">Inspecting KV</a></li>
+<li class="observablehq-secondary-link"><a href="#related">Related</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="kv-namespaces-and-variables" tabindex="-1"><a class="observablehq-header-anchor" href="#kv-namespaces-and-variables">KV namespaces and variables</a></h1>
+<p>Practical guide to <strong>global</strong>, <strong>worker</strong>, <strong>job</strong>, and <strong>allocation</strong> KV — what keys exist, how to set them, and how to use them in templates and job commands.</p>
+<p>Maand stores configuration in a <strong>KV store</strong> (SQLite <code>key_value</code> table). Values are grouped into <strong>namespaces</strong>. Think in four layers:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Who sets it</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Global (bucket)</strong></td>
+<td><code>bucket.conf</code>, build</td>
+<td>Settings shared by every job</td>
+</tr>
+<tr>
+<td><strong>Worker</strong></td>
+<td><code>workers.json</code>, build</td>
+<td>Host capacity, labels, peers</td>
+</tr>
+<tr>
+<td><strong>Job</strong></td>
+<td>manifest, <code>vars.toml</code>, <code>bucket.jobs.conf</code>, build, hooks</td>
+<td>App config, resource limits</td>
+</tr>
+<tr>
+<td><strong>Allocation</strong></td>
+<td>build + deploy</td>
+<td>Per (job × worker): certs, peer list, target version</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Read</strong> values with <strong><code>maand cat kv</code></strong>, <strong>templates</strong> (<code>get</code>), or <strong>job commands</strong> (<code>maand.kv.get</code>).<br>
+<strong>Write</strong> user config via workspace files or job-command hooks — not by editing <code>maand.db</code>.</p>
+<p>Persistence and purge: <a href="./persistence">persistence.md</a> · Index: <a href="./">README.md</a>.</p>
+<hr>
+<h2 id="namespace-map" tabindex="-1"><a class="observablehq-header-anchor" href="#namespace-map">Namespace map</a></h2>
+<pre data-language="text"><code class="language-text">GLOBAL
+  maand/bucket                   ← build: bucket_id, jobs, activejobs, job port names (active allocations)
+  vars/bucket                    ← bucket.conf (your keys)
+
+WORKER
+  maand/worker                   ← build: per-label worker lists, CA cert
+  maand/worker/&lt;ip&gt;              ← build: one host’s metadata
+  maand/worker/&lt;ip&gt;/tags/&lt;key&gt;   ← build: workers.json tags
+
+JOB
+  maand/job/&lt;job&gt;                ← build: catalog metadata (synced)
+  maand/prometheus               ← build: scrape catalog only (when prometheus server job exists)
+  vars/bucket/job/&lt;job&gt;          ← bucket.jobs*.conf section (synced)
+  vars/job/&lt;job&gt;                 ← vars.toml + hooks (merge, not wiped)
+  secrets/job/&lt;job&gt;              ← hooks only (encrypted)
+
+ALLOCATION (job on one worker)
+  maand/job/&lt;job&gt;/worker/&lt;ip&gt;    ← build + deploy: certs, peers, version
+</code></pre>
+<h3 id="build-owned-vs-user-owned" tabindex="-1"><a class="observablehq-header-anchor" href="#build-owned-vs-user-owned">Build-owned vs user-owned</a></h3>
+<table>
+<thead>
+<tr>
+<th>Namespace</th>
+<th>On rebuild</th>
+<th>Stale keys removed?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maand/bucket</code>, <code>maand/worker*</code>, <code>maand/job/&lt;job&gt;</code></td>
+<td>Refreshed from workspace/DB</td>
+<td><strong>Yes</strong> (<code>syncKeyValues</code>)</td>
+</tr>
+<tr>
+<td><code>vars/bucket</code>, <code>vars/bucket/job/&lt;job&gt;</code></td>
+<td>Refreshed from TOML</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td><code>vars/job/&lt;job&gt;</code></td>
+<td><code>vars.toml</code> merged; hook keys kept</td>
+<td><strong>No</strong> (put-only merge)</td>
+</tr>
+<tr>
+<td><code>secrets/job/&lt;job&gt;</code></td>
+<td>Unchanged unless hooks/GC</td>
+<td><strong>No</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="global-bucket-variables" tabindex="-1"><a class="observablehq-header-anchor" href="#global-bucket-variables">Global (bucket) variables</a></h2>
+<h3 id="vars-bucket-your-bucket-wide-settings" tabindex="-1"><a class="observablehq-header-anchor" href="#vars-bucket-your-bucket-wide-settings"><code>vars/bucket</code> — your bucket-wide settings</a></h3>
+<p><strong>Source:</strong> <code>workspace/bucket.conf</code> (TOML).</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-attr">port_min</span> = <span class="hljs-string">"30000"</span>
+<span class="hljs-attr">port_max</span> = <span class="hljs-string">"39999"</span>
+<span class="hljs-attr">environment</span> = <span class="hljs-string">"production"</span>
+<span class="hljs-attr">log_level</span> = <span class="hljs-string">"info"</span>
+</code></pre>
+<p>After <strong><code>maand build</code></strong>, every key lands in <strong><code>vars/bucket</code></strong>.</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv get vars/bucket environment
+<span class="hljs-comment"># production</span>
+</code></pre>
+<p>Use in templates:</p>
+<pre data-language="text"><code class="language-text">{{ get "vars/bucket" "log_level" }}
+</code></pre>
+<h3 id="maand-bucket-system-global-metadata" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-bucket-system-global-metadata"><code>maand/bucket</code> — system global metadata</a></h3>
+<p><strong>Source:</strong> build (not edited directly).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Example</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bucket_id</code></td>
+<td><code>a1b2c3…</code></td>
+<td>Bucket UUID</td>
+</tr>
+<tr>
+<td><code>jobs</code></td>
+<td><code>api,worker</code></td>
+<td>Comma-separated job names</td>
+</tr>
+<tr>
+<td><code>activejobs</code></td>
+<td><code>api</code></td>
+<td>Comma-separated job names with at least one <strong>active</strong> allocation</td>
+</tr>
+<tr>
+<td><code>&lt;port_name&gt;</code></td>
+<td><code>30042</code></td>
+<td>Assigned port for jobs with <strong>active</strong> allocations only</td>
+</tr>
+</tbody>
+</table>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv get maand/bucket bucket_id
+maand <span class="hljs-built_in">cat</span> kv get maand/bucket api_http_port
+</code></pre>
+<p>Port numbers live <strong>only</strong> in <strong><code>maand/bucket</code></strong>. Use <code>get "maand/bucket" "&lt;port_name&gt;"</code> in templates and job commands (including cross-job reads; no <code>demands</code> required).</p>
+<hr>
+<h2 id="worker-variables" tabindex="-1"><a class="observablehq-header-anchor" href="#worker-variables">Worker variables</a></h2>
+<h3 id="maand-worker-ip-one-host" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-worker-ip-one-host"><code>maand/worker/&lt;ip&gt;</code> — one host</a></h3>
+<p><strong>Source:</strong> <code>workspace/workers.json</code> + allocation state at build.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>worker_ip</code></td>
+<td>Host IP</td>
+</tr>
+<tr>
+<td><code>worker_id</code></td>
+<td>Stable worker UUID</td>
+</tr>
+<tr>
+<td><code>hostname</code></td>
+<td>From <code>workers.json</code> if set</td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td>Order in <code>workers.json</code></td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td>Comma-separated labels</td>
+</tr>
+<tr>
+<td><code>worker_memory_mb</code></td>
+<td>Declared memory</td>
+</tr>
+<tr>
+<td><code>worker_cpu_mhz</code></td>
+<td>Declared CPU</td>
+</tr>
+<tr>
+<td><code>jobs</code></td>
+<td>Active job names on this worker</td>
+</tr>
+<tr>
+<td><code>&lt;label&gt;_peers</code></td>
+<td>Other workers with the same label</td>
+</tr>
+<tr>
+<td><code>&lt;label&gt;_allocation_index</code></td>
+<td>Index among workers with that label</td>
+</tr>
+</tbody>
+</table>
+<p>Example <code>workers.json</code>:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.0.0.1"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"hostname"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"node-a"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"labels"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"api"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"8192 mb"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4000 mhz"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"tags"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"zone"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"us-east-1a"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"rack"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"r1"</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">]</span>
+</code></pre>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv get maand/worker/10.0.0.1 hostname
+maand <span class="hljs-built_in">cat</span> kv get maand/worker/10.0.0.1/tags zone
+</code></pre>
+<h3 id="maand-worker-shared-across-workers-by-label" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-worker-shared-across-workers-by-label"><code>maand/worker</code> — shared across workers (by label)</a></h3>
+<p><strong>Source:</strong> build aggregates workers per label.</p>
+<table>
+<thead>
+<tr>
+<th>Key pattern</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;label&gt;_workers</code></td>
+<td>Comma-separated IPs with that label</td>
+</tr>
+<tr>
+<td><code>&lt;label&gt;_workers_length</code></td>
+<td>Count</td>
+</tr>
+<tr>
+<td><code>&lt;label&gt;_0</code>, <code>&lt;label&gt;_1</code>, …</td>
+<td>IP at index</td>
+</tr>
+<tr>
+<td><code>&lt;label&gt;_label_id</code></td>
+<td>Stable UUID for the label</td>
+</tr>
+<tr>
+<td><code>certs/ca.crt</code></td>
+<td>Bucket CA PEM (for deploy)</td>
+</tr>
+</tbody>
+</table>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv get maand/worker api_workers
+<span class="hljs-comment"># 10.0.0.1,10.0.0.2</span>
+</code></pre>
+<hr>
+<h2 id="job-variables" tabindex="-1"><a class="observablehq-header-anchor" href="#job-variables">Job variables</a></h2>
+<p>Three namespaces serve different purposes.</p>
+<h3 id="maand-job-job-catalog-metadata-build" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-job-job-catalog-metadata-build"><code>maand/job/&lt;job&gt;</code> — catalog metadata (build)</a></h3>
+<p><strong>Source:</strong> <code>manifest.json</code>, allocations, resource limits.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code>, <code>job_id</code></td>
+<td>Job name and UUID</td>
+</tr>
+<tr>
+<td><code>job_name</code></td>
+<td>Prometheus scrape <code>job_name</code> when <code>_prometheus/scrape.yaml</code> exists; otherwise the maand job name</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>Target version from manifest</td>
+</tr>
+<tr>
+<td><code>selectors</code></td>
+<td>Job selectors</td>
+</tr>
+<tr>
+<td><code>workers</code>, <code>workers_length</code>, <code>worker_0</code>, …</td>
+<td><strong>Active</strong> worker IPs (ordered); disabled allocations omitted</td>
+</tr>
+<tr>
+<td><code>deploy_order</code></td>
+<td>Comma-separated <strong>active</strong> worker IPs for rollout order (synced from catalog on build). Override for one deploy via <strong><code>put_deploy_order</code></strong> in <strong><code>pre_deploy</code></strong> or <strong><code>cli</code></strong> — <a href="../job-command-api">job-command-api.md</a></td>
+</tr>
+<tr>
+<td><code>memory</code>, <code>cpu</code></td>
+<td>Current reservation</td>
+</tr>
+<tr>
+<td><code>min_memory_mb</code>, <code>max_memory_mb</code>, <code>min_cpu_mhz</code>, <code>max_cpu_mhz</code></td>
+<td>Manifest bounds</td>
+</tr>
+</tbody>
+</table>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv --<span class="hljs-built_in">jobs</span> api
+maand <span class="hljs-built_in">cat</span> kv get maand/job/api workers
+maand <span class="hljs-built_in">cat</span> kv get maand/bucket api_http_port
+</code></pre>
+<p>Template (port from global namespace):</p>
+<pre data-language="text"><code class="language-text">{{ get "maand/bucket" "api_http_port" }}
+</code></pre>
+<h3 id="vars-bucket-job-job-bucket-overrides-per-job" tabindex="-1"><a class="observablehq-header-anchor" href="#vars-bucket-job-job-bucket-overrides-per-job"><code>vars/bucket/job/&lt;job&gt;</code> — bucket overrides per job</a></h3>
+<p><strong>Source:</strong> <code>workspace/bucket.jobs.conf</code> (or <code>bucket.jobs.&lt;env&gt;.conf</code> when <code>job_config_selector</code> is set).</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-section">[api]</span>
+<span class="hljs-attr">memory</span> = <span class="hljs-string">"512 mb"</span>
+<span class="hljs-attr">cpu</span> = <span class="hljs-string">"1500 mhz"</span>
+<span class="hljs-attr">replicas_hint</span> = <span class="hljs-string">"3"</span>
+</code></pre>
+<p><code>memory</code> / <code>cpu</code> also drive <strong><code>maand/job/api</code></strong> reservation fields. Other keys are KV-only.</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv get vars/bucket/job/api replicas_hint
+</code></pre>
+<p>See <a href="../resources-and-placement">resources-and-placement.md</a>.</p>
+<h3 id="vars-job-job-application-config-yours" tabindex="-1"><a class="observablehq-header-anchor" href="#vars-job-job-application-config-yours"><code>vars/job/&lt;job&gt;</code> — application config (yours)</a></h3>
+<p><strong>Sources:</strong></p>
+<ol>
+<li><strong><code>workspace/jobs/&lt;job&gt;/vars.toml</code></strong> — checked in, merged at build.</li>
+<li><strong>Job commands</strong> — <code>put_job_variable</code> / <code>maand.kv.put</code> in hooks.</li>
+</ol>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-comment"># workspace/jobs/api/vars.toml</span>
+<span class="hljs-attr">cluster_name</span> = <span class="hljs-string">"prod-east"</span>
+<span class="hljs-attr">feature_flags</span> = <span class="hljs-string">"tls,v2"</span>
+</code></pre>
+<pre data-language="python"><code class="language-python"><span class="hljs-comment"># _modules/command_setup.py (e.g. post_build)</span>
+<span class="hljs-keyword">import</span> maand
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():
+    maand.put_job_variable(<span class="hljs-string">"schema_version"</span>, <span class="hljs-string">"12"</span>)
+</code></pre>
+<p>Rebuild merges <code>vars.toml</code> keys <strong>without deleting</strong> keys added only by hooks.</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv get vars/job/api cluster_name
+</code></pre>
+<p>Template:</p>
+<pre data-language="text"><code class="language-text">{{ get "vars/job/api" "cluster_name" }}
+</code></pre>
+<h3 id="secrets-job-job-encrypted-secrets" tabindex="-1"><a class="observablehq-header-anchor" href="#secrets-job-job-encrypted-secrets"><code>secrets/job/&lt;job&gt;</code> — encrypted secrets</a></h3>
+<p>Write only from job commands (<code>put_job_secret</code>). Read with <strong><code>getSecret</code></strong> in templates or the runtime API.</p>
+<pre data-language="python"><code class="language-python">maand.put_job_secret(<span class="hljs-string">"db_password"</span>, <span class="hljs-string">"s3cret"</span>)
+</code></pre>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv get --reveal secrets/job/api db_password
+</code></pre>
+<p>Never put secrets in <code>vars.toml</code> or the workspace.</p>
+<hr>
+<h2 id="allocation-variables-job-worker" tabindex="-1"><a class="observablehq-header-anchor" href="#allocation-variables-job-worker">Allocation variables (job × worker)</a></h2>
+<p>Namespace: <strong><code>maand/job/&lt;job&gt;/worker/&lt;ip&gt;</code></strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Set by</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>certs/&lt;name&gt;.crt</code>, <code>.key</code></td>
+<td>build</td>
+<td>TLS material — <a href="../certs">certs.md</a></td>
+</tr>
+<tr>
+<td><code>&lt;job&gt;_allocation_index</code></td>
+<td>build</td>
+<td>Index among <strong>non-removed</strong> job peers</td>
+</tr>
+<tr>
+<td><code>peer_workers</code></td>
+<td>build</td>
+<td>Comma-separated peer IPs for this job (<strong>non-removed</strong>, includes disabled)</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>build + deploy</td>
+<td>Target deploy version for this allocation</td>
+</tr>
+</tbody>
+</table>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv get maand/job/api/worker/10.0.0.1 peer_workers
+maand <span class="hljs-built_in">cat</span> kv get maand/job/api/worker/10.0.0.1 api_allocation_index
+</code></pre>
+<p>Template (rendered per allocation):</p>
+<pre data-language="text"><code class="language-text">{{ get "maand/job/api/worker/10.0.0.1" "version" }}
+</code></pre>
+<p>Use template context <strong><code>.WorkerIP</code></strong> so one <code>.tpl</code> works on every worker:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"peers"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ get (printf "</span>maand/job/api/worker/%s<span class="hljs-string">" .WorkerIP) "</span>peer_workers<span class="hljs-string">" }}"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"target_version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ .NewVersion }}"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<hr>
+<h2 id="end-to-end-example" tabindex="-1"><a class="observablehq-header-anchor" href="#end-to-end-example">End-to-end example</a></h2>
+<p><strong>Layout</strong></p>
+<pre data-language="text"><code class="language-text">workspace/
+├── bucket.conf
+├── bucket.jobs.conf
+├── workers.json
+└── jobs/
+    └── api/
+        ├── manifest.json
+        ├── vars.toml
+        ├── Makefile
+        └── config.json.tpl
+</code></pre>
+<p><strong><code>bucket.conf</code></strong></p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-attr">environment</span> = <span class="hljs-string">"staging"</span>
+<span class="hljs-attr">port_min</span> = <span class="hljs-string">"30000"</span>
+<span class="hljs-attr">port_max</span> = <span class="hljs-string">"39999"</span>
+</code></pre>
+<p><strong><code>workers.json</code></strong></p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span> <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.0.0.1"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"labels"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"api"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4096 mb"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2000 mhz"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-punctuation">{</span> <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.0.0.2"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"labels"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"api"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4096 mb"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2000 mhz"</span> <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">]</span>
+</code></pre>
+<p><strong><code>manifest.json</code></strong></p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1.2.0"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"api"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"resources"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"256 mb"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1 gb"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"ports"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"api_http_port"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p><strong><code>bucket.jobs.conf</code></strong></p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-section">[api]</span>
+<span class="hljs-attr">memory</span> = <span class="hljs-string">"512 mb"</span>
+</code></pre>
+<p><strong><code>vars.toml</code></strong></p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-attr">service_name</span> = <span class="hljs-string">"api-gateway"</span>
+</code></pre>
+<p><strong><code>config.json.tpl</code></strong></p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"env"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ get "</span>vars/bucket<span class="hljs-string">" "</span>environment<span class="hljs-string">" }}"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"service"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ get "</span>vars/job/api<span class="hljs-string">" "</span>service_name<span class="hljs-string">" }}"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"listen"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ get "</span>maand/bucket<span class="hljs-string">" "</span>api_http_port<span class="hljs-string">" }}"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"peers"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ get (printf "</span>maand/job/api/worker/%s<span class="hljs-string">" .WorkerIP) "</span>peer_workers<span class="hljs-string">" }}"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"{{ .NewVersion }}"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p><strong>Build and inspect</strong></p>
+<pre data-language="bash"><code class="language-bash">maand build
+
+maand <span class="hljs-built_in">cat</span> kv get vars/bucket environment          <span class="hljs-comment"># staging</span>
+maand <span class="hljs-built_in">cat</span> kv get maand/job/api workers              <span class="hljs-comment"># 10.0.0.1,10.0.0.2</span>
+maand <span class="hljs-built_in">cat</span> kv get vars/job/api service_name          <span class="hljs-comment"># api-gateway</span>
+maand <span class="hljs-built_in">cat</span> kv get maand/worker/10.0.0.1 worker_memory_mb
+maand <span class="hljs-built_in">cat</span> kv get maand/job/api/worker/10.0.0.1 peer_workers   <span class="hljs-comment"># 10.0.0.2</span>
+</code></pre>
+<p><strong>Deploy</strong> renders <code>config.json.tpl</code> per worker using that worker’s allocation namespace, then rsyncs to <code>/opt/worker/&lt;bucket_id&gt;/jobs/api/</code>.</p>
+<p><strong>Runtime update from a hook</strong> (<code>pre_deploy</code>):</p>
+<pre data-language="python"><code class="language-python"><span class="hljs-keyword">import</span> maand
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():
+    maand.put_job_variable(<span class="hljs-string">"deployed_at"</span>, maand.env(<span class="hljs-string">"EVENT"</span>))
+</code></pre>
+<p>Persisted when deploy checkpoints KV for that job.</p>
+<hr>
+<h2 id="quick-reference-where-to-put-config" tabindex="-1"><a class="observablehq-header-anchor" href="#quick-reference-where-to-put-config">Quick reference: where to put config</a></h2>
+<table>
+<thead>
+<tr>
+<th>I want…</th>
+<th>Put it in…</th>
+<th>Namespace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bucket-wide setting</td>
+<td><code>workspace/bucket.conf</code></td>
+<td><code>vars/bucket</code></td>
+</tr>
+<tr>
+<td>Per-job bucket override</td>
+<td><code>workspace/bucket.jobs*.conf</code></td>
+<td><code>vars/bucket/job/&lt;job&gt;</code></td>
+</tr>
+<tr>
+<td>App config in git</td>
+<td><code>workspace/jobs/&lt;job&gt;/vars.toml</code></td>
+<td><code>vars/job/&lt;job&gt;</code></td>
+</tr>
+<tr>
+<td>Secret</td>
+<td>job command hook</td>
+<td><code>secrets/job/&lt;job&gt;</code></td>
+</tr>
+<tr>
+<td>Port numbers</td>
+<td><code>manifest.json</code> + build</td>
+<td><code>maand/bucket</code></td>
+</tr>
+<tr>
+<td>Workers / version</td>
+<td><code>manifest.json</code> + build</td>
+<td><code>maand/job/&lt;job&gt;</code></td>
+</tr>
+<tr>
+<td>Host metadata</td>
+<td><code>workers.json</code> + build</td>
+<td><code>maand/worker/&lt;ip&gt;</code></td>
+</tr>
+<tr>
+<td>Peers / certs on one node</td>
+<td>automatic at build/deploy</td>
+<td><code>maand/job/&lt;job&gt;/worker/&lt;ip&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="inspecting-kv" tabindex="-1"><a class="observablehq-header-anchor" href="#inspecting-kv">Inspecting KV</a></h2>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv                              <span class="hljs-comment"># all namespaces (truncated values)</span>
+maand <span class="hljs-built_in">cat</span> kv --<span class="hljs-built_in">jobs</span> api                   <span class="hljs-comment"># job-related namespaces</span>
+maand <span class="hljs-built_in">cat</span> kv --<span class="hljs-built_in">jobs</span> api --workers 10.0.0.1
+maand <span class="hljs-built_in">cat</span> kv --active                     <span class="hljs-comment"># latest non-deleted versions only</span>
+maand <span class="hljs-built_in">cat</span> kv get maand/job/api version
+maand <span class="hljs-built_in">cat</span> kv get --reveal secrets/job/api my_secret
+</code></pre>
+<hr>
+<h2 id="related" tabindex="-1"><a class="observablehq-header-anchor" href="#related">Related</a></h2>
+<ul>
+<li><a href="./persistence">persistence.md</a> — persistence, purge, access control</li>
+<li><a href="../templates">templates.md</a> — <code>get</code>, <code>getSecret</code>, template context</li>
+<li><a href="../job-command-api">job-command-api.md</a> — runtime API for reads/writes</li>
+<li><a href="../configuration">configuration.md</a> — <code>bucket.conf</code>, <code>bucket.jobs.conf</code>, <code>vars.toml</code></li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./"><span>KV overview</span></a><a rel="next" href="./persistence"><span>KV persistence</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

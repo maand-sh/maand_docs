@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="../kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="../kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="../kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="./commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="./build">CLI build</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="./health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="./job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="./job">CLI job</a></li>
+    <li class="observablehq-link"><a href="./run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="./gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="./info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="./logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#cli">CLI</a></li>
+<li class="observablehq-secondary-link"><a href="#prerequisites">Prerequisites</a></li>
+<li class="observablehq-secondary-link"><a href="#high-level-pipeline">High-level pipeline</a></li>
+<li class="observablehq-secondary-link"><a href="#deployment-sequence">Deployment sequence</a></li>
+<li class="observablehq-secondary-link"><a href="#which-jobs-run-in-a-deploy-wave">Which jobs run in a deploy wave</a></li>
+<li class="observablehq-secondary-link"><a href="#allocation-version-tracking">Allocation version tracking</a></li>
+<li class="observablehq-secondary-link"><a href="#default-deploy-path-makefile-runner">Default deploy path (Makefile + runner)</a></li>
+<li class="observablehq-secondary-link"><a href="#applying-changes-on-workers">Applying changes on workers</a></li>
+<li class="observablehq-secondary-link"><a href="#staging-and-rsync">Staging and rsync</a></li>
+<li class="observablehq-secondary-link"><a href="#removed-and-disabled-allocations">Removed and disabled allocations</a></li>
+<li class="observablehq-secondary-link"><a href="#pre-deploy-and-post-deploy">pre_deploy and post_deploy</a></li>
+<li class="observablehq-secondary-link"><a href="#partial-deploy-and-retry">Partial deploy and retry</a></li>
+<li class="observablehq-secondary-link"><a href="#update-seq">update_seq</a></li>
+<li class="observablehq-secondary-link"><a href="#configuration">Configuration</a></li>
+<li class="observablehq-secondary-link"><a href="#inspect-state">Inspect state</a></li>
+<li class="observablehq-secondary-link"><a href="#common-failures">Common failures</a></li>
+<li class="observablehq-secondary-link"><a href="#related">Related</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="maand-deploy" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-deploy"><code>maand deploy</code></a></h1>
+<p><strong>Deploy</strong> pushes job artifacts from the database to worker nodes, runs lifecycle actions (start / restart / stop), executes hook commands (<code>pre_deploy</code>, <code>post_deploy</code>, <code>job_control</code>), and updates <strong>allocation hashes</strong> so later deploys can skip unchanged jobs or resume after partial failure.</p>
+<p>Requires a prior <strong><code>maand build</code></strong> (or <code>maand deploy --build</code>).</p>
+<hr>
+<h2 id="cli" tabindex="-1"><a class="observablehq-header-anchor" href="#cli">CLI</a></h2>
+<pre data-language="bash"><code class="language-bash">maand deploy [flags]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Short</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--jobs</code></td>
+<td></td>
+<td>Comma-separated job names. Default: all jobs (per deployment sequence).</td>
+</tr>
+<tr>
+<td><code>--build</code></td>
+<td><code>-b</code></td>
+<td>Run <code>maand build</code> before deploy.</td>
+</tr>
+<tr>
+<td><code>--dry-run</code></td>
+<td><code>-n</code></td>
+<td>Stage locally and compare allocation hashes; report whether deploy is required without changing workers or persisting hash updates.</td>
+</tr>
+<tr>
+<td><code>--force</code></td>
+<td></td>
+<td>Redeploy jobs even when all allocations are already promoted (restart active allocations).</td>
+</tr>
+<tr>
+<td><code>--sync-only</code></td>
+<td></td>
+<td>Rsync and promote without <code>start</code> / <code>restart</code> / <code>reload</code>. <strong>Fails</strong> when any allocation still needs <strong><code>start</code></strong> (new allocation).</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<pre data-language="bash"><code class="language-bash">maand deploy
+maand deploy -b
+maand deploy --<span class="hljs-built_in">jobs</span> api,worker
+maand deploy --dry-run
+maand deploy -b -n
+maand deploy --force --<span class="hljs-built_in">jobs</span> vault
+maand deploy --sync-only --<span class="hljs-built_in">jobs</span> prometheus
+maand deploy --dry-run --sync-only
+</code></pre>
+<hr>
+<h2 id="prerequisites" tabindex="-1"><a class="observablehq-header-anchor" href="#prerequisites">Prerequisites</a></h2>
+<ol>
+<li>Initialized bucket with <strong><code>maand build</code></strong> completed successfully.</li>
+<li><strong>Host tools</strong>: <code>bash</code>, <code>ssh</code>, <code>rsync</code>, and <code>python3</code> on the CLI host (<code>bun</code> when any job command uses <code>.ts</code>/<code>.js</code>). Deploy checks these before syncing.</li>
+<li><strong><code>maand.conf</code></strong>: <code>ssh_user</code>, <code>ssh_key</code> (under <code>secrets/</code>), optional <code>use_sudo</code>.</li>
+<li>Workers reachable by SSH from the maand CLI host; ensure <code>secrets/worker.key</code> is authorized on workers.</li>
+<li>Each worker has <strong><code>python3</code></strong>, <strong><code>make</code></strong>, <strong><code>rsync</code></strong>, <strong><code>bash</code></strong>, and <strong><code>timeout</code></strong> on <code>PATH</code>. When <code>use_sudo = true</code>, <strong><code>sudo</code></strong> must work and <strong><code>sudo rsync --version</code></strong> must succeed. Deploy SSH-checks workers before syncing.</li>
+<li>Each active job has a <strong><code>Makefile</code></strong> unless the job uses only <strong><code>job_control</code></strong> commands.</li>
+</ol>
+<hr>
+<h2 id="high-level-pipeline" tabindex="-1"><a class="observablehq-header-anchor" href="#high-level-pipeline">High-level pipeline</a></h2>
+<pre data-language="text"><code class="language-text">UpdateSeq (+1, committed)
+Open DB transaction + kv.Initialize
+Start job-command HTTP API on host
+Stop removed/disabled allocations; remove deployed job files from **removed** workers only (preserve data/logs; disabled keeps artifacts; full bucket tree when the worker left workers.json)
+For deployment_seq = 0 .. max:
+  Prepare worker.json / jobs.json / bin/ for all workers
+  Refresh plan hashes for jobs in this sequence
+  For each job needing rollout:
+    pre_deploy commands → KV checkpoint (into deploy transaction)
+  For each job to stage:
+    prepare job files + transpile .tpl + certs → tmp/workers/&lt;ip&gt;/jobs/&lt;job&gt;/
+    rsync (filtered per job) to /opt/worker/&lt;bucket_id&gt;/
+    update allocation content hashes (MD5 of staged tree)
+    deployJob (start/restart/reload OR job_control + health_check + post_deploy)
+    KV checkpoint again
+Final rsync: per successfully deployed job only (filtered + jobs.json refresh)
+Commit transaction (even if some jobs failed — partial deploy)
+Return joined errors if any job failed
+</code></pre>
+<hr>
+<h2 id="deployment-sequence" tabindex="-1"><a class="observablehq-header-anchor" href="#deployment-sequence">Deployment sequence</a></h2>
+<p>Jobs with the same <strong><code>deployment_seq</code></strong> (from build) are processed in the same wave. Lower sequences complete before higher ones. This respects <strong><code>demands</code></strong> between job commands (e.g. job B depends on job A).</p>
+<p>Reference: <a href="../deployment-sequence">deployment-sequence.md</a> — demand graph, <code>deployment_seq</code> algorithm, <code>update_parallel_count</code> within a wave, examples.</p>
+<p>Within one sequence, jobs are independent except they share worker staging directories under <code>tmp/workers/&lt;ip&gt;/</code>.</p>
+<hr>
+<h2 id="which-jobs-run-in-a-deploy-wave" tabindex="-1"><a class="observablehq-header-anchor" href="#which-jobs-run-in-a-deploy-wave">Which jobs run in a deploy wave</a></h2>
+<p>A job is considered only if it appears in the sequence and passes the <strong><code>--jobs</code></strong> filter.</p>
+<p><strong><code>JobNeedsRollout</code></strong> decides whether a job is staged and deployed:</p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Active allocation has <strong>no hash row</strong> yet</td>
+<td>Rollout (first deploy).</td>
+</tr>
+<tr>
+<td><code>previous_hash != current_hash</code> on an allocation</td>
+<td>Rollout (updated content).</td>
+</tr>
+<tr>
+<td><code>previous_hash == current_hash</code> (promoted after success)</td>
+<td><strong>Skipped</strong> — log: <code>deploy: skip job "..." (already promoted on all allocations)</code>.</td>
+</tr>
+<tr>
+<td><strong><code>--force</code></strong></td>
+<td>Stage and <strong>restart</strong> all active allocations (except new ones, which still <strong>start</strong>).</td>
+</tr>
+</tbody>
+</table>
+<p>After a successful deploy, <strong><code>promoteAllocationHash</code></strong> sets <code>previous_hash = current_hash</code> and <strong><code>hash.current_version = allocations.new_version</code></strong>. A re-run of <code>maand deploy</code> therefore <strong>continues from failed jobs only</strong> (partial deploy resume). Use <strong><code>--force</code></strong> to roll the same content again without a workspace change (for example after <strong><code>maand health_check --update-hash</code></strong>).</p>
+<hr>
+<h2 id="allocation-version-tracking" tabindex="-1"><a class="observablehq-header-anchor" href="#allocation-version-tracking">Allocation version tracking</a></h2>
+<p>Each active allocation tracks <strong>running</strong> vs <strong>target</strong> version alongside content hashes in the <strong><code>hash</code></strong> table (namespace <code>&lt;job&gt;_allocation</code>, key <code>alloc_id</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>current_version</code></strong> (<code>hash</code> table)</td>
+<td>Last <strong>promoted</strong> (running) version on that allocation</td>
+</tr>
+<tr>
+<td><strong><code>new_version</code></strong> (<code>allocations</code> table)</td>
+<td>Target version from <strong><code>maand build</code></strong> (<code>manifest.json</code> → <code>job.version</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Defaults:</strong> If <code>manifest.json</code> omits <strong><code>version</code></strong>, maand uses <strong><code>0.0.0</code></strong> for KV and allocation version fields (build-time dependency rules still require an explicit version when the job participates in the demand graph).</p>
+<p><strong>Lifecycle</strong> (mirrors content hash promote):</p>
+<pre data-language="text"><code class="language-text">First deploy:     current_version=0.0.0   new_version=2.0.0
+                  → make start with CURRENT_VERSION=0.0.0 NEW_VERSION=2.0.0
+                  → promote → current_version=2.0.0
+
+Upgrade:          current_version=2.0.0   new_version=2.1.0
+                  → restart/reload (per restart_policy) → promote → current_version=2.1.0
+
+Same version, unchanged tree: hash unchanged and `current_version = new_version` → job skipped (no lifecycle)
+
+Version-only bump: **`build`** updates `allocations.new_version`; **`deploy`** runs lifecycle when `hash.current_version != allocations.new_version` even if the content hash is unchanged (typically **`reload`** when policy is **`reload`**)
+</code></pre>
+<p>During a <strong>rolling deploy</strong>, allocations on different workers can briefly differ (<code>current_version</code> updated per allocation as each wave promotes).</p>
+<p><strong>Where to read versions</strong></p>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Keys / fields</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Job-level KV (target)</td>
+<td><code>maand cat kv get maand/job/&lt;job&gt; version</code></td>
+</tr>
+<tr>
+<td>Per-allocation KV</td>
+<td><code>maand/job/&lt;job&gt;/worker/&lt;ip&gt;/version</code> (target from build)</td>
+</tr>
+<tr>
+<td>Templates (<code>.tpl</code>)</td>
+<td><code>{{ .CurrentVersion }}</code>, <code>{{ .NewVersion }}</code> on allocation context</td>
+</tr>
+<tr>
+<td>Worker <strong><code>make</code></strong> env</td>
+<td><code>CURRENT_VERSION</code>, <code>NEW_VERSION</code> on <code>start</code> / <code>restart</code> / <code>reload</code></td>
+</tr>
+<tr>
+<td>Job command scripts</td>
+<td>Same env vars (plus <code>NEW_ALLOCATIONS</code> / <code>UPDATED_ALLOCATIONS</code> for <code>job_control</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Example Makefile upgrade hook:</p>
+<pre data-language="makefile"><code class="language-makefile"><span class="hljs-section">restart:</span>
+	@echo <span class="hljs-string">"Upgrading <span class="hljs-variable">$(CURRENT_VERSION)</span> -&gt; <span class="hljs-variable">$(NEW_VERSION)</span>"</span>
+	./bin/upgrade.sh
+</code></pre>
+<p>Build-time <strong><code>version</code></strong> rules and demand <strong><code>min_version</code></strong> / <strong><code>max_version</code></strong> are separate — see <a href="../manifest#version">manifest.md</a>.</p>
+<hr>
+<p>Use <strong><code>maand deploy --dry-run</code></strong> to see whether a real deploy would run, without rsync, lifecycle, or hash promotion:</p>
+<ol>
+<li>Stages job files under <code>tmp/workers/</code> (same as deploy), including <strong><code>pre_deploy</code></strong> hooks when registered (so plan hashes match real deploy staging). <strong><code>pre_deploy</code> may SSH to workers</strong> when the hook runs job commands on allocations.</li>
+<li>Computes <strong>MD5</strong> of each active allocation’s staged tree and compares to <strong><code>previous_hash</code></strong> in the database (rolled back afterward).</li>
+<li>Prints per job whether deploy is required and per allocation the planned action: <strong>start</strong>, <strong>restart</strong>, <strong>reload</strong>, <strong>sync</strong>, or <strong>skip</strong>. When <strong><code>restart_globs</code></strong> forces a restart, the line includes <strong><code>matched=</code></strong> with the changed paths.</li>
+</ol>
+<pre data-language="bash"><code class="language-bash">maand deploy --dry-run
+maand deploy -b -n --<span class="hljs-built_in">jobs</span> api
+maand deploy --dry-run --force    <span class="hljs-comment"># preview forced redeploy</span>
+</code></pre>
+<p>Example output when content changed since last promote:</p>
+<pre data-language="text"><code class="language-text">deploy dry-run: deployment required
+
+deployment sequence 0:
+  job "api": deploy required
+    10.0.0.1  reload  previous_hash=abc... current_hash=def...
+    10.0.0.2  restart previous_hash=abc... current_hash=def... matched=Makefile
+</code></pre>
+<p>When everything is promoted:</p>
+<pre data-language="text"><code class="language-text">deploy dry-run: no deployment required
+
+deployment sequence 0:
+  job "api": skip (already promoted on all allocations)
+</code></pre>
+<hr>
+<h2 id="default-deploy-path-makefile-runner" tabindex="-1"><a class="observablehq-header-anchor" href="#default-deploy-path-makefile-runner">Default deploy path (Makefile + runner)</a></h2>
+<p>For each job in the wave that needs rollout:</p>
+<ol>
+<li><strong><code>pre_deploy</code></strong> (optional)</li>
+<li><strong>Stage</strong> job files to <code>tmp/workers/&lt;ip&gt;/jobs/&lt;job&gt;/</code></li>
+<li><strong>Rsync</strong> that job to each worker allocation</li>
+<li><strong>Update allocation hashes</strong> for that job</li>
+<li><strong>Start</strong> new allocations (<code>previous_hash IS NULL</code>) or apply <strong><code>restart_policy</code></strong> on updated ones — immediately after copy</li>
+<li><strong><code>post_deploy</code></strong>, then <strong>promote</strong> hashes for that job</li>
+</ol>
+<p>If the job has <strong>no</strong> <code>job_control</code> commands:</p>
+<ol>
+<li><strong><code>handleNewAllocations</code></strong>: Workers where <code>previous_hash IS NULL</code> (new alloc) →<br>
+<code>python3 /opt/worker/&lt;bucket_id&gt;/bin/runner.py &lt;bucket_id&gt; start --jobs &lt;job&gt;</code><br>
+in batches of <strong><code>deploy_parallel_count</code></strong> (0 = all at once), ordered by <strong><code>deploy_order</code></strong>.<br>
+<strong><code>after_allocation_started</code></strong> hooks run after each batch. <strong>One</strong> health check runs after all start batches complete.</li>
+<li><strong><code>handleUpdatedAllocations</code></strong>: Workers where hash or version changed → lifecycle per <strong><code>restart_policy</code></strong> (see below) in batches of <strong><code>update_parallel_count</code></strong>, ordered by <strong><code>deploy_order</code></strong>.<br>
+<strong><code>after_allocation_started</code></strong> hooks run after each batch, then <strong>health_check</strong> (wait/retry) before the next batch when a lifecycle target runs.</li>
+<li><strong><code>post_deploy</code></strong>: Job commands with event <code>post_deploy</code>.</li>
+<li><strong><code>promoteAllocationHash</code></strong>: Mark current tree and <strong><code>current_version</code></strong> as the new baseline.</li>
+</ol>
+<p>When allocations are <strong>stopped</strong> during reconcile (removed/disabled), <strong><code>after_allocation_stopped</code></strong> hooks run once per stopped allocation before the default Makefile stop.</p>
+<p><strong>Makefile</strong> on the worker (under <code>jobs/&lt;job&gt;/</code>) receives <strong><code>CURRENT_VERSION</code></strong> and <strong><code>NEW_VERSION</code></strong> in the environment for <strong><code>start</code></strong>, <strong><code>restart</code></strong>, and <strong><code>reload</code></strong>. Use them for upgrade logic (see <a href="#allocation-version-tracking">Allocation version tracking</a>):</p>
+<pre data-language="makefile"><code class="language-makefile"><span class="hljs-section">start:</span>
+<span class="hljs-section">stop:</span>
+<span class="hljs-section">restart:</span>
+<span class="hljs-section">reload:</span>
+</code></pre>
+<p>Data/logs/bin on workers are excluded from rsync (<code>--exclude=jobs/*/data</code>, etc.).</p>
+<hr>
+<h2 id="applying-changes-on-workers" tabindex="-1"><a class="observablehq-header-anchor" href="#applying-changes-on-workers">Applying changes on workers</a></h2>
+<p>Deploy always <strong>rsyncs</strong> staged files before it decides whether to touch running processes. That split matters: you can push config to disk while choosing how (or whether) the process reacts.</p>
+<h3 id="what-triggers-rollout" tabindex="-1"><a class="observablehq-header-anchor" href="#what-triggers-rollout">What triggers rollout</a></h3>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Typical action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First deploy on a worker (<code>previous_hash</code> empty)</td>
+<td><strong><code>make start</code></strong></td>
+</tr>
+<tr>
+<td>Staged tree differs from last promote (<code>previous_hash ≠ current_hash</code>)</td>
+<td>Lifecycle per <strong><code>restart_policy</code></strong> (below)</td>
+</tr>
+<tr>
+<td>Version target changed (<code>current_version ≠ new_version</code>, same tree)</td>
+<td>Same lifecycle policy (usually <strong><code>reload</code></strong> when policy is <code>reload</code>)</td>
+</tr>
+<tr>
+<td>Already promoted on all active allocations</td>
+<td><strong>Skip</strong> — no rsync wave for that job</td>
+</tr>
+<tr>
+<td><strong><code>--force</code></strong></td>
+<td>Rollout all active allocations even when hash and version match</td>
+</tr>
+</tbody>
+</table>
+<p><strong>New allocations always start.</strong> No policy or flag can replace <code>start</code> with rsync-only — use normal deploy for first boot, then tune policy for upgrades.</p>
+<h3 id="default-path-makefile-runner-py" tabindex="-1"><a class="observablehq-header-anchor" href="#default-path-makefile-runner-py">Default path: Makefile + <code>runner.py</code></a></h3>
+<p>When the job has no <strong><code>job_control</code></strong> commands, deploy calls <strong><code>runner.py</code></strong> on the worker, which runs <strong><code>make</code></strong> targets in the job directory:</p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>start</code></strong></td>
+<td>New allocation</td>
+</tr>
+<tr>
+<td><strong><code>restart</code></strong></td>
+<td>Full recreate / stop-start (policy <strong><code>always</code></strong>, or <strong><code>reload</code></strong> + <strong><code>restart_globs</code></strong> match)</td>
+</tr>
+<tr>
+<td><strong><code>reload</code></strong></td>
+<td>Soft apply — config reload, HTTP <code>/-/reload</code>, <code>systemctl reload</code>, etc.</td>
+</tr>
+</tbody>
+</table>
+<p>Each target receives <strong><code>CURRENT_VERSION</code></strong> and <strong><code>NEW_VERSION</code></strong> in the environment (see <a href="#allocation-version-tracking">Allocation version tracking</a>).</p>
+<p>Rolling batches use <strong><code>deploy_parallel_count</code></strong> (starts) and <strong><code>update_parallel_count</code></strong> (restarts/reloads), ordered by <strong><code>deploy_order</code></strong>. Health checks run after start batches complete and after each update batch when a lifecycle target runs.</p>
+<h3 id="restart-policy-manifest" tabindex="-1"><a class="observablehq-header-anchor" href="#restart-policy-manifest"><code>restart_policy</code> (manifest)</a></h3>
+<p>Set in <strong><code>manifest.json</code></strong>. Default <strong><code>always</code></strong>. Applies to <strong>updated</strong> allocations only.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>After rsync</th>
+<th>Makefile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>always</code></strong></td>
+<td>Recreate or full restart</td>
+<td><code>make restart</code></td>
+</tr>
+<tr>
+<td><strong><code>reload</code></strong></td>
+<td>Soft apply when possible</td>
+<td><code>make reload</code> (see <strong><code>restart_globs</code></strong>)</td>
+</tr>
+<tr>
+<td><strong><code>never</code></strong></td>
+<td>Files only</td>
+<td>— (rsync + promote)</td>
+</tr>
+</tbody>
+</table>
+<p>Example — Prometheus picks up rule and config changes without restarting the process when only non-critical files change:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span> <span class="hljs-attr">"restart_policy"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"reload"</span> <span class="hljs-punctuation">}</span>
+</code></pre>
+<pre data-language="makefile"><code class="language-makefile"><span class="hljs-section">reload:</span>
+	curl -sf -X POST http://127.0.0.1:<span class="hljs-variable">$(PROM_PORT)</span>/-/reload
+</code></pre>
+<p>Prometheus needs <strong><code>--web.enable-lifecycle</code></strong>. See <a href="../../guides/prometheus">guides/prometheus.md</a>.</p>
+<p>Stateful jobs (databases, queues) usually keep <strong><code>always</code></strong>. Stateless HTTP services and monitoring stacks often use <strong><code>reload</code></strong>.</p>
+<h3 id="restart-globs-manifest-with-reload-only" tabindex="-1"><a class="observablehq-header-anchor" href="#restart-globs-manifest-with-reload-only"><code>restart_globs</code> (manifest, with <code>reload</code> only)</a></h3>
+<p>Optional list of <strong>job-relative globs</strong> (<code>*</code>, <code>?</code>, <code>**</code> — same rules as <code>.dashboardignore</code>). <strong><code>maand build</code></strong> rejects <strong><code>restart_globs</code></strong> unless <strong><code>restart_policy</code></strong> is <strong><code>reload</code></strong>.</p>
+<p>Maand stores a <strong>per-file manifest</strong> on each allocation (<code>hash.current_files</code> / <code>hash.previous_files</code>): path → content MD5 of the last staged and promoted trees. On upgrade it diffs those maps:</p>
+<ul>
+<li>If <strong>any changed path</strong> matches a glob → <strong><code>make restart</code></strong></li>
+<li>Otherwise → <strong><code>make reload</code></strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Changed files</th>
+<th><code>restart_globs</code></th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rules/alerts.yaml</code></td>
+<td><code>["prometheus.yml", "Makefile"]</code></td>
+<td>reload</td>
+</tr>
+<tr>
+<td><code>Makefile</code></td>
+<td>same</td>
+<td>restart</td>
+</tr>
+<tr>
+<td>Version bump only (no file diff)</td>
+<td>any</td>
+<td>reload</td>
+</tr>
+<tr>
+<td>No promoted file manifest yet</td>
+<td>any</td>
+<td>reload (conservative default)</td>
+</tr>
+</tbody>
+</table>
+<p>Example — reload for most edits, restart when compose or binaries change:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"restart_policy"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"reload"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"restart_globs"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-string">"docker-compose.yml"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">"docker-compose.yml.tpl"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">"Dockerfile"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">"bin/**"</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Dry-run shows which paths triggered restart:</p>
+<pre data-language="text"><code class="language-text">10.0.0.3  restart previous_hash=... current_hash=... matched=Makefile,bin/app
+10.0.0.4  reload  previous_hash=... current_hash=...
+</code></pre>
+<h3 id="sync-only-cli" tabindex="-1"><a class="observablehq-header-anchor" href="#sync-only-cli"><code>--sync-only</code> (CLI)</a></h3>
+<p>One-deploy override: <strong>rsync</strong>, <strong><code>post_deploy</code></strong>, and <strong>promote</strong> without <strong><code>start</code></strong>, <strong><code>restart</code></strong>, or <strong><code>reload</code></strong>. Same effect as <strong><code>restart_policy: never</code></strong> for updated allocations, but chosen on the command line.</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Updated allocation</td>
+<td>Rsync + promote; no lifecycle</td>
+</tr>
+<tr>
+<td>New allocation</td>
+<td><strong>Error</strong> — cannot bootstrap without <strong><code>start</code></strong></td>
+</tr>
+<tr>
+<td><strong><code>job_control</code></strong> job</td>
+<td>Skips custom lifecycle; rsync + promote only</td>
+</tr>
+<tr>
+<td><strong><code>--dry-run</code></strong></td>
+<td>Reports <strong><code>sync</code></strong>; errors if <strong><code>start</code></strong> would be required</td>
+</tr>
+</tbody>
+</table>
+<p>Use when the process reads files directly, or when you will run <strong><code>maand job run &lt;job&gt; --target reload</code></strong> yourself afterward.</p>
+<pre data-language="bash"><code class="language-bash">maand build
+maand deploy --dry-run --sync-only --<span class="hljs-built_in">jobs</span> api
+maand deploy --sync-only --<span class="hljs-built_in">jobs</span> api
+</code></pre>
+<p><strong><code>--force --sync-only</code></strong> still skips lifecycle even when force would otherwise roll allocations.</p>
+<h3 id="job-control-custom-lifecycle" tabindex="-1"><a class="observablehq-header-anchor" href="#job-control-custom-lifecycle"><code>job_control</code> (custom lifecycle)</a></h3>
+<p>If the manifest registers <strong><code>job_control</code></strong>, default <strong><code>start</code> / <code>restart</code> / <code>reload</code></strong> are <strong>not</strong> used. Your script receives <strong><code>NEW_ALLOCATIONS</code></strong>, <strong><code>UPDATED_ALLOCATIONS</code></strong>, <strong><code>CURRENT_VERSION</code></strong>, and <strong><code>NEW_VERSION</code></strong> — implement canary, blue/green, or sync logic there. See <a href="../job-command-api">job-command-api.md</a>.</p>
+<p><strong><code>restart_policy</code></strong>, <strong><code>restart_globs</code></strong>, and <strong><code>--sync-only</code></strong> do not apply on this path (except <strong><code>--sync-only</code></strong> still skips the script and only rsyncs + promotes).</p>
+<hr>
+<h2 id="staging-and-rsync" tabindex="-1"><a class="observablehq-header-anchor" href="#staging-and-rsync">Staging and rsync</a></h2>
+<h3 id="staging-tmp-workers-worker-ip" tabindex="-1"><a class="observablehq-header-anchor" href="#staging-tmp-workers-worker-ip">Staging (<code>tmp/workers/&lt;worker_ip&gt;/</code>)</a></h3>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>worker.json</code></td>
+<td><code>bucket_id</code>, <code>worker_id</code>, labels, <code>update_seq</code></td>
+</tr>
+<tr>
+<td><code>jobs.json</code></td>
+<td>Active jobs on this worker (removed jobs omitted)</td>
+</tr>
+<tr>
+<td><code>bin/runner.py</code>, <code>bin/worker.py</code></td>
+<td>Embedded helpers</td>
+</tr>
+<tr>
+<td><code>jobs/&lt;job&gt;/</code></td>
+<td>Copy of <code>job_files</code> + rendered <code>.tpl</code> + <code>certs/</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="rsync" tabindex="-1"><a class="observablehq-header-anchor" href="#rsync">Rsync</a></h3>
+<ul>
+<li>From the bucket directory on the CLI host to <strong><code>agent@&lt;worker&gt;:/opt/worker/&lt;bucket_id&gt;/</code></strong> (user from <code>maand.conf</code>).</li>
+<li><strong>Staging rsync</strong>: filter includes only jobs in <strong><code>jobsToStage</code></strong> (<code>+ jobs/&lt;job&gt;/</code>, <code>- jobs/*</code>).</li>
+<li><strong>Final rsync</strong>: one pass <strong>per successfully deployed job</strong>, only to workers with an <strong>active</strong> allocation for that job; same per-job filter so other jobs on the host are not touched.</li>
+</ul>
+<h3 id="templates-tpl" tabindex="-1"><a class="observablehq-header-anchor" href="#templates-tpl">Templates (<code>.tpl</code>)</a></h3>
+<p>Files under <code>jobs/&lt;job&gt;/</code> ending in <strong><code>.tpl</code></strong> are rendered at staging time. Full reference: <a href="../templates">templates.md</a>.</p>
+<h3 id="prometheus-job-staging" tabindex="-1"><a class="observablehq-header-anchor" href="#prometheus-job-staging">Prometheus job staging</a></h3>
+<p>When the staged job ships <strong><code>prometheus.yml</code></strong> or <strong><code>prometheus.yml.tpl</code></strong>, maand assembles monitoring artifacts <strong>before</strong> rsync (from <strong><code>job_files</code></strong>, not from <code>maand/prometheus</code> KV except scrape expansion):</p>
+<table>
+<thead>
+<tr>
+<th>Output (under <code>jobs/prometheus/</code> on worker)</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rules/&lt;maand_job&gt;/*.yaml</code></td>
+<td>Each job's <code>_prometheus/alerts/</code> (+ runbook URL injection)</td>
+</tr>
+<tr>
+<td><code>rules/maand/certs.yaml</code></td>
+<td>Embedded cert alert rules when server config exists</td>
+</tr>
+<tr>
+<td><code>consoles/runbooks/&lt;job&gt;/&lt;slug&gt;.html</code></td>
+<td><code>_prometheus/runbooks/*.md</code> → HTML + index + CSS</td>
+</tr>
+<tr>
+<td><code>consoles/dashboards/&lt;job&gt;/&lt;path&gt;</code></td>
+<td><code>_prometheus/dashboards/**</code> copied as-is (+ index, CSS)</td>
+</tr>
+<tr>
+<td><code>prometheus.yml</code> (rendered)</td>
+<td>Template with <code>{{ scrapeConfigs }}</code> / <code>{{ ruleFiles }}</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>{{ scrapeConfigs }}</code></strong> reads scrape KV (<code>maand/prometheus/scrape*</code>), expands <code>maand:port/*</code> using <strong>active</strong> allocations, and <strong>skips</strong> jobs that would expand to zero targets (does not fail the whole render).</p>
+<p>After deploy <strong>commits</strong>, maand <strong>best-effort</strong> pushes cert expiry metrics via Prometheus remote write (see <a href="../certs#prometheus-metrics-optional">certs.md</a>).</p>
+<p>Details: <a href="../../guides/prometheus">prometheus.md</a>.</p>
+<hr>
+<h2 id="removed-and-disabled-allocations" tabindex="-1"><a class="observablehq-header-anchor" href="#removed-and-disabled-allocations">Removed and disabled allocations</a></h2>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>removed=1</code></strong> (worker/job dropped at build)</td>
+<td>If previously deployed: <strong>stop</strong>, then remove deployed job files on the worker (<strong><code>data/</code></strong> and <strong><code>logs/</code></strong> are left in place for redeploy). Local staging under <code>tmp/workers/&lt;ip&gt;/jobs/&lt;job&gt;/</code> is removed. Workers removed from <strong><code>workers.json</code></strong>: after all their removed allocations are processed, <strong><code>rm -rf /opt/worker/&lt;bucket_id&gt;/</code></strong>. Unreachable removed workers are assumed dead (logged, deploy continues).</td>
+</tr>
+<tr>
+<td><strong><code>disabled=1</code></strong></td>
+<td>Excluded from start/restart/reload/rsync targets; stop if was running; <strong>keep</strong> deployed job files, KV, and hash/version state. Content and version changes are still <strong>staged, hashed, and promoted</strong> on deploy (rollout shows <code>disabled</code> or <code>disabled_restart</code> in <code>maand cat deployments</code>). After re-enable (<code>maand build</code> clears <code>disabled.json</code>), deploy <strong>starts</strong> the allocation via <code>GetNewAllocations</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Redeploying the same job on the same worker reuses existing <strong><code>data/</code></strong> and <strong><code>logs/</code></strong> (rsync excludes those paths). <strong><code>deploy</code></strong> deletes the allocation <strong>hash row</strong> when reconciling <strong><code>removed=1</code></strong> allocations (even if the job is skipped from rollout), so a later redeploy treats it as a <strong>new</strong> rollout (<code>make start</code>) while worker <strong><code>data/</code></strong> and <strong><code>logs/</code></strong> remain. After <strong><code>build</code></strong> only, hashes still show the last promoted state until <strong><code>deploy</code></strong> runs.</p>
+<p>When reconcile finishes and a job has <strong>no non-removed allocations</strong> (every row <code>removed=1</code>), deploy purges all job-scoped KV namespaces. Jobs with <strong>disabled-only</strong> allocations retain KV. <strong><code>maand build</code></strong> also clears build-owned namespaces when the job is inactive. Run <strong><code>maand gc</code></strong> to delete worker <strong><code>jobs/&lt;job&gt;/</code></strong> trees and purge removed allocation rows from the catalog.</p>
+<hr>
+<h2 id="pre-deploy-and-post-deploy" tabindex="-1"><a class="observablehq-header-anchor" href="#pre-deploy-and-post-deploy"><code>pre_deploy</code> and <code>post_deploy</code></a></h2>
+<ul>
+<li>Registered in manifest with <code>executed_on</code>: <code>pre_deploy</code> / <code>post_deploy</code>.</li>
+<li>Run via <strong><code>jobcommand</code></strong> on the CLI host (Python or Bun).</li>
+<li><strong><code>pre_deploy</code> failure</strong>: job is not added to <code>jobsToStage</code> for this deploy; other jobs continue.</li>
+<li><strong><code>post_deploy</code> failure</strong>: fails that job’s deploy; earlier jobs in the same run may already be promoted.</li>
+</ul>
+<h3 id="kv-checkpoint" tabindex="-1"><a class="observablehq-header-anchor" href="#kv-checkpoint">KV checkpoint</a></h3>
+<p>Job commands can write to the in-memory KV store (e.g. connection strings for templates). After each job’s <strong><code>pre_deploy</code></strong> and after <strong><code>deployJob</code></strong> (including <code>post_deploy</code>), maand flushes pending KV changes into the <strong>deploy transaction</strong> via <strong><code>kv.PersistToSessionTransaction</code></strong>.</p>
+<p>Those writes commit when deploy commits (including <strong>partial deploy</strong> — successful jobs persist even if later jobs fail). If deploy aborts before commit, KV checkpoint writes roll back with the rest of the catalog state.</p>
+<hr>
+<h2 id="partial-deploy-and-retry" tabindex="-1"><a class="observablehq-header-anchor" href="#partial-deploy-and-retry">Partial deploy and retry</a></h2>
+<ol>
+<li>Job A succeeds → content hashes and <strong><code>current_version</code></strong> <strong>promoted</strong>.</li>
+<li>Job B fails (e.g. <code>post_deploy</code> or restart error).</li>
+<li>Transaction still <strong>commits</strong>; command returns <strong><code>deploy failed</code></strong> with errors.</li>
+<li>Fix B, run <strong><code>maand deploy</code></strong> again:
+<ul>
+<li>Job A: <strong>skipped</strong> (already promoted).</li>
+<li>Job B: staged and deployed again.</li>
+</ul>
+</li>
+</ol>
+<p>Use <strong><code>maand deploy --force</code></strong> to redeploy promoted jobs without a workspace change (pairs with <strong><code>maand health_check --update-hash</code></strong> for command-based health).</p>
+<hr>
+<h2 id="update-seq" tabindex="-1"><a class="observablehq-header-anchor" href="#update-seq"><code>update_seq</code></a></h2>
+<p>At deploy start, <strong><code>bucket.update_seq</code></strong> increments in its own committed transaction. Workers receive the new value in <strong><code>worker.json</code></strong> so they can detect bucket-wide changes.</p>
+<hr>
+<h2 id="configuration" tabindex="-1"><a class="observablehq-header-anchor" href="#configuration">Configuration</a></h2>
+<p>Uses <strong><code>maand.conf</code></strong> at the bucket root (SSH user, key file under <code>secrets/</code>, sudo for remote rsync). See <a href="../configuration">configuration.md</a>.</p>
+<p>Worker key path: <strong><code>secrets/&lt;ssh_key&gt;</code></strong> relative to the bucket root.</p>
+<hr>
+<h2 id="inspect-state" tabindex="-1"><a class="observablehq-header-anchor" href="#inspect-state">Inspect state</a></h2>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> allocations
+maand <span class="hljs-built_in">cat</span> deployments
+maand <span class="hljs-built_in">cat</span> <span class="hljs-built_in">jobs</span>
+maand info
+</code></pre>
+<p>Hash state lives in table <strong><code>hash</code></strong> with namespace <code>&lt;job&gt;_allocation</code> and key <code>alloc_id</code>. <strong><code>maand cat deployments</code></strong> shows <strong><code>current_hash</code></strong>, <strong><code>previous_hash</code></strong>, versions, and rollout (<code>removed</code>, <code>disabled</code>, or hash-derived <code>new</code> / <code>restart</code> / <code>promoted</code> / <code>health_failed</code>). Use <strong><code>--active</code></strong> to see only allocations deploy would target.</p>
+<hr>
+<h2 id="common-failures" tabindex="-1"><a class="observablehq-header-anchor" href="#common-failures">Common failures</a></h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSH / rsync errors</td>
+<td>Wrong key, firewall, worker down, sudo needed (<code>use_sudo=true</code>)</td>
+</tr>
+<tr>
+<td><code>deploy: skip job</code> on first deploy</td>
+<td>Run <code>build</code> first; allocation should have no hash row until first successful promote</td>
+</tr>
+<tr>
+<td><code>deploy: skip job</code> after workspace edit</td>
+<td>Run <strong><code>maand build</code></strong> then <strong><code>maand deploy</code></strong>; deploy refreshes plan hashes from staged content before the skip check</td>
+</tr>
+<tr>
+<td>Job not staging</td>
+<td><code>pre_deploy</code> failed or <code>JobNeedsRollout</code> false</td>
+</tr>
+<tr>
+<td>Template panic</td>
+<td>KV key missing; namespace not allowed in <code>.tpl</code></td>
+</tr>
+<tr>
+<td><code>health check failed</code></td>
+<td><code>health_check</code> command returned non-zero</td>
+</tr>
+<tr>
+<td>Stale files on worker</td>
+<td>Deploy removes deployed job files on dealloc (keeps <code>data/</code>/<code>logs/</code>); GC deletes runtime dirs; final rsync is per-job only</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="related" tabindex="-1"><a class="observablehq-header-anchor" href="#related">Related</a></h2>
+<ul>
+<li><a href="./build">build.md</a> — catalog and sequences</li>
+<li><a href="../templates">templates.md</a> — <code>.tpl</code> rendering</li>
+<li><a href="../kv/namespaces">KV namespaces</a> · <a href="../kv/persistence">KV persistence</a></li>
+<li><a href="./job-command">job-command.md</a> · <a href="../job-command-api">job-command-api.md</a></li>
+<li><a href="../../guides/disable-and-drain">disable and drain</a> — disable/re-enable</li>
+<li><a href="../../guides/rolling-deploy">rolling-deploy</a> — <code>update_parallel_count</code>, version upgrades</li>
+<li><a href="../../guides/debugging-deploy">debugging-deploy.md</a> — dry-run, <code>cat deployments</code>, failures</li>
+<li><a href="./health-check">health-check.md</a> — standalone health checks</li>
+<li><a href="./job">job.md</a> — manual start/stop/restart/reload</li>
+<li><a href="./gc">gc.md</a> — purge removed allocations</li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./build"><span>CLI build</span></a><a rel="next" href="./health-check"><span>CLI health check</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

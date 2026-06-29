@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Tutorial: Getting started | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section class="observablehq-section-active">
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./overview">Overview</a></li>
+    <li class="observablehq-link"><a href="./concepts">Concepts</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="./comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../reference/configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../reference/manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../reference/resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../reference/deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../reference/templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../reference/certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../reference/job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../reference/observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#step-1-create-the-bucket">Step 1 — Create the bucket</a></li>
+<li class="observablehq-secondary-link"><a href="#step-2-register-workers">Step 2 — Register workers</a></li>
+<li class="observablehq-secondary-link"><a href="#step-3-create-a-job">Step 3 — Create a job</a></li>
+<li class="observablehq-secondary-link"><a href="#step-4-build-the-catalog">Step 4 — Build the catalog</a></li>
+<li class="observablehq-secondary-link"><a href="#step-5-deploy-to-workers">Step 5 — Deploy to workers</a></li>
+<li class="observablehq-secondary-link"><a href="#step-6-verify-on-workers">Step 6 — Verify on workers</a></li>
+<li class="observablehq-secondary-link"><a href="#step-7-change-and-roll-out">Step 7 — Change and roll out</a></li>
+<li class="observablehq-secondary-link"><a href="#what-you-have-now">What you have now</a></li>
+<li class="observablehq-secondary-link"><a href="#next-steps">Next steps</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="tutorial-getting-started" tabindex="-1"><a class="observablehq-header-anchor" href="#tutorial-getting-started">Tutorial: Getting started</a></h1>
+<p>This walkthrough creates a maand bucket, registers two workers, adds a simple job, builds the catalog, and deploys it. You need:</p>
+<ul>
+<li><strong>CLI host:</strong> <code>maand</code> binary built with <code>CGO_ENABLED=1</code>, plus <code>bash</code>, <code>ssh</code>, <code>rsync</code>, <code>python3</code></li>
+<li><strong>Workers:</strong> Linux hosts with SSH access, <code>python3</code>, <code>make</code>, <code>rsync</code>, <code>bash</code>, <code>timeout</code> on <code>PATH</code></li>
+<li><strong>SSH key:</strong> private key in <code>secrets/</code> authorized for <code>ssh_user</code> on each worker</li>
+</ul>
+<p>Concepts: <a href="./concepts">concepts.md</a> · Commands: <a href="../reference/cli/commands">commands.md</a> · Config: <a href="../reference/configuration">configuration.md</a></p>
+<hr>
+<h2 id="step-1-create-the-bucket" tabindex="-1"><a class="observablehq-header-anchor" href="#step-1-create-the-bucket">Step 1 — Create the bucket</a></h2>
+<p>Choose a directory for your project and initialize:</p>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-built_in">mkdir</span> my-cluster &amp;&amp; <span class="hljs-built_in">cd</span> my-cluster
+maand init
+</code></pre>
+<p>You should see <code>maand bucket initialized</code>. Verify layout:</p>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-built_in">ls</span> -la
+<span class="hljs-comment"># maand.conf  data/  workspace/  secrets/  tmp/  logs/</span>
+<span class="hljs-built_in">cat</span> workspace/workers.json
+<span class="hljs-comment"># []</span>
+</code></pre>
+<p>Copy your worker SSH private key:</p>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-built_in">cp</span> ~/.ssh/id_ed25519 secrets/worker.key
+<span class="hljs-built_in">chmod</span> 600 secrets/worker.key
+</code></pre>
+<p>Edit <strong><code>maand.conf</code></strong> if needed (defaults assume user <code>agent</code>, key <code>worker.key</code>, <code>use_sudo = true</code>):</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-attr">ssh_user</span> = <span class="hljs-string">"agent"</span>
+<span class="hljs-attr">ssh_key</span> = <span class="hljs-string">"worker.key"</span>
+<span class="hljs-attr">use_sudo</span> = <span class="hljs-literal">true</span>
+</code></pre>
+<p>Ensure the matching public key is in <code>~agent/.ssh/authorized_keys</code> on every worker.</p>
+<hr>
+<h2 id="step-2-register-workers" tabindex="-1"><a class="observablehq-header-anchor" href="#step-2-register-workers">Step 2 — Register workers</a></h2>
+<p>Edit <strong><code>workspace/workers.json</code></strong>:</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.0.0.1"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"labels"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4096 mb"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2000 mhz"</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"10.0.0.2"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"labels"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"4096 mb"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2000 mhz"</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">]</span>
+</code></pre>
+<p>Every worker automatically gets the <strong><code>worker</code></strong> label. Jobs match workers using manifest <strong><code>selectors</code></strong> when set; otherwise the <strong>job name</strong> must appear as a worker label.</p>
+<p>Test SSH from the CLI host:</p>
+<pre data-language="bash"><code class="language-bash">ssh -i secrets/worker.key agent@10.0.0.1 <span class="hljs-built_in">echo</span> ok
+ssh -i secrets/worker.key agent@10.0.0.2 <span class="hljs-built_in">echo</span> ok
+</code></pre>
+<hr>
+<h2 id="step-3-create-a-job" tabindex="-1"><a class="observablehq-header-anchor" href="#step-3-create-a-job">Step 3 — Create a job</a></h2>
+<p>Scaffold a job:</p>
+<pre data-language="bash"><code class="language-bash">maand job create hello --selectors worker
+</code></pre>
+<p>This creates <code>workspace/jobs/hello/</code> with <code>manifest.json</code> and a minimal <strong>Makefile</strong>. Replace the Makefile with something that tracks lifecycle (deploy calls <code>make start</code> on first deploy and <code>make restart</code> on upgrades by default; add a <strong><code>reload</code></strong> target if you set <strong><code>restart_policy: reload</code></strong> — see <a href="../reference/cli/deploy#applying-changes-on-workers">deploy.md</a>):</p>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-built_in">cat</span> &gt; workspace/jobs/hello/Makefile &lt;&lt;<span class="hljs-string">'EOF'</span>
+.PHONY: start stop restart status
+
+<span class="hljs-built_in">dir</span>:
+	<span class="hljs-built_in">mkdir</span> -p ./data ./logs ./bin
+
+start: <span class="hljs-built_in">dir</span>
+	@<span class="hljs-built_in">echo</span> <span class="hljs-string">"hello started"</span> &gt; ./data/status
+	@<span class="hljs-built_in">date</span> &gt;&gt; ./logs/start.log
+
+stop:
+	@<span class="hljs-built_in">echo</span> stopped &gt; ./data/status
+
+restart: stop start
+
+status:
+	@<span class="hljs-built_in">cat</span> ./data/status 2&gt;/dev/null || <span class="hljs-built_in">echo</span> not running
+EOF
+</code></pre>
+<p>Ensure <strong><code>manifest.json</code></strong> includes selectors when the job should run on the shared worker pool (the <code>create</code> command writes <code>"selectors": ["worker"]</code>):</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1.0.0"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"update_parallel_count"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"resources"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"memory"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"64 mb"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"256 mb"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cpu"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"min"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"100 mhz"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"max"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"500 mhz"</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Do <strong>not</strong> commit <code>data/</code>, <code>logs/</code>, or <code>bin/</code> under the job folder in workspace — those are created on workers at runtime.</p>
+<hr>
+<h2 id="step-4-build-the-catalog" tabindex="-1"><a class="observablehq-header-anchor" href="#step-4-build-the-catalog">Step 4 — Build the catalog</a></h2>
+<pre data-language="bash"><code class="language-bash">maand build
+</code></pre>
+<p>Build reads workers and jobs, creates <strong>allocations</strong> (hello × each worker), fills KV, and validates resources. Inspect:</p>
+<pre data-language="bash"><code class="language-bash">maand info
+maand <span class="hljs-built_in">cat</span> workers
+maand <span class="hljs-built_in">cat</span> <span class="hljs-built_in">jobs</span>
+maand <span class="hljs-built_in">cat</span> allocations
+</code></pre>
+<p>You should see two allocations: <code>hello</code> on <code>10.0.0.1</code> and <code>hello</code> on <code>10.0.0.2</code>, both active (<code>disabled=0</code>, <code>removed=0</code>).</p>
+<p>If build fails, common causes:</p>
+<ul>
+<li>Missing Makefile under the job</li>
+<li>Port collision between jobs</li>
+<li>Job memory/CPU exceeds worker capacity</li>
+<li>Invalid <code>workers.json</code> (duplicate hosts, bad units)</li>
+</ul>
+<p>See <a href="../reference/cli/build#common-errors">build.md</a>.</p>
+<hr>
+<h2 id="step-5-deploy-to-workers" tabindex="-1"><a class="observablehq-header-anchor" href="#step-5-deploy-to-workers">Step 5 — Deploy to workers</a></h2>
+<pre data-language="bash"><code class="language-bash">maand deploy
+</code></pre>
+<p>Deploy will:</p>
+<ol>
+<li>Check host tools (<code>ssh</code>, <code>rsync</code>, <code>python3</code>, …) and worker prerequisites</li>
+<li>Stage job files under <code>tmp/workers/&lt;ip&gt;/</code></li>
+<li>Rsync to <code>/opt/worker/&lt;bucket_id&gt;/</code> on each worker</li>
+<li>Run lifecycle targets: <strong><code>make start</code></strong> (first deploy) or, on upgrades, <strong><code>make restart</code></strong> by default (<strong><code>restart_policy: always</code></strong>). With <strong><code>restart_policy: reload</code></strong>, deploy calls <strong><code>make reload</code></strong> instead (or <strong><code>make restart</code></strong> when changed files match <strong><code>restart_globs</code></strong>).</li>
+</ol>
+<p>Optional: combine build + deploy:</p>
+<pre data-language="bash"><code class="language-bash">maand deploy --build
+</code></pre>
+<p>Dry-run before a production push — stages locally and prints per-allocation actions (<strong>start</strong>, <strong>restart</strong>, <strong>reload</strong>, <strong>sync</strong>, <strong>skip</strong>); <strong><code>matched=</code></strong> paths appear when <strong><code>restart_globs</code></strong> forces a restart:</p>
+<pre data-language="bash"><code class="language-bash">maand deploy --dry-run
+</code></pre>
+<p>See <a href="../reference/cli/deploy#applying-changes-on-workers">Applying changes on workers</a> for <strong><code>restart_policy</code></strong>, <strong><code>--sync-only</code></strong>, and glob behavior.</p>
+<p>Deploy only one job:</p>
+<pre data-language="bash"><code class="language-bash">maand deploy --<span class="hljs-built_in">jobs</span> hello
+</code></pre>
+<hr>
+<h2 id="step-6-verify-on-workers" tabindex="-1"><a class="observablehq-header-anchor" href="#step-6-verify-on-workers">Step 6 — Verify on workers</a></h2>
+<p>Check remote state with <strong><code>maand run_command</code></strong>:</p>
+<pre data-language="bash"><code class="language-bash">maand run_command <span class="hljs-string">"cat /opt/worker/*/jobs/hello/data/status"</span>
+maand run_command <span class="hljs-string">"hostname &amp;&amp; cat /opt/worker/*/jobs/hello/data/status"</span>
+</code></pre>
+<p>Or SSH manually:</p>
+<pre data-language="bash"><code class="language-bash">ssh agent@10.0.0.1 <span class="hljs-string">"cat /opt/worker/*/jobs/hello/data/status"</span>
+</code></pre>
+<p>Use <strong><code>maand job status</code></strong> (requires deploy to have synced <code>update_seq</code>):</p>
+<pre data-language="bash"><code class="language-bash">maand job status hello
+maand job status hello --allocations 10.0.0.1
+</code></pre>
+<hr>
+<h2 id="step-7-change-and-roll-out" tabindex="-1"><a class="observablehq-header-anchor" href="#step-7-change-and-roll-out">Step 7 — Change and roll out</a></h2>
+<p>Edit the job (for example bump <code>version</code> in <code>manifest.json</code> or change the Makefile), then:</p>
+<pre data-language="bash"><code class="language-bash">maand build
+maand deploy
+</code></pre>
+<p>Deploy compares <strong>content hashes</strong> per allocation and rolls out only jobs that changed. With <code>update_parallel_count: 2</code>, lifecycle actions (<strong>restart</strong> or <strong>reload</strong>, per <strong><code>restart_policy</code></strong>) happen in rolling batches of two workers.</p>
+<p>Each <strong><code>make start</code></strong>, <strong><code>make restart</code></strong>, or <strong><code>make reload</code></strong> receives <strong><code>CURRENT_VERSION</code></strong> (what was last promoted on that worker) and <strong><code>NEW_VERSION</code></strong> (the target from your manifest after build). Use them in the Makefile for migrations or upgrade scripts — see <a href="../reference/cli/deploy#allocation-version-tracking">deploy.md</a>.</p>
+<p>For config-only pushes without touching the process, set <strong><code>restart_policy: reload</code></strong> (and optional <strong><code>restart_globs</code></strong>) in <strong><code>manifest.json</code></strong>, or use <strong><code>maand deploy --sync-only</code></strong> to rsync and promote with no lifecycle — then run <strong><code>maand job run hello --target reload</code></strong> if needed. A <strong>version-only</strong> bump still triggers rollout when <strong><code>current_version ≠ new_version</code></strong>, even if the content hash is unchanged (typically <strong><code>reload</code></strong> when policy is <strong><code>reload</code></strong>).</p>
+<p>Bump <strong><code>version</code></strong> in <code>manifest.json</code> when you want templates, KV, and deploy to reflect a new release. Bumping version alone still triggers rollout when <code>manifest.json</code> is part of the synced tree (content hash changes). If this job depends on others (or is depended on), use semver strings and optional <strong><code>min_version</code></strong> / <strong><code>max_version</code></strong> in <strong><code>demands.config</code></strong> — see <a href="../reference/manifest#version">manifest.md</a>.</p>
+<hr>
+<h2 id="what-you-have-now" tabindex="-1"><a class="observablehq-header-anchor" href="#what-you-have-now">What you have now</a></h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bucket</strong></td>
+<td>Local project with <code>maand.db</code></td>
+</tr>
+<tr>
+<td><strong>Workers</strong></td>
+<td>Two SSH targets in the catalog</td>
+</tr>
+<tr>
+<td><strong>Job</strong></td>
+<td><code>hello</code> with Makefile lifecycle</td>
+</tr>
+<tr>
+<td><strong>Allocations</strong></td>
+<td><code>hello</code> on each worker</td>
+</tr>
+<tr>
+<td><strong>Worker paths</strong></td>
+<td><code>/opt/worker/&lt;bucket_id&gt;/jobs/hello/</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="next-steps" tabindex="-1"><a class="observablehq-header-anchor" href="#next-steps">Next steps</a></h2>
+<ul>
+<li><a href="../guides/day-2-ops">Day-2 operations</a> — disable allocations, health checks, GC, manual job control</li>
+<li><a href="../guides/job-commands-tutorial">Job commands tutorial</a> — Python/Bun hooks and KV</li>
+<li><a href="../reference/job-command-api">job-command-api.md</a> — runtime API reference</li>
+<li><a href="../reference/cli/deploy">deploy.md</a> — rollout, hooks, dry-run, allocation version tracking</li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./concepts"><span>Concepts</span></a><a rel="next" href="./comparison-orchestrators"><span>Comparison</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

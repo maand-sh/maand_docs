@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Debugging deployment issues | Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="./rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="./disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="./job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="./prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="./worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../reference/configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../reference/manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../reference/resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../reference/deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../reference/templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../reference/certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="../reference/kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../reference/job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../reference/observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/build">CLI build</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/deploy">CLI deploy</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/job">CLI job</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="../reference/cli/logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#quick-diagnostic-flow">Quick diagnostic flow</a></li>
+<li class="observablehq-secondary-link"><a href="#dry-run-first">Dry-run first</a></li>
+<li class="observablehq-secondary-link"><a href="#read-allocation-hash-state">Read allocation hash state</a></li>
+<li class="observablehq-secondary-link"><a href="#common-symptoms">Common symptoms</a></li>
+<li class="observablehq-secondary-link"><a href="#worker-side-inspection">Worker-side inspection</a></li>
+<li class="observablehq-secondary-link"><a href="#staging-directory-maand-host">Staging directory (maand host)</a></li>
+<li class="observablehq-secondary-link"><a href="#logging">Logging</a></li>
+<li class="observablehq-secondary-link"><a href="#command-reference-for-debugging">Command reference for debugging</a></li>
+<li class="observablehq-secondary-link"><a href="#escalation-checklist">Escalation checklist</a></li>
+<li class="observablehq-secondary-link"><a href="#related">Related</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="debugging-deployment-issues" tabindex="-1"><a class="observablehq-header-anchor" href="#debugging-deployment-issues">Debugging deployment issues</a></h1>
+<p>Structured checklist for <strong><code>maand deploy</code></strong> failures, skipped jobs, partial rollouts, and worker sync problems. Start with <strong>dry-run</strong> and <strong>cat</strong> commands before SSHing to workers.</p>
+<hr>
+<h2 id="quick-diagnostic-flow" tabindex="-1"><a class="observablehq-header-anchor" href="#quick-diagnostic-flow">Quick diagnostic flow</a></h2>
+<pre data-language="text"><code class="language-text">1. maand deploy --dry-run [-b]     # would deploy run? which jobs?
+2. maand cat deployments [--jobs J]     # per-allocation rollout state
+3. maand cat allocations [--jobs J]
+4. maand cat jobs                  # deployment_seq, disabled flag
+5. maand build &amp;&amp; maand deploy     # refresh plan hashes after workspace edit
+6. Worker: /opt/worker/&lt;bucket_id&gt;/worker.json, jobs/&lt;job&gt;/logs/
+</code></pre>
+<pre data-language="bash"><code class="language-bash">maand info
+maand deploy --dry-run
+maand <span class="hljs-built_in">cat</span> deployments --<span class="hljs-built_in">jobs</span> api
+maand <span class="hljs-built_in">cat</span> allocations --<span class="hljs-built_in">jobs</span> api
+maand <span class="hljs-built_in">cat</span> kv --<span class="hljs-built_in">jobs</span> api
+</code></pre>
+<hr>
+<h2 id="dry-run-first" tabindex="-1"><a class="observablehq-header-anchor" href="#dry-run-first">Dry-run first</a></h2>
+<pre data-language="bash"><code class="language-bash">maand deploy --dry-run
+maand deploy -b -n              <span class="hljs-comment"># build + dry-run</span>
+maand deploy --dry-run --<span class="hljs-built_in">jobs</span> api,vault
+maand deploy --dry-run --force  <span class="hljs-comment"># preview forced restart</span>
+</code></pre>
+<p>Dry-run <strong>stages</strong> locally and refreshes plan hashes; it does <strong>not</strong> change workers or commit hash promotion. It may not simulate <strong>stop</strong> of removed/disabled allocations (see <a href="../reference/cli/deploy">deploy.md</a>).</p>
+<p>Per allocation, dry-run prints the planned action:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>start</strong></td>
+<td>First deploy on this worker (<code>previous_hash</code> empty)</td>
+</tr>
+<tr>
+<td><strong>restart</strong></td>
+<td>Full recreate — default policy <strong><code>always</code></strong>, or <strong><code>reload</code></strong> + <strong><code>restart_globs</code></strong> match</td>
+</tr>
+<tr>
+<td><strong>reload</strong></td>
+<td>Soft apply — <strong><code>restart_policy: reload</code></strong> and no glob match</td>
+</tr>
+<tr>
+<td><strong>sync</strong></td>
+<td>Rsync + promote only (<strong><code>--sync-only</code></strong> or <strong><code>restart_policy: never</code></strong>)</td>
+</tr>
+<tr>
+<td><strong>skip</strong></td>
+<td>Already promoted</td>
+</tr>
+</tbody>
+</table>
+<p>When <strong><code>restart_globs</code></strong> forces a restart, the line includes <strong><code>matched=</code></strong> with the changed paths (for example <code>matched=Makefile,bin/app</code>).</p>
+<p>Interpret output:</p>
+<table>
+<thead>
+<tr>
+<th>Message</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deployment required</code></td>
+<td>At least one job needs rollout</td>
+</tr>
+<tr>
+<td><code>no deployment required</code></td>
+<td>All active allocations promoted (hashes + versions match)</td>
+</tr>
+<tr>
+<td><code>deploy required</code> per job</td>
+<td>That job will stage/rsync and run lifecycle (or sync-only)</td>
+</tr>
+<tr>
+<td><code>skip</code> / <code>already promoted</code></td>
+<td><strong><code>JobNeedsRollout</code></strong> false for that job</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="read-allocation-hash-state" tabindex="-1"><a class="observablehq-header-anchor" href="#read-allocation-hash-state">Read allocation hash state</a></h2>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> deployments
+maand <span class="hljs-built_in">cat</span> deployments --<span class="hljs-built_in">jobs</span> api --active
+maand <span class="hljs-built_in">cat</span> deployments --workers 10.0.0.1
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Rollout</th>
+<th>Meaning</th>
+<th>Typical action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>new</code></td>
+<td>Never promoted</td>
+<td>First deploy → <strong>start</strong></td>
+</tr>
+<tr>
+<td><code>restart</code></td>
+<td>Staged content or version differs from promoted</td>
+<td>Lifecycle on deploy — <strong><code>make restart</code></strong> (default <strong><code>always</code></strong>), <strong><code>make reload</code></strong> (<strong><code>reload</code></strong> policy), or <strong>sync only</strong> (<strong><code>never</code></strong> / <strong><code>--sync-only</code></strong>)</td>
+</tr>
+<tr>
+<td><code>promoted</code></td>
+<td>In sync</td>
+<td>Skipped unless <strong><code>--force</code></strong></td>
+</tr>
+<tr>
+<td><code>health_failed</code></td>
+<td>Health check marked allocation (<code>--update-hash</code>)</td>
+<td>Fix health, then <strong><code>deploy</code></strong> or <strong><code>deploy --force</code></strong></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td>Allocation disabled; stopped; catalog current</td>
+<td>Re-enable via <a href="./disable-and-drain">disable and drain</a></td>
+</tr>
+<tr>
+<td><code>disabled_restart</code></td>
+<td>Disabled; catalog has pending content/version</td>
+<td>Deploy updates plan; still no restart until active</td>
+</tr>
+<tr>
+<td><code>removed</code></td>
+<td>Soft-deleted allocation</td>
+<td><strong><code>deploy</code></strong> then <strong><code>gc</code></strong></td>
+</tr>
+</tbody>
+</table>
+<p>Columns <strong><code>current_version</code></strong> / <strong><code>new_version</code></strong>: version-only rollout when hashes match but versions differ.</p>
+<hr>
+<h2 id="common-symptoms" tabindex="-1"><a class="observablehq-header-anchor" href="#common-symptoms">Common symptoms</a></h2>
+<h3 id="deploy-skip-job-already-promoted-on-all-allocations" tabindex="-1"><a class="observablehq-header-anchor" href="#deploy-skip-job-already-promoted-on-all-allocations"><code>deploy: skip job "..." (already promoted on all allocations)</code></a></h3>
+<table>
+<thead>
+<tr>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No workspace change since last successful deploy</td>
+<td>Expected; edit job or use <strong><code>--force</code></strong></td>
+</tr>
+<tr>
+<td>Edited workspace but only ran deploy</td>
+<td>Run <strong><code>maand build</code></strong> then <strong><code>maand deploy</code></strong></td>
+</tr>
+<tr>
+<td>Version bump without content change</td>
+<td><strong><code>build</code></strong> sets <strong><code>new_version</code></strong>; deploy should restart — check <strong><code>cat deployments</code></strong> for version mismatch</td>
+</tr>
+<tr>
+<td>TLS cert expired or expiring soon</td>
+<td><strong><code>maand cat certs</code></strong> — then <strong><code>maand build &amp;&amp; maand deploy</code></strong> — <a href="../reference/certs">certs.md</a></td>
+</tr>
+<tr>
+<td>Job fully <strong>disabled</strong></td>
+<td>No active allocations; enable or use <strong><code>--jobs</code></strong> on active jobs only</td>
+</tr>
+</tbody>
+</table>
+<h3 id="job-not-in-deploy-wave-at-all" tabindex="-1"><a class="observablehq-header-anchor" href="#job-not-in-deploy-wave-at-all">Job not in deploy wave at all</a></h3>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> <span class="hljs-built_in">jobs</span>                    <span class="hljs-comment"># job exists? deployment_seq?</span>
+maand <span class="hljs-built_in">cat</span> allocations --<span class="hljs-built_in">jobs</span> J    <span class="hljs-comment"># any active rows?</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No matching workers</td>
+<td>Fix <strong><code>selectors</code></strong> vs <strong><code>worker_labels</code></strong>; check <strong><code>workers.json</code></strong></td>
+</tr>
+<tr>
+<td>Job filtered out</td>
+<td><strong><code>deploy --jobs</code></strong> list omits it</td>
+</tr>
+<tr>
+<td>Lower <strong><code>deployment_seq</code></strong> jobs failing</td>
+<td>Fix earlier wave; deploy processes seq 0 first</td>
+</tr>
+<tr>
+<td><strong><code>pre_deploy</code></strong> failed</td>
+<td>Check job-command logs; job skipped from staging this run</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pre-deploy-post-deploy-hook-failure" tabindex="-1"><a class="observablehq-header-anchor" href="#pre-deploy-post-deploy-hook-failure"><code>pre_deploy</code> / <code>post_deploy</code> / hook failure</a></h3>
+<p>Hooks run on the <strong>CLI host</strong> (Python/Bun). Failures return <strong><code>deploy failed</code></strong> with the job name.</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> job_commands --<span class="hljs-built_in">jobs</span> api
+maand jobcommand command_migrate api --verbose   <span class="hljs-comment"># reproduce cli event</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>On failure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>pre_deploy</code></strong></td>
+<td>Job not staged this run; others continue</td>
+</tr>
+<tr>
+<td><strong><code>post_deploy</code></strong></td>
+<td>Job deploy fails; earlier jobs in the run may already be promoted</td>
+</tr>
+<tr>
+<td><strong><code>job_control</code></strong></td>
+<td>Entire job deploy path fails</td>
+</tr>
+</tbody>
+</table>
+<p>KV written during hooks commits with deploy on success; rolls back if deploy aborts before commit.</p>
+<h3 id="ssh-rsync-errors" tabindex="-1"><a class="observablehq-header-anchor" href="#ssh-rsync-errors">SSH / rsync errors</a></h3>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># From maand host</span>
+ssh -i secrets/worker.key agent@10.0.0.1 <span class="hljs-literal">true</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connection refused / timeout</td>
+<td>Firewall, worker down, wrong IP</td>
+</tr>
+<tr>
+<td>Permission denied</td>
+<td><strong><code>secrets/worker.key</code></strong> authorized on worker</td>
+</tr>
+<tr>
+<td>rsync / sudo errors</td>
+<td><strong><code>maand.conf</code></strong>: <code>use_sudo</code>, <code>ssh_user</code>; worker needs <strong><code>rsync</code></strong>, <strong><code>make</code></strong>, <strong><code>python3</code></strong>, <strong><code>timeout</code></strong></td>
+</tr>
+<tr>
+<td>Host prerequisites</td>
+<td>CLI needs <strong><code>bash</code></strong>, <strong><code>ssh</code></strong>, <strong><code>rsync</code></strong>, <strong><code>python3</code></strong> (and <strong><code>bun</code></strong> if <code>.ts</code>/<code>.js</code> commands exist)</td>
+</tr>
+</tbody>
+</table>
+<p>Deploy logs <strong><code>deploy: removed worker X unreachable, assuming dead</code></strong> for off-catalog removed allocations — usually safe to ignore.</p>
+<h3 id="health-check-failed" tabindex="-1"><a class="observablehq-header-anchor" href="#health-check-failed"><code>health check failed</code></a></h3>
+<pre data-language="bash"><code class="language-bash">maand health_check --<span class="hljs-built_in">jobs</span> api --<span class="hljs-built_in">wait</span> --verbose
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Probe not ready yet</td>
+<td>Increase wait; fix startup order / <strong><code>deployment_seq</code></strong></td>
+</tr>
+<tr>
+<td>Command health failed</td>
+<td>Fix script; <strong><code>maand health_check --update-hash</code></strong> then <strong><code>deploy</code></strong></td>
+</tr>
+<tr>
+<td>Wrong port in manifest</td>
+<td><strong><code>maand cat job_ports --jobs api</code></strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="worker-json-update-seq-mismatch-maand-job-only" tabindex="-1"><a class="observablehq-header-anchor" href="#worker-json-update-seq-mismatch-maand-job-only"><code>worker.json</code> / <code>update_seq</code> mismatch (<code>maand job</code> only)</a></h3>
+<pre data-language="bash"><code class="language-bash">maand job status api    <span class="hljs-comment"># fails sync check</span>
+maand deploy            <span class="hljs-comment"># refreshes worker.json on workers</span>
+</code></pre>
+<p>Deploy does not require this check; <strong><code>maand job</code></strong> does.</p>
+<h3 id="partial-deploy-some-jobs-succeeded-others-failed" tabindex="-1"><a class="observablehq-header-anchor" href="#partial-deploy-some-jobs-succeeded-others-failed">Partial deploy (some jobs succeeded, others failed)</a></h3>
+<p>Deploy <strong>commits</strong> successful jobs; failed jobs stay unpromoted.</p>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> deployments        <span class="hljs-comment"># promoted vs restart per job</span>
+maand deploy            <span class="hljs-comment"># retries only jobs still needing rollout</span>
+</code></pre>
+<p>Fix the failing job, re-run <strong><code>maand deploy</code></strong> — promoted jobs are skipped.</p>
+<h3 id="template-kv-errors-during-stage" tabindex="-1"><a class="observablehq-header-anchor" href="#template-kv-errors-during-stage">Template / KV errors during stage</a></h3>
+<pre data-language="bash"><code class="language-bash">maand <span class="hljs-built_in">cat</span> kv --<span class="hljs-built_in">jobs</span> api
+maand <span class="hljs-built_in">cat</span> kv get vars/job/api mykey
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>get</code> / <code>getSecret</code> missing key</td>
+<td>Run hook that writes KV (<strong><code>post_build</code></strong>, <strong><code>pre_deploy</code></strong>) or <strong><code>maand job_command</code></strong></td>
+</tr>
+<tr>
+<td>Template panic</td>
+<td>Allowed namespaces only — see <a href="../reference/templates">templates.md</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="disabled-re-enable-surprises" tabindex="-1"><a class="observablehq-header-anchor" href="#disabled-re-enable-surprises">Disabled / re-enable surprises</a></h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Job stopped after disable</td>
+<td>Expected; see <a href="./disable-and-drain">disable and drain</a></td>
+</tr>
+<tr>
+<td>Re-enabled job not starting</td>
+<td>Run <strong><code>maand build</code></strong> after clearing <strong><code>disabled.json</code></strong>, then <strong><code>deploy</code></strong></td>
+</tr>
+<tr>
+<td>KV missing on disabled job</td>
+<td>Should be retained; if gone, check whether allocations were <strong>removed</strong> not disabled</td>
+</tr>
+<tr>
+<td><strong><code>cat kv --jobs J</code></strong> empty</td>
+<td>Job may be fully <strong>removed</strong> (no non-removed allocations)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="removed-allocation-gc" tabindex="-1"><a class="observablehq-header-anchor" href="#removed-allocation-gc">Removed allocation / GC</a></h3>
+<pre data-language="bash"><code class="language-bash">maand build &amp;&amp; maand deploy &amp;&amp; maand gc
+maand <span class="hljs-built_in">cat</span> allocations --<span class="hljs-built_in">jobs</span> api
+</code></pre>
+<p>Removed rows: hash cleared on deploy; worker <strong><code>jobs/&lt;job&gt;/</code></strong> tree deleted on <strong>gc</strong>. See <a href="../reference/cli/gc">gc.md</a>.</p>
+<hr>
+<h2 id="worker-side-inspection" tabindex="-1"><a class="observablehq-header-anchor" href="#worker-side-inspection">Worker-side inspection</a></h2>
+<p>Paths on worker (replace <strong><code>&lt;bucket_id&gt;</code></strong> from <strong><code>maand info</code></strong>):</p>
+<pre data-language="text"><code class="language-text">/opt/worker/&lt;bucket_id&gt;/worker.json
+/opt/worker/&lt;bucket_id&gt;/jobs.json
+/opt/worker/&lt;bucket_id&gt;/jobs/&lt;job&gt;/Makefile
+/opt/worker/&lt;bucket_id&gt;/jobs/&lt;job&gt;/data/
+/opt/worker/&lt;bucket_id&gt;/jobs/&lt;job&gt;/logs/
+/opt/worker/&lt;bucket_id&gt;/bin/runner.py
+</code></pre>
+<pre data-language="bash"><code class="language-bash">maand run_command <span class="hljs-string">"cat /opt/worker/&lt;bucket_id&gt;/worker.json"</span> --workers 10.0.0.1
+maand run_command <span class="hljs-string">"ls -la /opt/worker/&lt;bucket_id&gt;/jobs/api/"</span> --workers 10.0.0.1
+</code></pre>
+<p>Compare <strong><code>update_seq</code></strong> in <strong><code>worker.json</code></strong> with <strong><code>maand info</code></strong>.</p>
+<hr>
+<h2 id="staging-directory-maand-host" tabindex="-1"><a class="observablehq-header-anchor" href="#staging-directory-maand-host">Staging directory (maand host)</a></h2>
+<p>During deploy, inspect rendered trees before rsync:</p>
+<pre data-language="text"><code class="language-text">tmp/workers/&lt;worker_ip&gt;/jobs/&lt;job&gt;/
+tmp/workers/&lt;worker_ip&gt;/worker.json
+</code></pre>
+<p>If deploy fails mid-run, this directory is removed when the command exits.</p>
+<hr>
+<h2 id="logging" tabindex="-1"><a class="observablehq-header-anchor" href="#logging">Logging</a></h2>
+<p>Structured bucket logs: <strong><code>logs/&lt;worker_ip&gt;.log</code></strong>, <strong><code>logs/maand.log</code></strong>, and per-invocation <strong><code>logs/runs/&lt;run_id&gt;/</code></strong>.</p>
+<pre data-language="bash"><code class="language-bash">maand logs show --worker 10.48.200.3 --job postgres --format human
+maand logs show --event deploy_skip --format human
+</code></pre>
+<p>Full reference (formats, terminal output, flags): <a href="../reference/observability/logging">logging</a>.</p>
+<hr>
+<h2 id="command-reference-for-debugging" tabindex="-1"><a class="observablehq-header-anchor" href="#command-reference-for-debugging">Command reference for debugging</a></h2>
+<table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bucket summary</td>
+<td><code>maand info</code></td>
+</tr>
+<tr>
+<td>Plan deploy</td>
+<td><code>maand deploy --dry-run</code></td>
+</tr>
+<tr>
+<td>Hash / version state</td>
+<td><code>maand cat deployments</code></td>
+</tr>
+<tr>
+<td>Allocation flags</td>
+<td><code>maand cat allocations</code></td>
+</tr>
+<tr>
+<td>Deploy order</td>
+<td><code>maand cat jobs</code></td>
+</tr>
+<tr>
+<td>KV for templates/hooks</td>
+<td><code>maand cat kv --jobs &lt;job&gt;</code></td>
+</tr>
+<tr>
+<td>Ports</td>
+<td><code>maand cat job_ports --jobs &lt;job&gt;</code></td>
+</tr>
+<tr>
+<td>Reproduce hook</td>
+<td><code>maand jobcommand &lt;cmd&gt; [job] --verbose</code></td>
+</tr>
+<tr>
+<td>Filter bucket logs</td>
+<td><code>maand logs show --worker &lt;ip&gt; --job &lt;job&gt; --format human</code></td>
+</tr>
+<tr>
+<td>Health only</td>
+<td><code>maand health_check --jobs &lt;job&gt; --wait --verbose</code></td>
+</tr>
+<tr>
+<td>Force reroll</td>
+<td><code>maand deploy --force --jobs &lt;job&gt;</code></td>
+</tr>
+<tr>
+<td>Config-only push (no lifecycle)</td>
+<td><code>maand deploy --sync-only --jobs &lt;job&gt;</code> (fails if <strong>start</strong> required)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="escalation-checklist" tabindex="-1"><a class="observablehq-header-anchor" href="#escalation-checklist">Escalation checklist</a></h2>
+<ol>
+<li><strong><code>maand build</code></strong> succeeded after last workspace edit?</li>
+<li><strong><code>maand cat deployments</code></strong>: expected rollout state per worker?</li>
+<li><strong><code>maand deploy --dry-run</code></strong>: job listed as required?</li>
+<li><strong><code>deployment_seq</code></strong>: blocked by an earlier job?</li>
+<li><strong><code>disabled.json</code></strong>: unintended drain?</li>
+<li><strong><code>pre_deploy</code></strong> / <strong><code>post_deploy</code></strong> logs clean?</li>
+<li>Worker prerequisites and SSH from CLI host?</li>
+<li>Health probes passing with <strong><code>--wait</code></strong>?</li>
+</ol>
+<hr>
+<h2 id="related" tabindex="-1"><a class="observablehq-header-anchor" href="#related">Related</a></h2>
+<ul>
+<li><a href="../reference/cli/deploy">deploy.md</a> — pipeline and failure table</li>
+<li><a href="../reference/cli/deploy#applying-changes-on-workers">Applying changes on workers</a> — <strong><code>restart_policy</code></strong>, <strong><code>restart_globs</code></strong>, <strong><code>--sync-only</code></strong>, dry-run actions</li>
+<li><a href="./disable-and-drain">disable and drain</a> — disable and re-enable</li>
+<li><a href="./rolling-deploy">rolling-deploy</a> — <strong><code>update_parallel_count</code></strong> and reboot patterns</li>
+<li><a href="../reference/cli/health-check">health-check.md</a> — <strong><code>--update-hash</code></strong></li>
+<li><a href="../reference/job-command-api">job-command-api.md</a> — hook debugging</li>
+<li><a href="./day-2-ops">day-2-ops.md</a> — operations checklist</li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./disable-and-drain"><span>Disable and drain</span></a><a rel="next" href="./job-commands-tutorial"><span>Job commands tutorial</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

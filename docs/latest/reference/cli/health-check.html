@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Maand</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../../_observablehq/theme-near-midnight.07766c04.css">
+<link rel="modulepreload" href="../../_observablehq/client.e3eccb51.js">
+<link rel="modulepreload" href="../../_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="../../_observablehq/stdlib.318537f4.js">
+<link rel="icon" href="../../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../../_observablehq/client.e3eccb51.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../../">Maand</a></li>
+  </ol>
+  <div id="observablehq-search"><input type="search" placeholder="Search"></div>
+  <div id="observablehq-search-results"></div>
+  <script>{const o=document.querySelector("#observablehq-search");o.setAttribute("data-shortcut",`${/Mac|iPhone/.test(navigator.platform)?"\u2318":"Alt-"}K`);const t=o.querySelector("input"),r=()=>import("../../_observablehq/search.cde99f88.js");t.addEventListener("focus",r,{once:!0}),t.addEventListener("keydown",r,{once:!0});const c=document.querySelector("#observablehq-sidebar-toggle");addEventListener("keydown",e=>{(e.code==="KeyK"&&e.metaKey&&!e.altKey&&!e.ctrlKey||e.key==="/"&&!e.metaKey&&!e.altKey&&!e.ctrlKey&&e.target===document.body)&&(c.checked?t.focus():(c.click(),t.focus(),c.click()),t.select(),e.preventDefault())});}</script>
+  <section>
+    <summary>Start</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../../start/overview">Overview</a></li>
+    <li class="observablehq-link"><a href="../../start/concepts">Concepts</a></li>
+    <li class="observablehq-link"><a href="../../start/quickstart">Quickstart</a></li>
+    <li class="observablehq-link"><a href="../../start/comparison-orchestrators">Comparison</a></li>
+    </ol>
+  </section>
+  <section>
+    <summary>Guides</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../../guides/day-2-ops">Day-2 operations</a></li>
+    <li class="observablehq-link"><a href="../../guides/rolling-deploy">Rolling deploy</a></li>
+    <li class="observablehq-link"><a href="../../guides/disable-and-drain">Disable and drain</a></li>
+    <li class="observablehq-link"><a href="../../guides/debugging-deploy">Debugging deploy</a></li>
+    <li class="observablehq-link"><a href="../../guides/job-commands-tutorial">Job commands tutorial</a></li>
+    <li class="observablehq-link"><a href="../../guides/prometheus">Prometheus</a></li>
+    <li class="observablehq-link"><a href="../../guides/worker-reboot">Worker reboot</a></li>
+    </ol>
+  </section>
+  <section class="observablehq-section-active">
+    <summary>Reference</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../configuration">Configuration</a></li>
+    <li class="observablehq-link"><a href="../manifest">Manifest</a></li>
+    <li class="observablehq-link"><a href="../resources-and-placement">Resources and placement</a></li>
+    <li class="observablehq-link"><a href="../deployment-sequence">Deployment sequence</a></li>
+    <li class="observablehq-link"><a href="../templates">Templates</a></li>
+    <li class="observablehq-link"><a href="../certs">Certificates</a></li>
+    <li class="observablehq-link"><a href="../kv/">KV overview</a></li>
+    <li class="observablehq-link"><a href="../kv/namespaces">KV namespaces</a></li>
+    <li class="observablehq-link"><a href="../kv/persistence">KV persistence</a></li>
+    <li class="observablehq-link"><a href="../job-command-api">Job command API</a></li>
+    <li class="observablehq-link"><a href="../observability/logging">Logging</a></li>
+    <li class="observablehq-link"><a href="./commands">CLI commands</a></li>
+    <li class="observablehq-link"><a href="./build">CLI build</a></li>
+    <li class="observablehq-link"><a href="./deploy">CLI deploy</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./health-check">CLI health check</a></li>
+    <li class="observablehq-link"><a href="./job-command">CLI job command</a></li>
+    <li class="observablehq-link"><a href="./job">CLI job</a></li>
+    <li class="observablehq-link"><a href="./run-command">CLI run command</a></li>
+    <li class="observablehq-link"><a href="./gc">CLI gc</a></li>
+    <li class="observablehq-link"><a href="./info">CLI info &amp; cat</a></li>
+    <li class="observablehq-link"><a href="./logs">CLI logs</a></li>
+    </ol>
+  </section>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#cli">CLI</a></li>
+<li class="observablehq-secondary-link"><a href="#prerequisites">Prerequisites</a></li>
+<li class="observablehq-secondary-link"><a href="#built-in-manifest-health-recommended">Built-in manifest health (recommended)</a></li>
+<li class="observablehq-secondary-link"><a href="#custom-command-health-escape-hatch">Custom command health (escape hatch)</a></li>
+<li class="observablehq-secondary-link"><a href="#worker-ssh-health">Worker SSH health</a></li>
+<li class="observablehq-secondary-link"><a href="#what-happens-internally">What happens internally</a></li>
+<li class="observablehq-secondary-link"><a href="#wait-behavior">--wait behavior</a></li>
+<li class="observablehq-secondary-link"><a href="#update-hash-and-redeploy">--update-hash and redeploy</a></li>
+<li class="observablehq-secondary-link"><a href="#relationship-to-deploy">Relationship to deploy</a></li>
+<li class="observablehq-secondary-link"><a href="#relationship-to-build-demands">Relationship to build / demands</a></li>
+<li class="observablehq-secondary-link"><a href="#parallelism">Parallelism</a></li>
+<li class="observablehq-secondary-link"><a href="#errors">Errors</a></li>
+<li class="observablehq-secondary-link"><a href="#typical-usage-patterns">Typical usage patterns</a></li>
+<li class="observablehq-secondary-link"><a href="#writing-health-check-scripts">Writing health check scripts</a></li>
+<li class="observablehq-secondary-link"><a href="#related-commands">Related commands</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="maand-health-check" tabindex="-1"><a class="observablehq-header-anchor" href="#maand-health-check"><code>maand health_check</code></a></h1>
+<p><strong>Health check</strong> verifies workers are reachable, then checks each job on active allocations.</p>
+<p>Each job may use <strong>manifest probes</strong>, a <strong>custom command</strong>, or <strong>both</strong>:</p>
+<ul>
+<li><strong>Manifest probes</strong> — <code>health_check.checks</code> in <code>manifest.json</code> (tcp / http / ssh)</li>
+<li><strong>Custom command</strong> — <code>command_*</code> with <code>executed_on: ["health_check"]</code></li>
+</ul>
+<p>When both are defined, manifest probes run first, then <code>health_check</code> commands (in DB order).</p>
+<p>Order when you run <strong><code>maand health_check</code></strong>:</p>
+<ol>
+<li><strong>Worker health</strong> — TCP dial to each worker’s <strong>SSH port</strong> (<code>maand.conf</code> <code>ssh_port</code>, default <strong>22</strong>).</li>
+<li><strong>Job health</strong> — manifest probes (if any), then <code>health_check</code> command scripts (if any).</li>
+</ol>
+<p>Deploy runs <strong>job</strong> health automatically after <strong>restart</strong> / <strong>job_control</strong> for jobs that define one of the above. Deploy does <strong>not</strong> re-run the worker SSH gate on every job (use <code>maand health_check</code> for that).</p>
+<hr>
+<h2 id="cli" tabindex="-1"><a class="observablehq-header-anchor" href="#cli">CLI</a></h2>
+<pre data-language="bash"><code class="language-bash">maand health_check [flags]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--jobs</code></td>
+<td>all jobs</td>
+<td>Comma-separated job names. Unknown names error.</td>
+</tr>
+<tr>
+<td><code>--wait</code></td>
+<td>false</td>
+<td>Retry until success or <strong>30 attempts</strong> (1 second apart).</td>
+</tr>
+<tr>
+<td><code>--verbose</code></td>
+<td>false</td>
+<td>Stream command output.</td>
+</tr>
+<tr>
+<td><code>--update-hash</code></td>
+<td>false</td>
+<td>Mark failed allocations for redeploy when <strong><code>health_check</code> commands</strong> fail (manifest probes only; no effect).</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<pre data-language="bash"><code class="language-bash">maand health_check
+maand health_check --<span class="hljs-built_in">jobs</span> api,worker
+maand health_check --<span class="hljs-built_in">jobs</span> api --<span class="hljs-built_in">wait</span> --verbose
+maand health_check --update-hash --<span class="hljs-built_in">jobs</span> vault
+</code></pre>
+<hr>
+<h2 id="prerequisites" tabindex="-1"><a class="observablehq-header-anchor" href="#prerequisites">Prerequisites</a></h2>
+<ol>
+<li><strong><code>maand build</code></strong> (allocations and <code>job_commands</code> in DB).</li>
+<li><strong>Host tools</strong>: <code>python3</code>, <code>bun</code> (if needed), <code>bash</code>, <code>ssh</code>.</li>
+<li>Jobs need a <strong><code>health_check</code></strong> section in <code>manifest.json</code> and/or a command with <strong><code>executed_on</code>: <code>["health_check"]</code></strong>.</li>
+</ol>
+<p>If a job has <strong>neither</strong>:</p>
+<pre data-language="text"><code class="language-text">health check skipped: &lt;job&gt; (no health_check config or commands)
+</code></pre>
+<p>That is <strong>not</strong> an error; exit code remains 0 for that job.</p>
+<hr>
+<h2 id="built-in-manifest-health-recommended" tabindex="-1"><a class="observablehq-header-anchor" href="#built-in-manifest-health-recommended">Built-in manifest health (recommended)</a></h2>
+<p>Declare probes next to <code>resources.ports</code>. Port names reference manifest keys; maand resolves assigned numbers at check time and probes <strong>each active allocation</strong> (<code>worker_ip:port</code>).</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"cassandra"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"resources"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"ports"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"cassandra_cql_port"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"cassandra_http_port"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"health_check"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"checks"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+      <span class="hljs-punctuation">{</span> <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"tcp"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"port"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"cassandra_cql_port"</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-punctuation">{</span> <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"http"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"port"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"cassandra_http_port"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"path"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"/metrics"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"expect_status"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span> <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"timeout_seconds"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"wait"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">"attempts"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">30</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"interval_seconds"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Probe</th>
+<th>Fields</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>tcp</code></strong></td>
+<td><code>port</code> (required)</td>
+</tr>
+<tr>
+<td><strong><code>http</code></strong></td>
+<td><code>port</code>, <code>path</code> (default <code>/</code>), <code>expect_status</code> (default <code>200</code>), <code>scheme</code> (default <code>http</code>)</td>
+</tr>
+<tr>
+<td><strong><code>ssh</code></strong></td>
+<td><code>command</code> (required) — one shell line on the <strong>worker</strong> over SSH (no job workspace staging)</td>
+</tr>
+</tbody>
+</table>
+<p>All checks must pass on <strong>every</strong> allocation (AND). Built-in probes need no Python/Bun script.</p>
+<p>Example <strong><code>ssh</code></strong> probe (systemd on the worker):</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span> <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"ssh"</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"command"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"systemctl is-active cassandra"</span> <span class="hljs-punctuation">}</span>
+</code></pre>
+<hr>
+<h2 id="custom-command-health-escape-hatch" tabindex="-1"><a class="observablehq-header-anchor" href="#custom-command-health-escape-hatch">Custom command health (escape hatch)</a></h2>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"selectors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"worker"</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"commands"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"command_health"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"executed_on"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"health_check"</span><span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Script: <code>_modules/command_health.py</code>. Use for cluster readiness (<code>nodetool status</code>, etc.) when manifest probes are not enough. You may combine with manifest probes; commands run after probes pass.</p>
+<p><strong>Health-fast workspace:</strong> for <code>health_check</code> commands only, maand stages <strong><code>_modules/command_&lt;name&gt;.*</code></strong>, embedded <code>maand.py</code> / <code>maand.ts</code>, and certs — not the full job tree (Makefile, templates, etc.).</p>
+<hr>
+<h2 id="worker-ssh-health" tabindex="-1"><a class="observablehq-header-anchor" href="#worker-ssh-health">Worker SSH health</a></h2>
+<p>Before job checks, <code>maand health_check</code> dials <strong><code>worker_ip:ssh_port</code></strong> for every worker in <code>workers.json</code>.</p>
+<p>Configure in <code>maand.conf</code>:</p>
+<pre data-language="toml"><code class="language-toml"><span class="hljs-attr">ssh_port</span> = <span class="hljs-number">22</span>
+</code></pre>
+<p>Output:</p>
+<pre data-language="text"><code class="language-text">worker health check passed
+</code></pre>
+<p>or retry/fail when <code>--wait</code> is set.</p>
+<hr>
+<h2 id="what-happens-internally" tabindex="-1"><a class="observablehq-header-anchor" href="#what-happens-internally">What happens internally</a></h2>
+<pre data-language="text"><code class="language-text">Open maand.db
+Begin transaction
+kv.Initialize + StartRuntimeAPI (localhost:8080 for scripts)
+CheckWorkers (SSH TCP on all workers)
+Resolve job list (--jobs filter or all jobs from DB)
+Run jobs in parallel (up to 4 jobs at a time)
+  For each job:
+    Manifest health_check probes (tcp/http/ssh per allocation), if defined
+    Then each health_check command (in DB order), if defined:
+      jobcommand.JobCommand(..., event="health_check", concurrency=1)
+Commit transaction on success (or on failure when --update-hash marked allocations)
+</code></pre>
+<h3 id="per-allocation-execution" tabindex="-1"><a class="observablehq-header-anchor" href="#per-allocation-execution">Per-allocation execution</a></h3>
+<p><strong>Built-in probes</strong> dial <code>worker_ip:assigned_port</code> from the CLI host (no scripts).</p>
+<p><strong>Custom commands</strong> — for each <strong>active</strong> worker hosting the job:</p>
+<ol>
+<li>Stage job files under <code>tmp/workers/&lt;ip&gt;/jobs/&lt;job&gt;/</code> (from <code>job_files</code> + embedded <code>maand.py</code> / <code>maand.ts</code> + certs from KV).</li>
+<li>Run script on the CLI host with env:
+<ul>
+<li><code>ALLOCATION_ID</code>, <code>ALLOCATION_IP</code>, <code>ALLOCATION_INDEX</code>, <code>JOB</code>, <code>EVENT=health_check</code>, <code>COMMAND=&lt;name&gt;</code>, <code>DISABLED</code></li>
+<li><code>JOB_COMMAND_API_HOST</code> → <code>127.0.0.1</code></li>
+</ul>
+</li>
+</ol>
+<p>Failures on one worker fail the job; multiple jobs can fail in one run (<strong>batch error</strong>).</p>
+<hr>
+<h2 id="wait-behavior" tabindex="-1"><a class="observablehq-header-anchor" href="#wait-behavior"><code>--wait</code> behavior</a></h2>
+<p>When <strong><code>--wait</code></strong> is set (deploy uses wait mode internally after restarts):</p>
+<ul>
+<li>Run built-in probes and <code>health_check</code> commands for the job.</li>
+<li>On failure, sleep <strong>1 second</strong> and retry.</li>
+<li>Up to <strong>30 attempts</strong> per job.</li>
+<li>Success prints: <code>health check passed: &lt;job&gt;</code></li>
+<li>Failure returns <strong><code>HealthCheckError</code></strong> with the last underlying error.</li>
+</ul>
+<p>Without <code>--wait</code>, a single failure prints <code>health check failed: &lt;job&gt;</code> and returns immediately.</p>
+<hr>
+<h2 id="update-hash-and-redeploy" tabindex="-1"><a class="observablehq-header-anchor" href="#update-hash-and-redeploy"><code>--update-hash</code> and redeploy</a></h2>
+<p>When <strong><code>--update-hash</code></strong> is set and a <strong><code>health_check</code> command</strong> exits non-zero on a worker, that allocation is marked for redeploy (<code>previous_hash</code> diverges from <code>current_hash</code>). Marks are <strong>committed even when the health check fails</strong>.</p>
+<p>Does <strong>not</strong> apply to manifest probe failures — use <strong><code>maand deploy --force</code></strong> to roll those jobs again.</p>
+<pre data-language="bash"><code class="language-bash">maand health_check --update-hash --<span class="hljs-built_in">jobs</span> vault   <span class="hljs-comment"># command-based jobs</span>
+maand deploy --<span class="hljs-built_in">jobs</span> vault                       <span class="hljs-comment"># restarts marked allocations only</span>
+
+maand deploy --force --<span class="hljs-built_in">jobs</span> cassandra           <span class="hljs-comment"># force full redeploy (e.g. after manifest probe issues)</span>
+</code></pre>
+<hr>
+<h2 id="relationship-to-deploy" tabindex="-1"><a class="observablehq-header-anchor" href="#relationship-to-deploy">Relationship to deploy</a></h2>
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th><code>wait</code></th>
+<th><code>verbose</code></th>
+<th><code>--update-hash</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maand health_check</code></td>
+<td>User-controlled (<code>--wait</code>)</td>
+<td>User-controlled (<code>--verbose</code>)</td>
+<td>CLI only</td>
+</tr>
+<tr>
+<td>Deploy after <strong>restart</strong> / <strong>job_control</strong></td>
+<td><strong>true</strong> (wait for recovery)</td>
+<td><strong>true</strong></td>
+<td>not used</td>
+</tr>
+</tbody>
+</table>
+<p>Production deploy waits for health to pass after rolling updates; ad-hoc CLI checks can be one-shot unless you pass <code>--wait</code>. See <a href="./deploy#which-jobs-run-in-a-deploy-wave"><code>deploy.md</code></a> for <strong><code>--force</code></strong>.</p>
+<hr>
+<h2 id="relationship-to-build-demands" tabindex="-1"><a class="observablehq-header-anchor" href="#relationship-to-build-demands">Relationship to build / demands</a></h2>
+<ul>
+<li><strong><code>health_check</code></strong> is a valid <code>executed_on</code> value at build time.</li>
+<li>It does <strong>not</strong> affect <strong><code>deployment_seq</code></strong> unless paired with demands (demands are between jobs; <code>health_check</code> alone does not create edges).</li>
+<li><strong><code>post_build</code></strong> hooks run at end of build; <strong><code>health_check</code></strong> does not run automatically on build.</li>
+</ul>
+<hr>
+<h2 id="parallelism" tabindex="-1"><a class="observablehq-header-anchor" href="#parallelism">Parallelism</a></h2>
+<ul>
+<li><strong>Between jobs</strong>: up to <strong>4</strong> concurrent jobs (<code>defaultJobParallelism</code>).</li>
+<li><strong>Within a job</strong>: <strong>concurrency 1</strong> (commands and allocations run sequentially for health_check in <code>JobCommand</code> when called with concurrency 1).</li>
+</ul>
+<hr>
+<h2 id="errors" tabindex="-1"><a class="observablehq-header-anchor" href="#errors">Errors</a></h2>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HealthCheckError</code></td>
+<td>One job failed (wraps command/SSH/script error).</td>
+</tr>
+<tr>
+<td>Batch error</td>
+<td>Multiple jobs failed; message lists each job.</td>
+</tr>
+<tr>
+<td><code>jobs not in this bucket: [...]</code></td>
+<td>Bad <code>--jobs</code> name.</td>
+</tr>
+<tr>
+<td><code>NotFoundError</code></td>
+<td>Command not registered for <code>health_check</code> on that job.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="typical-usage-patterns" tabindex="-1"><a class="observablehq-header-anchor" href="#typical-usage-patterns">Typical usage patterns</a></h2>
+<p><strong>After deploy:</strong></p>
+<pre data-language="bash"><code class="language-bash">maand deploy -b
+maand health_check --<span class="hljs-built_in">wait</span>
+</code></pre>
+<p><strong>Single job smoke test:</strong></p>
+<pre data-language="bash"><code class="language-bash">maand health_check --<span class="hljs-built_in">jobs</span> myservice --verbose
+</code></pre>
+<p><strong>CI gate:</strong></p>
+<pre data-language="bash"><code class="language-bash">maand health_check --<span class="hljs-built_in">wait</span> &amp;&amp; <span class="hljs-built_in">echo</span> OK
+</code></pre>
+<p><strong>Mark unhealthy nodes for redeploy</strong> (command-based health only):</p>
+<pre data-language="bash"><code class="language-bash">maand health_check --update-hash --<span class="hljs-built_in">jobs</span> vault
+maand deploy --<span class="hljs-built_in">jobs</span> vault
+</code></pre>
+<p><strong>Force redeploy</strong> without workspace or hash changes:</p>
+<pre data-language="bash"><code class="language-bash">maand deploy --force --<span class="hljs-built_in">jobs</span> api
+</code></pre>
+<hr>
+<h2 id="writing-health-check-scripts" tabindex="-1"><a class="observablehq-header-anchor" href="#writing-health-check-scripts">Writing health check scripts</a></h2>
+<p>Use the same libraries as other events — see <a href="../job-command-api">job-command-api.md</a>:</p>
+<ul>
+<li>Python: <code>maand.py</code> → KV get/put, demands, semaphores.</li>
+<li>Bun: <code>maand.ts</code> → same API.</li>
+</ul>
+<p>Scripts should exit <strong>0</strong> when healthy, non-zero when not. Keep checks read-only when possible; mutations go to KV and persist only if you also run deploy or call persist APIs appropriately.</p>
+<hr>
+<h2 id="related-commands" tabindex="-1"><a class="observablehq-header-anchor" href="#related-commands">Related commands</a></h2>
+<ul>
+<li><a href="./deploy"><code>deploy.md</code></a> — automatic health check after rollout.</li>
+<li><a href="./job-command">job-command.md</a> — events and patterns · <a href="../job-command-api">job-command-api.md</a> — runtime API</li>
+<li><a href="./build"><code>build.md</code></a> — register commands in the catalog.</li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./deploy"><span>CLI deploy</span></a><a rel="next" href="./job-command"><span>CLI job command</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-28T20:39:21">Jun 28, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>
